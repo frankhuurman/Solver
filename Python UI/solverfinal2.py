@@ -3,8 +3,6 @@ import os
 import calc_rest
 import calcside
 
-#timo test
-
 # Initialize pygame
 pygame.init()
 # Set program window size and create program window

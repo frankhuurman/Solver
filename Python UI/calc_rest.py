@@ -22,12 +22,12 @@ class cube(object):
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
-		left_face = [[]]
-		front_face = [[]]
-		right_face = [[]]
-		back_face = [[]]
-		bottom_face = [[]]
-		top_face = [[]]
+		left_face = []
+		front_face = []
+		right_face = []
+		back_face = []
+		bottom_face = []
+		top_face = []
 		count = 1
 
 		for item in outputlist:
