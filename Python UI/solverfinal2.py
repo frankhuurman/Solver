@@ -513,19 +513,26 @@ def checkQuitandClicks():
 					###
 					
 					# Create cube object
-					cube = calc_rest.cube(calcu_list)
+					cube = calc_rest.cube(calcu_list) # Values are returned on the line below this one
+					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
+					while 1: 
+						solve = cube.nextMove() # calls the cube.nextMove() function
+						# nextMove() returns list of colors of all faces after a move
+						# futureFunction() checks if all faces are solved
+						# if it's solved, break out of this loop and ser.write(b solve)
+						# if not, do the loop again and check for nextMove()
+						if futureFunction(): 
+							break
+					#sends the move list to the arduino #check if this works
 					# Check first algorithm/nextMove method? like cube.nextMove()
-
 					# Do the move(cube.frontFaceCW() or something)
 					# Check next algorithm etc etc
 					# assemble movelist to send in calc_rest.py
-					# send movelist to Arduino using PySerial
-					
 
 					###
 					###
 					### END SOLVING ALGORITHM
-
+					ser.write(b movelist)
 					# Reset rectangles to white and clear lists to solve another cube
 					calcside.emptyList()
 					calcu_list.clear()
