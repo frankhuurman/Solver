@@ -76,6 +76,7 @@ class face(object):
 		for i in self.squares:
 			if (not i == self.face_color):
 				moi = False
+		return(True)
 
 	def printface(self):
 		print(self.squares)
