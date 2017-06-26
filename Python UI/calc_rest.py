@@ -17,41 +17,65 @@ def printFace(facename, face):
 	print(temp_dict[1], temp_dict[2], temp_dict[3])
 	print(temp_dict[4], temp_dict[5], temp_dict[6])
 	print(temp_dict[7], temp_dict[8], temp_dict[9], "\n")
+	1, ff
+	2, bf
+
+
 
 class cube(object):
 
+	facesnames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
+	faces = {}
+
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
-		left_face = []
-		front_face = []
-		right_face = []
-		back_face = []
-		bottom_face = []
-		top_face = []
-		count = 1
+		print(outputlist)
+		for i, f in enumerate(self.facesnames):
+			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
 
-		for item in outputlist:
-			if count <= 9:
-				left_face += item
-				count += 1
-			elif count > 9 and count <= 18:
-				front_face += item
-				count += 1
-			elif count > 18 and count <= 27:
-				right_face += item
-				count += 1
-			elif count > 27 and count <= 36:
-				back_face += item
-				count += 1
-			elif count > 36 and count <= 45:
-				bottom_face += item
-				count += 1
-			elif count > 45 and count <= 54:
-				top_face += item
-				count += 1
+		for f in self.facesnames:
+			print("Face: " + f)
+			print(self.faces[f].squares)
+			print(self.faces[f].face_color)
+		
+		
+		
+class face(object):
+	
+	# squares
+	@property
+	def squares(self):
+		return(self.__squares)
+	@squares.setter
+	def squares(self, squares):
+		self.__squares = squares
+	# face_color
+	@property
+	def face_color(self):
+		return(self.__face_color)
+	@face_color.setter
+	def face_color(self, face_color):
+		self.__face_color = face_color
+		
+		
+	def __init__(self, data):
+		self.squares = []
+		print(data)
+		self.face_color = data[int(len(data)/2)]
+		print("Face_color:", str(self.face_color))
+		for i in range(3):
+			moi = []
+			for j in range(3):
+				print(str(i), str(j), str((i*3)+j), str(data[(i*3)+j]))
+				moi.append(data[(i*3)+j])
+			self.squares.append(moi)
+			del(moi)
 
-		print (left_face)
-		print (front_face)
-		print (right_face)
+	def allTheSame(self):
+		moi = True
+		for i in self.squares:
+			if (not i == self.face_color):
+				moi = False
 
-
+	def printface(self):
+		print(self.squares)
