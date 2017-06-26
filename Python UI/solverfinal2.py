@@ -514,8 +514,7 @@ def checkQuitandClicks():
 					###
 					
 					# Create cube object
-					cube = calc_rest.cube(calcu_list)
-					# Value returns here
+					cube = calc_rest.cube(calcu_list) # Values are returned on the line below this one
 					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
 					while 1: 
 						solve = cube.nextMove() # calls the cube.nextMove() function
