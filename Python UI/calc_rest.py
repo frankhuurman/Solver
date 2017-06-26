@@ -35,8 +35,9 @@ class cube(object):
 
 		for f in self.facesnames:
 			print("Face: " + f)
-			print(self.faces[f].squares)
+			print(self.faces[f].printFace())
 			print(self.faces[f].face_color)
+			print(self.faces[f].allTheSame())
 		
 		
 		
@@ -72,11 +73,16 @@ class face(object):
 			del(moi)
 
 	def allTheSame(self):
-		moi = True
-		for i in self.squares:
-			if (not i == self.face_color):
-				moi = False
-		return(moi)
+		"""Return True if all the colors of the square are the same color."""
+		same = True
+		for color in self.squares:
+			if (not color == self.face_color):
+				same = False
+		return(same)
 
-	def printface(self):
-		print(self.squares)
+	def printFace(self):
+		display = ""
+		for row in self.squares:
+			for sq in row:
+				display += "\t" + str(sq)
+			display += "\n"
