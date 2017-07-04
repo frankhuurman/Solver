@@ -1,7 +1,8 @@
 from pprint import pprint
 from collections import OrderedDict
 
-# Define which blocks are edges, doesn't need to be defined for each face individualy, just itterate through the faces and asign 2, 4, 6 and eight as edges
+# TODO: Define which blocks are edges, doesn't need to be defined for each face individualy, just itterate through the faces and asign 2, 4, 6 and eight as edges
+# TODO: Link the sides of individual edges and corners so they move with one another
 
 def printFace(facename, face):
 	"""Prints the name of the face and the face that is given as an argument"""
@@ -91,6 +92,14 @@ class face(object):
 
 # List 
 	# List algo 1
+		# EXAMPLE
+		# If colorCombo = (value) 
+			# If pos = face(number)
+			# If pos = face(number)
+		# If colorCombo = (value)
+			# If pos = face(number)
+			# If pos = face(number)
+		# EXAMPLE
 	# List algo 2
 	# List algo 3
 	# List algo 4
