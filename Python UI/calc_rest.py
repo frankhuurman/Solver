@@ -100,56 +100,78 @@ class face(object):
 
 
 # Algorithm
-	# Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
-		# Check each block asociated with a edge to see if it is white
-			# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
-				# Increase a counter that keeps track of the amount of correct edges.
-				# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-			# Check the other side of the edge to see what color it is
-				# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
-					# Store these moves in moveListBuffer
-			# Move to the next edge block
-	# Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
-		# Check each corner block for the color white
-			# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
-				# Increase a counter that keeps track of the amount of correct corners.
-				# If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-			# Check the two other blocks of the corner for their color
-				# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
-					# Store these moves in moveListBuffer.
-	# Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
-		# Check each edge on the middle and back layer of the cube for a orange color
-			# If a orange edge is found then check the other side of the edge 
-				# Check if the block is in the correct position
-					# If the block is in the correct position then mark it as completed
+	# Check if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
+		# Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
+			# Check each block asociated with a edge to see if it is white
+				# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
+					# Increase a counter that keeps track of the amount of correct edges.
+					# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+				# Check the other side of the edge to see what color it is
+					# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
+						# Store these moves in moveListBuffer
+				# Move to the next edge block
+		# Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
+			# Check each corner block for the color white
+				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
+					# Increase a counter that keeps track of the amount of correct corners.
+					# If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+				# Check the two other blocks of the corner for their color
+					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
+						# Store these moves in moveListBuffer.
+		# Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
+			# Check each edge on the middle and back layer of the cube for a orange color
+				# If a orange edge is found then check the other side of the edge 
+					# Check if the block is in the correct position
+						# If the block is in the correct position then mark it as completed
+							# Increase a counter that keeps track of the amount of correct edges
+							# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+						# Else check the color combination in combination with it's position in the list.
+							# Store the corresponding moves in moveListBuffer
+		# Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
+			#Check each edge that is still not in the correct position (Back) for yellow
+				# Check if the edge is in the correct position already
+					# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
 						# Increase a counter that keeps track of the amount of correct edges
 						# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-					# Else check the color combination in combination with it's position in the list.
-						# Store the corresponding moves in moveListBuffer
-	# Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
-		#Check each edge that is still not in the correct position (Back) for yellow
-			# Check if the edge is in the correct position already
-				# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
-					# Increase a counter that keeps track of the amount of correct edges
+					# Else go through the list using the position of the yellow edge.
+						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
+		# Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
+			# Check the color of the color on the non yellow sides of the edges.
+				# If the color matches the color of the center of the face (5)
+					# Increase a counter that keeps track of the amount of correct edges.
 					# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-				# Else go through the list using the position of the yellow edge.
-					# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-	# Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
-		# Check the color of the color on the non yellow sides of the edges.
-			# If the color matches the color of the center of the face (5)
-				# Increase a counter that keeps track of the amount of correct edges.
-				# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-			# Else check the color of the adjacent edge, going clockwise
-				# If the color of the adjacent edge matches the color of the center block of their respective face
-					# Go back to looking for a unsolved block skipping this one for the next round
-				# Else go through the list 
-					# Store the moves in moveListBuffer #@!$!*@$*!@)#!@$(!@$)!@)#!@)_%()!@# KEEP IN MIND THAT THIS DOES NOT FOLLOWS THE STANDARD ALGORITHM AND IT NEEDS TO BE ADAPTED TO WORK FOR EACH OF THE FOUR SIDES!
-	# Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
-		# If the side on the yellow face is NOT yellow
-			# If the other colors on the corner DO NOT match the color at the center of their respective face
-				# Go into the list using the position of this corner
-					# Calculate how many times the attached moves need to be executed to make all corners be correct.
-						# Store the attached moves in moveListBuffer as many times as is needed to react a correct cube state
-						# Set the Boolean to TRUE and break out of this loop.
-		# Else move onto the next corner
-	#  OH BOI		
+				# Else check the color of the adjacent edge, going clockwise
+					# If the color of the adjacent edge matches the color of the center block of their respective face
+						# Go back to looking for a unsolved block skipping this one for the next round
+					# Else go through the list 
+						# Store the moves in moveListBuffer #@!$!*@$*!@)#!@$(!@$)!@)#!@)_%()!@# KEEP IN MIND THAT THIS DOES NOT FOLLOWS THE STANDARD ALGORITHM AND IT NEEDS TO BE ADAPTED TO WORK FOR EACH OF THE FOUR SIDES!
+		# Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
+			# Check if the side on the yellow face is NOT yellow
+				# If the other colors on the corner DO NOT match the color at the center of their respective face
+					# Go into the list using the position of this corner
+						# Calculate how many times the attached moves need to be executed to make all corners be correct.
+							# Store the attached moves in moveListBuffer as many times as is needed to react a correct cube state
+							# Set the Boolean to TRUE and break out of this loop.
+			# Else move onto the next corner
+		# Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
+			# Check if all faces only contain one color 
+				# Set the Boolean to TRUE and break out of this loop
+			# Else check which yellow corners are placed incorrectly
+				# If the yellow - orange - blue corner is correctly placed
+					# Skip this block leaving it be as is.
+				# Else go through the list
+					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
+				# Check if the next corner is correctly placed
+					# Skip this block leaving it be as is.
+				# Else go through the list
+					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
+				# Check if the next corner is correctly placed
+					# Skip this block leaving it be as is.
+				# Else go through the list
+					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
+				# Check if the next corner is correctly placed
+					# Skip this block leaving it be as is.
+				# Else go through the list
+					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
+				# Break out of this loop (This is under the assumption everything up until now has worked)
+	# Send moveListBuffer back to solverfinal2.py
