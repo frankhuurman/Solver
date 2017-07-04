@@ -93,10 +93,16 @@ class face(object):
 # List 
 	# List algo 1
 		# EXAMPLE
-		# If colorCombo = (value) 
+		# If colorCombo = (whiteRed) 
 			# If pos = face(number)
 			# If pos = face(number)
-		# If colorCombo = (value)
+		# If colorCombo = (whiteBlue)
+			# If pos = face(number)
+			# If pos = face(number)
+		# if colorCombo = (whiteOrange)
+			# If pos = face(number)
+			# If pos = face(number)
+		# if colorCombo = (WhiteGreen)
 			# If pos = face(number)
 			# If pos = face(number)
 		# EXAMPLE
