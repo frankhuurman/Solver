@@ -97,7 +97,7 @@ class face(object):
 			# If pos = face(number)
 			# If pos = face(number)
 		# If colorCombo = (whiteBlue)
-			# If pos = face(number)
+			# If pos = face(number) !&*NHDSW*&!DJ*(SQJ*(DAMUSUI(!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!))) 24 edges
 			# If pos = face(number)
 		# if colorCombo = (whiteOrange)
 			# If pos = face(number)
