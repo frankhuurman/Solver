@@ -24,7 +24,7 @@ if(test == "hello"){
   Serial.println("hello");
 }
 else{
-  Serial.println("jo");
+  Serial.println("martin");
 }
 }
 

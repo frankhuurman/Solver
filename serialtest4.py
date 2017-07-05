@@ -1,16 +1,21 @@
 import serial
+from time import sleep
 ser = serial.Serial('COM3', 9600, timeout=2)  # open serial port
 print(ser.name)         # check which port was really used
 #ser.write(b'hello')     # write a string converted to bytes
 
+def sendThing():
+	ser.write(b"yes")
 
 while True:
 	data = ser.readline()[:-2] #the last bit gets rid of the new-line chars
+	#print (data)
+	#print (data)
 	if data:
 		if data == b"Ready":
 			print ("hi")
 			input("send hello string now?")
-			ser.write(b'hello')
+			ser.write(b"hello")
 		elif data == b'hello':
 			print ("it says hello!")
 		else:
@@ -19,6 +24,7 @@ while True:
 			#ser.write(b'hello')
 
 	if not data:
+		sendThing()
 		print("No data being received from Arduino anymore")
 		break
 
