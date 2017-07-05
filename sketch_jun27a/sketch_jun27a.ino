@@ -15,17 +15,18 @@ else{
 */
 }
 void loop() {
-
-if(Serial.available()){
 char test = ' ';
+String totalstring = " ";
+if(Serial.available()){
 test = Serial.read();
+totalstring += test;
 Serial.println(test);
+}
 if(test == "hello"){
-  Serial.println("hello");
+Serial.println("hello");
 }
 else{
   Serial.println("martin");
-}
 }
 
 /*
