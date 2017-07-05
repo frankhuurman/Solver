@@ -108,15 +108,32 @@ def list(colorCombo, pos)
 			if pos == cube.left_face(6):
 				moveListBuffer += "l'u'f'"
 			if pos == cube.left_face(8):
-				movelistBuffer += "llu'f'" 
+				moveListBuffer += "llu'f'" 
 			if pos == cube.top_face(2):
 				moveListBuffer += "u'l"
 			if pos == cube.top_face(4):
-				movelistBuffer += "l"
+				moveListBuffer += "l"
 			if pos == cube.top_face(6):
 				moveListBuffer += "uul"
 			if pos == cube.top_face(8):
 				moveListBuffer += "ul"
+			if pos == cube.right_face(2):
+				moveListBuffer += "uf'"
+			if pos == cube.right_face(4):
+				moveListBuffer += "ruf'"
+			if pos == cube.right_face(6):
+				moveListBuffer += "r'uf'"
+			if pos == cube.right_face(8):
+				moveListBuffer += "rruf'"
+			if pos == cube.bottom_face(2):
+				moveListBuffer += "d'l'"
+			if pos == cube.bottom_face(4):
+				moveListBuffer += "l'"
+			if pos == cube.bottom_face(6):
+				moveListBuffer += "ddl'"
+			if pos == cube.bottom_face(8):
+				moveListBuffer += "d'l'"
+
 		# EXAMPLE
 		# If colorCombo = (whiteRed) 
 			# If pos = face(number)
