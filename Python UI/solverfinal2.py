@@ -531,7 +531,7 @@ def checkQuitandClicks():
 					###
 					###
 					### END SOLVING ALGORITHM
-					ser.write(b moveList)
+					#ser.write(b moveList)
 					# Reset rectangles to white and clear lists to solve another cube
 					calcside.emptyList()
 					calcu_list.clear()
