@@ -1,7 +1,6 @@
 import pygame
 import os
 import calc_rest
-import calcside
 
 # Initialize pygame
 pygame.init()
