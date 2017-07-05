@@ -90,11 +90,11 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 
-def list(colorCombo, pos)
+# def list(colorCombo, pos)
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
-	if algo1 == True:
-		if colorCombo == whiteRed:
+	#if algo1 == True:
+	"""	if colorCombo == whiteRed:
 			if pos == cube.front_face(2): # V
 				moveListBuffer += "f" 
 			if pos == cube.front_face(4): # V
@@ -145,7 +145,7 @@ def list(colorCombo, pos)
 	# List algo 4
 	# List algo 5 
 	# List algo 6 
-	# List algo 7
+	# List algo 7 """
 
 
 # Algorithm
