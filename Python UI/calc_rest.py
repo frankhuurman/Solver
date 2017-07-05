@@ -102,37 +102,45 @@ def list(colorCombo, pos)
 			if pos == cube.front_face(8): # V
 				movelistBuffer += "f'"
 			if pos == cube.left_face(2): # V
-				moveListBuffer += "u'f'"
-			if pos == cube.left_face(4):
+				moveListBuffer += "u'f'" 
+			if pos == cube.left_face(4): # V
 				moveListBuffer += "lu'f'"
-			if pos == cube.left_face(6):
+			if pos == cube.left_face(6): # V
 				moveListBuffer += "l'u'f'"
-			if pos == cube.left_face(8):
+			if pos == cube.left_face(8): # V
 				moveListBuffer += "llu'f'" 
-			if pos == cube.top_face(2):
+			if pos == cube.top_face(2): # V
 				moveListBuffer += "u'l"
-			if pos == cube.top_face(4):
+			if pos == cube.top_face(4): # V
 				moveListBuffer += "l"
-			if pos == cube.top_face(6):
+			if pos == cube.top_face(6): # V
 				moveListBuffer += "uul"
-			if pos == cube.top_face(8):
+			if pos == cube.top_face(8): # V
 				moveListBuffer += "ul"
-			if pos == cube.right_face(2):
+			if pos == cube.right_face(2): # V
 				moveListBuffer += "uf'"
-			if pos == cube.right_face(4):
+			if pos == cube.right_face(4): # V 
 				moveListBuffer += "ruf'"
-			if pos == cube.right_face(6):
+			if pos == cube.right_face(6): # V
 				moveListBuffer += "r'uf'"
-			if pos == cube.right_face(8):
+			if pos == cube.right_face(8): # V
 				moveListBuffer += "rruf'"
-			if pos == cube.bottom_face(2):
+			if pos == cube.bottom_face(2): # V
 				moveListBuffer += "d'l'"
-			if pos == cube.bottom_face(4):
+			if pos == cube.bottom_face(4): # V
 				moveListBuffer += "l'"
-			if pos == cube.bottom_face(6):
+			if pos == cube.bottom_face(6): # V
 				moveListBuffer += "ddl'"
-			if pos == cube.bottom_face(8):
+			if pos == cube.bottom_face(8): # V
 				moveListBuffer += "d'l'"
+			if pos == cube.back_face(2):
+				moveListBuffer += "bll"
+			if pos == cube.back_face(4):
+				moveListBuffer += "bbll"
+			if pos == cube.back_face(6):
+				moveListBuffer += "ll"
+			if pos == cube.back_face(8):
+				moveListBuffer += "b'll"
 
 		# EXAMPLE
 		# If colorCombo = (whiteRed) 
