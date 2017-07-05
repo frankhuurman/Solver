@@ -90,11 +90,11 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 
-# def list(colorCombo, pos)
+def list(colorCombo, pos)
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
-	#if algo1 == True:
-	"""	if colorCombo == whiteRed:
+	if algo1 == True:
+		if colorCombo == whiteRed:
 			if pos == cube.front_face(2): # V
 				moveListBuffer += "f" 
 			if pos == cube.front_face(4): # V
@@ -102,30 +102,21 @@ class face(object):
 			if pos == cube.front_face(8): # V
 				movelistBuffer += "f'"
 			if pos == cube.left_face(2): # V
-				moveListBuffer += "uf"
-			if pos == cube.left_face(4): # V
-				moveListBuffer += "luf"
-			if pos == cube.left_face(6): # V
-				movelistBuffer += "l'uf"
-			if pos == cube.left_face(8): # V
-				moveListBuffer += "lluf"
-			if pos == cube.top_face(2): # V
-				moveListBuffer += "brr"
-			if pos == cube.top_face(4): # V 
-				movelistBuffer += "ubrr" 
-			if pos == cube.top_face(6): # V
-				moveListBuffer += "u'brr"
-			if pos == cube.top_face(8): # V 
-				moveListBuffer += "uubrr"
-			if pos == cube.right_face(2):
-				moveListBuffer += "uf"
-			if pos == cube.right_face(4): 
-				moveListBuffer += "ruf"
-			if pos == cube.right_face(6):
-				movelistBuffer += "r'uf"
-			if pos == cube.right_face(8):
-				moveListBuffer += "ruff"
-			if pos == cube.bottom_face(2):
+				moveListBuffer += "u'f'"
+			if pos == cube.left_face(4):
+				moveListBuffer += "lu'f'"
+			if pos == cube.left_face(6):
+				moveListBuffer += "l'u'f'"
+			if pos == cube.left_face(8):
+				movelistBuffer += "llu'f'" 
+			if pos == cube.top_face(2):
+				moveListBuffer += "u'l"
+			if pos == cube.top_face(4):
+				movelistBuffer += "l"
+			if pos == cube.top_face(6):
+				moveListBuffer += "uul"
+			if pos == cube.top_face(8):
+				moveListBuffer += "ul"
 		# EXAMPLE
 		# If colorCombo = (whiteRed) 
 			# If pos = face(number)
