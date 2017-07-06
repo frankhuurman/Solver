@@ -1,4 +1,4 @@
-int incomingByte = 0;   // for incoming serial data
+byte myByte;
 
 void setup() {
 Serial.begin(9600); // set the baud rate
@@ -17,6 +17,34 @@ else{
 */
 }
 void loop() {
+//char incomingByte = ' ';
+
+if (Serial.available()>0) { // there are bytes in the serial buffer to read
+      while(Serial.available()>0) { // every time a byte is read it is expunged 
+      // from the serial buffer so keep reading the buffer until all the bytes 
+      // have been read.
+         myByte = Serial.read(); // read in the next byte
+         Serial.write(myByte); // ASCII character
+      }
+      //Serial.println(myByte, DEC); // base 10, this is the default
+      //Serial.println(myByte, HEX); // base 16
+      //Serial.println(myByte, OCT); // base 8
+      //Serial.println(myByte, BIN); // base 2
+      Serial.println(); // carriage return
+      delay(100); // a short delay
+   }
+/*
+if (Serial.available() > 0) {
+                // read the incoming byte:
+                incomingByte = Serial.read();
+
+                // say what you got:
+                //String thisString = String(incomingByte);
+                Serial.print("I received: ");
+                Serial.println(incomingByte);
+}
+*/
+/*
 char test = ' ';
 String totalstring = " ";
 if(Serial.available()){
@@ -30,6 +58,7 @@ else{
   Serial.println("martin");
 }
 }
+*/
 
 
 /*
