@@ -1,3 +1,5 @@
+int incomingByte = 0;   // for incoming serial data
+
 void setup() {
 Serial.begin(9600); // set the baud rate
 Serial.println("Ready"); // print "Ready" once
@@ -19,15 +21,16 @@ char test = ' ';
 String totalstring = " ";
 if(Serial.available()){
 test = Serial.read();
-totalstring += test;
 Serial.println(test);
-}
+
 if(test == "hello"){
 Serial.println("hello");
 }
 else{
   Serial.println("martin");
 }
+}
+
 
 /*
 char inByte = ' ';
