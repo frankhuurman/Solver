@@ -94,21 +94,21 @@ def list(colorCombo, pos)
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
 	if algo1 == True:
-		if colorCombo == whiteRed:
-			if pos == cube.front_face(2): # V
-				moveListBuffer += "f" 
-			if pos == cube.front_face(4): # V
-				moveListBuffer += "ff"
-			if pos == cube.front_face(8): # V
-				movelistBuffer += "f'"
+		if colorCombo == whiteRed: # skip front 4
+			if pos == cube.front_face(2): # V 
+				moveListBuffer += "uubll"
+			if pos == cube.front_face(6): # V 
+				moveListBuffer += "r'ddl'"
+			if pos == cube.front_face(8): # V 
+				movelistBuffer += "ddb'll"
 			if pos == cube.left_face(2): # V
-				moveListBuffer += "u'f'" 
+				moveListBuffer += "rbu'lu"
 			if pos == cube.left_face(4): # V
-				moveListBuffer += "lu'f'"
+				moveListBuffer += "rrbu'lu"
 			if pos == cube.left_face(6): # V
-				moveListBuffer += "l'u'f'"
+				moveListBuffer += "r'bu'lu"
 			if pos == cube.left_face(8): # V
-				moveListBuffer += "llu'f'" 
+				moveListBuffer += "bu'lu"
 			if pos == cube.top_face(2): # V
 				moveListBuffer += "u'l"
 			if pos == cube.top_face(4): # V
@@ -133,14 +133,17 @@ def list(colorCombo, pos)
 				moveListBuffer += "ddl'"
 			if pos == cube.bottom_face(8): # V
 				moveListBuffer += "d'l'"
-			if pos == cube.back_face(2):
+			if pos == cube.back_face(2): # V
 				moveListBuffer += "bll"
-			if pos == cube.back_face(4):
+			if pos == cube.back_face(4): # V
 				moveListBuffer += "bbll"
-			if pos == cube.back_face(6):
+			if pos == cube.back_face(6): # V
 				moveListBuffer += "ll"
-			if pos == cube.back_face(8):
+			if pos == cube.back_face(8): # V
 				moveListBuffer += "b'll"
+		if colorCombo == whiteBlue: # skip front 2
+			if pos == cube.front_face(4):
+				moveListBuffer += 
 
 		# EXAMPLE
 		# If colorCombo = (whiteRed) 
