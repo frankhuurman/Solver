@@ -96,51 +96,51 @@ def list(colorCombo, pos)
 	if algo1 == True:
 		if colorCombo == whiteRed: # skip front 4
 			if pos == cube.front_face(2): # V 
-				moveListBuffer += "uubll"
+				moveListBuffer += "uubllb'u'u'"
 			if pos == cube.front_face(6): # V 
-				moveListBuffer += "r'ddl'"
+				moveListBuffer += "r'ddl'd'd'r"
 			if pos == cube.front_face(8): # V 
-				movelistBuffer += "ddb'll"
+				movelistBuffer += "ddb'llbd'd'"
 			if pos == cube.left_face(2): # V
-				moveListBuffer += "rbu'lu"
+				moveListBuffer += "ubllb'u'"
 			if pos == cube.left_face(4): # V
-				moveListBuffer += "rrbu'lu"
+				moveListBuffer += "bdl'd'b'"
 			if pos == cube.left_face(6): # V
-				moveListBuffer += "r'bu'lu"
+				moveListBuffer += "fulu'f'"
 			if pos == cube.left_face(8): # V
-				moveListBuffer += "bu'lu"
+				moveListBuffer += "l'fulu'f'l"
 			if pos == cube.top_face(2): # V
-				moveListBuffer += "u'l"
+				moveListBuffer += "u'lu"
 			if pos == cube.top_face(4): # V
 				moveListBuffer += "l"
 			if pos == cube.top_face(6): # V
-				moveListBuffer += "uul"
+				moveListBuffer += "uulu'u'"
 			if pos == cube.top_face(8): # V
-				moveListBuffer += "ul"
-			if pos == cube.right_face(2): # V
-				moveListBuffer += "uf'"
+				moveListBuffer += "ulu'"
+			if pos == cube.right_face(2): # V 
+				moveListBuffer += "u'bllb'u"
 			if pos == cube.right_face(4): # V 
-				moveListBuffer += "ruf'"
+				moveListBuffer += "ru'bllb'ur'"
 			if pos == cube.right_face(6): # V
-				moveListBuffer += "r'uf'"
+				moveListBuffer += "bdl'd'b'"
 			if pos == cube.right_face(8): # V
-				moveListBuffer += "rruf'"
-			if pos == cube.bottom_face(2): # V
-				moveListBuffer += "d'l'"
+				moveListBuffer += "r'b'dl'd'br"
+			if pos == cube.bottom_face(2): # V 
+				moveListBuffer += "d'l'd"
 			if pos == cube.bottom_face(4): # V
 				moveListBuffer += "l'"
 			if pos == cube.bottom_face(6): # V
-				moveListBuffer += "ddl'"
+				moveListBuffer += "ddl'd'd'"
 			if pos == cube.bottom_face(8): # V
-				moveListBuffer += "d'l'"
+				moveListBuffer += "d'l'd"
 			if pos == cube.back_face(2): # V
-				moveListBuffer += "bll"
+				moveListBuffer += "bllb'"
 			if pos == cube.back_face(4): # V
-				moveListBuffer += "bbll"
+				moveListBuffer += "bbllb'b'"
 			if pos == cube.back_face(6): # V
 				moveListBuffer += "ll"
 			if pos == cube.back_face(8): # V
-				moveListBuffer += "b'll"
+				moveListBuffer += "b'llb"
 		if colorCombo == whiteBlue: # skip front 2
 			if pos == cube.front_face(4):
 				moveListBuffer += 
