@@ -1,31 +1,26 @@
-from pprint import pprint
-from collections import OrderedDict
-
-# TODO: Define which blocks are edges, doesn't need to be defined for each face individualy, just itterate through the faces and asign 2, 4, 6 and eight as edges
-# TODO: Link the sides of individual edges and corners so they move with one another
-
-def printFace(facename, face):
-	"""Prints the name of the face and the face that is given as an argument"""
-	# example: printFace("left face: ", left_face)
-
-	#TODO: Rewrite this part for a LIST item instead of Dict
-
-	temp_dict = OrderedDict()
-	count = 1
-	for item, value in face.items():
-		temp_dict[count] = value
-		count += 1
-
-	print(facename)
-	print(temp_dict[1], temp_dict[2], temp_dict[3])
-	print(temp_dict[4], temp_dict[5], temp_dict[6])
-	print(temp_dict[7], temp_dict[8], temp_dict[9], "\n")
-	1, ff
-	2, bf
+from collections import deque
 
 
+"""
+Connections betweeen the faces:
+dict:
+	{"up": %face, "left": %face, "right": %face, "down": %face}
+	left	[top, back, front, bottom]
+	1 [6,4,2,5]
+	front	[top, left, right, bottom]
+	2 [6,1,3,5]
+	right	[top, front, back, bottom]
+	3 [6,2,4,5]
+	back	[top, right, left, bottom]
+	4 [6,3,1,5]
+	bottm	[front, left, right, back]
+	5 [2,1,3,4]
+	top	[back, left, right, front]
+	6 [4,1,3,2]
+"""
 
 class cube(object):
+	"""Object representing one rubik's cube."""
 
 	facesnames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	faces = {}
@@ -37,14 +32,19 @@ class cube(object):
 			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
 
 		for f in self.facesnames:
+			self.faces[f].rotateFace("cw")
 			print("Face: " + f)
 			print(self.faces[f].printFace())
 			print(self.faces[f].face_color)
 			print(self.faces[f].allTheSame())
+		print(self.faces["top_face"].printFace())
+		self.faces["top_face"].rotateFace("cw")
+		print(self.faces["top_face"].printFace())
 		
 		
 		
 class face(object):
+	"""Object representing 1 side of a rubik's cube."""
 	
 	# squares
 	@property
@@ -53,6 +53,13 @@ class face(object):
 	@squares.setter
 	def squares(self, squares):
 		self.__squares = squares
+	# conns
+	@property
+	def conns(self):
+		return(self.__conns)
+	@conns.setter
+	def conns(self, conns):
+		self.__conns = conns
 	# face_color
 	@property
 	def face_color(self):
@@ -63,32 +70,51 @@ class face(object):
 		
 		
 	def __init__(self, data):
-		self.squares = []
-		print(data)
+#		print(data)
 		self.face_color = data[int(len(data)/2)]
-		print("Face_color:", str(self.face_color))
+#		print("Face_color:", str(self.face_color))
+		self.squares = []
 		for i in range(3):
-			moi = []
+			temp = []
 			for j in range(3):
-				print(str(i), str(j), str((i*3)+j), str(data[(i*3)+j]))
-				moi.append(data[(i*3)+j])
-			self.squares.append(moi)
-			del(moi)
+#				print(str(i), str(j), str((i*3)+j), str(data[(i*3)+j]))
+				temp.append(data[(i*3)+j])
+			self.squares.append(temp)
+			del(temp)
+
+	def rotateFace(self, dir):
+		"""Rotate the face clockwise 'cw' or counter clockwise 'ccw'."""
+		temp = deque()
+		for row in self.squares:
+			for sq in row:
+				if (not row == 1 and not sq == 1):
+					temp.append(sq)
+		temp.append(temp.popleft())
+		temp.append(temp.popleft())
+		print(temp)
+		for row in self.squares:
+			for sq in row:
+				if (not row == 1 and not sq == 1):
+					sq = temp.pop()
 
 	def allTheSame(self):
 		"""Return True if all the colors of the square are the same color."""
 		same = True
-		for color in self.squares:
-			if (not color == self.face_color):
-				same = False
+		for row in self.squares:
+			for sq in row:
+				if (not sq == self.face_color):
+					same = False
 		return(same)
 
 	def printFace(self):
+		"""Returns the colors of the face in a 3x3 grid."""
 		display = ""
 		for row in self.squares:
 			for sq in row:
 				display += "\t" + str(sq)
 			display += "\n"
+		return(display)
+
 
 def list(colorCombo, pos):
 	#TODO: Add booleans for selecting which algorithm need to be picked
@@ -250,4 +276,4 @@ def Algorithm():
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
-	# Send moveListBuffer back to solverfinal2.py
+# Send moveListBuffer back to solverfinal2.py
