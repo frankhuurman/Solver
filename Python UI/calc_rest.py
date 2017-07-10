@@ -149,6 +149,14 @@ def list(colorCombo, pos):
 			if pos == cube.front_face(6):
 				moveListBuffer += "rrb'ddbr'r'"
 			if pos == cube.left_face(2):
+				moveListBuffer += "rrd'r'r'"
+			if pos == cube.left_face(4):
+				moveListBuffer += "r'd'r"
+			if pos == cube.left_face(6):
+				moveListBuffer += "rd'r'"
+			if pos == cube.left_face(8):
+				moveListBuffer += "d'"
+			if pos == cube.top_face(2):
 	# List algo 2
 	# List algo 3
 	# List algo 4
