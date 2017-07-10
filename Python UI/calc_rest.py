@@ -90,10 +90,10 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 
-def list(colorCombo, pos)
+def list(colorCombo, pos):
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
-	if algo1 == True:
+	if algo1 == False: #NOTE: Check the position of the WHITE side of the edge
 		if colorCombo == whiteRed: # skip front 4
 			if pos == cube.front_face(2): # V 
 				moveListBuffer += "uubllb'u'u'"
@@ -141,24 +141,14 @@ def list(colorCombo, pos)
 				moveListBuffer += "ll"
 			if pos == cube.back_face(8): # V
 				moveListBuffer += "b'llb"
-		if colorCombo == whiteBlue: # skip front 2
+		if colorCombo == whiteBlue: # skip front 8
+			if pos == cube.front_face(2):
+				moveListBuffer += "uubbddb'b'u'u'"
 			if pos == cube.front_face(4):
-				moveListBuffer += 
-
-		# EXAMPLE
-		# If colorCombo = (whiteRed) 
-			# If pos = face(number)
-			# If pos = face(number)
-		# If colorCombo = (whiteBlue)
-			# If pos = face(number) !&*NHDSW*&!DJ*(SQJ*(DAMUSUI(!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!))) 24 edges
-			# If pos = face(number)
-		# if colorCombo = (whiteOrange)
-			# If pos = face(number)
-			# If pos = face(number)
-		# if colorCombo = (WhiteGreen)
-			# If pos = face(number)
-			# If pos = face(number)
-		# EXAMPLE
+				moveListBuffer += "llbddl'l'b'"
+			if pos == cube.front_face(6):
+				moveListBuffer += "rrb'ddbr'r'"
+			if pos == cube.left_face(2):
 	# List algo 2
 	# List algo 3
 	# List algo 4
@@ -167,7 +157,7 @@ def list(colorCombo, pos)
 	# List algo 7 """
 
 
-def Algorithm
+def Algorithm():
 	solved = False
 	algo1 = False
 	algo2 = False
@@ -175,12 +165,15 @@ def Algorithm
 	algo4 = False
 	algo5 = False
 	algo6 = False
+	count = 0
 	while solved == False: # Check if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
 		while algo1 == False:# Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
 			# Check each block asociated with a edge to see if it is white
 				# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
-					# Increase a counter that keeps track of the amount of correct edges.
-					# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+					count += 1 # Increase a counter that keeps track of the amount of correct edges.
+					if count == 3: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+						count = 0
+						algo1 = True
 				# Check the other side of the edge to see what color it is
 					# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer
