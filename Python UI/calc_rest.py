@@ -1,5 +1,3 @@
-
-
 def list(colorCombo, pos):
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
@@ -59,7 +57,23 @@ def list(colorCombo, pos):
 			if pos == cube.front_face(6):
 				moveListBuffer += "rrb'ddbr'r'"
 			if pos == cube.left_face(2):
-				pass
+				moveListBuffer += "rrd'r'r'"
+			if pos == cube.left_face(4):
+				moveListBuffer += "r'd'r"
+			if pos == cube.left_face(6):
+				moveListBuffer += "rd'r'"
+			if pos == cube.left_face(8):
+				moveListBuffer += "d'"
+			if pos == cube.top_face(2):
+				moveListBuffer += "bl'dlb'"
+			if pos == cube.top_face(4):
+				moveListBuffer += "l'bddb'l"
+			if pos == cube.top_face(6):
+				moveListBuffer += "rb'ddbr'"
+			if pos == cube.top_face(8):
+				moveListBuffer += "ul'bddb'lu'"
+			if pos == cube.right_face(2):
+				moveListBuffer += ""
 	# List algo 2
 	# List algo 3
 	# List algo 4
@@ -78,47 +92,55 @@ def Algorithm():
 	algo6 = False
 	count = 0
 	while solved == False: # Check if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
-		while algo1 == False: # Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
+		while algo1 == False:# Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
 			# Check each block asociated with a edge to see if it is white
 				# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
 					count += 1 # Increase a counter that keeps track of the amount of correct edges.
-					if count == 3: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+					if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
 						count = 0
 						algo1 = True
 				# Check the other side of the edge to see what color it is
 					# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer
 				# Move to the next edge block
-		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
+		while algo2 == False: # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
-					# Increase a counter that keeps track of the amount of correct corners.
-					# If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+					count += 1
+					if count == 4:# Increase a counter that keeps track of the amount of correct corners.
+						count = 0 # If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+						algo2 = True
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
-		while algo3 == False: pass # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
+		while algo3 == False: # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
 			# Check each edge on the middle and back layer of the cube for a orange color
 				# If a orange edge is found then check the other side of the edge 
 					# Check if the block is in the correct position
 						# If the block is in the correct position then mark it as completed
-							# Increase a counter that keeps track of the amount of correct edges
-							# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+							count += 1 # Increase a counter that keeps track of the amount of correct edges
+							if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+								count = 0 
+								algo3 = True
 						# Else check the color combination in combination with it's position in the list.
 							# Store the corresponding moves in moveListBuffer
-		while algo4 == False: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
+		while algo4 == False: # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
 					# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
-						# Increase a counter that keeps track of the amount of correct edges
-						# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+						count += 1 # Increase a counter that keeps track of the amount of correct edges
+						if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+							count = 0
+							algo4 = True
 					# Else go through the list using the position of the yellow edge.
 						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-		while algo5 == False: pass # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
+		while algo5 == False: # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check the color of the color on the non yellow sides of the edges.
 				# If the color matches the color of the center of the face (5)
-					# Increase a counter that keeps track of the amount of correct edges.
-					# If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+					count += 1# Increase a counter that keeps track of the amount of correct edges.
+					if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+						count = 0
+						algo5 = True
 				# Else check the color of the adjacent edge, going clockwise
 					# If the color of the adjacent edge matches the color of the center block of their respective face
 						# Go back to looking for a unsolved block skipping this one for the next round
