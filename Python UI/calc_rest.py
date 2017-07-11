@@ -17,29 +17,38 @@ dict:
 	5 [2,1,3,4]
 	top	[back, left, right, front]
 	6 [4,1,3,2]
+
+links = rood
+boven = groen
+rechts oranje
+voor = wit
+achter = geel
+onder = blauw
 """
+
 
 class cube(object):
 	"""Object representing one rubik's cube."""
 
-	facesnames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
+	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	faces = {}
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 		print(outputlist)
-		for i, f in enumerate(self.facesnames):
+		for i, f in enumerate(self.facenames):
 			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
 
-		for f in self.facesnames:
+		for f in self.facenames:
 			self.faces[f].rotateFace("cw")
 			print("Face: " + f)
 			print(self.faces[f].printFace())
 			print(self.faces[f].face_color)
 			print(self.faces[f].allTheSame())
-		print(self.faces["top_face"].printFace())
-		self.faces["top_face"].rotateFace("cw")
-		print(self.faces["top_face"].printFace())
+#		print(self.faces["top_face"].printFace())
+#		self.faces["top_face"].rotateFace("cw")
+#		print(self.faces["top_face"].printFace())
+		print(self.faces[self.facenames[2]].checkEdges("w"))
 		
 		
 		
@@ -67,6 +76,9 @@ class face(object):
 	@face_color.setter
 	def face_color(self, face_color):
 		self.__face_color = face_color
+	
+	edges = [[0,1], [1,0], [1,2], [2,1]]
+	order = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
 		
 		
 	def __init__(self, data):
@@ -81,6 +93,14 @@ class face(object):
 				temp.append(data[(i*3)+j])
 			self.squares.append(temp)
 			del(temp)
+
+	def checkEdges(self, color):
+		"""Returns a list with the coords of the square that matches the selected color."""
+		ret = []
+		for e in self.edges:
+			if (color == self.squares[e[0]][e[1]]):
+				ret.append(e)
+		return(ret)
 
 	def rotateFace(self, dir):
 		"""Rotate the face clockwise 'cw' or counter clockwise 'ccw'."""
