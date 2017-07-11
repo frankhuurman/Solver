@@ -11,7 +11,7 @@ while True:
 	if data:
 		if data == b"Ready\r\n":
 			print ("hi")
-			arduino_string = input("send hello string now?")
+			arduino_string = input("Type string to send to arduino: ")
 			arduino_send_bytes = str.encode(arduino_string)
 			ser.write(arduino_send_bytes)
 		elif data == b'hello':
