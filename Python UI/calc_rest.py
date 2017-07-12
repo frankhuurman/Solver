@@ -55,19 +55,19 @@ def list(colorCombo, pos, cube):
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				moveListBuffer += "b'llb"
 		if colorCombo == whiteBlue: # skip front 8
-			if pos == cube.front_face(2):
+			if pos == cube.faces[cube.facenames[1]].squares[0][1]:
 				moveListBuffer += "uubbddb'b'u'u'"
-			if pos == cube.front_face(4):
+			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
 				moveListBuffer += "llbddl'l'b'"
-			if pos == cube.front_face(6):
+			if pos == cube.faces[cube.facenames[1]].squares[1][2]:
 				moveListBuffer += "rrb'ddbr'r'"
-			if pos == cube.left_face(2):
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				moveListBuffer += "rrd'r'r'"
-			if pos == cube.left_face(4):
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				moveListBuffer += "r'd'r"
-			if pos == cube.left_face(6):
+			if pos == cube.faces[cube.facenames[0]].squares[1][2]:
 				moveListBuffer += "rd'r'"
-			if pos == cube.left_face(8):
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				moveListBuffer += "d'"
 			if pos == cube.top_face(2):
 				moveListBuffer += "bl'dlb'"
