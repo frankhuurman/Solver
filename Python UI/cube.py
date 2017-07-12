@@ -29,28 +29,30 @@ onder = blauw
 
 class cube(object):
 	"""Object representing one rubik's cube."""
-
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	faces = {}
-
+  
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
-		print(outputlist)
+
 		for i, f in enumerate(self.facenames):
 			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
 
 		for f in self.facenames:
-			self.faces[f].rotateFace("cw")
 			print("Face: " + f)
 			print(self.faces[f].printFace())
 			print(self.faces[f].face_color)
 			print(self.faces[f].allTheSame())
-#		print(self.faces["top_face"].printFace())
-#		self.faces["top_face"].rotateFace("cw")
-#		print(self.faces["top_face"].printFace())
-		print(self.faces[self.facenames[2]].checkEdges("w"))
-		
-		
+			print(self.faces[f].printFace())
+			self.faces[f].rotateFace(True)
+			print(self.faces[f].printFace())
+			self.faces[f].rotateFace(True)
+			print(self.faces[f].printFace())
+			self.faces[f].rotateFace(False)
+			print(self.faces[f].printFace())
+			self.faces[f].rotateFace(True)
+			print(self.faces[f].printFace())
+		print(len(self.faces[self.facenames[2]].checkEdges("w")))
 		
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
@@ -79,9 +81,8 @@ class face(object):
 	
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 	corners = [[0,0], [0,2], [2,0], [2,2]]
-	order = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
-		
-		
+	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
+
 	def __init__(self, data):
 		self.face_color = data[int(len(data)/2)]
 		self.squares = []
@@ -103,17 +104,20 @@ class face(object):
 	def rotateFace(self, dir):
 		"""Rotate the face clockwise 'cw' or counter clockwise 'ccw'."""
 		temp = deque()
-		for row in self.squares:
-			for sq in row:
-				if (not row == 1 and not sq == 1):
-					temp.append(sq)
+		if (dir):
+			for s in reversed(self.rotateOrder):
+				temp.append(self.squares[s[0]][s[1]])
+		else:
+			for s in self.rotateOrder:
+				temp.append(self.squares[s[0]][s[1]])
 		temp.append(temp.popleft())
 		temp.append(temp.popleft())
-		print(temp)
-		for row in self.squares:
-			for sq in row:
-				if (not row == 1 and not sq == 1):
-					sq = temp.pop()
+		if (dir):
+			for s in self.rotateOrder:
+				self.squares[s[0]][s[1]] = temp.pop()
+		else:
+			for s in reversed(self.rotateOrder):
+				self.squares[s[0]][s[1]] = temp.pop()
 
 	def allTheSame(self):
 		"""Return True if all the colors of the square are the same color."""
@@ -132,3 +136,4 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 		return(display)
+
