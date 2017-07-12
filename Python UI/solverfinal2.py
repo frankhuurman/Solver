@@ -1,7 +1,7 @@
 import pygame
 import os
 import calc_rest
-import serial #used for pyserial
+import cube as kubus
 
 # Initialize pygame
 pygame.init()
@@ -281,7 +281,7 @@ def drawFields():
 
 def resetFields():
 
-	#init globals 
+	#init globals
 	global user_color
 	# Left view rects
 	global l_rect1col
@@ -403,7 +403,7 @@ def resetFields():
 def checkQuitandClicks():
 	# Check for exit and event handling
 
-	#use globals 
+	#init globals
 	global user_color
 	# Left view rects
 	global l_rect1col
@@ -513,7 +513,7 @@ def checkQuitandClicks():
 					###
 					
 					# Create cube object
-					cube = calc_rest.cube(calcu_list) # Values are returned on the line below this one
+					cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
 					while 1: 
 						solve = cube.nextMove() # calls the cube.nextMove() function
@@ -532,8 +532,7 @@ def checkQuitandClicks():
 					###
 					###
 					### END SOLVING ALGORITHM
-					#ser.write(b movelist)
-
+					#ser.write(b moveList)
 					# Reset rectangles to white and clear lists to solve another cube
 					calcside.emptyList()
 					calcu_list.clear()
