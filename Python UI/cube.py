@@ -35,7 +35,7 @@ class cube(object):
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
-		print(outputlist)
+
 		for i, f in enumerate(self.facenames):
 			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
 
@@ -106,7 +106,6 @@ class face(object):
 			temp.append(self.squares[s[0]][s[1]])
 		temp.append(temp.popleft())
 		temp.append(temp.popleft())
-		print(temp)
 		for s in reversed(self.rotateOrder):
 			self.squares[s[0]][s[1]] = temp.pop()
 
