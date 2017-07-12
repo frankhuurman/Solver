@@ -1,4 +1,9 @@
-def list(colorCombo, pos):
+
+
+#TODO: Update all the calls to cube
+#cube.faces[cube.facenames[2]].squares[0][0]
+
+def list(colorCombo, pos, cube):
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
 	if algo1 == False: #NOTE: Check the position of the WHITE side of the edge
@@ -82,7 +87,7 @@ def list(colorCombo, pos):
 	# List algo 7 """
 
 
-def Algorithm():
+def Algorithm(cube):
 	solved = False
 	algo1 = False
 	algo2 = False
