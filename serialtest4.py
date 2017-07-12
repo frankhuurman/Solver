@@ -1,13 +1,10 @@
 import serial
 from time import sleep
-ser = serial.Serial('COM3', 9600, timeout=2)  # open serial port
+ser = serial.Serial("COM3", 9600, timeout=2)  # open serial port
 print(ser.name)         # check which port was really used
-#ser.write(b'hello')     # write a string converted to bytes
 
 while True:
 	data = ser.readline() #the last bit gets rid of the new-line char
-	#print (data)
-	#print (data)
 	if data:
 		if data == b"Ready\r\n":
 			print ("hi")
@@ -17,9 +14,10 @@ while True:
 		elif data == b'hello':
 			print ("it says hello!")
 		else:
-			# deze print b'jo'
-			print (data)
-			#ser.write(b'hello')
+			# This actually prints the data received from Serial.print from Arduino
+			# First it decodes the received raw byte data to a utf-8 string
+			ascii_data = data.decode("utf-8")
+			print (ascii_data)
 
 	if not data:
 		print("No data being received from Arduino anymore")

@@ -22,9 +22,10 @@
  *  Test if all the steppers skip a equal amounts of steps or even do this at all. // seems so
  */
 
-// Initialize incoming bytes, byte array and stepper constants
+// Initialize incoming bytes, byte array, ascii char array and stepper constants
 byte incomingByte;
-byte moveListDone[100];
+byte moveListBytes[100];
+char moveListAscii[100];
 const byte uDir = 2; // U face stepper (Top) (Rechts Boven)
 const byte uStep = 3; 
 const byte rDir = 4; // R face stepper (Right) (Rechts Onder)
@@ -100,17 +101,34 @@ if (Serial.available()>0) { // there are bytes in the serial buffer to read
       // from the serial buffer so keep reading the buffer until all the bytes 
       // have been read.
          incomingByte = Serial.read(); // read in the next byte
-         moveListDone[i] = incomingByte; // add read byte to byte array
+         for(int i = 0; i < sizeof(incomingByte); i++){
+          moveListBytes[i] = incomingByte; // add read byte to byte array
+          moveListAscii[i] = incomingByte; // add read byte to char array(ASCII)
+         }
          //Serial.write(incomingByte); // ASCII character
-         i++;
+         //i++;
       }
-      // iterate over moveListDone to print the entire list to serial
-      // don't print if value equals NULL
-      for(int i = 0; i < sizeof(moveListDone); i++){
-        if(moveListDone[i] != NULL){
-        Serial.print(moveListDone[i]);
+      Serial.print(moveListAscii[0]);
+      //Serial.print(moveListBytes[0]);
+
+      /*
+      for(int i = 0; i < sizeof(moveListBytes); i++){
+        if(moveListBytes[i] != NULL){
+        moveListAscii[i] = moveListBytes[i];
+        Serial.print(moveListAscii[i]);
         }
       }
+      /*
+      // iterate over moveListDone to print the entire list to serial
+      // don't print if value equals NULL
+
+      /*
+      for(int i = 0; i < sizeof(moveListBytes); i++){
+        if(moveListBytes[i] != NULL){
+        Serial.print(moveListBytes[i]);
+        }
+      }
+      */
       
       //Serial.println(); // carriage return
       //delay(100); // a short delay
