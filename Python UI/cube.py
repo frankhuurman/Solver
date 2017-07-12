@@ -29,10 +29,9 @@ onder = blauw
 
 class cube(object):
 	"""Object representing one rubik's cube."""
-
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	faces = {}
-
+  
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 
@@ -54,8 +53,6 @@ class cube(object):
 			self.faces[f].rotateFace(True)
 			print(self.faces[f].printFace())
 		print(len(self.faces[self.facenames[2]].checkEdges("w")))
-		
-		
 		
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
@@ -85,8 +82,7 @@ class face(object):
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 	corners = [[0,0], [0,2], [2,0], [2,2]]
 	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
-		
-		
+
 	def __init__(self, data):
 		self.face_color = data[int(len(data)/2)]
 		self.squares = []
@@ -140,3 +136,4 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 		return(display)
+

@@ -1,8 +1,7 @@
 import pygame
 import os
 import calc_rest
-import calcside
-import cube as moi
+import cube as kubus
 
 # Initialize pygame
 pygame.init()
@@ -514,7 +513,7 @@ def checkQuitandClicks():
 					###
 					
 					# Create cube object
-					cube = moi.cube(calcu_list) # Values are returned on the line below this one
+					cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
 					while 1: 
 						solve = cube.nextMove() # calls the cube.nextMove() function
