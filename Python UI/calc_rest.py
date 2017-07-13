@@ -122,6 +122,83 @@ def list(colorCombo, pos, cube):
 			if pos == cube.faces[cube.facenames[1]].squares[2][1]:
 				moveListBuffer += "ddbrrb'd'd'"
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				moveListBuffer += "rb'd'rdb"
+			if pos == cube.faces[cube.facenames[2]].squares[1][0]:
+				moveListBuffer += "r'dbrrb'd'"
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				moveListBuffer += "b'd'rdb"
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				moveListBuffer += "r'b'd'rdb"
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				moveListBuffer += "brrb'"
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				moveListBuffer += "rr"
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				moveListBuffer += "bbrrb'b'"
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[0][1]:
+				moveListBuffer += "drd'"
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				moveListBuffer += "ddrd'd'"
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				moveListBuffer += "r"
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				moveListBuffer += "d'rd"
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				moveListBuffer += "brrb'"
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				moveListBuffer += "ubrrb'u'"
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				moveListBuffer += "r'"
+			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
+				moveListBuffer += "u'r'u"
+		if colorCombo == whiteGreen:
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				movelistBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][2]:
+				movelistBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[0][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[0][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				moveListBuffer += "r"
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
 				moveListBuffer += ""
 	# List algo 2
 	# List algo 3
