@@ -29,17 +29,23 @@ onder = blauw
 
 class cube(object):
 	"""Object representing one rubik's cube."""
+	
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	faces = {}
-  
+	faceColorIndex = {"r": 0, "w": 1, "o": 2, "y": 3, "b": 4, "g": 5}
+
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 
 		for i, f in enumerate(self.facenames):
-			self.faces[f] = face(outputlist[i*9 : i*9 + 9])
+			squares = outputlist[i*9 : i*9 + 9]
+			face_color = squares[int(len(squares)/2)]
+			name = self.facenames[self.faceColorIndex[face_color]]
+			self.faces[f] = face(squares, name)
 
 		for f in self.facenames:
 			print("Face: " + f)
+			print(self.faces[f].face_name)
 			print(self.faces[f].printFace())
 			print(self.faces[f].face_color)
 			print(self.faces[f].allTheSame())
@@ -78,14 +84,22 @@ class face(object):
 	@face_color.setter
 	def face_color(self, face_color):
 		self.__face_color = face_color
+	# face_name
+	@property
+	def face_name(self):
+		return(self.__face_name)
+	@face_name.setter
+	def face_name(self, face_name):
+		self.__face_name = face_name
 	
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 	corners = [[0,0], [0,2], [2,0], [2,2]]
 	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
 
-	def __init__(self, data):
+	def __init__(self, data, face_name):
 		self.face_color = data[int(len(data)/2)]
 		self.squares = []
+		self.face_name = face_name
 		for i in range(3):
 			temp = []
 			for j in range(3):
@@ -136,4 +150,3 @@ class face(object):
 				display += "\t" + str(sq)
 			display += "\n"
 		return(display)
-
