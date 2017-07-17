@@ -240,7 +240,6 @@ def Algorithm(cube):
 						if count == 4:
 							count = 0 # reset count to 0
 							algo1 = True # means the first of the algorithm is done (hopefully) 
-				# Move to the next edge block
 		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
