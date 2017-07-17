@@ -232,18 +232,14 @@ def Algorithm(cube):
 		while algo1 == False:# Check to see if the white edges are solved
 			for name in cube.facenames:
 				whiteEdges = cube.faces[name].checkEdges("w") # Check each block asociated with a edge to see if it is white
-				# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
-					count += 1 # Increase a counter that keeps track of the amount of correct edges.
-					if count == 4: # If the counter indicates 4, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-						count = 0 # reset count to 0
-						algo1 = True 
-				# Check the other side of the edge to see what color it is
-					ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7)	# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
-						# Store these moves in moveListBuffer
+				for name in whiteEdges:
+					pos = whiteEdges[name]
+					colorCombo = otherSide # Check the other side of the edge to see what color it is
+					ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7)
 						count += 1 # increase the counter that keeps track of correct edges
 						if count == 4:
 							count = 0 # reset count to 0
-							algo1 = True
+							algo1 = True # means the first of the algorithm is done (hopefully) 
 				# Move to the next edge block
 		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
