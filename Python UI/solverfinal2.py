@@ -1,6 +1,6 @@
 import pygame
 import os
-import calc_rest
+import calc_rest as calc
 import cube as kubus
 
 # Initialize pygame
@@ -468,7 +468,7 @@ def checkQuitandClicks():
 	# Init output list
 	global output_list
 
-	### THIS IS THE ACTUAL OUTPUT LIST OF PYGAME SURFACES THAT IS BEING SENT TO calcside.py and calc_rest.py ###
+	### THIS IS THE ACTUAL OUTPUT LIST OF PYGAME SURFACES THAT IS BEING SENT TO calc_rest.py ###
 	output_list = [l_rect1col, l_rect2col, l_rect3col, l_rect4col, l_rect5col, \
 				l_rect6col, l_rect7col, l_rect8col, l_rect9col, f_rect1col, f_rect2col, \
 				f_rect3col, f_rect4col, f_rect5col, f_rect6col, f_rect7col, f_rect8col, \
@@ -513,10 +513,11 @@ def checkQuitandClicks():
 					###
 					
 					# Create cube object 
-					cube = kubus.cube(calcu_list) # Values are returned on the line below this one
+					cube = kubus.cube(calcu_list) # calcu list?
 					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-					while 1: 
+					while loopin == False 
 						solve = cube.nextMove() # calls the cube.nextMove() function
+						calc_rest(kubus, output_list)
 						# nextMove() returns list of colors of all faces after a move
 						# if it's solved, break out of this loop and ser.write(b solve)
 						# if not, do the loop again and check for nextMove()

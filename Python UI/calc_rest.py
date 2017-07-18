@@ -208,7 +208,7 @@ def ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, al
 				moveListBuffer += "rbuub'r'"
 			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
 				moveListBuffer += "u'rbuub'r'u"
-	# List algo 2
+	if algo 2 == False: pass# List algo 2
 	# List algo 3
 	# List algo 4
 	# List algo 5 
@@ -218,7 +218,7 @@ def ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, al
 	for name in cube.facenames:
 		cube.faces[name]
 
-def Algorithm(cube):
+def Algorithm(cube, output_list):
 	solved = False
 	algo1 = False
 	algo2 = False
@@ -312,6 +312,7 @@ def Algorithm(cube):
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
+				loopin = True
 	if solved == True:
-		return moveListBuffer
+		return moveListBuffer, loopin
 # Send moveListBuffer back to solverfinal2.py
