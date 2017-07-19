@@ -1,4 +1,4 @@
-move_list = ["ff'bbd'b'bb"]
+move_list = ["ff'bbd'b'btb'"]
 
 for item in move_list:
 	sliced_list = list(item)
@@ -17,6 +17,7 @@ try:
 			count += 1
 		elif item == "'":
 			count += 1
-	print (sliced_list[-1])
+	if sliced_list[-1] != "'":
+		print (sliced_list[-1])
 except IndexError:
 	print ("end of list reached")
