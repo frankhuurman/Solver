@@ -93,7 +93,7 @@ class cube(object):
 			temp.append(self.faces[j].getSide(name))
 		temp.append(temp.popleft())
 		for f, j in face.connections.items():
-			self.faces[j].setSide(temp.popleft(), name)
+			self.faces[j].setSide(name, temp.popleft())
 		
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
@@ -152,17 +152,36 @@ class face(object):
 
 
 	def checkEdges(self, color):
-		"""Returns a list with the coords of the square that matches the selected color."""
+		"""Returns a list with the coords of the edge square that matches the selected color."""
 		ret = []
 		for x, y in self.edges:
 			if (color == self.squares[x][y]):
 				ret.append((x, y))
 		return(ret)
 
-	def setSide(self, name, value):
+	def checkCorners(self, color):
+		"""Returns a list with the coords of the corner square that matches the selected color."""
+		ret = []
+		for x, y in self.corners:
+			if (color == self.squares[x][y]):
+				ret.append((x, y))
+		return(ret)
+	
+	def setSide(self, name, values):
 		"""Sets the 3 squares on the side of the face with %name."""
-		for i, c in enumerate(value):
-			pass
+		
+		if (self.connections["up"] == name):
+			for value, i in enumerate(values):
+				self.squares[0][i] = value
+		if (self.connections["left"] == name):
+			for value, i in enumerate(values):
+				self.squares[i][0] = value
+		if (self.connections["right"] == name):
+			for value, i in enumerate(values):
+				self.squares[i][2] = value
+		if (self.connections["down"] == name):
+			for value, i in enumerate(values):
+				self.squares[2][i] = value
 
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
