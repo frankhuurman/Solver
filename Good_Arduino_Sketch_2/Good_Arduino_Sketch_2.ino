@@ -1,9 +1,9 @@
 /* Full Arduino Code for powering Rubik's Cube Solver Stepper Motors
  * Start Solverfinal2.py in command line to send data to Arduino
  *  
- *  By T.K. Strijker & F.L. Huurman
+ *  By T.K. Strijker & F.L. 'Loli licker' Huurman
  *  
- *  Version 1.0.1 : Masterfully Mellow Melon
+ *  Version 1.0.2 : Meowing Masterfully Mellow Melon
  *  
  *  New Functions : 
  *  -Changed and removed code to be compatible with the new design plan and quarter stepping.
@@ -50,17 +50,17 @@ byte incomingByte;
 byte moveListBytes[100];
 char moveListAscii[100];
 byte i = 0;
-const byte uDir = 2; // U face stepper (Top) (Rechts Boven)
-const byte uStep = 3; 
-const byte rDir = 4; // R face stepper (Right) (Rechts Onder)
-const byte rStep = 5;
-const byte bDir = 6; // B face stepper (Back) (Achterkant)
+const byte rDir = 2; // (Rechts Boven)
+const byte rStep = 3; 
+const byte dDir = 4; // (Rechts Onder)
+const byte dStep = 5;
+const byte bDir = 6; // (Achterkant)
 const byte bStep = 7;
-const byte lDir = 8; // L face stepper (Left) (Links Boven)
-const byte lStep = 9;
-const byte dDir = 10;  // D face stepper (Down) (Links Onder)
-const byte dStep = 11;
-const byte fDir = 12;  // F face stepper (front) (Voorkant)
+const byte uDir = 8; // (Links Boven)
+const byte uStep = 9;
+const byte lDir = 10;  // (Links Onder)
+const byte lStep = 11;
+const byte fDir = 12;  // (Voorkant)
 const byte fStep = 13;
 
 int stepperArray[] = {fDir, fStep, dDir, dStep, rDir, rStep, bDir, bStep, lDir, lStep, uDir, uStep}; // Array containing all the stepper pins, 0 - 11 
