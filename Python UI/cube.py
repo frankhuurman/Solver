@@ -30,7 +30,7 @@ onder = blauw
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
-	
+  
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	connections = {
 		facenames[0]: (5, 3, 1, 4),
@@ -59,31 +59,10 @@ class cube(object):
 
 		for f in self.facenames:
 			print("Face: " + f)
+			print(self.faces[f].face_name)
 			print(self.faces[f].printFace())
 			print(self.faces[f].connections)
 		
-		"""
-		for f in self.facenames:
-			print("Face: " + f)
-			print(self.faces[f].face_name)
-			print(self.faces[f].printFace())
-			print(self.faces[f].face_color)
-			print(self.faces[f].allTheSame())
-#			self.faces[f].rotateFace(True)
-			self.rotate(f, True)
-			print(self.faces[f].printFace())
-#			self.faces[f].rotateFace(True)
-			self.rotate(f, True)
-			print(self.faces[f].printFace())
-#			self.faces[f].rotateFace(False)
-			self.rotate(f, False)
-			print(self.faces[f].printFace())
-#			self.faces[f].rotateFace(True)
-			self.rotate(f, True)
-			print(self.faces[f].printFace())
-		print(len(self.faces[self.facenames[2]].checkEdges("w")))
-		"""
-
 	def rotate(self, name, dir):
 		face = self.faces[name]
 		face.rotateFace(dir)
@@ -95,6 +74,7 @@ class cube(object):
 		for f, j in face.connections.items():
 			self.faces[j].setSide(name, temp.popleft())
 		
+    
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
 	
@@ -150,7 +130,6 @@ class face(object):
 			self.squares.append(temp)
 			del(temp)
 
-
 	def checkEdges(self, color):
 		"""Returns a list with the coords of the edge square that matches the selected color."""
 		ret = []
@@ -171,16 +150,16 @@ class face(object):
 		"""Sets the 3 squares on the side of the face with %name."""
 		
 		if (self.connections["up"] == name):
-			for value, i in enumerate(values):
+			for i, value in enumerate(values):
 				self.squares[0][i] = value
 		if (self.connections["left"] == name):
-			for value, i in enumerate(values):
+			for i, value in enumerate(values):
 				self.squares[i][0] = value
 		if (self.connections["right"] == name):
-			for value, i in enumerate(values):
+			for i, value in enumerate(values):
 				self.squares[i][2] = value
 		if (self.connections["down"] == name):
-			for value, i in enumerate(values):
+			for i, value in enumerate(values):
 				self.squares[2][i] = value
 
 	def getSide(self, name):
