@@ -22,6 +22,29 @@
  *  Test if all the steppers skip a equal amounts of steps or even do this at all. // seems so
  */
 
+int readline(int readch, char *buffer, int len){
+  static int pos = 0;
+  int rpos;
+
+  if (readch > 0) {
+    switch(readch){
+    case '\n': // ignore new-line characters
+      break;
+    case '\r':
+      rpos = pos;
+      pos = 0; // reset position index for next time
+      return rpos;
+    default:
+      if (pos < len-1) {
+        buffer[pos++] = readch;
+        buffer[pos] = 0;
+      }
+    }
+  }
+  // no end of line found, so return -1
+  return -1;
+}
+
 // Initialize incoming bytes, byte array, ascii char array and stepper constants
 byte incomingByte;
 byte moveListBytes[100];
@@ -93,36 +116,14 @@ void negTurn() {
 
 void loop() {
 
-// checks if serial data is coming in
-if (Serial.available()>0) { // there are bytes in the serial buffer to read
-      while(Serial.available()>0) { // every time a byte is read it is destroyed 
-         // from the serial buffer so keep reading the buffer until all the bytes 
-         // have been read. 
-         //incomingByte = Serial.read(); // read in the next byte
-         //moveListBytes[i] = incomingByte;
-         //Serial.print(moveListBytes[0]);
+  static char buffer[180];
+  if (readline(Serial.read(), buffer, 180) > 0) {
+    Serial.print("You entered: >");
+    Serial.print(buffer);
+    Serial.println("<");
+  }
 
-         incomingByte = Serial.read(); // read in the next byte
-         Serial.print(incomingByte);
-          
-         }
-         for(int j = 0; j < 3; j++){
-           //Serial.print(incomingByte);
-           //Serial.print("test");
-            //moveListBytes[j] = incomingByte; // add read byte to byte array
-           moveListAscii[j] = incomingByte; // add read byte to char array(ASCII)
-           //j++;
-         //Serial.write(incomingByte); // ASCII character
-         //i++;
-      }
-      //Serial.print(moveListBytes[0]);
-      Serial.print(moveListAscii[0]);
-      Serial.print(moveListAscii[0]);
-      //Serial.print(moveListAscii[0]);
-      
-      //Serial.println(); // carriage return
-      //delay(100); // a short delay
-   }
+
 
 
 // Moves
