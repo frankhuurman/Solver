@@ -30,7 +30,7 @@ onder = blauw
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
-  
+
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	connections = {
 		facenames[0]: (5, 3, 1, 4),
@@ -54,7 +54,7 @@ class cube(object):
 			name = self.facenames[self.faceColorIndex[face_color]]
 			conns = {}
 			for i, conn in enumerate(self.connections[name]):
-				conns[sides[i]] = self.facenames[conn]
+				conns[self.facenames[conn]] = sides[i]
 			self.faces[f] = face(squares, name, conns)
 
 		for f in self.facenames:
@@ -67,14 +67,26 @@ class cube(object):
 		face = self.faces[name]
 		face.rotateFace(dir)
 		temp = deque()
-		for f, j in face.connections.items():
-			print(f, j, self.faces[j].face_name)
-			temp.append(self.faces[j].getSide(name))
+		for f in face.connections:
+			temp.append(self.faces[f].getSide(name))
 		temp.append(temp.popleft())
-		for f, j in face.connections.items():
-			self.faces[j].setSide(name, temp.popleft())
+		for f in face.connections:
+			self.faces[f].setSide(name, temp.popleft())
+
+	def printfaces(self, name):
+		squares1 = turnForPrint(name, self.faces[name].connections[name], self.faces[self.faces[name].connections[name]].squares)
+		squares = {}
+		for face in self.faces[name].connections:
+			squares[face] = blah
+		pass
 		
-    
+	def turnForPrint(self, nmMain, nmSec, squares):
+		if (0):
+			pass
+
+
+
+
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
 	
@@ -149,33 +161,32 @@ class face(object):
 	def setSide(self, name, values):
 		"""Sets the 3 squares on the side of the face with %name."""
 		
-		if (self.connections["up"] == name):
+		if (self.connections[name] == "up"):
 			for i, value in enumerate(values):
 				self.squares[0][i] = value
-		if (self.connections["left"] == name):
+		if (self.connections[name] == "left"):
 			for i, value in enumerate(values):
 				self.squares[i][0] = value
-		if (self.connections["right"] == name):
+		if (self.connections[name] == "right"):
 			for i, value in enumerate(values):
 				self.squares[i][2] = value
-		if (self.connections["down"] == name):
+		if (self.connections[name] == "down"):
 			for i, value in enumerate(values):
 				self.squares[2][i] = value
 
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
-#		side = self.connections[name]
 		colors = []
-		if (self.connections["up"] == name):
+		if (self.connections[name] == "up"):
 			for i in range(3):
 				colors.append(self.squares[0][i])
-		if (self.connections["left"] == name):
+		if (self.connections[name] == "left"):
 			for i in range(3):
 				colors.append(self.squares[i][0])
-		if (self.connections["right"] == name):
+		if (self.connections[name] == "right"):
 			for i in range(3):
 				colors.append(self.squares[i][2])
-		if (self.connections["down"] == name):
+		if (self.connections[name] == "down"):
 			for i in range(3):
 				colors.append(self.squares[2][i])
 		return(colors)
