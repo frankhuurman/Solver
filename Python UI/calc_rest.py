@@ -1,6 +1,3 @@
-
-
-#TODO: Update all the calls to cube
 #cube.faces[cube.facenames[0]].squares[0][0] left
 #cube.faces[cube.facenames[1]].squares[0][0] front
 #cube.faces[cube.facenames[2]].squares[0][0] right
@@ -8,11 +5,13 @@
 #cube.faces[cube.facenames[4]].squares[0][0] bottom
 #cube.faces[cube.facenames[5]].squares[0][0] top
 
-def list(colorCombo, pos, cube):
+def ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7):
 	#TODO: Add booleans for selecting which algorithm need to be picked
 	#TODO: Define moveListBuffer somewhere 
 	if algo1 == False: #NOTE: Check the position of the WHITE side of the edge
-		if colorCombo == whiteRed: # skip front 4
+		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0]
+			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
+				break # Ch3ck 1f th15 w0rk5
 			if pos == cube.faces[cube.facenames[1]].squares[0][1]: # V 
 				moveListBuffer += "uubllb'u'u'"
 			if pos == cube.faces[cube.facenames[1]].squares[1][2]: # V 
@@ -59,13 +58,15 @@ def list(colorCombo, pos, cube):
 				moveListBuffer += "ll"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				moveListBuffer += "b'llb"
-		if colorCombo == whiteBlue: # skip front 8
+		if colorCombo == whiteBlue: # correct pos == cube.faces[cube.facenames[1]].squares[2][1]:
 			if pos == cube.faces[cube.facenames[1]].squares[0][1]: 
 				moveListBuffer += "uubbddb'b'u'u'"
 			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
 				moveListBuffer += "llbddl'l'b'"
 			if pos == cube.faces[cube.facenames[1]].squares[1][2]:
 				moveListBuffer += "rrb'ddbr'r'"
+			if pos == cube.faces[cube.facenames[1]].squares[2][1]:
+				break # ch3ck 1f th15 w0rk5
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: 
 				moveListBuffer += "lldl'l'"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -106,7 +107,7 @@ def list(colorCombo, pos, cube):
 				moveListBuffer += "rdr'"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				moveListBuffer += "d'"
-		if colorCombo == whiteOrange: # skip cube.faces[cube.facenames[1]].squares[1][2]:
+		if colorCombo == whiteOrange: # correct pos == cube.faces[cube.facenames[1]].squares[1][2]:
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				movelistBuffer += "l'bd'rrdb'l"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -119,6 +120,8 @@ def list(colorCombo, pos, cube):
 				moveListBuffer += "uub'rrbu'u'"
 			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
 				moveListBuffer += "lddrd'd'l'"
+			if pos == cube.faces[cube.facenames[1]].squares[1][2]:
+				break # ch3ck 1f th15 w0rk5
 			if pos == cube.faces[cube.facenames[1]].squares[2][1]:
 				moveListBuffer += "ddbrrb'd'd'"
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
@@ -153,62 +156,66 @@ def list(colorCombo, pos, cube):
 				moveListBuffer += "r'"
 			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
 				moveListBuffer += "u'r'u"
-		if colorCombo == whiteGreen:
+		if colorCombo == whiteGreen: # correct pos == cube.faces[cube.facenames[1]].squares[0][1]:
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
-				movelistBuffer += ""
+				movelistBuffer += "u'"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "lu'l'"
 			if pos == cube.faces[cube.facenames[0]].squares[1][2]:
-				movelistBuffer += ""
+				movelistBuffer += "l'u'l"
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				moveListBuffer += ""
+				moveListBuffer += "llu'l'l'"
 			if pos == cube.faces[cube.facenames[1]].squares[0][1]:
-				moveListBuffer += ""
+				break # ch3ck 1f th15 w0rk5
 			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "llb'uubl'l'"
+			if pos == cube.faces[cube.facenames[1]].squares[1][2]:
+				moveListBuffer += "rrbuub'r'r'"
 			if pos == cube.faces[cube.facenames[1]].squares[2][1]:
-				moveListBuffer += ""
+				moveListBuffer += "ddbbuub'b'd'd'"
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				moveListBuffer += ""
+				moveListBuffer += "u"
 			if pos == cube.faces[cube.facenames[2]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "rur'"
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				moveListBuffer += ""
+				moveListBuffer += "r'ur"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				moveListBuffer += ""
+				moveListBuffer += "rrur'r'"
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				moveListBuffer += ""
+				moveListBuffer += "uu"
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "buub'"
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				moveListBuffer += ""
+				moveListBuffer += "b'uub"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				moveListBuffer += ""
+				moveListBuffer += "bbuub'b'"
 			if pos == cube.faces[cube.facenames[4]].squares[0][1]:
-				moveListBuffer += ""
+				moveListBuffer += "dr'buub'rd'"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "lb'uubl'"
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				moveListBuffer += "r"
+				moveListBuffer += "r'buub'r"
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				moveListBuffer += ""
+				moveListBuffer += "br'urb'"
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				moveListBuffer += ""
+				moveListBuffer += "blu'"
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				moveListBuffer += ""
+				moveListBuffer += "l'b'uubl"
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				moveListBuffer += ""
+				moveListBuffer += "rbuub'r'"
 			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
-				moveListBuffer += ""
-	# List algo 2
+				moveListBuffer += "u'rbuub'r'u"
+	if algo 2 == False: pass # List algo 2
 	# List algo 3
 	# List algo 4
 	# List algo 5 
 	# List algo 6 
 	# List algo 7 """
 
+	for name in cube.facenames:
+		cube.faces[name]
 
-def Algorithm(cube):
+def Algorithm(cube, output_list):
 	solved = False
 	algo1 = False
 	algo2 = False
@@ -217,19 +224,19 @@ def Algorithm(cube):
 	algo5 = False
 	algo6 = False
 	count = 0
-	while solved == False: # Check if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
-		while algo1 == False:# Check to see if the white edges are solved, done through a simple Boolean TRUE / FALSE (LOOP)
-			# Check each block asociated with a edge to see if it is white
-				# If a white edge is found and it is already in, or has been moved to a correct position then ignore it.
-					count += 1 # Increase a counter that keeps track of the amount of correct edges.
-					if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-						count = 0
-						algo1 = True
-				# Check the other side of the edge to see what color it is
-					# Take the number asociated with the white block and run it through a list to check what moves should be performed to get it into it's proper position.
-						# Store these moves in moveListBuffer
-				# Move to the next edge block
-		while algo2 == False: # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
+	moveListBuffer = []
+	while solved == False: # Check if the cube is solved
+		while algo1 == False:# Check to see if the white edges are solved
+			for name in cube.facenames:
+				whiteEdges = cube.faces[name].checkEdges("w") # Check each block asociated with a edge to see if it is white
+				pos = whiteEdges
+				colorCombo = otherSide # Check the other side of the edge to see what color it is
+				ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7)
+					count += 1 # increase the counter that keeps track of correct edges
+					if count == 4:
+						count = 0 # reset count to 0
+						algo1 = True # means the first of the algorithm is done (hopefully) 
+		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
 					count += 1
@@ -239,7 +246,7 @@ def Algorithm(cube):
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
-		while algo3 == False: # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
+		while algo3 == False: pass # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
 			# Check each edge on the middle and back layer of the cube for a orange color
 				# If a orange edge is found then check the other side of the edge 
 					# Check if the block is in the correct position
@@ -250,7 +257,7 @@ def Algorithm(cube):
 								algo3 = True
 						# Else check the color combination in combination with it's position in the list.
 							# Store the corresponding moves in moveListBuffer
-		while algo4 == False: # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
+		while algo4 == False: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
 					# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
@@ -260,7 +267,7 @@ def Algorithm(cube):
 							algo4 = True
 					# Else go through the list using the position of the yellow edge.
 						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-		while algo5 == False: # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
+		while algo5 == False: pass # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check the color of the color on the non yellow sides of the edges.
 				# If the color matches the color of the center of the face (5)
 					count += 1# Increase a counter that keeps track of the amount of correct edges.
@@ -301,4 +308,7 @@ def Algorithm(cube):
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
+				loopin = True
+	if solved == True:
+		return moveListBuffer, loopin
 # Send moveListBuffer back to solverfinal2.py
