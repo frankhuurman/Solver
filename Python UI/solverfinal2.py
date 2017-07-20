@@ -2,6 +2,7 @@ import pygame
 import os
 import calc_rest
 import cube as kubus
+import serial
 
 # Initialize pygame
 pygame.init()
@@ -278,6 +279,34 @@ def drawFields():
 	solverDisplay.blit(blue_image, blue_rect)
 	solverDisplay.blit(orange_image, orange_rect)
 	solverDisplay.blit(yellow_image, yellow_rect)
+
+def translateList(movelist):
+	translated_list = []
+	for item in movelist:
+		sliced_list = list(item)
+
+	count = 0
+
+	try:
+		for item in sliced_list[:-1]:
+			if sliced_list[count + 1] == "'":
+				translated_list.append(item.upper())
+				#print (item.upper())
+				count += 1
+			elif item != "'":
+				translated_list.append(item)
+				#print(item)
+				count += 1
+			elif item == "'":
+				count += 1
+
+		if sliced_list[-1] != "'":
+			translated_list.append(sliced_list[-1])
+			#print (sliced_list[-1])
+	except IndexError:
+		print ("end of list reached")
+
+	print(translated_list)
 
 def resetFields():
 
