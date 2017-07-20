@@ -1,9 +1,9 @@
 /* Full Arduino Code for powering Rubik's Cube Solver Stepper Motors
  * Start Solverfinal2.py in command line to send data to Arduino
  *  
- *  By T.K. Strijker & F.L. 'Loli licker' Huurman
+ *  By T.K. Strijker & F.L. Huurman
  *  
- *  Version 1.0.2 : Meowing Masterfully Mellow Melon
+ *  Version 1.0.3 : Meowing Masterfully Mellow Melon that meows
  *  
  *  New Functions : 
  *  -Changed and removed code to be compatible with the new design plan and quarter stepping.
@@ -66,13 +66,13 @@ const byte fStep = 13;
 int stepperArray[] = {fDir, fStep, dDir, dStep, rDir, rStep, bDir, bStep, lDir, lStep, uDir, uStep}; // Array containing all the stepper pins, 0 - 11 
 String moveList[] = {}; // array storing the results of the algorithm
 int moveListBuffer = 0; // buffer for the moveList array used when receiving raw bytes through PySerial
-int p = 0; // used for itterating through the posMoves array
-int n = 0; // used for itterating through the negMoves array
+int p = 0; // used for iterating through the posMoves array
+int n = 0; // used for iterating through the negMoves array
 String nextMove; // contains the next move
 int moveMin = 0; // for iterating through arrays
 int moveMax = 5; // for iterating through arrays
 String posMoves[] = {"f", "d", "r", "b", "l", "u"}; //array containing all the positive moves
-String negMoves[] = {"f'", "d'", "r'", "b'", "l'", "u'"}; // array containing all the negative moves
+String negMoves[] = {"F", "D", "R", "B", "L", "U"}; // array containing all the negative moves
 
 int currentDir;
 int currentStep;
@@ -118,9 +118,8 @@ void loop() {
 
   static char buffer[180];
   if (readline(Serial.read(), buffer, 180) > 0) {
-    Serial.print("You entered: >");
+    Serial.print("You entered: ");
     Serial.print(buffer);
-    Serial.println("<");
   }
 
 
