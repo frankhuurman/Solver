@@ -62,6 +62,7 @@ class cube(object):
 			print(self.faces[f].face_name)
 			print(self.faces[f].printFace())
 			print(self.faces[f].connections)
+			print(self.printFaces(f))
 		
 	def rotate(self, name, dir):
 		face = self.faces[name]
@@ -73,16 +74,43 @@ class cube(object):
 		for f in face.connections:
 			self.faces[f].setSide(name, temp.popleft())
 
-	def printfaces(self, name):
-		squares1 = turnForPrint(name, self.faces[name].connections[name], self.faces[self.faces[name].connections[name]].squares)
+	def printFaces(self, name):
 		squares = {}
-		for face in self.faces[name].connections:
-			squares[face] = blah
-		pass
+		blah = []
+		text = ""
+		for i, f in enumerate(list(self.faces[name].connections.keys())):
+			main = self.faces[name].connections[f]
+			sec = self.faces[f].connections[name]
+			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares)
+		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq2"]):
+			line = []
+			for s in a:
+				line.append(s)
+			for s in b:
+				line.append(s)
+			for s in c:
+				line.append(s)
+			blah.append(line)
+		for row in squares["sq0"]:
+			text += "\n\t"
+			for sq in row:
+				text += sq + " "
+		for row in blah:
+			text += "\n  "
+			for sq in row:
+				text += sq + " "
+		for row in squares["sq3"]:
+			text += "\n\t"
+			for sq in row:
+				text += sq + " "
+		return(text + "\n")
+
 		
-	def turnForPrint(self, nmMain, nmSec, squares):
+
+	def turnForPrint(self, relMain, relSec, squares):
 		if (0):
 			pass
+		return(squares)
 
 
 
