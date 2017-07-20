@@ -205,7 +205,7 @@ def ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, al
 				moveListBuffer += "rbuub'r'"
 			if pos == cube.faces[cube.facenames[5]].squares[2][1]:
 				moveListBuffer += "u'rbuub'r'u"
-	if algo 2 == False: pass# List algo 2
+	if algo 2 == False: pass # List algo 2
 	# List algo 3
 	# List algo 4
 	# List algo 5 
