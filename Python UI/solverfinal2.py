@@ -400,7 +400,7 @@ def resetFields():
 	t_rect9col = white_image
 
 
-def checkQuitandClicks():
+def checkQuitandClicks(): # split this up into two (or more) smaller functions.
 	# Check for exit and event handling
 
 	#init globals

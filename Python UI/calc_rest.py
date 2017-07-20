@@ -233,7 +233,7 @@ def Algorithm(cube, output_list):
 			for name in cube.facenames:
 				whiteEdges = cube.faces[name].checkEdges("w") # Check each block asociated with a edge to see if it is white
 				for name in whiteEdges:
-					pos = whiteEdges[name]
+					pos = whiteEdges
 					colorCombo = otherSide # Check the other side of the edge to see what color it is
 					ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7)
 						count += 1 # increase the counter that keeps track of correct edges
