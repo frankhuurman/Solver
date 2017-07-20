@@ -543,10 +543,9 @@ def checkQuitandClicks():
 					
 					# Create cube object 
 					cube = kubus.cube(calcu_list) # calcu list?
-					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
 					while loopin == False 
 						solve = cube.nextMove() # calls the cube.nextMove() function
-						calc_rest.Algorithm(kubus, output_list)
+						calc_rest.Algorithm(kubus)
 						# nextMove() returns list of colors of all faces after a move
 						# if it's solved, break out of this loop and ser.write(b solve)
 						# if not, do the loop again and check for nextMove()

@@ -212,10 +212,7 @@ def ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, al
 	# List algo 6 
 	# List algo 7 """
 
-	for name in cube.facenames:
-		cube.faces[name]
-
-def Algorithm(cube, output_list):
+def Algorithm(cube):
 	solved = False
 	algo1 = False
 	algo2 = False
