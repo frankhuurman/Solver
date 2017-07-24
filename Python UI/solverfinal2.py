@@ -429,8 +429,7 @@ def resetFields():
 	t_rect9col = white_image
 
 
-def checkQuitandClicks():
-	# Check for exit and event handling
+def checkQuitandClicks(): # Check for exit and event handling
 
 	#init globals
 	global user_color
@@ -497,7 +496,7 @@ def checkQuitandClicks():
 	# Init output list
 	global output_list
 
-	### THIS IS THE ACTUAL OUTPUT LIST OF PYGAME SURFACES THAT IS BEING SENT TO calcside.py and calc_rest.py ###
+	# This array contains the layout of the cube
 	output_list = [l_rect1col, l_rect2col, l_rect3col, l_rect4col, l_rect5col, \
 				l_rect6col, l_rect7col, l_rect8col, l_rect9col, f_rect1col, f_rect2col, \
 				f_rect3col, f_rect4col, f_rect5col, f_rect6col, f_rect7col, f_rect8col, \
@@ -507,7 +506,7 @@ def checkQuitandClicks():
 				ba_rect9col, b_rect1col, b_rect2col, b_rect3col, b_rect4col, b_rect5col, b_rect6col, \
 				b_rect7col, b_rect8col, b_rect9col, t_rect1col, t_rect2col, t_rect3col, t_rect4col, \
 				t_rect5col, t_rect6col, t_rect7col, t_rect8col, t_rect9col]
-	#############################################################################################################
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			active = False
@@ -515,8 +514,7 @@ def checkQuitandClicks():
 			quit()
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			if event.button == 1:  # left mouse button
-				#check confirm
-				if confirmrect.collidepoint(event.pos):
+				if confirmrect.collidepoint(event.pos): #check confirm1
 					calcu_list = []
 
 					for color in output_list:
@@ -537,41 +535,24 @@ def checkQuitandClicks():
 						else:
 							calcu_list += "<no color>"
 					
-					### START SOLVING ALGORITHM IN OTHER FILE ###
-					###
-					###
-					
-					# Create cube object 
-					cube = kubus.cube(calcu_list) # calcu list?
+					# START SOLVING ALGORITHM IN calc_rest.py 
+					cube = kubus.cube(calcu_list) # Create the cube object(?)
 					while loopin == False 
 						solve = cube.nextMove() # calls the cube.nextMove() function
 						calc_rest.Algorithm(kubus)
-						# nextMove() returns list of colors of all faces after a move
-						# if it's solved, break out of this loop and ser.write(b solve)
-						# if not, do the loop again and check for nextMove()
-						if futureFunction(): 
-							break
-					#sends the move list to the arduino #check if this works
-					# Check first algorithm/nextMove method? like cube.nextMove()
-					# Do the move(cube.frontFaceCW() or something)
-					# Check next algorithm etc etc
-					# assemble movelist to send in calc_rest.py
+					# END SOLVING ALGORITHM
 
-					###
-					###
-					### END SOLVING ALGORITHM
 					ser.write(bytes(movelist))
-					# Reset rectangles to white and clear lists to solve another cube
-					calcside.emptyList()
+					# calcside.emptyList()
 					calcu_list.clear()
 					showSavedText(saved, inforect)
 					resetFields()
 
-				#reset rects
+				# reset rects
 				if resetrect.collidepoint(event.pos):
 					resetFields()
 
-				#user color choice
+				# user color choice
 				if white_rect.collidepoint(event.pos):
 					user_color = white_image
 				elif red_rect.collidepoint(event.pos):
