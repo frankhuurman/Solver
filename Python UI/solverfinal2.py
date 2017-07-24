@@ -543,7 +543,6 @@ def checkQuitandClicks(): # Check for exit and event handling
 					# END SOLVING ALGORITHM
 
 					ser.write(bytes(movelist))
-					# calcside.emptyList()
 					calcu_list.clear()
 					showSavedText(saved, inforect)
 					resetFields()
@@ -680,8 +679,7 @@ def showScreen():
 
 		mousepos = pygame.mouse.get_pos()
 
-		# Fill background
-		solverDisplay.fill((255,255,255))
+		solverDisplay.fill((255,255,255)) # Fill background
 		# Blit text
 		solverDisplay.blit(front_text, (300, 10))
 		solverDisplay.blit(left_text, (10, 10))
@@ -691,6 +689,7 @@ def showScreen():
 		solverDisplay.blit(top_text, (600, 200))
 		solverDisplay.blit(usercolor_text, (10, 410))
 		solverDisplay.blit(output_stringtext, (10, 550))
+
 		# Blit front view rectangles with colors
 		solverDisplay.blit(f_rect1col, f_rect1)
 		solverDisplay.blit(f_rect2col, f_rect2)
@@ -701,6 +700,7 @@ def showScreen():
 		solverDisplay.blit(f_rect7col, f_rect7)
 		solverDisplay.blit(f_rect8col, f_rect8)
 		solverDisplay.blit(f_rect9col, f_rect9)
+
 		# Blit left view rects with colors
 		solverDisplay.blit(l_rect1col, l_rect1)
 		solverDisplay.blit(l_rect2col, l_rect2)
@@ -711,6 +711,7 @@ def showScreen():
 		solverDisplay.blit(l_rect7col, l_rect7)
 		solverDisplay.blit(l_rect8col, l_rect8)
 		solverDisplay.blit(l_rect9col, l_rect9)
+
 		# Blit right view rects with colors
 		solverDisplay.blit(r_rect1col, r_rect1)
 		solverDisplay.blit(r_rect2col, r_rect2)
@@ -721,6 +722,7 @@ def showScreen():
 		solverDisplay.blit(r_rect7col, r_rect7)
 		solverDisplay.blit(r_rect8col, r_rect8)
 		solverDisplay.blit(r_rect9col, r_rect9)
+
 		# Blit back view rects with colors
 		solverDisplay.blit(ba_rect1col, ba_rect1)
 		solverDisplay.blit(ba_rect2col, ba_rect2)
@@ -731,6 +733,7 @@ def showScreen():
 		solverDisplay.blit(ba_rect7col, ba_rect7)
 		solverDisplay.blit(ba_rect8col, ba_rect8)
 		solverDisplay.blit(ba_rect9col, ba_rect9)
+
 		# Blit bottom view rects with colors
 		solverDisplay.blit(b_rect1col, b_rect1)
 		solverDisplay.blit(b_rect2col, b_rect2)
@@ -741,6 +744,7 @@ def showScreen():
 		solverDisplay.blit(b_rect7col, b_rect7)
 		solverDisplay.blit(b_rect8col, b_rect8)
 		solverDisplay.blit(b_rect9col, b_rect9)
+		
 		# Blit top view rects with colors
 		solverDisplay.blit(t_rect1col, t_rect1)
 		solverDisplay.blit(t_rect2col, t_rect2)
