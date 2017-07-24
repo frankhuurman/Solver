@@ -1,7 +1,8 @@
 import pygame
 import os
-import calc_rest as calc
+import calc_rest
 import cube as kubus
+import serial
 
 # Initialize pygame
 pygame.init()
@@ -279,6 +280,34 @@ def drawFields():
 	solverDisplay.blit(orange_image, orange_rect)
 	solverDisplay.blit(yellow_image, yellow_rect)
 
+def translateList(movelist):
+	translated_list = []
+	for item in movelist:
+		sliced_list = list(item)
+
+	count = 0
+
+	try:
+		for item in sliced_list[:-1]:
+			if sliced_list[count + 1] == "'":
+				translated_list.append(item.upper())
+				#print (item.upper())
+				count += 1
+			elif item != "'":
+				translated_list.append(item)
+				#print(item)
+				count += 1
+			elif item == "'":
+				count += 1
+
+		if sliced_list[-1] != "'":
+			translated_list.append(sliced_list[-1])
+			#print (sliced_list[-1])
+	except IndexError:
+		print ("end of list reached")
+
+	print(translated_list)
+
 def resetFields():
 
 	#init globals
@@ -400,8 +429,7 @@ def resetFields():
 	t_rect9col = white_image
 
 
-def checkQuitandClicks(): # split this up into two (or more) smaller functions.
-	# Check for exit and event handling
+def checkQuitandClicks(): # Check for exit and event handling
 
 	#init globals
 	global user_color
@@ -468,7 +496,7 @@ def checkQuitandClicks(): # split this up into two (or more) smaller functions.
 	# Init output list
 	global output_list
 
-	### THIS IS THE ACTUAL OUTPUT LIST OF PYGAME SURFACES THAT IS BEING SENT TO calc_rest.py ###
+	# This array contains the layout of the cube
 	output_list = [l_rect1col, l_rect2col, l_rect3col, l_rect4col, l_rect5col, \
 				l_rect6col, l_rect7col, l_rect8col, l_rect9col, f_rect1col, f_rect2col, \
 				f_rect3col, f_rect4col, f_rect5col, f_rect6col, f_rect7col, f_rect8col, \
@@ -478,7 +506,7 @@ def checkQuitandClicks(): # split this up into two (or more) smaller functions.
 				ba_rect9col, b_rect1col, b_rect2col, b_rect3col, b_rect4col, b_rect5col, b_rect6col, \
 				b_rect7col, b_rect8col, b_rect9col, t_rect1col, t_rect2col, t_rect3col, t_rect4col, \
 				t_rect5col, t_rect6col, t_rect7col, t_rect8col, t_rect9col]
-	#############################################################################################################
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			active = False
@@ -486,8 +514,7 @@ def checkQuitandClicks(): # split this up into two (or more) smaller functions.
 			quit()
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			if event.button == 1:  # left mouse button
-				#check confirm
-				if confirmrect.collidepoint(event.pos):
+				if confirmrect.collidepoint(event.pos): #check confirm1
 					calcu_list = []
 
 					for color in output_list:
@@ -508,42 +535,23 @@ def checkQuitandClicks(): # split this up into two (or more) smaller functions.
 						else:
 							calcu_list += "<no color>"
 					
-					### START SOLVING ALGORITHM IN OTHER FILE ###
-					###
-					###
-					
-					# Create cube object 
-					cube = kubus.cube(calcu_list) # calcu list?
-					ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
+					# START SOLVING ALGORITHM IN calc_rest.py 
+					cube = kubus.cube(calcu_list) # Create the cube object(?)
 					while loopin == False 
 						solve = cube.nextMove() # calls the cube.nextMove() function
-						calc_rest(kubus, output_list)
-						# nextMove() returns list of colors of all faces after a move
-						# if it's solved, break out of this loop and ser.write(b solve)
-						# if not, do the loop again and check for nextMove()
-						if futureFunction(): 
-							break
-					#sends the move list to the arduino #check if this works
-					# Check first algorithm/nextMove method? like cube.nextMove()
-					# Do the move(cube.frontFaceCW() or something)
-					# Check next algorithm etc etc
-					# assemble movelist to send in calc_rest.py
+						calc_rest.Algorithm(kubus)
+					# END SOLVING ALGORITHM
 
-					###
-					###
-					### END SOLVING ALGORITHM
-					#ser.write(b moveList)
-					# Reset rectangles to white and clear lists to solve another cube
-					calcside.emptyList()
+					ser.write(bytes(movelist))
 					calcu_list.clear()
 					showSavedText(saved, inforect)
 					resetFields()
 
-				#reset rects
+				# reset rects
 				if resetrect.collidepoint(event.pos):
 					resetFields()
 
-				#user color choice
+				# user color choice
 				if white_rect.collidepoint(event.pos):
 					user_color = white_image
 				elif red_rect.collidepoint(event.pos):
@@ -671,8 +679,7 @@ def showScreen():
 
 		mousepos = pygame.mouse.get_pos()
 
-		# Fill background
-		solverDisplay.fill((255,255,255))
+		solverDisplay.fill((255,255,255)) # Fill background
 		# Blit text
 		solverDisplay.blit(front_text, (300, 10))
 		solverDisplay.blit(left_text, (10, 10))
@@ -682,6 +689,7 @@ def showScreen():
 		solverDisplay.blit(top_text, (600, 200))
 		solverDisplay.blit(usercolor_text, (10, 410))
 		solverDisplay.blit(output_stringtext, (10, 550))
+
 		# Blit front view rectangles with colors
 		solverDisplay.blit(f_rect1col, f_rect1)
 		solverDisplay.blit(f_rect2col, f_rect2)
@@ -692,6 +700,7 @@ def showScreen():
 		solverDisplay.blit(f_rect7col, f_rect7)
 		solverDisplay.blit(f_rect8col, f_rect8)
 		solverDisplay.blit(f_rect9col, f_rect9)
+
 		# Blit left view rects with colors
 		solverDisplay.blit(l_rect1col, l_rect1)
 		solverDisplay.blit(l_rect2col, l_rect2)
@@ -702,6 +711,7 @@ def showScreen():
 		solverDisplay.blit(l_rect7col, l_rect7)
 		solverDisplay.blit(l_rect8col, l_rect8)
 		solverDisplay.blit(l_rect9col, l_rect9)
+
 		# Blit right view rects with colors
 		solverDisplay.blit(r_rect1col, r_rect1)
 		solverDisplay.blit(r_rect2col, r_rect2)
@@ -712,6 +722,7 @@ def showScreen():
 		solverDisplay.blit(r_rect7col, r_rect7)
 		solverDisplay.blit(r_rect8col, r_rect8)
 		solverDisplay.blit(r_rect9col, r_rect9)
+
 		# Blit back view rects with colors
 		solverDisplay.blit(ba_rect1col, ba_rect1)
 		solverDisplay.blit(ba_rect2col, ba_rect2)
@@ -722,6 +733,7 @@ def showScreen():
 		solverDisplay.blit(ba_rect7col, ba_rect7)
 		solverDisplay.blit(ba_rect8col, ba_rect8)
 		solverDisplay.blit(ba_rect9col, ba_rect9)
+
 		# Blit bottom view rects with colors
 		solverDisplay.blit(b_rect1col, b_rect1)
 		solverDisplay.blit(b_rect2col, b_rect2)
@@ -732,6 +744,7 @@ def showScreen():
 		solverDisplay.blit(b_rect7col, b_rect7)
 		solverDisplay.blit(b_rect8col, b_rect8)
 		solverDisplay.blit(b_rect9col, b_rect9)
+		
 		# Blit top view rects with colors
 		solverDisplay.blit(t_rect1col, t_rect1)
 		solverDisplay.blit(t_rect2col, t_rect2)
