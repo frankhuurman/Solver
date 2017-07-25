@@ -285,17 +285,17 @@ class solver(object):
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
-						self.user_color = self.imgs["red"]
-					elif self.red_pick.collidepoint(event.pos):
 						self.user_color = self.imgs["white"]
+					elif self.red_pick.collidepoint(event.pos):
+						self.user_color = self.imgs["red"]
 					elif self.green_pick.collidepoint(event.pos):
-						self.user_color = self.imgs["orange"]
-					elif self.blue_pick.collidepoint(event.pos):
-						self.user_color = self.imgs["yellow"]
-					elif self.orange_pick.collidepoint(event.pos):
-						self.user_color = self.imgs["blue"]
-					elif self.yellow_pick.collidepoint(event.pos):
 						self.user_color = self.imgs["green"]
+					elif self.blue_pick.collidepoint(event.pos):
+						self.user_color = self.imgs["blue"]
+					elif self.orange_pick.collidepoint(event.pos):
+						self.user_color = self.imgs["orange"]
+					elif self.yellow_pick.collidepoint(event.pos):
+						self.user_color = self.imgs["yellow"]
 
 					# Changes rect color.
 					for i in range(len(self.rects)):
