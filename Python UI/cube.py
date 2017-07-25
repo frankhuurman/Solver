@@ -1,32 +1,6 @@
 from collections import deque
 
 
-"""
-Connections betweeen the faces:
-dict:
-	{"up": %face, "left": %face, "right": %face, "down": %face}
-	left	[top, back, front, bottom]
-	1 [(6,row,norm), (4), (2), (5)]
-	front	[top, left, right, bottom]
-	2 [6,1,3,5]
-	right	[top, front, back, bottom]
-	3 [6,2,4,5]
-	back	[top, right, left, bottom]
-	4 [6,3,1,5]
-	bottm	[front, left, right, back]
-	5 [2,1,3,4]
-	top	[back, left, right, front]
-	6 [4,1,3,2]
-
-links = rood
-boven = groen
-rechts oranje
-voor = wit
-achter = geel
-onder = blauw
-"""
-
-
 class const:
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 	corners = [[0,0], [0,2], [2,0], [2,2]]
@@ -62,29 +36,6 @@ class cube(object):
 				conns[const.facenames[conn]] = sides[i]
 			self.faces[f] = face(squares, name, conns)
 
-#		for f in const.facenames:
-		f = const.facenames[0]
-		print("Face: " + f)
-		print(self.faces[f].face_name)
-		print(self.faces[f].printFace())
-		print(self.faces[f].connections)
-		print(self.printFaces(f))
-		self.rotate(f, True)
-		print(self.printFaces(f))
-		self.rotate(f, True)
-		print(self.printFaces(f))
-		self.rotate(f, True)
-		print(self.printFaces(f))
-		self.rotate(f, True)
-		print(self.printFaces(f))
-		self.rotate(f, False)
-		print(self.printFaces(f))
-		self.rotate(f, False)
-		print(self.printFaces(f))
-		self.rotate(f, False)
-		print(self.printFaces(f))
-		self.rotate(f, False)
-		print(self.printFaces(f))
 		
 	def rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
@@ -111,6 +62,8 @@ class cube(object):
 				self.faces[f].setSide(name, temp.popleft())
 
 	def printFaces(self, name):
+		"""Prints the current face with the 4 connecting sides, all properly oriented."""
+
 		squares = {}
 		middleSquares = []
 		text = ""
@@ -145,14 +98,20 @@ class cube(object):
 		
 
 	def turnForPrint(self, relMain, relSec, squares, name):
-#		squares[0][1] = "u"
 		if (relMain == relSec):
 			return(self.rotPrint(2, squares, name))
-		elif (relMain == "up" and relSec == "left"):
+		elif ((relMain == "up" and relSec == "left") or
+				(relMain == "left" and relSec == "down") or
+				(relMain == "down" and relSec == "right") or
+				(relMain == "right" and relSec == "up")):
 			return(self.rotPrint(1, squares, name))
-		elif (relMain == "down" and relSec == "left"):
+		elif ((relMain == "left" and relSec == "up") or
+				(relMain == "up" and relSec == "right") or
+				(relMain == "right" and relSec == "down") or
+				(relMain == "down" and relSec == "left")):
 			return(self.rotPrint(3, squares, name))
 		return(squares)
+
 
 	def rotPrint(self, turns, squares, name):
 		print(str(turns), "moi")
