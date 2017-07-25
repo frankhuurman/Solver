@@ -2,6 +2,7 @@ import pygame
 import os
 import calc_rest
 import cube as kubus
+import serial
 
 
 class solver(object):
@@ -249,29 +250,25 @@ class solver(object):
 							else:
 								calcu_list.append("<no color>")
 					
-						### START SOLVING ALGORITHM IN OTHER FILE ###
-						###
-						###
-					
 						# Create cube object
 						cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 						calc_rest.vars.cube = cube
 						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-	
 						moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
-
-						# Write movelist to arduino.
+						partsize = 50
 						transList = self.translateList(movelist)
-						if ("list too long"):
-							print(transList)
+						print(transList)
+						
+						# Write movelist to arduino.
+						if (transList > partsize):
 							partlist = []
-							partsize = 50
 							for i in range(int(len(transList) / partsize) - 1):
 								partlist.append(transList[i : i * partsize])
 							partlist.append(transList[int(len(transList) / partsize) : -1])
 							for part in partlist:
 								ser.write(bytes(part))
-								# Wait for arduino to be done.
+								# wait for input from arduino when it's done.
+								ser.read()
 						else:
 							ser.write(bytes(transList))
 						# Reset rectangles to white and clear lists to solve another cube

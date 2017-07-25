@@ -277,7 +277,7 @@ def algorithm():
 							algo4 = True
 					# Else go through the list using the position of the yellow edge.
 						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-		while algo5 == False:  # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
+		while not algo5:  # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check the color of the color on the non yellow sides of the edges.
 				# If the color matches the color of the center of the face (5)
 					count += 1# Increase a counter that keeps track of the amount of correct edges.
@@ -289,7 +289,7 @@ def algorithm():
 						# Go back to looking for a unsolved block skipping this one for the next round
 					# Else go through the list 
 						# Store the moves in moveListBuffer #@!$!*@$*!@)#!@$(!@$)!@)#!@)_%()!@# KEEP IN MIND THAT THIS DOES NOT FOLLOWS THE STANDARD ALGORITHM AND IT NEEDS TO BE ADAPTED TO WORK FOR EACH OF THE FOUR SIDES!
-		while algo6 == False: pass # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
+		while not algo6: pass # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
 			# Check if the side on the yellow face is NOT yellow
 				# If the other colors on the corner DO NOT match the color at the center of their respective face
 					# Go into the list using the position of this corner
@@ -297,7 +297,7 @@ def algorithm():
 							# Store the attached moves in moveListBuffer as many times as is needed to react a correct cube state
 							# Set the Boolean to TRUE and break out of this loop.
 			# Else move onto the next corner
-		while solved == False: pass # Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
+		while not solved: pass # Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check if all faces only contain one color 
 				# Set the Boolean to TRUE and break out of this loop
 			# Else check which yellow corners are placed incorrectly
@@ -319,6 +319,6 @@ def algorithm():
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 		loopin = True
-	if solved == True:
+	if vars.cube.solved() == True:
 		return moveListBuffer#, loopin <-- what is this supposed to do?
 # Send moveListBuffer back to solverfinal2.py
