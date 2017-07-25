@@ -12,8 +12,7 @@ display_height = 600
 solverDisplay = pygame.display.set_mode((display_width, display_height))
 # Outer loop variable
 active = True
-# Clock object to lock FPS(60)
-clock = pygame.time.Clock()
+clock = pygame.time.Clock() # Clock object to lock FPS(60)
 
 # Init fonts and text variables for drawing on screen
 myfont = pygame.font.SysFont("monospace", 18, bold=True)
@@ -191,10 +190,6 @@ class vars:
 
 # init list to output
 output_list = []
-
-# init dictionaries for output
-left_face = {}
-front_face = {}
 
 def showSavedText(image, rect):
 	image_time = 840
