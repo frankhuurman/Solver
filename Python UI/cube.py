@@ -11,7 +11,6 @@ class const:
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
-
 	connections = {
 		const.facenames[0]: (5, 3, 4, 1),
 		const.facenames[1]: (5, 0, 4, 2),
@@ -20,8 +19,8 @@ class cube(object):
 		const.facenames[4]: (1, 0, 3, 2),
 		const.facenames[5]: (3, 0, 1, 2)
 		}
-
 	faces = {}
+	facenames = const.facenames
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
@@ -127,7 +126,11 @@ class cube(object):
 		blah[1][1] = self.faces[name].face_color
 		return(blah)
 
-
+	def solved(self):
+		s = True
+		for f in const.facenames:
+			if (not self.faces[f].allTheSame()):
+				s = False
 
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
