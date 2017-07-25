@@ -41,152 +41,153 @@ reset1 = pygame.image.load("reset1.png")
 reset2 = pygame.image.load("reset2.png")
 resetrect = pygame.Rect(250, 470, 100, 50)
 
-# Color tuples
-black = (0, 0, 0)
-red = (255, 0 ,0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
+class vars:
+	# Color tuples
+	black = (0, 0, 0)
+	red = (255, 0 ,0)
+	green = (0, 255, 0)
+	blue = (0, 0, 255)
 
-# Color images for rectangles
-white_image = pygame.image.load("white.png")
-red_image = pygame.image.load("red.png")
-green_image = pygame.image.load("green.png")
-blue_image = pygame.image.load("blue.png")
-orange_image = pygame.image.load("orange.png")
-yellow_image = pygame.image.load("yellow.png")
-rubiks_image = pygame.image.load("rubiks.jpg")
+	# Color images for rectangles
+	white_image = pygame.image.load("white.png")
+	red_image = pygame.image.load("red.png")
+	green_image = pygame.image.load("green.png")
+	blue_image = pygame.image.load("blue.png")
+	orange_image = pygame.image.load("orange.png")
+	yellow_image = pygame.image.load("yellow.png")
+	rubiks_image = pygame.image.load("rubiks.jpg")
 
-# User color picker rectangles
-white_rect = pygame.Rect(230, 400, 40, 40)
-red_rect = pygame.Rect(280, 400, 40, 40)
-green_rect = pygame.Rect(330, 400, 40, 40)
-blue_rect = pygame.Rect(380, 400, 40, 40)
-orange_rect = pygame.Rect(430, 400, 40, 40)
-yellow_rect = pygame.Rect(480, 400, 40, 40)
+	# User color picker rectangles
+	white_rect = pygame.Rect(230, 400, 40, 40)
+	red_rect = pygame.Rect(280, 400, 40, 40)
+	green_rect = pygame.Rect(330, 400, 40, 40)
+	blue_rect = pygame.Rect(380, 400, 40, 40)
+	orange_rect = pygame.Rect(430, 400, 40, 40)
+	yellow_rect = pygame.Rect(480, 400, 40, 40)
 
-# User color variables
-user_color = white_image #default picked color from start is white
-user_color_rect = pygame.Rect(150, 400, 40, 40)
+	# User color variables
+	user_color = white_image #default picked color from start is white
+	user_color_rect = pygame.Rect(150, 400, 40, 40)
 
-# left view rectangles
-l_rect1 = pygame.Rect(10, 40, 40, 40)
-l_rect1col = white_image
-l_rect2 = pygame.Rect(60, 40, 40, 40)
-l_rect2col = white_image
-l_rect3 = pygame.Rect(110, 40, 40, 40)
-l_rect3col = white_image
-l_rect4 = pygame.Rect(10, 90, 40, 40)
-l_rect4col = white_image
-l_rect5 = pygame.Rect(60, 90, 40, 40)
-l_rect5col = red_image
-l_rect6 = pygame.Rect(110, 90, 40, 40)
-l_rect6col = white_image
-l_rect7 = pygame.Rect(10, 140, 40, 40)
-l_rect7col = white_image
-l_rect8 = pygame.Rect(60, 140, 40, 40)
-l_rect8col = white_image
-l_rect9 = pygame.Rect(110, 140, 40, 40)
-l_rect9col = white_image
+	# left view rectangles
+	l_rect1 = pygame.Rect(10, 40, 40, 40)
+	l_rect1col = white_image
+	l_rect2 = pygame.Rect(60, 40, 40, 40)
+	l_rect2col = white_image
+	l_rect3 = pygame.Rect(110, 40, 40, 40)
+	l_rect3col = white_image
+	l_rect4 = pygame.Rect(10, 90, 40, 40)
+	l_rect4col = white_image
+	l_rect5 = pygame.Rect(60, 90, 40, 40)
+	l_rect5col = red_image
+	l_rect6 = pygame.Rect(110, 90, 40, 40)
+	l_rect6col = white_image
+	l_rect7 = pygame.Rect(10, 140, 40, 40)
+	l_rect7col = white_image
+	l_rect8 = pygame.Rect(60, 140, 40, 40)
+	l_rect8col = white_image
+	l_rect9 = pygame.Rect(110, 140, 40, 40)
+	l_rect9col = white_image
 
-# front view rectangles
-f_rect1 = pygame.Rect(300, 40, 40, 40)
-f_rect1col = white_image
-f_rect2 = pygame.Rect(350, 40, 40, 40)
-f_rect2col = white_image
-f_rect3 = pygame.Rect(400, 40, 40, 40)
-f_rect3col = white_image
-f_rect4 = pygame.Rect(300, 90, 40, 40)
-f_rect4col = white_image
-f_rect5 = pygame.Rect(350, 90, 40, 40)
-f_rect5col = rubiks_image
-f_rect6 = pygame.Rect(400, 90, 40, 40)
-f_rect6col = white_image
-f_rect7 = pygame.Rect(300, 140, 40, 40)
-f_rect7col = white_image
-f_rect8 = pygame.Rect(350, 140, 40, 40)
-f_rect8col = white_image
-f_rect9 = pygame.Rect(400, 140, 40, 40)
-f_rect9col = white_image
+	# front view rectangles
+	f_rect1 = pygame.Rect(300, 40, 40, 40)
+	f_rect1col = white_image
+	f_rect2 = pygame.Rect(350, 40, 40, 40)
+	f_rect2col = white_image
+	f_rect3 = pygame.Rect(400, 40, 40, 40)
+	f_rect3col = white_image
+	f_rect4 = pygame.Rect(300, 90, 40, 40)
+	f_rect4col = white_image
+	f_rect5 = pygame.Rect(350, 90, 40, 40)
+	f_rect5col = rubiks_image
+	f_rect6 = pygame.Rect(400, 90, 40, 40)
+	f_rect6col = white_image
+	f_rect7 = pygame.Rect(300, 140, 40, 40)
+	f_rect7col = white_image
+	f_rect8 = pygame.Rect(350, 140, 40, 40)
+	f_rect8col = white_image
+	f_rect9 = pygame.Rect(400, 140, 40, 40)
+	f_rect9col = white_image
 
-# right view rectangles
-r_rect1 = pygame.Rect(600, 40, 40, 40)
-r_rect1col = white_image
-r_rect2 = pygame.Rect(650, 40, 40, 40)
-r_rect2col = white_image
-r_rect3 = pygame.Rect(700, 40, 40, 40)
-r_rect3col = white_image
-r_rect4 = pygame.Rect(600, 90, 40, 40)
-r_rect4col = white_image
-r_rect5 = pygame.Rect(650, 90, 40, 40)
-r_rect5col = orange_image
-r_rect6 = pygame.Rect(700, 90, 40, 40)
-r_rect6col = white_image
-r_rect7 = pygame.Rect(600, 140, 40, 40)
-r_rect7col = white_image
-r_rect8 = pygame.Rect(650, 140, 40, 40)
-r_rect8col = white_image
-r_rect9 = pygame.Rect(700, 140, 40, 40)
-r_rect9col = white_image
+	# right view rectangles
+	r_rect1 = pygame.Rect(600, 40, 40, 40)
+	r_rect1col = white_image
+	r_rect2 = pygame.Rect(650, 40, 40, 40)
+	r_rect2col = white_image
+	r_rect3 = pygame.Rect(700, 40, 40, 40)
+	r_rect3col = white_image
+	r_rect4 = pygame.Rect(600, 90, 40, 40)
+	r_rect4col = white_image
+	r_rect5 = pygame.Rect(650, 90, 40, 40)
+	r_rect5col = orange_image
+	r_rect6 = pygame.Rect(700, 90, 40, 40)
+	r_rect6col = white_image
+	r_rect7 = pygame.Rect(600, 140, 40, 40)
+	r_rect7col = white_image
+	r_rect8 = pygame.Rect(650, 140, 40, 40)
+	r_rect8col = white_image
+	r_rect9 = pygame.Rect(700, 140, 40, 40)
+	r_rect9col = white_image
 
-# back view rectangles
-ba_rect1 = pygame.Rect(10, 230, 40, 40)
-ba_rect1col = white_image
-ba_rect2 = pygame.Rect(60, 230, 40, 40)
-ba_rect2col = white_image
-ba_rect3 = pygame.Rect(110, 230, 40, 40)
-ba_rect3col = white_image
-ba_rect4 = pygame.Rect(10, 280, 40, 40)
-ba_rect4col = white_image
-ba_rect5 = pygame.Rect(60, 280, 40, 40)
-ba_rect5col = yellow_image
-ba_rect6 = pygame.Rect(110, 280, 40, 40)
-ba_rect6col = white_image
-ba_rect7 = pygame.Rect(10, 330, 40, 40)
-ba_rect7col = white_image
-ba_rect8 = pygame.Rect(60, 330, 40, 40)
-ba_rect8col = white_image
-ba_rect9 = pygame.Rect(110, 330, 40, 40)
-ba_rect9col = white_image
+	# back view rectangles
+	ba_rect1 = pygame.Rect(10, 230, 40, 40)
+	ba_rect1col = white_image
+	ba_rect2 = pygame.Rect(60, 230, 40, 40)
+	ba_rect2col = white_image
+	ba_rect3 = pygame.Rect(110, 230, 40, 40)
+	ba_rect3col = white_image
+	ba_rect4 = pygame.Rect(10, 280, 40, 40)
+	ba_rect4col = white_image
+	ba_rect5 = pygame.Rect(60, 280, 40, 40)
+	ba_rect5col = yellow_image
+	ba_rect6 = pygame.Rect(110, 280, 40, 40)
+	ba_rect6col = white_image
+	ba_rect7 = pygame.Rect(10, 330, 40, 40)
+	ba_rect7col = white_image
+	ba_rect8 = pygame.Rect(60, 330, 40, 40)
+	ba_rect8col = white_image
+	ba_rect9 = pygame.Rect(110, 330, 40, 40)
+	ba_rect9col = white_image
 
-# bottom view rectangles
-b_rect1 = pygame.Rect(300, 230, 40, 40)
-b_rect1col = white_image
-b_rect2 = pygame.Rect(350, 230, 40, 40)
-b_rect2col = white_image
-b_rect3 = pygame.Rect(400, 230, 40, 40)
-b_rect3col = white_image
-b_rect4 = pygame.Rect(300, 280, 40, 40)
-b_rect4col = white_image
-b_rect5 = pygame.Rect(350, 280, 40, 40)
-b_rect5col = blue_image
-b_rect6 = pygame.Rect(400, 280, 40, 40)
-b_rect6col = white_image
-b_rect7 = pygame.Rect(300, 330, 40, 40)
-b_rect7col = white_image
-b_rect8 = pygame.Rect(350, 330, 40, 40)
-b_rect8col = white_image
-b_rect9 = pygame.Rect(400, 330, 40, 40)
-b_rect9col = white_image
+	# bottom view rectangles
+	b_rect1 = pygame.Rect(300, 230, 40, 40)
+	b_rect1col = white_image
+	b_rect2 = pygame.Rect(350, 230, 40, 40)
+	b_rect2col = white_image
+	b_rect3 = pygame.Rect(400, 230, 40, 40)
+	b_rect3col = white_image
+	b_rect4 = pygame.Rect(300, 280, 40, 40)
+	b_rect4col = white_image
+	b_rect5 = pygame.Rect(350, 280, 40, 40)
+	b_rect5col = blue_image
+	b_rect6 = pygame.Rect(400, 280, 40, 40)
+	b_rect6col = white_image
+	b_rect7 = pygame.Rect(300, 330, 40, 40)
+	b_rect7col = white_image
+	b_rect8 = pygame.Rect(350, 330, 40, 40)
+	b_rect8col = white_image
+	b_rect9 = pygame.Rect(400, 330, 40, 40)
+	b_rect9col = white_image
 
-# top view rectangles
-t_rect1 = pygame.Rect(600, 230, 40, 40)
-t_rect1col = white_image
-t_rect2 = pygame.Rect(650, 230, 40, 40)
-t_rect2col = white_image
-t_rect3 = pygame.Rect(700, 230, 40, 40)
-t_rect3col = white_image
-t_rect4 = pygame.Rect(600, 280, 40, 40)
-t_rect4col = white_image
-t_rect5 = pygame.Rect(650, 280, 40, 40)
-t_rect5col = green_image
-t_rect6 = pygame.Rect(700, 280, 40, 40)
-t_rect6col = white_image
-t_rect7 = pygame.Rect(600, 330, 40, 40)
-t_rect7col = white_image
-t_rect8 = pygame.Rect(650, 330, 40, 40)
-t_rect8col = white_image
-t_rect9 = pygame.Rect(700, 330, 40, 40)
-t_rect9col = white_image
+	# top view rectangles
+	t_rect1 = pygame.Rect(600, 230, 40, 40)
+	t_rect1col = white_image
+	t_rect2 = pygame.Rect(650, 230, 40, 40)
+	t_rect2col = white_image
+	t_rect3 = pygame.Rect(700, 230, 40, 40)
+	t_rect3col = white_image
+	t_rect4 = pygame.Rect(600, 280, 40, 40)
+	t_rect4col = white_image
+	t_rect5 = pygame.Rect(650, 280, 40, 40)
+	t_rect5col = green_image
+	t_rect6 = pygame.Rect(700, 280, 40, 40)
+	t_rect6col = white_image
+	t_rect7 = pygame.Rect(600, 330, 40, 40)
+	t_rect7col = white_image
+	t_rect8 = pygame.Rect(650, 330, 40, 40)
+	t_rect8col = white_image
+	t_rect9 = pygame.Rect(700, 330, 40, 40)
+	t_rect9col = white_image
 
 # init list to output
 output_list = []
@@ -428,7 +429,6 @@ def resetFields():
 	t_rect8col = white_image
 	t_rect9col = white_image
 
-
 def checkQuitandClicks(): # Check for exit and event handling
 
 	#init globals
@@ -497,7 +497,7 @@ def checkQuitandClicks(): # Check for exit and event handling
 	global output_list
 
 	# This array contains the layout of the cube
-	output_list = [l_rect1col, l_rect2col, l_rect3col, l_rect4col, l_rect5col, \
+	output_list = [vars.l_rect1col, l_rect2col, l_rect3col, l_rect4col, l_rect5col, \
 				l_rect6col, l_rect7col, l_rect8col, l_rect9col, f_rect1col, f_rect2col, \
 				f_rect3col, f_rect4col, f_rect5col, f_rect6col, f_rect7col, f_rect8col, \
 				f_rect9col, r_rect1col, r_rect2col, r_rect3col, r_rect4col, r_rect5col, \
