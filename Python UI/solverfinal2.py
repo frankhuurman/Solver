@@ -200,9 +200,7 @@ def showSavedText(image, rect):
 		image_time -= 1
 	image_time = 840
 
-def userColor(color):
-	# Blits the picked color by user on the screen
-
+def userColor(color): # Blits the picked color by user on the screen
 	solverDisplay.blit(color, user_color_rect)
 
 def drawFields():
