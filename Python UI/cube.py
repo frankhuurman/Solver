@@ -27,62 +27,99 @@ onder = blauw
 """
 
 
+class const:
+	edges = [[0,1], [1,0], [1,2], [2,1]]
+	corners = [[0,0], [0,2], [2,0], [2,2]]
+	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
+	faceColorIndex = {"r": 0, "w": 1, "o": 2, "y": 3, "b": 4, "g": 5}
+	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
+
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
 
-	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
 	connections = {
-		facenames[0]: (5, 3, 1, 4),
-		facenames[1]: (5, 0, 2, 4),
-		facenames[2]: (5, 1, 3, 4),
-		facenames[3]: (5, 2, 0, 4),
-		facenames[4]: (1, 0, 2, 3),
-		facenames[5]: (3, 0, 2, 1)
+		const.facenames[0]: (5, 3, 4, 1),
+		const.facenames[1]: (5, 0, 4, 2),
+		const.facenames[2]: (5, 1, 4, 3),
+		const.facenames[3]: (5, 2, 4, 0),
+		const.facenames[4]: (1, 0, 3, 2),
+		const.facenames[5]: (3, 0, 1, 2)
 		}
 
 	faces = {}
-	faceColorIndex = {"r": 0, "w": 1, "o": 2, "y": 3, "b": 4, "g": 5}
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 
-		sides = ["up", "left", "right", "down"]
-		for i, f in enumerate(self.facenames):
+		sides = ["up", "left", "down", "right"]
+		for i, f in enumerate(const.facenames):
 			squares = outputlist[i*9 : i*9 + 9]
 			face_color = squares[int(len(squares)/2)]
-			name = self.facenames[self.faceColorIndex[face_color]]
+			name = const.facenames[const.faceColorIndex[face_color]]
 			conns = {}
 			for i, conn in enumerate(self.connections[name]):
-				conns[self.facenames[conn]] = sides[i]
+				conns[const.facenames[conn]] = sides[i]
 			self.faces[f] = face(squares, name, conns)
 
-		for f in self.facenames:
-			print("Face: " + f)
-			print(self.faces[f].face_name)
-			print(self.faces[f].printFace())
-			print(self.faces[f].connections)
-			print(self.printFaces(f))
+#		for f in const.facenames:
+		f = const.facenames[0]
+		print("Face: " + f)
+		print(self.faces[f].face_name)
+		print(self.faces[f].printFace())
+		print(self.faces[f].connections)
+		print(self.printFaces(f))
+		self.rotate(f, True)
+		print(self.printFaces(f))
+		self.rotate(f, True)
+		print(self.printFaces(f))
+		self.rotate(f, True)
+		print(self.printFaces(f))
+		self.rotate(f, True)
+		print(self.printFaces(f))
+		self.rotate(f, False)
+		print(self.printFaces(f))
+		self.rotate(f, False)
+		print(self.printFaces(f))
+		self.rotate(f, False)
+		print(self.printFaces(f))
+		self.rotate(f, False)
+		print(self.printFaces(f))
 		
 	def rotate(self, name, dir):
+		"""Rotates the face along with the corresponding sides."""
+
 		face = self.faces[name]
 		face.rotateFace(dir)
 		temp = deque()
-		for f in face.connections:
-			temp.append(self.faces[f].getSide(name))
+		reverse = []
+		for i in face.connections:
+			reverse.append(i)
+		if (dir):
+			for f in face.connections:
+				temp.append(self.faces[f].getSide(name))
+		else:
+			for f in reversed(reverse):
+				temp.append(self.faces[f].getSide(name))
 		temp.append(temp.popleft())
-		for f in face.connections:
-			self.faces[f].setSide(name, temp.popleft())
+		print(temp)
+		if (dir):
+			for f in face.connections:
+				self.faces[f].setSide(name, temp.popleft())
+		else:
+			for f in reversed(reverse):
+				self.faces[f].setSide(name, temp.popleft())
 
 	def printFaces(self, name):
 		squares = {}
-		blah = []
+		middleSquares = []
 		text = ""
 		for i, f in enumerate(list(self.faces[name].connections.keys())):
 			main = self.faces[name].connections[f]
 			sec = self.faces[f].connections[name]
-			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares)
-		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq2"]):
+			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares, f)
+			print(main, sec)
+		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq3"]):
 			line = []
 			for s in a:
 				line.append(s)
@@ -90,16 +127,16 @@ class cube(object):
 				line.append(s)
 			for s in c:
 				line.append(s)
-			blah.append(line)
+			middleSquares.append(line)
 		for row in squares["sq0"]:
 			text += "\n\t"
 			for sq in row:
 				text += sq + " "
-		for row in blah:
+		for row in middleSquares:
 			text += "\n  "
 			for sq in row:
 				text += sq + " "
-		for row in squares["sq3"]:
+		for row in squares["sq2"]:
 			text += "\n\t"
 			for sq in row:
 				text += sq + " "
@@ -107,11 +144,29 @@ class cube(object):
 
 		
 
-	def turnForPrint(self, relMain, relSec, squares):
-		if (0):
-			pass
+	def turnForPrint(self, relMain, relSec, squares, name):
+#		squares[0][1] = "u"
+		if (relMain == relSec):
+			return(self.rotPrint(2, squares, name))
+		elif (relMain == "up" and relSec == "left"):
+			return(self.rotPrint(1, squares, name))
+		elif (relMain == "down" and relSec == "left"):
+			return(self.rotPrint(3, squares, name))
 		return(squares)
 
+	def rotPrint(self, turns, squares, name):
+		print(str(turns), "moi")
+		temp = deque()
+		blah = [["","",""],["","",""],["","",""]]
+		for x, y in const.rotateOrder:
+			temp.append(squares[x][y])
+		for i in range(turns):
+			temp.append(temp.popleft())
+			temp.append(temp.popleft())
+		for x, y in reversed(const.rotateOrder):
+			blah[x][y] = temp.pop()
+		blah[1][1] = self.faces[name].face_color
+		return(blah)
 
 
 
@@ -154,9 +209,6 @@ class face(object):
 	def connections(self, connections):
 		self.__connections = connections
 	
-	edges = [[0,1], [1,0], [1,2], [2,1]]
-	corners = [[0,0], [0,2], [2,0], [2,2]]
-	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
 
 	def __init__(self, data, face_name, conns):
 		self.face_color = data[int(len(data)/2)]
@@ -223,18 +275,18 @@ class face(object):
 		"""Rotate the face clockwise 'cw' or counter clockwise 'ccw'."""
 		temp = deque()
 		if (dir):
-			for x, y in reversed(self.rotateOrder):
+			for x, y in reversed(const.rotateOrder):
 				temp.append(self.squares[x][y])
 		else:
-			for x, y in self.rotateOrder:
+			for x, y in const.rotateOrder:
 				temp.append(self.squares[x][y])
 		temp.append(temp.popleft())
 		temp.append(temp.popleft())
 		if (dir):
-			for x, y in self.rotateOrder:
+			for x, y in const.rotateOrder:
 				self.squares[x][y] = temp.pop()
 		else:
-			for x, y in reversed(self.rotateOrder):
+			for x, y in reversed(const.rotateOrder):
 				self.squares[x][y] = temp.pop()
 
 	def allTheSame(self):
