@@ -2,7 +2,7 @@ import pygame
 import os
 import calc_rest
 import cube as kubus
-import serial
+#import serial
 
 
 class solver(object):
@@ -10,37 +10,37 @@ class solver(object):
 	# Set program window size and create program window
 	display_width = 800
 	display_height = 600
-	solverDisplay = pygame.display.set_mode((display_width, display_height))
+	solverDisplay = None
 	# Outer loop variable
 	active = True
 	# Clock object to lock FPS(60)
-	clock = pygame.time.Clock()
+	clock = None
 
 	# Init fonts and text variables for drawing on screen
-	myfont = pygame.font.SysFont("monospace", 18, bold=True)
-	myfontsmall = pygame.font.SysFont("monospace", 14, bold=True)
-	front_text = myfont.render("Front", 1, (0,0,0))
-	left_text = myfont.render("Left", 1, (0,0,0))
-	right_text = myfont.render("Right", 1, (0,0,0))
-	back_text = myfont.render("Back", 1, (0,0,0))
-	bottom_text = myfont.render("Bottom", 1, (0,0,0))
-	top_text = myfont.render("Top", 1, (0,0,0))
-	usercolor_text = myfont.render("Your color:", 1, (0,0,0))
-	output_stringtext = myfontsmall.render("Output string format: lllllllll, fffffffff, rrrrrrrrr, bababababababababa, bbbbbbbbb, ttttttttt", 1, (0,0,0))
+	myfont = None
+	myfontsmall = None
+	front_text = None
+	left_text = None
+	right_text = None
+	back_text = None
+	bottom_text = None
+	top_text = None
+	usercolor_text = None
+	output_stringtext = None
 
 	# Create confirm rectangle and load confirm images
-	confirm1 = pygame.image.load("confirm1.png")
-	confirm2 = pygame.image.load("confirm2.png")
-	confirmrect = pygame.Rect(390, 470, 100, 50)
+	confirm1 = None
+	confirm2 = None
+	confirmrect = None
 	# Create information rectangle and load information images
-	inforect = pygame.Rect(500, 470, 100, 100)
-	inforect2 = pygame.Rect(500, 470, 100, 100)
-	saved = pygame.image.load("saved.png")
-	filecreate = pygame.image.load("filecreate2.png")
+	inforect = None
+	inforect2 = None
+	saved = None
+	filecreate = None
 	# # Create reset rectangle and load reset images
-	reset1 = pygame.image.load("reset1.png")
-	reset2 = pygame.image.load("reset2.png")
-	resetrect = pygame.Rect(250, 470, 100, 50)
+	reset1 = None
+	reset2 = None
+	resetrect = None
 
 	# Color tuples
 	black = (0, 0, 0)
@@ -49,25 +49,20 @@ class solver(object):
 	blue = (0, 0, 255)
 
 	# Color images for rectangles
-	rubiks_image = pygame.image.load("rubiks.jpg")
-	imgs = {"red" : pygame.image.load("red.png"),
-			"white" : pygame.image.load("white.png"),
-			"orange" : pygame.image.load("orange.png"),
-			"yellow" : pygame.image.load("yellow.png"),
-			"blue" : pygame.image.load("blue.png"),
-			"green" : pygame.image.load("green.png")}
+	rubiks_image = None
+	imgs = {}
 
 	# User color picker rectangles
-	white_pick = pygame.Rect(230, 400, 40, 40)
-	red_pick = pygame.Rect(280, 400, 40, 40)
-	green_pick = pygame.Rect(330, 400, 40, 40)
-	blue_pick = pygame.Rect(380, 400, 40, 40)
-	orange_pick = pygame.Rect(430, 400, 40, 40)
-	yellow_pick = pygame.Rect(480, 400, 40, 40)
+	white_pick = None
+	red_pick = None
+	green_pick = None
+	blue_pick = None
+	orange_pick = None
+	yellow_pick = None
 
 	# User color variables
-	user_color = white_image #default picked color from start is white
-	user_color_rect = pygame.Rect(150, 400, 40, 40)
+	user_color = None
+	user_color_rect = None
 
 	# Setup for positioning of rectangles.
 	offsetx = [10, 300, 600]
@@ -80,24 +75,71 @@ class solver(object):
 	def __init__(self):
 		# Initialize pygame
 		pygame.init()
+		self.solverDisplay = pygame.display.set_mode((self.display_width, self.display_height))
+		self.clock = pygame.time.Clock()
+		self.myfont = pygame.font.SysFont("monospace", 18, bold=True)
+		self.myfontsmall = pygame.font.SysFont("monospace", 14, bold=True)
+		self.front_text = self.myfont.render("Front", 1, (0,0,0))
+		self.left_text = self.myfont.render("Left", 1, (0,0,0))
+		self.right_text = self.myfont.render("Right", 1, (0,0,0))
+		self.back_text = self.myfont.render("Back", 1, (0,0,0))
+		self.bottom_text = self.myfont.render("Bottom", 1, (0,0,0))
+		self.top_text = self.myfont.render("Top", 1, (0,0,0))
+		self.usercolor_text = self.myfont.render("Your color:", 1, (0,0,0))
+		self.output_stringtext = self.myfontsmall.render("Output string format: lllllllll, fffffffff, rrrrrrrrr, bababababababababa, bbbbbbbbb, ttttttttt", 1, (0,0,0))
 		
+		# Create confirm rectangle and load confirm images
+		self.confirm1 = pygame.image.load("confirm1.png")
+		self.confirm2 = pygame.image.load("confirm2.png")
+		self.confirmrect = pygame.Rect(390, 470, 100, 50)
+		# Create information rectangle and load information images
+		self.inforect = pygame.Rect(500, 470, 100, 100)
+		self.inforect2 = pygame.Rect(500, 470, 100, 100)
+		self.saved = pygame.image.load("saved.png")
+		self.filecreate = pygame.image.load("filecreate2.png")
+		# # Create reset rectangle and load reset images
+		self.reset1 = pygame.image.load("reset1.png")
+		self.reset2 = pygame.image.load("reset2.png")
+		self.resetrect = pygame.Rect(250, 470, 100, 50)
+		
+		# Color images for rectangles
+		self.rubiks_image = pygame.image.load("rubiks.jpg")
+		self.imgs["red"] = pygame.image.load("red.png")
+		self.imgs["white"] = pygame.image.load("white.png")
+		self.imgs["orange"] = pygame.image.load("orange.png")
+		self.imgs["yellow"] = pygame.image.load("yellow.png")
+		self.imgs["blue"] = pygame.image.load("blue.png")
+		self.imgs["green"] = pygame.image.load("green.png")
+	
+		# User color picker rectangles
+		white_pick = pygame.Rect(230, 400, 40, 40)
+		red_pick = pygame.Rect(280, 400, 40, 40)
+		green_pick = pygame.Rect(330, 400, 40, 40)
+		blue_pick = pygame.Rect(380, 400, 40, 40)
+		orange_pick = pygame.Rect(430, 400, 40, 40)
+		yellow_pick = pygame.Rect(480, 400, 40, 40)
+		
+		# User color variables
+		user_color = self.imgs["white"] #default picked color from start is white
+		user_color_rect = pygame.Rect(150, 400, 40, 40)
+
 		# Set up the rectangles and their proper colors.
 		for i , color in enumerate(self.imgs):
 			if ((i - 3) >= 0):
-				xoff = offsetx[i - 3]
+				xoff = self.offsetx[i - 3]
 			else:
-				xoff = offsetx[i]
+				xoff = self.offsetx[i]
 			if (i < 3):
-				yoff = offsety[0]
+				yoff = self.offsety[0]
 			else:
-				yoff = offsety[1]
+				yoff = self.offsety[1]
 			for y in range(3):
 				for x in range(3):
 					xpos = (xoff + (x * 50))
 					ypos = (yoff + (y * 50))
-					self.rects.append(pygame.Rect(xpos, ypos, img_size, img_size))
-					if (color == "white" and x == 1 and y == 1):
-						self.rects_col.append(rubiks_image)
+					self.rects.append(pygame.Rect(xpos, ypos, self.img_size, self.img_size))
+					if (color == self.imgs["white"] and x == 1 and y == 1):
+						self.rects_col.append(self.rubiks_image)
 					else:
 						self.rects_col.append(color)
 
@@ -253,7 +295,7 @@ class solver(object):
 						# Create cube object
 						cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 						calc_rest.vars.cube = cube
-						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
+#						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
 						moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
 						partsize = 50
 						transList = self.translateList(movelist)
@@ -265,12 +307,12 @@ class solver(object):
 							for i in range(int(len(transList) / partsize) - 1):
 								partlist.append(transList[i : i * partsize])
 							partlist.append(transList[int(len(transList) / partsize) : -1])
-							for part in partlist:
-								ser.write(bytes(part))
+#							for part in partlist:
+#								ser.write(bytes(part))
 								# wait for input from arduino when it's done.
-								ser.read()
-						else:
-							ser.write(bytes(transList))
+#								ser.read()
+#						else:
+#							ser.write(bytes(transList))
 						# Reset rectangles to white and clear lists to solve another cube
 						calcu_list.clear()
 						self.showSavedText(saved, inforect)
@@ -319,17 +361,18 @@ class solver(object):
 			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			for color, rect in zip(self.rects_col, self.rects):
+				print(rect, color)
 				self.solverDisplay.blit(color, rect)
 
 			if confirmrect.collidepoint(mousepos):
-				solverDisplay.blit(self.confirm2, self.confirmrect)
+				self.solverDisplay.blit(self.confirm2, self.confirmrect)
 			else:
-				solverDisplay.blit(self.confirm1, self.confirmrect)
+				self.solverDisplay.blit(self.confirm1, self.confirmrect)
 
-			if resetrect.collidepoint(mousepos):
-				solverDisplay.blit(self.reset2, self.resetrect)
+			if self.resetrect.collidepoint(mousepos):
+				self.solverDisplay.blit(self.reset2, self.resetrect)
 			else:
-				solverDisplay.blit(self.reset1, self.resetrect)
+				self.solverDisplay.blit(self.reset1, self.resetrect)
 
 			self.drawFields()
 			# blit user color, must be before checkQuitandClicks!!
