@@ -1,6 +1,7 @@
 import serial
 from time import sleep
-ser = serial.Serial("COM3", 9600, timeout=2)  # Open serial port
+
+ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 print("Port used: " + ser.name)         # Check which port was really used
 
 send_list = []
