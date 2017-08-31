@@ -235,11 +235,11 @@ def Algorithm(cube):
 					algo1 = True # means the first of the algorithm is done (hopefully) 
 		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
-				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
-					count += 1
-					if count == 4:# Increase a counter that keeps track of the amount of correct corners.
-						count = 0 # If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-						algo2 = True
+			# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
+			count += 1
+			if count == 4:# Increase a counter that keeps track of the amount of correct corners.
+				count = 0 # If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+				algo2 = True
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
