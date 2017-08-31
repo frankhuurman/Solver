@@ -229,10 +229,10 @@ def Algorithm(cube):
 				pos = whiteEdges
 				colorCombo = otherSide # Check the other side of the edge to see what color it is
 				ifBulk(moveListBuffer, colorCombo, pos, cube, algo1, algo2, algo3, algo4, algo5, algo6, algo7)
-					count += 1 # increase the counter that keeps track of correct edges
-					if count == 4:
-						count = 0 # reset count to 0
-						algo1 = True # means the first of the algorithm is done (hopefully) 
+				count += 1 # increase the counter that keeps track of correct edges
+				if count == 4:
+					count = 0 # reset count to 0
+					algo1 = True # means the first of the algorithm is done (hopefully) 
 		while algo2 == False: pass # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
