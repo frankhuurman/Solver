@@ -537,7 +537,7 @@ def checkQuitandClicks(): # Check for exit and event handling
 					
 					# START SOLVING ALGORITHM IN calc_rest.py 
 					cube = kubus.cube(calcu_list) # Create the cube object(?)
-					while loopin == False 
+					while loopin == False:
 						solve = cube.nextMove() # calls the cube.nextMove() function
 						calc_rest.Algorithm(kubus)
 					# END SOLVING ALGORITHM
