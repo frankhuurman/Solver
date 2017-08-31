@@ -116,8 +116,7 @@ if (Serial.available()>0) { // there are bytes in the serial buffer to read
          //i++;
       }
       //Serial.print(moveListBytes[0]);
-      Serial.print(moveListAscii[0]);
-      Serial.print(moveListAscii[0]);
+      //Serial.print(moveListAscii[0]);
       //Serial.print(moveListAscii[0]);
       
       //Serial.println(); // carriage return

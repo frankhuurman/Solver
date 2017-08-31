@@ -4,7 +4,7 @@ from time import sleep
 ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 print("Port used: " + ser.name)         # Check which port was really used
 
-send_list = []
+send_list = ["uUlLdDrRfFbB"]
 send_list.append("\r")
 while True:
 	data = ser.readline() # Read data from Arduino
@@ -12,6 +12,11 @@ while True:
 		if data == b"Ready\r\n": # Initialize handshake with Arduino
 			print ("Handshake from Arduino received")
 			#arduino_string = input("Type string to send to arduino: ")
+			"""
+			if len(send_list) > 6:
+				for item in send_list:
+					ser.write(str.encode(send_list.pop(0)))
+			"""
 			for item in send_list:
 				ser.write(str.encode(item))
 		elif data == b"somethingelse":
