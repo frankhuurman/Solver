@@ -120,11 +120,11 @@ class solver(object):
 		yellow_pick = pygame.Rect(480, 400, 40, 40)
 		
 		# User color variables
-		user_color = self.imgs["white"] #default picked color from start is white
+		user_color = self.imgs["white"] # Default picked color from start is white
 		user_color_rect = pygame.Rect(150, 400, 40, 40)
 
 		# Set up the rectangles and their proper colors.
-		for i , color in enumerate(self.imgs):
+		for i , color in enumerate(self.imgs.values()):
 			if ((i - 3) >= 0):
 				xoff = self.offsetx[i - 3]
 			else:
@@ -135,12 +135,15 @@ class solver(object):
 				yoff = self.offsety[1]
 			for y in range(3):
 				for x in range(3):
-					xpos = (xoff + (x * 50))
-					ypos = (yoff + (y * 50))
+					xpos = (xoff + (x * 50)) # Determine the x position of the rect.
+					ypos = (yoff + (y * 50)) # Determine the y position of the rect.
+					# Make a new rest and add it to rects list.
 					self.rects.append(pygame.Rect(xpos, ypos, self.img_size, self.img_size))
 					if (color == self.imgs["white"] and x == 1 and y == 1):
+						# Exception for the rubiks image in the center of the white face.
 						self.rects_col.append(self.rubiks_image)
 					else:
+						# Get the color for the rect. Colors are according to the 
 						self.rects_col.append(color)
 
 	
@@ -221,12 +224,12 @@ class solver(object):
 		pygame.draw.line(self.solverDisplay, self.black, (745, 220), (745, 380), 2)
 
 		# draw fields where user can pick colors
-		self.solverDisplay.blit(white_image, white_pick)
-		self.solverDisplay.blit(red_image, red_pick)
-		self.solverDisplay.blit(green_image, green_pick)
-		self.solverDisplay.blit(blue_image, blue_pick)
-		self.solverDisplay.blit(orange_image, orange_pick)
-		self.solverDisplay.blit(yellow_image, yellow_pick)
+		self.solverDisplay.blit(self.imgs["white"], self.white_pick)
+		self.solverDisplay.blit(self.imgs["red"], self.red_pick)
+		self.solverDisplay.blit(self.imgs["green"], self.green_pick)
+		self.solverDisplay.blit(self.imgs["blue"], self.blue_pick)
+		self.solverDisplay.blit(self.imgs["orange"], self.orange_pick)
+		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
 	def translateList(self, movelist):
 		translated_list = []
@@ -271,7 +274,7 @@ class solver(object):
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:  # left mouse button
 					#check confirm
-					if confirmrect.collidepoint(event.pos):
+					if self.confirmrect.collidepoint(event.pos):
 						calcu_list = []
 
 						for color in self.rects_col:
@@ -319,7 +322,7 @@ class solver(object):
 						self.resetFields()
 
 					#reset rects
-					if resetrect.collidepoint(event.pos):
+					if self.resetrect.collidepoint(event.pos):
 						resetFields()
 
 					# user color choice
@@ -361,10 +364,9 @@ class solver(object):
 			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			for color, rect in zip(self.rects_col, self.rects):
-				print(rect, color)
 				self.solverDisplay.blit(color, rect)
 
-			if confirmrect.collidepoint(mousepos):
+			if self.confirmrect.collidepoint(mousepos):
 				self.solverDisplay.blit(self.confirm2, self.confirmrect)
 			else:
 				self.solverDisplay.blit(self.confirm1, self.confirmrect)

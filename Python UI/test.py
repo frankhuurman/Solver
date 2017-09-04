@@ -17,12 +17,12 @@ imgs = {"red" : "r",
 		"yellow" : "y",
 		"blue" : "b",
 		"green" : "g"}
-
+pick_rects = {}
 rects = []
 rects_col = []
 
-for i , color in enumerate(imgs):
-
+for i , color in enumerate(imgs.values()):
+	pick_rects[imgs.values()]
 	if ((i - 3) >= 0):
 		xoff = offsetx[i - 3]
 	else:
@@ -36,7 +36,7 @@ for i , color in enumerate(imgs):
 			xpos = (xoff + (x * 50))
 			ypos = (yoff + (y * 50))
 			rects.append((xpos, ypos, img_size, img_size))
-			if (color == "white" and x == 1 and y == 1):
+			if (color == imgs["white"] and x == 1 and y == 1):
 				rects_col.append(rubiks_image)
 			else:
 				rects_col.append(color)
