@@ -1,11 +1,15 @@
-import cube as kubus
+# /----------------------------------------------\
+# !                   Reminders                  !
+# \----------------------------------------------/
 
-#cube.faces[cube.facenames[0]].squares[0][0] left
+#cube.faces[cube.facenames[0]].squares[0][0] left ()
 #cube.faces[cube.facenames[1]].squares[0][0] front
 #cube.faces[cube.facenames[2]].squares[0][0] right
 #cube.faces[cube.facenames[3]].squares[0][0] back
 #cube.faces[cube.facenames[4]].squares[0][0] bottom
 #cube.faces[cube.facenames[5]].squares[0][0] top
+
+import cube as kubus # <-- IMPORTANT
 
 class vars:
 	moveListBuffer = ""
@@ -19,7 +23,8 @@ class vars:
 	cube = None
 
 def ifBulk(cube, colorCombo, pos):
-
+#TODO: Add code for keeping cube object up to date
+#TODO: Write code to take the up to date version of the cube from the cube object.
 	if not vars.algo1: #NOTE: Check the position of the WHITE side of the edge
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0]
 			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
@@ -218,11 +223,62 @@ def ifBulk(cube, colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				vars.moveListBuffer += "UrbuuBRu"
 	if algo2 == False: pass # List algo 2
-	# List algo 3
-	# List algo 4
-	# List algo 5 
-	# List algo 6 
-	# List algo 7 """
+		if colorCombo == whiteRedGreen: # Placeholder variable name # The position is the position of the white surface of the edge. <-- IMPORTANT
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[1]].squares[2][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[0][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[0][2]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[2][0]:
+				vars.moveListBuffer += ""
+			if pos == cube.faces[cube.facenames[5]].squares[2][2]:
+				vars.moveListBuffer += ""
+
+
+	if algo3 == False: pass # List algo 3
+	if algo4 == False: pass # List algo 4
+	if algo5 == False: pass # List algo 5 
+	if algo6 == False: pass # List algo 6 
+	if algo7 == False: pass # List algo 7
 
 	for name in cube.facenames:
 		cube.faces[name]
