@@ -14,7 +14,6 @@ const byte fStep = 13;
 
 //Define bytes that are received by Arduino
 //small letters are for positive turns, capital for negative turns
-byte carriage = 13;
 byte r = 114;
 byte R = 82;
 byte d = 100;
@@ -27,6 +26,8 @@ byte l = 108;
 byte L = 76;
 byte f = 102;
 byte F = 70;
+byte carriage = 13;
+byte ending = 63;
 
 //Muziek
 byte z = 122; //Mario tune
@@ -250,10 +251,9 @@ void loop() {
           turn4(); //note 4
           delay(100);
           turn2(); //note 2
-          //delay(100);
-          
-          
-          //turn9(); //note 9
+        }
+        else if(incomingByte == ending){
+          Serial.print(" Done ")
         }
         
         else if (incomingByte == carriage){
