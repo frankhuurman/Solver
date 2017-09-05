@@ -31,140 +31,140 @@ def ifBulk(cube, colorCombo, pos):
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				vars.moveListBuffer += "U"
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
 				vars.moveListBuffer += "lUL"
-			if pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
 				vars.moveListBuffer += "LUl"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
 				vars.moveListBuffer += "llULL"
-			if pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
-			if pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
 				vars.moveListBuffer += "llBuubLL"
-			if pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
 				vars.moveListBuffer += "rrbuuBRR"
-			if pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
 				vars.moveListBuffer += "ddbbuuBBDD'"
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
 				vars.moveListBuffer += "u"
-			if pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
 				vars.moveListBuffer += "ruR"
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
 				vars.moveListBuffer += "Rur"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
 				vars.moveListBuffer += "rruRR"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
 				vars.moveListBuffer += "uu"
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
 				vars.moveListBuffer += "buuB"
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
 				vars.moveListBuffer += "Buub"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				vars.moveListBuffer += "bbuuBB"
-			if pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
 				vars.moveListBuffer += "dRbuuBrd'"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
 				vars.moveListBuffer += "lBuubL"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
 				vars.moveListBuffer += "RbuuBr"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
 				vars.moveListBuffer += "bRurB"
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
 				vars.moveListBuffer += "blU"
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
 				vars.moveListBuffer += "LBuubl"
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
 				vars.moveListBuffer += "rbuuBR"
-			if pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				vars.moveListBuffer += "UrbuuBRu"
-			if pos == cube.faces[cube.facenames[1]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[1]].squares[1][0]:
 				return # 7h15 w0rk5 :p
-			if pos == cube.faces[cube.facenames[1]].squares[0][1]: # V 
+			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V 
 				vars.moveListBuffer += "uubllBUU"
-			if pos == cube.faces[cube.facenames[1]].squares[1][2]: # V 
+			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V 
 				vars.moveListBuffer += "RddLDDr"
-			if pos == cube.faces[cube.facenames[1]].squares[2][1]: # V 
+			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V 
 				vars.moveListBuffer += "ddBllbDD"
-			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				vars.moveListBuffer += "ubllBu'"
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
 				vars.moveListBuffer += "bdLDB"
-			if pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
 				vars.moveListBuffer += "fulUF"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
 				vars.moveListBuffer += "LfulUFl"
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
 				vars.moveListBuffer += "Ulu"
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
 				vars.moveListBuffer += "l"
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
 				vars.moveListBuffer += "uulUU"
-			if pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				vars.moveListBuffer += "ulU"
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]: # V 
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V 
 				vars.moveListBuffer += "UbllBu"
-			if pos == cube.faces[cube.facenames[2]].squares[1][0]: # V 
+			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V 
 				vars.moveListBuffer += "rUbllBuR"
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
 				vars.moveListBuffer += "bdLDB"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
 				vars.moveListBuffer += "RBdLDbr"
-			if pos == cube.faces[cube.facenames[4]].squares[0][1]: # V 
+			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V 
 				vars.moveListBuffer += "DLd"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
 				vars.moveListBuffer += "L"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
 				vars.moveListBuffer += "ddLDD"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
 				vars.moveListBuffer += "DLd"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
 				vars.moveListBuffer += "bllB"
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
 				vars.moveListBuffer += "bbllBB"
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
 				vars.moveListBuffer += "ll"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				vars.moveListBuffer += "Bllb"
 		if colorCombo == whiteBlue: # correct pos == cube.faces[cube.facenames[1]].squares[2][1]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				vars.moveListBuffer += "U"
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
 				vars.moveListBuffer += "lUL"
-			if pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
 				vars.moveListBuffer += "LUl"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
 				vars.moveListBuffer += "llULL"
-			if pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
-			if pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
 				vars.moveListBuffer += "llBuubLL"
-			if pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
 				vars.moveListBuffer += "rrbuuBRR"
-			if pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
 				vars.moveListBuffer += "ddbbuuBBDD'"
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
 				vars.moveListBuffer += "u"
-			if pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
 				vars.moveListBuffer += "ruR"
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
 				vars.moveListBuffer += "Rur"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
 				vars.moveListBuffer += "rruRR"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
 				vars.moveListBuffer += "uu"
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
 				vars.moveListBuffer += "buuB"
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
 				vars.moveListBuffer += "Buub"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				vars.moveListBuffer += "bbuuBB"
-			if pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
 				vars.moveListBuffer += "dRbuuBrd'"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
 				vars.moveListBuffer += "lBuubL"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
 				vars.moveListBuffer += "RbuuBr"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
 				vars.moveListBuffer += "bRurB"
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
 				vars.moveListBuffer += "blU"
