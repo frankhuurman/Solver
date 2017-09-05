@@ -388,7 +388,154 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				vars.moveListBuffer += "" #rbRB (works for this side)
+				vars.moveListBuffer += "rbRBLbl" #rbRB #L
+			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
+				vars.moveListBuffer += ""
+		if colorCombo == whiteRedBlue:
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
+				vars.moveListBuffer += ""
+		if colorCombo == whiteOrangeBlue:
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
+				vars.moveListBuffer += ""
+		if colorCombo == whiteOrangeGreen:
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
+				vars.moveListBuffer += ""
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
+				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
