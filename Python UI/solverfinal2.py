@@ -205,7 +205,12 @@ def sendToArduino():
 	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 	print("Port used: " + ser.name)         # Check which port was really used
 
-	send_list = ["uUlLdDrRfFbB"]
+	send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+	"""
+	if len(send_list) > 62:
+		blah = []
+		blah.append(send_list[i*64:(i+1)*64])
+	"""
 	send_list.append("\r")
 	while True:
 		data = ser.readline() # Read data from Arduino
@@ -215,13 +220,21 @@ def sendToArduino():
 				#The arduino_string part + while loop is for manual testing commands
 				#Make this a comment and uncomment for item in send_list for regular use
 				arduino_string = ""
+				
 				while arduino_string != "q":
 					arduino_string = input("Type string to send to arduino: ")
 					ser.write(str.encode(arduino_string))
+				
 				"""
-				if len(send_list) > 64:
-					for item in send_list:
-						ser.write(str.encode(send_list.pop(0)))
+				for item in send_list:
+					if len(item) > 64:
+						print ("item longer than 64")
+				"""
+				"""
+				if len(send_list[0]) > 40:
+					print("test")
+					#for item in send_list:
+					#	ser.write(str.encode(send_list.pop(0)))
 				"""
 				"""
 				for item in send_list:
