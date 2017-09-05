@@ -1,8 +1,9 @@
 import pygame
+pygame.init()
 import os
 import calc_rest
 import cube as kubus
-import serial
+#import serial
 
 
 class solver(object):
@@ -66,7 +67,7 @@ class solver(object):
 	yellow_pick = pygame.Rect(480, 400, 40, 40)
 
 	# User color variables
-	user_color = white_image #default picked color from start is white
+	user_color = imgs["white"] #default picked color from start is white
 	user_color_rect = pygame.Rect(150, 400, 40, 40)
 
 	# Setup for positioning of rectangles.
@@ -79,26 +80,28 @@ class solver(object):
 	
 	def __init__(self):
 		# Initialize pygame
-		pygame.init()
 		
 		# Set up the rectangles and their proper colors.
-		for i , color in enumerate(self.imgs):
+		for i , color in enumerate(self.imgs.values()):
 			if ((i - 3) >= 0):
-				xoff = offsetx[i - 3]
+				xoff = self.offsetx[i - 3]
 			else:
-				xoff = offsetx[i]
+				xoff = self.offsetx[i]
 			if (i < 3):
-				yoff = offsety[0]
+				yoff = self.offsety[0]
 			else:
-				yoff = offsety[1]
+				yoff = self.offsety[1]
 			for y in range(3):
 				for x in range(3):
-					xpos = (xoff + (x * 50))
-					ypos = (yoff + (y * 50))
-					self.rects.append(pygame.Rect(xpos, ypos, img_size, img_size))
-					if (color == "white" and x == 1 and y == 1):
-						self.rects_col.append(rubiks_image)
+					xpos = (xoff + (x * 50)) # Determine the x position of the rect.
+					ypos = (yoff + (y * 50)) # Determine the y position of the rect.
+					# Make a new rect and add it to rects list.
+					self.rects.append(pygame.Rect((xpos, ypos), (self.img_size, self.img_size)))
+					if (color == self.imgs["white"] and x == 1 and y == 1):
+						# Exception for the rubiks image in the center of the white face.
+						self.rects_col.append(self.rubiks_image)
 					else:
+						# Get the color for the rect. Colors are according to the color of the face.
 						self.rects_col.append(color)
 
 	
@@ -179,12 +182,12 @@ class solver(object):
 		pygame.draw.line(self.solverDisplay, self.black, (745, 220), (745, 380), 2)
 
 		# draw fields where user can pick colors
-		self.solverDisplay.blit(white_image, white_pick)
-		self.solverDisplay.blit(red_image, red_pick)
-		self.solverDisplay.blit(green_image, green_pick)
-		self.solverDisplay.blit(blue_image, blue_pick)
-		self.solverDisplay.blit(orange_image, orange_pick)
-		self.solverDisplay.blit(yellow_image, yellow_pick)
+		self.solverDisplay.blit(self.imgs["white"], self.white_pick)
+		self.solverDisplay.blit(self.imgs["red"], self.red_pick)
+		self.solverDisplay.blit(self.imgs["green"], self.green_pick)
+		self.solverDisplay.blit(self.imgs["blue"], self.blue_pick)
+		self.solverDisplay.blit(self.imgs["orange"], self.orange_pick)
+		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
 	def translateList(self, movelist):
 		translated_list = []
@@ -229,7 +232,7 @@ class solver(object):
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:  # left mouse button
 					#check confirm
-					if confirmrect.collidepoint(event.pos):
+					if self.confirmrect.collidepoint(event.pos):
 						calcu_list = []
 
 						for color in self.rects_col:
@@ -253,11 +256,11 @@ class solver(object):
 						# Create cube object
 						cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 						calc_rest.vars.cube = cube
-						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-						moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
+#						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
+#						moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
 						partsize = 50
-						transList = self.translateList(movelist)
-						print(transList)
+#						transList = self.translateList(movelist)
+						print(calcu_list)
 						
 						# Write movelist to arduino.
 						if (transList > partsize):
@@ -265,20 +268,20 @@ class solver(object):
 							for i in range(int(len(transList) / partsize) - 1):
 								partlist.append(transList[i : i * partsize])
 							partlist.append(transList[int(len(transList) / partsize) : -1])
-							for part in partlist:
-								ser.write(bytes(part))
+#							for part in partlist:
+#								ser.write(bytes(part))
 								# wait for input from arduino when it's done.
-								ser.read()
-						else:
-							ser.write(bytes(transList))
+#								ser.read()
+#						else:
+#							ser.write(bytes(transList))
 						# Reset rectangles to white and clear lists to solve another cube
 						calcu_list.clear()
 						self.showSavedText(saved, inforect)
 						self.resetFields()
 
 					#reset rects
-					if resetrect.collidepoint(event.pos):
-						resetFields()
+					if self.resetrect.collidepoint(event.pos):
+						self.resetFields()
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
@@ -297,7 +300,8 @@ class solver(object):
 					# Changes rect color.
 					for i in range(len(self.rects)):
 						if (self.rects[i].collidepoint(event.pos)):
-							self.rects_col[i] = self.user_color
+							if (not (i + 5) % 9 == 0):
+								self.rects_col[i] = self.user_color
 							break
 
 	def showScreen(self):
@@ -321,15 +325,15 @@ class solver(object):
 			for color, rect in zip(self.rects_col, self.rects):
 				self.solverDisplay.blit(color, rect)
 
-			if confirmrect.collidepoint(mousepos):
-				solverDisplay.blit(self.confirm2, self.confirmrect)
+			if self.confirmrect.collidepoint(mousepos):
+				self.solverDisplay.blit(self.confirm2, self.confirmrect)
 			else:
-				solverDisplay.blit(self.confirm1, self.confirmrect)
+				self.solverDisplay.blit(self.confirm1, self.confirmrect)
 
-			if resetrect.collidepoint(mousepos):
-				solverDisplay.blit(self.reset2, self.resetrect)
+			if self.resetrect.collidepoint(mousepos):
+				self.solverDisplay.blit(self.reset2, self.resetrect)
 			else:
-				solverDisplay.blit(self.reset1, self.resetrect)
+				self.solverDisplay.blit(self.reset1, self.resetrect)
 
 			self.drawFields()
 			# blit user color, must be before checkQuitandClicks!!
@@ -342,7 +346,7 @@ class solver(object):
 
 			# frames
 			self.clock.tick(60)
-
+			
 game = solver()
 while game.active:
 	game.showScreen()
