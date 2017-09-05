@@ -9,6 +9,9 @@
 #cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
+# When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
+# this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
+
 import cube as kubus # <-- IMPORTANT
 
 class vars:
@@ -27,7 +30,7 @@ def ifBulk(cube, colorCombo, pos):
 	#TODO: Write code to manipulate the cube after each move
 	#TODO: Write code to take the new up to date version of the cube 
 #TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-#TODO: Fill in the section of algo2 involving the white - red - green corner. Simply fill in the positions as they appear rather than wasting time trying to force it into (possibly) impossible positions.
+#TODO: All positions (for corners) need to have a corresponding section in the algorithm. To get a corner into a specific spot simply move it into the oposite corner on the backside and repeat rdRD
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
@@ -387,8 +390,8 @@ def ifBulk(cube, colorCombo, pos):
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				vars.moveListBuffer += ""
-			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				vars.moveListBuffer += "rbRBLbl" #rbRB #L
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # V
+				vars.moveListBuffer += "rbRBLbl" 
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
@@ -412,7 +415,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				vars.moveListBuffer += ""
+				vars.moveListBuffer += "LblBLblBLblBLblBLblB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
@@ -566,9 +569,7 @@ def ifBulk(cube, colorCombo, pos):
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				vars.moveListBuffer += ""
-
-
-	if algo3 == False: pass # List algo 3
+	if algo3 == False: pass # List algo 3 
 	if algo4 == False: pass # List algo 4
 	if algo5 == False: pass # List algo 5 
 	if algo6 == False: pass # List algo 6 
