@@ -631,11 +631,11 @@ def algorithm():
 					if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
 						count = 0
 						algo5 = True
-				# Else check the color of the adjacent edge, going clockwise
+				# Else check the color of the adjacent edge, going clockwise (Start with face 0 then 4, 2 and finaly 5)
 					# If the color of the adjacent edge matches the color of the center block of their respective face
 						# Go back to looking for a unsolved block skipping this one for the next round
 					# Else go through the list 
-						# Store the moves in moveListBuffer #@!$!*@$*!@)#!@$(!@$)!@)#!@)_%()!@# KEEP IN MIND THAT THIS DOES NOT FOLLOWS THE STANDARD ALGORITHM AND IT NEEDS TO BE ADAPTED TO WORK FOR EACH OF THE FOUR SIDES!
+						# Store the moves in moveListBuffer
 		while not vars.algo6: # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
 			# Check if the side on the yellow face is NOT yellow
 				# If the other colors on the corner DO NOT match the color at the center of their respective face
