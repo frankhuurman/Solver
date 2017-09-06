@@ -68,7 +68,7 @@ class solver(object):
 	yellow_pick = pygame.Rect(480, 400, 40, 40)
 
 	# User color variables
-	user_color = imgs["white"] #default picked color from start is white
+	user_color = imgs["white"] # Default picked color from start is white
 	user_color_rect = pygame.Rect(150, 400, 40, 40)
 
 	# Setup for positioning of rectangles.
@@ -80,10 +80,11 @@ class solver(object):
 	cube = None
 	
 	def __init__(self):
-		# Initialize pygame
+
+		order = ["red", "white", "orange", "yellow", "blue", "green"]
 		
 		# Set up the rectangles and their proper colors.
-		for i , color in enumerate(self.imgs.values()):
+		for i , color in enumerate(order):
 			if ((i - 3) >= 0):
 				xoff = self.offsetx[i - 3]
 			else:
@@ -98,12 +99,12 @@ class solver(object):
 					ypos = (yoff + (y * 50)) # Determine the y position of the rect.
 					# Make a new rect and add it to rects list.
 					self.rects.append(pygame.Rect((xpos, ypos), (self.img_size, self.img_size)))
-					if (color == self.imgs["white"] and x == 1 and y == 1):
+					if (color == "white" and x == 1 and y == 1):
 						# Exception for the rubiks image in the center of the white face.
 						self.rects_col.append(self.rubiks_image)
 					else:
 						# Get the color for the rect. Colors are according to the color of the face.
-						self.rects_col.append(color)
+						self.rects_col.append(self.imgs[color])
 
 	
 	def sendToArduino(self, send_list):
@@ -281,11 +282,12 @@ class solver(object):
 
 	def resetFields(self):
 		"""Sets all settable fields to white."""
-
+		
+		order = ["red", "white", "orange", "yellow", "blue", "green"]
 		for i in range(len(self.rects_col)):
 			if ((i + 5) % 9 == 0):
 				continue
-			self.rects_col[i] = self.imgs["white"]
+			self.rects_col[i] = self.imgs[order[int(i/9)]]
 			
 	def checkQuitandClicks(self):
 		"""Check for exit and event handling."""
@@ -299,7 +301,7 @@ class solver(object):
 				if event.button == 1:  # left mouse button
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
-						#	Start monitoring the soil and other sensors.
+						# Start solving the cube using the algorithm in another thread.
 						solve = threading.Thread(name = "Solver", target = self.solve, args=())
 						solve.setDaemon(True)
 						solve.start()
@@ -330,16 +332,22 @@ class solver(object):
 							break
 
 	def updateColors(self):
+		"""Sets the colors of the squares on the screen according to the current state of the Rubik's cube."""
+
 		if (self.cube is not None):
-#			print("moi")
 			colorIndex = {"r": "red", "w": "white", "o": "orange", "y": "yellow", "b": "blue", "g": "green"}
 			colors = ""
 			for face in self.cube.facenames:
 				colors += self.cube.faces[face].getColors()
 			for i in range(len(self.rects_col)):
+				# Exception for the Rubik's cube logo.
+				if (i == 13):
+					continue
 				self.rects_col[i] = self.imgs[colorIndex[colors[i]]]
 
 	def solve(self):
+		"""Run this in a seperate thread to start solving the cube."""
+
 		calcu_list = []
 
 		for color in self.rects_col:
@@ -371,43 +379,80 @@ class solver(object):
 		print(self.cube.printFaces("front_face"))
 #		self.cube.rotate("left_face", True)
 #		self.cube.rotate("bottom_face", True)
-		self.cube.sendMoves("DLBURF")
-		
 		import time
-		time.sleep(.5)
-		self.cube.sendMoves("luuuuUBD")
-		time.sleep(.5)
-		self.cube.sendMoves("llllffffrrrrbbbBD")
-		time.sleep(.5)
-		self.cube.sendMoves("llllfffbbbbdddduuuuUBD")
-		time.sleep(.5)
-		self.cube.sendMoves("llllffffrrrrbbuuuUBD")
-		time.sleep(.5)
-		self.cube.sendMoves("llllffffbbdddduuuuUBD")
-		time.sleep(.5)
-		self.cube.sendMoves("llllffffrrbbddD")
+		t = 0.5
+		moves = "DLBURF"
+#		for char in reversed(moves.lower()):
+#			self.cube.sendMoves(char)
+#			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char]]))
+#			time.sleep(t)
+		colors = ""
+		for face in self.cube.facenames:
+			colors += self.cube.faces[face].getColors() + " "
+		print(colors)
+		print("rggrrwyyo yggrwbbbo ryyoobwwb ggwyyboob wwgrboryy boorggrww")
+#		for char in moves:
+#			self.cube.sendMoves(char)
+#			time.sleep(t)
+		"""
+#		self.cube.sendMoves("DLBURF")
+		self.cube.sendMoves("D")
+		print("Bottom")
+		time.sleep(t)
+		self.cube.sendMoves("L")
+		print("Left")
+		time.sleep(t)
+		self.cube.sendMoves("B")
+		print("Back")
+		time.sleep(t)
+		self.cube.sendMoves("U")
+		print("Top")
+		time.sleep(t)
+		self.cube.sendMoves("R")
+		print("Right")
+		time.sleep(t)
+		self.cube.sendMoves("F")
+		print("Front")
+		time.sleep(t)
+		"""
+
+		import time
+		t = 0.02
+		for i in range(200):
+			time.sleep(t)
+			self.cube.sendMoves("luuuuUBD")
+			time.sleep(t)
+			self.cube.sendMoves("llllffffrrrrbbbBD")
+			time.sleep(t)
+			self.cube.sendMoves("llllfffbbbbdddduuuuUBD")
+			time.sleep(t)
+			self.cube.sendMoves("llllffffrrrrbbuuuUBD")
+			time.sleep(t)
+			self.cube.sendMoves("llllffffbbdddduuuuUBD")
+			time.sleep(t)
+			self.cube.sendMoves("llllffffrrbbddD")
 #		self.cube.rotate("left_face", True)
-		
-		print(self.cube.printFaces("front_face"))
-						
+
+		"""				
 		# Write movelist to arduino.
 		if (transList > partsize):
 			partlist = []
 			for i in range(int(len(transList) / partsize) - 1):
 				partlist.append(transList[i : i * partsize])
 			partlist.append(transList[int(len(transList) / partsize) : -1])
-#			for part in partlist:
-#				ser.write(bytes(part))
+			for part in partlist:
+				ser.write(bytes(part))
 		# wait for input from arduino when it's done.
-#				ser.read()
-#		else:
-#			ser.write(bytes(transList))
+				ser.read()
+		else:
+			ser.write(bytes(transList))
 		# Reset rectangles to white and clear lists to solve another cube
 		# SEND MOVE LIST TO ARDUINO
 		self.sendToArduino(partlist)
 		self.showSavedText(saved, inforect)
-		self.resetFields()
-		self.cube = None
+		"""
+#		self.resetFields()
+#		self.cube = None
 
 	def showScreen(self):
 

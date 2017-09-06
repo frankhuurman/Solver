@@ -7,6 +7,7 @@ class const:
 	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
 	faceColorIndex = {"r": 0, "w": 1, "o": 2, "y": 3, "b": 4, "g": 5}
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
+	moveFaceIndex = {"l": 0, "f": 1, "r": 2, "b": 3, "d": 4, "u": 5}
 
 class cube(object):
 	"""Object representing one rubik's cube."""
@@ -21,17 +22,23 @@ class cube(object):
 		}
 	faces = {}
 	facenames = const.facenames
+	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 
+		self.start = outputlist
+		self.setStart()
+
+
+	def setStart(self):
 		moi = []
-		for i in """rggrrwyyoyggrwbbboryyoobwwbggwyyboobwwgrboryyboorggrww""":
+		for i in "rggrrwyyoyggrwbbboryyoobwwbggwyyboobwwgrboryyboorggrww":
 			moi.append(i)
-		print(moi)
+#		print(moi)
 		sides = ["up", "left", "down", "right"]
 		for i, f in enumerate(const.facenames):
-			squares = moi[i*9 : i*9 + 9]
+			squares = self.start[i*9 : i*9 + 9]
 			face_color = squares[int(len(squares)/2)]
 			name = const.facenames[const.faceColorIndex[face_color]]
 			conns = {}
@@ -39,7 +46,7 @@ class cube(object):
 				conns[const.facenames[conn]] = sides[i]
 			self.faces[f] = face(squares, name, conns)
 
-		
+
 	def rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
 
@@ -67,6 +74,7 @@ class cube(object):
 	def printFaces(self, name):
 		"""Prints the current face with the 4 connecting sides, all properly oriented."""
 
+		print(name)
 		squares = {}
 		middleSquares = []
 		text = ""
@@ -100,10 +108,9 @@ class cube(object):
 
 	def sendMoves(self, moves):
 
-		index = {"l": 0, "f": 1, "r": 2, "b": 3, "d": 4, "u": 5}
 		for move in moves:
 			dir = str(move).islower()
-			self.rotate(const.facenames[index[str(move).lower()]], dir)
+			self.rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 
 	def turnForPrint(self, relMain, relSec, squares, name):
 		if (relMain == relSec):
@@ -140,6 +147,8 @@ class cube(object):
 		for f in const.facenames:
 			if (not self.faces[f].allTheSame()):
 				s = False
+				break
+		return(s)
 
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""
