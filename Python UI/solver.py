@@ -4,6 +4,7 @@ import os
 import calc_rest
 import cube as kubus
 #import serial
+import threading
 
 
 class solver(object):
@@ -76,7 +77,7 @@ class solver(object):
 	img_size = 40
 	rects = []
 	rects_col = []
-	
+	cube = None
 	
 	def __init__(self):
 		# Initialize pygame
@@ -105,6 +106,71 @@ class solver(object):
 						self.rects_col.append(color)
 
 	
+	def sendToArduino(self, send_list):
+		"""This function sends the movelist to Arduino
+		Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
+		and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
+		Maybe move this function to the algorithm or cube object python file?
+		"""
+
+		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
+		print("Port used: " + ser.name)         # Check which port was really used
+
+		send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+		"""
+		if len(send_list) > 62:
+			blah = []
+			blah.append(send_list[i*64:(i+1)*64])
+		"""
+		send_list.append("\r")
+		while True:
+			data = ser.readline() # Read data from Arduino
+			if data: # If data comes in from Arduino
+				if data == b"Ready\r\n": # Initialize handshake with Arduino
+					print ("Handshake from Arduino received")
+					#The arduino_string part + while loop is for manual testing commands
+					#Make this a comment and uncomment for item in send_list for regular use
+					arduino_string = ""
+				
+					while arduino_string != "q":
+						arduino_string = input("Type string to send to arduino: ")
+						ser.write(str.encode(arduino_string))
+				
+					"""
+					for item in send_list:
+						if len(item) > 64:
+							print ("item longer than 64")
+					"""
+					"""
+					if len(send_list[0]) > 40:
+						print("test")
+						#for item in send_list:
+						#	ser.write(str.encode(send_list.pop(0)))
+					"""
+					"""
+					for item in send_list:
+						ser.write(str.encode(item))
+					"""
+				elif data == b"somethingelse":
+					arduino_string = input("Type another string to send to arduino: ")
+					arduino_send_bytes = str.encode(arduino_string)
+					ser.write(arduino_send_bytes)
+				elif data == b'hello':
+					print ("it says hello!")
+				else:
+					# This actually prints the data received from Serial.print from Arduino
+					# First it decodes the received raw byte data to a utf-8 string
+					ascii_data = data.decode()
+					print (ascii_data)
+
+			if not data: # If there is no data coming back from Arduino
+				print("No data being received from Arduino anymore")
+				break
+
+		test = input("Press enter to close serial connection")
+		ser.close()             # close port
+		print ("Serial port closed")
+
 	def showSavedText(self, image, rect):
 		image_time = 840
 		while image_time > 0:
@@ -233,51 +299,10 @@ class solver(object):
 				if event.button == 1:  # left mouse button
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
-						calcu_list = []
-
-						for color in self.rects_col:
-							if color == self.imgs["white"]:
-								calcu_list.append("w")
-							elif color == self.rubiks_image:
-								calcu_list.append("w")
-							elif color == self.imgs["red"]:
-								calcu_list.append("r")
-							elif color == self.imgs["green"]:
-								calcu_list.append("g")
-							elif color == self.imgs["blue"]:
-								calcu_list.append("b")
-							elif color == self.imgs["orange"]:
-								calcu_list.append("o")
-							elif color == self.imgs["yellow"]:
-								calcu_list.append("y")
-							else:
-								calcu_list.append("<no color>")
-					
-						# Create cube object
-						cube = kubus.cube(calcu_list) # Values are returned on the line below this one
-						calc_rest.vars.cube = cube
-#						ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-#						moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
-						partsize = 50
-#						transList = self.translateList(movelist)
-						print(calcu_list)
-						
-						# Write movelist to arduino.
-						if (transList > partsize):
-							partlist = []
-							for i in range(int(len(transList) / partsize) - 1):
-								partlist.append(transList[i : i * partsize])
-							partlist.append(transList[int(len(transList) / partsize) : -1])
-#							for part in partlist:
-#								ser.write(bytes(part))
-								# wait for input from arduino when it's done.
-#								ser.read()
-#						else:
-#							ser.write(bytes(transList))
-						# Reset rectangles to white and clear lists to solve another cube
-						calcu_list.clear()
-						self.showSavedText(saved, inforect)
-						self.resetFields()
+						#	Start monitoring the soil and other sensors.
+						solve = threading.Thread(name = "Solver", target = self.solve, args=())
+						solve.setDaemon(True)
+						solve.start()
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
@@ -304,6 +329,86 @@ class solver(object):
 								self.rects_col[i] = self.user_color
 							break
 
+	def updateColors(self):
+		if (self.cube is not None):
+#			print("moi")
+			colorIndex = {"r": "red", "w": "white", "o": "orange", "y": "yellow", "b": "blue", "g": "green"}
+			colors = ""
+			for face in self.cube.facenames:
+				colors += self.cube.faces[face].getColors()
+			for i in range(len(self.rects_col)):
+				self.rects_col[i] = self.imgs[colorIndex[colors[i]]]
+
+	def solve(self):
+		calcu_list = []
+
+		for color in self.rects_col:
+			if color == self.imgs["white"]:
+				calcu_list.append("w")
+			elif color == self.rubiks_image:
+				calcu_list.append("w")
+			elif color == self.imgs["red"]:
+				calcu_list.append("r")
+			elif color == self.imgs["green"]:
+				calcu_list.append("g")
+			elif color == self.imgs["blue"]:
+				calcu_list.append("b")
+			elif color == self.imgs["orange"]:
+				calcu_list.append("o")
+			elif color == self.imgs["yellow"]:
+				calcu_list.append("y")
+			else:
+				calcu_list.append("<no color>")
+					
+		# Create cube object
+		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
+		calc_rest.vars.cube = self.cube
+#		ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
+#		moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
+		partsize = 50
+#		transList = self.translateList(movelist)
+
+		print(self.cube.printFaces("front_face"))
+#		self.cube.rotate("left_face", True)
+#		self.cube.rotate("bottom_face", True)
+		self.cube.sendMoves("DLBURF")
+		
+		import time
+		time.sleep(.5)
+		self.cube.sendMoves("luuuuUBD")
+		time.sleep(.5)
+		self.cube.sendMoves("llllffffrrrrbbbBD")
+		time.sleep(.5)
+		self.cube.sendMoves("llllfffbbbbdddduuuuUBD")
+		time.sleep(.5)
+		self.cube.sendMoves("llllffffrrrrbbuuuUBD")
+		time.sleep(.5)
+		self.cube.sendMoves("llllffffbbdddduuuuUBD")
+		time.sleep(.5)
+		self.cube.sendMoves("llllffffrrbbddD")
+#		self.cube.rotate("left_face", True)
+		
+		print(self.cube.printFaces("front_face"))
+						
+		# Write movelist to arduino.
+		if (transList > partsize):
+			partlist = []
+			for i in range(int(len(transList) / partsize) - 1):
+				partlist.append(transList[i : i * partsize])
+			partlist.append(transList[int(len(transList) / partsize) : -1])
+#			for part in partlist:
+#				ser.write(bytes(part))
+		# wait for input from arduino when it's done.
+#				ser.read()
+#		else:
+#			ser.write(bytes(transList))
+		# Reset rectangles to white and clear lists to solve another cube
+		# SEND MOVE LIST TO ARDUINO
+		self.sendToArduino(partlist)
+		self.showSavedText(saved, inforect)
+		self.resetFields()
+		self.cube = None
+
 	def showScreen(self):
 
 		while True:
@@ -322,6 +427,7 @@ class solver(object):
 			self.solverDisplay.blit(self.usercolor_text, (10, 410))
 			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
+			self.updateColors()
 			for color, rect in zip(self.rects_col, self.rects):
 				self.solverDisplay.blit(color, rect)
 

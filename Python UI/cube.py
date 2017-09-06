@@ -25,9 +25,13 @@ class cube(object):
 	def __init__(self, outputlist):
 		""" Assigns the items from outputlist to their own face """
 
+		moi = []
+		for i in """rggrrwyyoyggrwbbboryyoobwwbggwyyboobwwgrboryyboorggrww""":
+			moi.append(i)
+		print(moi)
 		sides = ["up", "left", "down", "right"]
 		for i, f in enumerate(const.facenames):
-			squares = outputlist[i*9 : i*9 + 9]
+			squares = moi[i*9 : i*9 + 9]
 			face_color = squares[int(len(squares)/2)]
 			name = const.facenames[const.faceColorIndex[face_color]]
 			conns = {}
@@ -52,7 +56,7 @@ class cube(object):
 			for f in reversed(reverse):
 				temp.append(self.faces[f].getSide(name))
 		temp.append(temp.popleft())
-		print(temp)
+#		print(temp)
 		if (dir):
 			for f in face.connections:
 				self.faces[f].setSide(name, temp.popleft())
@@ -70,7 +74,7 @@ class cube(object):
 			main = self.faces[name].connections[f]
 			sec = self.faces[f].connections[name]
 			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares, f)
-			print(main, sec)
+#			print(main, sec)
 		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq3"]):
 			line = []
 			for s in a:
@@ -94,7 +98,12 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-		
+	def sendMoves(self, moves):
+
+		index = {"l": 0, "f": 1, "r": 2, "b": 3, "d": 4, "u": 5}
+		for move in moves:
+			dir = str(move).islower()
+			self.rotate(const.facenames[index[str(move).lower()]], dir)
 
 	def turnForPrint(self, relMain, relSec, squares, name):
 		if (relMain == relSec):
@@ -260,11 +269,11 @@ class face(object):
 					same = False
 		return(same)
 
-	def printFace(self):
+	def getColors(self):
 		"""Returns the colors of the face in a 3x3 grid."""
-		display = ""
+		
+		colors = ""
 		for row in self.squares:
 			for sq in row:
-				display += "\t" + str(sq)
-			display += "\n"
-		return(display)
+				colors += str(sq)
+		return(colors)
