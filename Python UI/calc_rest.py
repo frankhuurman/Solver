@@ -571,13 +571,13 @@ def ifBulk(cube, colorCombo, pos):
 				vars.moveListBuffer += ""
 	if not vars.algo3: # List algo 3 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
-			# Code goes here
+			# Code goes here.
 		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
-			# Code goes here
+			# Code goes here.
 		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
-			# Code goes here
+			# Code goes here.
 		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
-			# Code goes here
+			# Code goes here.
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
@@ -590,7 +590,14 @@ def ifBulk(cube, colorCombo, pos):
 	if not vars.algo6: # List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
 	if not vars.algo7: # List algo 7
-		# More or less a repeat of algo2.
+		if colorCombo == yellowOrangeBlue:
+			# Code goes here.
+		if colorCombo == yellowBlueRed:
+			# Code goes here.
+		if colorCombo == yellowRedGreen:
+			# Code goes here.
+		if colorCombo == yellowGreenOrange:
+			# Code goes here.
 
 	for name in cube.facenames:
 		cube.faces[name]
