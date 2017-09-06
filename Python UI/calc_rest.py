@@ -34,541 +34,541 @@ def ifBulk(cube, colorCombo, pos):
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "U"
+				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "lUL"
+				results = "lUL"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "LUl"
+				results = "LUl"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "llULL"
+				results = "llULL"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "llBuubLL"
+				results = "llBuubLL"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
-				vars.moveListBuffer += "rrbuuBRR"
+				results = "rrbuuBRR"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
-				vars.moveListBuffer += "ddbbuuBBDD'"
+				results = "ddbbuuBBDD'"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "u"
+				results = "u"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "ruR"
+				results = "ruR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "Rur"
+				results = "Rur"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "rruRR"
+				results = "rruRR"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "uu"
+				results = "uu"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "buuB"
+				results = "buuB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "Buub"
+				results = "Buub"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "bbuuBB"
+				results = "bbuuBB"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "dRbuuBrd'"
+				results = "dRbuuBrd'"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "lBuubL"
+				results = "lBuubL"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "RbuuBr"
+				results = "RbuuBr"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "bRurB"
+				results = "bRurB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "blU"
+				results = "blU"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "LBuubl"
+				results = "LBuubl"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "rbuuBR"
+				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "UrbuuBRu"
+				results = "UrbuuBRu"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]:
 				return # 7h15 w0rk5 :p
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V 
-				vars.moveListBuffer += "uubllBUU"
+				results = "uubllBUU"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V 
-				vars.moveListBuffer += "RddLDDr"
+				results = "RddLDDr"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V 
-				vars.moveListBuffer += "ddBllbDD"
+				results = "ddBllbDD"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "ubllBu'"
+				results = "ubllBu'"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "bdLDB"
+				results = "bdLDB"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "fulUF"
+				results = "fulUF"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "LfulUFl"
+				results = "LfulUFl"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "Ulu"
+				results = "Ulu"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "l"
+				results = "l"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "uulUU"
+				results = "uulUU"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "ulU"
+				results = "ulU"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V 
-				vars.moveListBuffer += "UbllBu"
+				results = "UbllBu"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V 
-				vars.moveListBuffer += "rUbllBuR"
+				results = "rUbllBuR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "bdLDB"
+				results = "bdLDB"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "RBdLDbr"
+				results = "RBdLDbr"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V 
-				vars.moveListBuffer += "DLd"
+				results = "DLd"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "L"
+				results = "L"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "ddLDD"
+				results = "ddLDD"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "DLd"
+				results = "DLd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "bllB"
+				results = "bllB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "bbllBB"
+				results = "bbllBB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "ll"
+				results = "ll"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "Bllb"
+				results = "Bllb"
 		if colorCombo == whiteBlue: # correct pos == cube.faces[cube.facenames[1]].squares[2][1]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "U"
+				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "lUL"
+				results = "lUL"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "LUl"
+				results = "LUl"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "llULL"
+				results = "llULL"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "llBuubLL"
+				results = "llBuubLL"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
-				vars.moveListBuffer += "rrbuuBRR"
+				results = "rrbuuBRR"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
-				vars.moveListBuffer += "ddbbuuBBDD'"
+				results = "ddbbuuBBDD'"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "u"
+				results = "u"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "ruR"
+				results = "ruR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "Rur"
+				results = "Rur"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "rruRR"
+				results = "rruRR"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "uu"
+				results = "uu"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "buuB"
+				results = "buuB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "Buub"
+				results = "Buub"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "bbuuBB"
+				results = "bbuuBB"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "dRbuuBrd'"
+				results = "dRbuuBrd'"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "lBuubL"
+				results = "lBuubL"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "RbuuBr"
+				results = "RbuuBr"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "bRurB"
+				results = "bRurB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "blU"
+				results = "blU"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "LBuubl"
+				results = "LBuubl"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "rbuuBR"
+				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "UrbuuBRu"
+				results = "UrbuuBRu"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
-				vars.moveListBuffer += "uubbddBBUU"
+				results = "uubbddBBUU"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "llbddLLB"
+				results = "llbddLLB"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
-				vars.moveListBuffer += "rrBddbRR"
+				results = "rrBddbRR"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[0]].squares[0][1]: # V 
-				vars.moveListBuffer += "lldLL"
+				results = "lldLL"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "Ldl"
+				results = "Ldl"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "ldL"
+				results = "ldL"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "d"
+				results = "d"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "bLdlb'"
+				results = "bLdlb'"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "LbddBl"
+				results = "LbddBl"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "rBddbR"
+				results = "rBddbR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "uLbddBlU"
+				results = "uLbddBlU"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "rrDRR"
+				results = "rrDRR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "RDr"
+				results = "RDr"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "rDr"
+				results = "rDr"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "D"
+				results = "D"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "dRBddbr"
+				results = "dRBddbr"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "lbddDL"
+				results = "lbddDL"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "RBddbr"
+				results = "RBddbr"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "brD"
+				results = "brD"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "rrDRR"
+				results = "rrDRR"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "RDr"
+				results = "RDr"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "rdR"
+				results = "rdR"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "D"
+				results = "D"
 		if colorCombo == whiteOrange: # correct pos == cube.faces[cube.facenames[1]].squares[1][2]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "U"
+				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "lUL"
+				results = "lUL"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "LUl"
+				results = "LUl"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "llULL"
+				results = "llULL"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "llBuubLL"
+				results = "llBuubLL"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
-				vars.moveListBuffer += "rrbuuBRR"
+				results = "rrbuuBRR"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
-				vars.moveListBuffer += "ddbbuuBBDD'"
+				results = "ddbbuuBBDD'"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "u"
+				results = "u"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "ruR"
+				results = "ruR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "Rur"
+				results = "Rur"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "rruRR"
+				results = "rruRR"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "uu"
+				results = "uu"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "buuB"
+				results = "buuB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "Buub"
+				results = "Buub"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "bbuuBB"
+				results = "bbuuBB"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "dRbuuBrd'"
+				results = "dRbuuBrd'"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "lBuubL"
+				results = "lBuubL"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "RbuuBr"
+				results = "RbuuBr"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "bRurB"
+				results = "bRurB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "blU"
+				results = "blU"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "LBuubl"
+				results = "LBuubl"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "rbuuBR"
+				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "UrbuuBRu"
+				results = "UrbuuBRu"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "LbDrdBl"
+				results = "LbDrdBl"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "bDrrdb'"
+				results = "bDrrdb'"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "lDbrrBdL"
+				results = "lDbrrBdL"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "DbrrBd"
+				results = "DbrrBd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
-				vars.moveListBuffer += "uuBrrbUU"
+				results = "uuBrrbUU"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "lddrDDL"
+				results = "lddrDDL"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
-				vars.moveListBuffer += "ddbrrBDD"
+				results = "ddbrrBDD"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "rBDrdb"
+				results = "rBDrdb"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "RdbrrBD"
+				results = "RdbrrBD"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "BDrdb"
+				results = "BDrdb"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "RBDrdb"
+				results = "RBDrdb"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "brrb'"
+				results = "brrb'"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "rr"
+				results = "rr"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "bbrrBB"
+				results = "bbrrBB"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "Dr"
+				results = "Dr"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "drD"
+				results = "drD"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "ddrDD"
+				results = "ddrDD"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "r"
+				results = "r"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "Drd"
+				results = "Drd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "brrB"
+				results = "brrB"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "ubrrBU"
+				results = "ubrrBU"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "R"
+				results = "R"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "URu"
+				results = "URu"
 		if colorCombo == whiteGreen: # correct pos == cube.faces[cube.facenames[1]].squares[0][1]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
-				vars.moveListBuffer += "U"
+				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
-				vars.moveListBuffer += "lUL"
+				results = "lUL"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][2]: # V
-				vars.moveListBuffer += "LUl"
+				results = "LUl"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][1]: # V
-				vars.moveListBuffer += "llULL"
+				results = "llULL"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][1]: # V
 				return # 7h15 w0rk5
 			elif pos == cube.faces[cube.facenames[1]].squares[1][0]: # V
-				vars.moveListBuffer += "llBuubLL"
+				results = "llBuubLL"
 			elif pos == cube.faces[cube.facenames[1]].squares[1][2]: # V
-				vars.moveListBuffer += "rrbuuBRR"
+				results = "rrbuuBRR"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][1]: # V
-				vars.moveListBuffer += "ddbbuuBBDD'"
+				results = "ddbbuuBBDD'"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][1]: # V
-				vars.moveListBuffer += "u"
+				results = "u"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][0]: # V
-				vars.moveListBuffer += "ruR"
+				results = "ruR"
 			elif pos == cube.faces[cube.facenames[2]].squares[1][2]: # V
-				vars.moveListBuffer += "Rur"
+				results = "Rur"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][1]: # V
-				vars.moveListBuffer += "rruRR"
+				results = "rruRR"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][1]: # V
-				vars.moveListBuffer += "uu"
+				results = "uu"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][0]: # V
-				vars.moveListBuffer += "buuB"
+				results = "buuB"
 			elif pos == cube.faces[cube.facenames[3]].squares[1][2]: # V
-				vars.moveListBuffer += "Buub"
+				results = "Buub"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
-				vars.moveListBuffer += "bbuuBB"
+				results = "bbuuBB"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][1]: # V
-				vars.moveListBuffer += "dRbuuBrd'"
+				results = "dRbuuBrd'"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]: # V
-				vars.moveListBuffer += "lBuubL"
+				results = "lBuubL"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]: # V
-				vars.moveListBuffer += "RbuuBr"
+				results = "RbuuBr"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]: # V
-				vars.moveListBuffer += "bRurB"
+				results = "bRurB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]: # V
-				vars.moveListBuffer += "blU"
+				results = "blU"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # V
-				vars.moveListBuffer += "LBuubl"
+				results = "LBuubl"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]: # V
-				vars.moveListBuffer += "rbuuBR"
+				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
-				vars.moveListBuffer += "UrbuuBRu"
+				results = "UrbuuBRu"
 	if not vars.algo2: # List algo2
 		if colorCombo == whiteRedGreen: # The position is the position of the white surface of the edge. <-- IMPORTANT
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # V
-				vars.moveListBuffer += "rbRBLbl" 
+				results = "rbRBLbl" 
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				vars.moveListBuffer += "LblBLblBLblBLblBLblB"
+				results = "LblBLblBLblBLblBLblB"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 		if colorCombo == whiteRedBlue:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = "BldL"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 		if colorCombo == whiteOrangeBlue:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				vars.moveListBuffer += "RBrbRBrbRBrbRBrb" #RBrb IIII
+				results = "RBrbRBrbRBrbRBrb" #RBrb IIII
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 		if colorCombo == whiteOrangeGreen:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				vars.moveListBuffer += ""
+				results = ""
 	if not vars.algo3: # List algo 3 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
 			# Code goes here.
@@ -598,7 +598,7 @@ def ifBulk(cube, colorCombo, pos):
 			# Code goes here.
 		if colorCombo == yellowGreenOrange:
 			# Code goes here.
-	vars.moveListBuffer += results 
+	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
 
 	for name in cube.facenames:
