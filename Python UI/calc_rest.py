@@ -383,7 +383,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				vars.moveListBuffer += ""
+				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
@@ -436,7 +436,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				vars.moveListBuffer += ""
+				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
@@ -487,7 +487,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				vars.moveListBuffer += ""
+				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
@@ -507,7 +507,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				vars.moveListBuffer += ""
+				vars.moveListBuffer += "RBrbRBrbRBrbRBrb" #RBrb IIII
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
@@ -532,7 +532,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				vars.moveListBuffer += ""
+				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
