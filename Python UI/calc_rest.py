@@ -373,7 +373,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				vars.moveListBuffer += "UrbuuBRu"
 	if not vars.algo2: # List algo2
-		if colorCombo == whiteRedGreen: # Placeholder variable name # The position is the position of the white surface of the edge. <-- IMPORTANT
+		if colorCombo == whiteRedGreen: # The position is the position of the white surface of the edge. <-- IMPORTANT
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
@@ -570,10 +570,27 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				vars.moveListBuffer += ""
 	if not vars.algo3: # List algo 3 
+		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
+			# Code goes here
+		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
+			# Code goes here
+		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
+			# Code goes here
+		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
+			# Code goes here
 	if not vars.algo4: # List algo 4
+		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
-	if not vars.algo6: # List algo 6 
+		# Check the color combo.
+			# Check if it's in the correct position.
+				# return
+			# else Check the colorCombos of the three other edges.
+			# move accordingly.
+			# repeat until done.
+	if not vars.algo6: # List algo 6
+		# Not even going to bother attempting to write pseudo code for this one at present.
 	if not vars.algo7: # List algo 7
+		# More or less a repeat of algo2.
 
 	for name in cube.facenames:
 		cube.faces[name]
@@ -592,14 +609,13 @@ def algorithm():
 						count += 1 # increase the counter that keeps track of correct edges
 						if count == 4:
 							count = 0 # reset count to 0
-							algo1 = True # Sets algo1 to a TRUE state so it isn't repeated again. 
+							algo1 = True # Sets algo1 to a TRUE state so it's skipped in the next loop. 
 		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
-				# If a white Corner is found and it is already in, or has been moved to a correct position then ignore it.
-					count += 1
-					if count == 4:# Increase a counter that keeps track of the amount of correct corners.
-						count = 0 # If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-						algo2 = True
+				count += 1
+				if count == 4:# Increase a counter that keeps track of the amount of correct corners.
+					count = 0 # If the counter indicates 3, meanig all four corners are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
+					algo2 = True
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
