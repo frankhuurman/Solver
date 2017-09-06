@@ -28,9 +28,9 @@ class vars:
 def ifBulk(cube, colorCombo, pos):
 #TODO: Add code to keep the cube object up to date
 	#TODO: Write code to manipulate the cube after each move
-	#TODO: Write code to take the new up to date version of the cube 
 #TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 #TODO: All positions (for corners) need to have a corresponding section in the algorithm. To get a corner into a specific spot simply move it into the oposite corner on the backside and repeat rdRD
+	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
@@ -375,7 +375,7 @@ def ifBulk(cube, colorCombo, pos):
 	if not vars.algo2: # List algo2
 		if colorCombo == whiteRedGreen: # The position is the position of the white surface of the edge. <-- IMPORTANT
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				vars.moveListBuffer += ""
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				vars.moveListBuffer += ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
@@ -598,6 +598,8 @@ def ifBulk(cube, colorCombo, pos):
 			# Code goes here.
 		if colorCombo == yellowGreenOrange:
 			# Code goes here.
+	vars.moveListBuffer += results 
+	cube.sendmoves(results) # Sends results to the cube updating it.
 
 	for name in cube.facenames:
 		cube.faces[name]
@@ -626,7 +628,7 @@ def algorithm():
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
-		while not vars.algo3:  # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP) @##$U*@$*(!@($#!U@$ !@#$!@*U$NJSAU*!&$(!@#(!@#NCAISKDQ !@#*@$!@&(#*SDAS DAS d)) CHECK IF THIS BLOCK WORKS (IN THEORY ANYWAYS)
+		while not vars.algo3:  # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each edge on the middle and back layer of the cube for a orange color
 				# If a orange edge is found then check the other side of the edge 
 					# Check if the block is in the correct position
