@@ -23,13 +23,15 @@ class vars:
 	algo4 = False
 	algo5 = False
 	algo6 = False
+	aglo7 = False
 	cube = None
 
-def ifBulk(cube, colorCombo, pos):
-#TODO: Add code to keep the cube object up to date
-	#TODO: Write code to manipulate the cube after each move
-#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-#TODO: All positions (for corners) need to have a corresponding section in the algorithm. To get a corner into a specific spot simply move it into the oposite corner on the backside and repeat rdRD
+def ifBulk(colorCombo, pos):
+	#TODO: Add code to keep the cube object up to date
+		#TODO: Write code to manipulate the cube after each move
+	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
+	#TODO: All positions (for corners) need to have a corresponding section in the algorithm. To get a corner into a specific spot simply move it into the oposite corner on the backside and repeat rdRD
+	cube = vars.cube
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
@@ -372,10 +374,10 @@ def ifBulk(cube, colorCombo, pos):
 				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "UrbuuBRu"
-	if not vars.algo2: # List algo2
-		if colorCombo == whiteRedGreen: # The position is the position of the white surface of the edge. <-- IMPORTANT
+	if not vars.algo2: # List algo2 # The position is the position of the white surface of the edge. <-- IMPORTANT
+		if colorCombo == whiteRedGreen:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = ""
+				results = "" # 
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
@@ -390,8 +392,8 @@ def ifBulk(cube, colorCombo, pos):
 				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				results = ""
-			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # V
-				results = "rbRBLbl" 
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # <--
+				results = "" 
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
@@ -428,7 +430,7 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
+				results = "lBL" #lBL
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
@@ -464,13 +466,13 @@ def ifBulk(cube, colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
 				results = "BldL"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = ""
+				results = "BlBL"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				results = ""
+				results = "LBlBLBl" #LBlBLBl
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				results = ""
+				results = "rbbRlbLB" # rBBR lbLB III
 		if colorCombo == whiteOrangeBlue:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = ""
@@ -486,7 +488,7 @@ def ifBulk(cube, colorCombo, pos):
 				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
 				results = ""
-			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]: # V
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
 				results = ""
@@ -498,8 +500,8 @@ def ifBulk(cube, colorCombo, pos):
 				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
 				results = ""
-			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				results = ""
+			elif pos == cube.faces[cube.facenames[3]].squares[0][2]: # V
+				results = "bb" #bbRBrb
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
