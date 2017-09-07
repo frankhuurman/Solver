@@ -382,17 +382,21 @@ class solver(object):
 		import time
 		t = 0.5
 		moves = "DLBURF"
-#		for char in reversed(moves.lower()):
-#			self.cube.sendMoves(char)
-#			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char]]))
+		for char in reversed(moves.lower()):
+			input("Next move. " + char)
+			self.cube.sendMoves(char)
+			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char]]))
 #			time.sleep(t)
 		colors = ""
 		for face in self.cube.facenames:
-			colors += self.cube.faces[face].getColors() + " "
+			colors += str(self.cube.faces[face].getColors()) + " "
 		print(colors)
 		print("rggrrwyyo yggrwbbbo ryyoobwwb ggwyyboob wwgrboryy boorggrww")
-#		for char in moves:
-#			self.cube.sendMoves(char)
+		print("rggrrwyyo yggrwbbbo ryyoobwwb ggwyyboob wwgrboryy boorggrww " == colors)
+		for char in moves:
+			input("Next move. " + char)
+			self.cube.sendMoves(char)
+			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char.lower()]]))
 #			time.sleep(t)
 		"""
 #		self.cube.sendMoves("DLBURF")
@@ -415,9 +419,9 @@ class solver(object):
 		print("Front")
 		time.sleep(t)
 		"""
-
+		"""
 		import time
-		t = 0.02
+		t = 0.2
 		for i in range(200):
 			time.sleep(t)
 			self.cube.sendMoves("luuuuUBD")
@@ -432,7 +436,7 @@ class solver(object):
 			time.sleep(t)
 			self.cube.sendMoves("llllffffrrbbddD")
 #		self.cube.rotate("left_face", True)
-
+		"""
 		"""				
 		# Write movelist to arduino.
 		if (transList > partsize):
