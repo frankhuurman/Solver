@@ -30,7 +30,8 @@ def ifBulk(colorCombo, pos):
 	#TODO: Add code to keep the cube object up to date
 		#TODO: Write code to manipulate the cube after each move
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-	#TODO: All positions (for corners) need to have a corresponding section in the algorithm. To get a corner into a specific spot simply move it into the oposite corner on the backside and repeat rdRD
+	#TODO: Write 'conversion' Code
+		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius 
 	cube = vars.cube
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
@@ -376,38 +377,38 @@ def ifBulk(colorCombo, pos):
 				results = "UrbuuBRu"
 	if not vars.algo2: # List algo2 # The position is the position of the white surface of the edge. <-- IMPORTANT
 		if colorCombo == whiteRedGreen:
-			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = "" # 
-			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # Green considered front
+				results = "RDrd" 
+			elif pos == cube.faces[cube.facenames[0]].squares[0][2]: # Green considered front
+				results = "RDrdRDrd"
+			elif pos == cube.faces[cube.facenames[0]].squares[2][0]: # Green considered front
+				results = "DRDrdRDrdRDrdRDrdRDrd"
+			elif pos == cube.faces[cube.facenames[0]].squares[2][2]: # Green considered front, slightly trickier than the other three.
+				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
 				return # This is the correct position.
-			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # <--
-				results = "" 
-			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				results = ""
-			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				results = ""
+			elif pos == cube.faces[cube.facenames[1]].squares[0][2]: # Green considered front
+				results = "ldLRDrd"
+			elif pos == cube.faces[cube.facenames[1]].squares[2][0]: # Green considered front
+				results = "rDDRdRDrd"
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]: # Green considered front 
+				results = "LDDlRDrdRDrdRDrdRDrdRDrd"
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: 
+				results = "ldLRDrdRDrdRDrdRDrdRDrd" 
+			elif pos == cube.faces[cube.facenames[2]].squares[0][2]: # Green considered front
+				results = "dRDrdRDrdRDrdRDrdRDrd" 
+			elif pos == cube.faces[cube.facenames[2]].squares[2][0]: # Green considered front
+				results = "lDDLRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				results = ""
+				results = "DDRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				results = ""
+				results = "dRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				results = ""
+				results = "RDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				results = ""
+				results = "DDRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				results = ""
+				results = "DRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
@@ -417,7 +418,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = "LblBLblBLblBLblBLblB"
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
@@ -430,7 +431,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = "lBL" #lBL
+				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
@@ -464,15 +465,15 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				results = "BldL"
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = "BlBL"
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				results = "LBlBLBl" #LBlBLBl
+				results = ""
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				results = "rbbRlbLB" # rBBR lbLB III
+				results = ""
 		if colorCombo == whiteOrangeBlue:
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = ""
@@ -501,7 +502,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]: # V
-				results = "bb" #bbRBrb
+				results = "" 
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
@@ -509,7 +510,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				results = "RBrbRBrbRBrbRBrb" #RBrb IIII
+				results = "" 
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
