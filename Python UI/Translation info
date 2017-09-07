@@ -1,0 +1,50 @@
+When a color becomes the front face (faces you) all the other faces change color too.
+Included below is a list that is to be used when creating whatever code it is that will be used for translating.
+
+Default
+	Front: White
+	Left: Red
+	Right: Orange
+	Top: Green
+	Bottom: Blue
+	Back: Yellow
+
+Red Front
+	Front: Red
+	Left: Yellow
+	Right: White
+	Top: Green
+	Bottom: Blue
+	Back: Orange
+
+Orange Front
+	Front: Orange
+	Left: White
+	Right: Yellow
+	Top: Green
+	Bottom: Blue 
+	Back: Red
+
+Green Front
+	Front: Green
+	Left: Red
+	Right: Orange
+	Top: Yellow
+	Bottom: White
+	Back: Blue
+
+Blue Front
+	Front: Blue
+	Left: Red
+	Right: Orange
+	Top: White
+	Bottom: Yellow 
+	Back: Green
+
+Yellow Front
+	Front: Yellow
+	Left: Orange
+	Right: Red
+	Top: Green
+	Bottom: Blue
+	Back: White
