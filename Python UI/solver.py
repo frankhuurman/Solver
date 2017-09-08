@@ -376,67 +376,27 @@ class solver(object):
 		partsize = 50
 #		transList = self.translateList(movelist)
 
-		print(self.cube.printFaces("front_face"))
-#		self.cube.rotate("left_face", True)
-#		self.cube.rotate("bottom_face", True)
-		import time
-		t = 0.5
-		moves = "DLBURF"
-		for char in reversed(moves.lower()):
-			input("Next move. " + char)
-			self.cube.sendMoves(char)
-			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char]]))
-#			time.sleep(t)
-		colors = ""
-		for face in self.cube.facenames:
-			colors += str(self.cube.faces[face].getColors()) + " "
-		print(colors)
-		print("rggrrwyyo yggrwbbbo ryyoobwwb ggwyyboob wwgrboryy boorggrww")
-		print("rggrrwyyo yggrwbbbo ryyoobwwb ggwyyboob wwgrboryy boorggrww " == colors)
-		for char in moves:
-			input("Next move. " + char)
-			self.cube.sendMoves(char)
-			print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[char.lower()]]))
-#			time.sleep(t)
-		"""
-#		self.cube.sendMoves("DLBURF")
-		self.cube.sendMoves("D")
-		print("Bottom")
-		time.sleep(t)
-		self.cube.sendMoves("L")
-		print("Left")
-		time.sleep(t)
-		self.cube.sendMoves("B")
-		print("Back")
-		time.sleep(t)
-		self.cube.sendMoves("U")
-		print("Top")
-		time.sleep(t)
-		self.cube.sendMoves("R")
-		print("Right")
-		time.sleep(t)
-		self.cube.sendMoves("F")
-		print("Front")
-		time.sleep(t)
-		"""
-		"""
-		import time
-		t = 0.2
-		for i in range(200):
-			time.sleep(t)
-			self.cube.sendMoves("luuuuUBD")
-			time.sleep(t)
-			self.cube.sendMoves("llllffffrrrrbbbBD")
-			time.sleep(t)
-			self.cube.sendMoves("llllfffbbbbdddduuuuUBD")
-			time.sleep(t)
-			self.cube.sendMoves("llllffffrrrrbbuuuUBD")
-			time.sleep(t)
-			self.cube.sendMoves("llllffffbbdddduuuuUBD")
-			time.sleep(t)
-			self.cube.sendMoves("llllffffrrbbddD")
-#		self.cube.rotate("left_face", True)
-		"""
+		import random
+		
+		moves = "DLBURFdlburf"
+		command = ""
+		lastMove = ""
+
+		while (not command == "q"):
+			nextMove = moves[int(random.random()*12)]
+			command = input("Next move: " + nextMove)
+			if (command == "q"):
+				self.active = False
+				pygame.quit()
+				quit()
+			elif (command == "p"):
+				self.cube.sendMoves(lastMove)
+				print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[lastMove]]))
+			else:
+				self.cube.sendMoves(nextMove)
+				lastMove = nextMove
+
+
 		"""				
 		# Write movelist to arduino.
 		if (transList > partsize):

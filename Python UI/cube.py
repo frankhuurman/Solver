@@ -25,17 +25,14 @@ class cube(object):
 	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):
-		""" Assigns the items from outputlist to their own face """
 
 		self.start = outputlist
 		self.setStart()
 
 
 	def setStart(self):
-		moi = []
-		for i in "rggrrwyyoyggrwbbboryyoobwwbggwyyboobwwgrboryyboorggrww":
-			moi.append(i)
-#		print(moi)
+		""" Assigns the items from outputlist to their own face """
+
 		sides = ["up", "left", "down", "right"]
 		for i, f in enumerate(const.facenames):
 			squares = self.start[i*9 : i*9 + 9]
@@ -45,7 +42,6 @@ class cube(object):
 			for i, conn in enumerate(self.connections[name]):
 				conns[const.facenames[conn]] = sides[i]
 			self.faces[f] = face(squares, name, conns)
-
 
 	def rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
@@ -63,18 +59,17 @@ class cube(object):
 		else:
 			for f in reversed(reverse):
 				temp.append(self.faces[f].getSide(name))
-		print(temp)
+#		print(temp)
 		temp.append(temp.popleft())
-		print(temp)
+#		print(temp)
 		if (dir):
-			print("True")
+#			print("True")
 			for f in face.connections:
 				self.faces[f].setSide(name, temp.popleft(), True)
 		else:
-			print("False")
+#			print("False")
 			for f in reversed(reverse):
 				self.faces[f].setSide(name, temp.popleft(), False)
-
 
 	def printFaces(self, name):
 		"""Prints the current face with the 4 connecting sides, all properly oriented."""
@@ -87,7 +82,6 @@ class cube(object):
 			main = self.faces[name].connections[f]
 			sec = self.faces[f].connections[name]
 			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares, f)
-#			print(main, sec)
 		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq3"]):
 			line = []
 			for s in a:
@@ -226,29 +220,44 @@ class face(object):
 		"""Sets the 3 squares on the side of the face with %name."""
 		
 		if (self.connections[name] == "up"):
-			print("up")
+#			print("up " + name + " " + self.face_name)
+			if (name == "back_face" and self.face_name == "top_face" and not dir
+			or name == "front_face" and self.face_name == "bottom_face" and dir):
+#				print("reversing-u!" + str(values))
+				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[0][i] = value
+
 		if (self.connections[name] == "left"):
-			print("left " + name + " " + self.face_name)
-			if (name == "right_face" and self.face_name == "back_face" and dir
+#			print("left " + name + " " + self.face_name)
+			if (name == "right_face" and self.face_name == "back_face"# and dir
 			or name == "back_face" and self.face_name == "left_face" and dir
 			or name == "left_face" and self.face_name == "top_face" and dir
+			or name == "front_face" and self.face_name == "right_face" and not dir
 			or name == "left_face" and self.face_name == "bottom_face" and not dir):
-				print("reversing-l!" + str(values))
+#				print("reversing-l!" + str(values))
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[i][0] = value
+
 		if (self.connections[name] == "right"):
-			print("right " + name + " " + self.face_name)
+#			print("right " + name + " " + self.face_name)
 			if (name == "back_face" and self.face_name == "right_face" and dir
-			or name == "left_face" and self.face_name == "back_face" and dir):
-				print("reversing-r!" + str(values))
+			or name == "right_face" and self.face_name == "bottom_face" and dir
+			or name == "right_face" and self.face_name == "top_face" and not dir
+			or name == "front_face" and self.face_name == "left_face" and not dir
+			or name == "left_face" and self.face_name == "back_face"):# and dir):
+#				print("reversing-r!" + str(values))
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[i][2] = value
+
 		if (self.connections[name] == "down"):
-			print("down")
+#			print("down " + name + " " + self.face_name)
+			if (name == "back_face" and self.face_name == "bottom_face" and not dir
+			or name == "front_face" and self.face_name == "top_face" and dir):
+#				print("reversing-d!" + str(values))
+				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[2][i] = value
 
