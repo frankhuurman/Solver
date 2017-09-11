@@ -1,6 +1,10 @@
 When a color becomes the front face (faces you) all the other faces change color too.
 Included below is a list that is to be used when creating whatever code it is that will be used for translating.
 
+												<<<<<-------------------- IMPORTANT ------------------------>>>>>
+	
+	Ok so, while sides may be changed and what not the actual array behind it needs to remian the same. For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
+												<<<<<------------------------------------------------------->>>>>
 TODO: Update most of these as I go, currently only Default and Green Front are confirmed to be correct.
 
 Default
@@ -13,10 +17,10 @@ Default
 
 Red Front
 	Front: Red
-	Left: Yellow
-	Right: White
-	Top: Green
-	Bottom: Blue
+	Left: Green
+	Right: Blue
+	Top: White
+	Bottom: Yellow
 	Back: Orange
 
 Orange Front
