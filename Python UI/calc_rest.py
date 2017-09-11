@@ -376,56 +376,56 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "UrbuuBRu"
 	if not vars.algo2: # List algo2 # The position is the position of the white surface of the edge. <-- IMPORTANT
-		if colorCombo == whiteRedGreen:
-			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # Green considered front.
+		if colorCombo == whiteRedGreen: # Green considered front
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "RDrd" 
-			elif pos == cube.faces[cube.facenames[0]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				results = "RDrdRDrd"
-			elif pos == cube.faces[cube.facenames[0]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
 				results = "DRDrdRDrdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[0]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[0]].squares[2][2]: 
 				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[1]].squares[0][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
 				return # This is the correct position.
-			elif pos == cube.faces[cube.facenames[1]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				results = "ldLRDrd"
-			elif pos == cube.faces[cube.facenames[1]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
 				results = "rDDRdRDrd"
-			elif pos == cube.faces[cube.facenames[1]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
 				results = "LDDlRDrdRDrdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[2]].squares[0][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
 				results = "ldLRDrdRDrdRDrdRDrdRDrd" 
-			elif pos == cube.faces[cube.facenames[2]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
 				results = "dRDrdRDrdRDrdRDrdRDrd" 
-			elif pos == cube.faces[cube.facenames[2]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
 				results = "lDDLRDrd"
-			elif pos == cube.faces[cube.facenames[2]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
 				results = "DDRDrd"
-			elif pos == cube.faces[cube.facenames[3]].squares[0][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
 				results = "dRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[3]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
 				results = "RDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[3]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
 				results = "DDRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[3]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
 				results = "DRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[4]].squares[0][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
 				results = "rDDRdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[4]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
 				results = "LddlRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[4]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
 				results = "DRDrd"
-			elif pos == cube.faces[cube.facenames[4]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
 				results = "DDRDrdRDrdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[5]].squares[0][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
 				results = "ldLRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[5]].squares[0][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
 				results = "RDrdRDrdRDrdRDrd"
-			elif pos == cube.faces[cube.facenames[5]].squares[2][0]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
 				results = "dRDrd"
-			elif pos == cube.faces[cube.facenames[5]].squares[2][2]: # Green considered front.
+			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrdRDrdRDrdRDrd"
-		if colorCombo == whiteRedBlue:
+		if colorCombo == whiteRedBlue: # Red considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
