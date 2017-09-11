@@ -28,7 +28,7 @@ class vars:
 
 def ifBulk(colorCombo, pos):
 	#TODO: Add code to keep the cube object up to date
-		#TODO: Write code to manipulate the cube after each move
+		#TODO: Write code to manipulate the cube after each move <IMPORTANT> 
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius 
@@ -427,9 +427,9 @@ def ifBulk(colorCombo, pos):
 				results = "RDrdRDrdRDrdRDrdRDrd"
 		if colorCombo == whiteRedBlue: # Red considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = ""
+				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
+				results = "ldLRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
