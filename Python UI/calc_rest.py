@@ -451,13 +451,13 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
 				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				results = ""
+				results = "DDRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				results = ""
+				results = "dRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				results = ""
+				results = "DRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				results = ""
+				results = "RDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
