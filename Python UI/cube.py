@@ -2,26 +2,47 @@ from collections import deque
 
 
 class const:
+	"""The class has a few arrays and dicts to help map colors and faces, and general relations."""
+
+	# edges, corners and rotateOrder are arrays with the x, y coordinates of squares of a face.
+	# Edges is the collection of the edge elements of a face. Used in the solving algorithm.
 	edges = [[0,1], [1,0], [1,2], [2,1]]
+
+	# Corners is the collection of the corner elements of a face. Used in the solving algorithm.
 	corners = [[0,0], [0,2], [2,0], [2,2]]
+
+	# rotateOrder is the collection of all the elements of a face that are moved
+	# during a rotation of that face.
 	rotateOrder = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]
+
+	# Dict with {color : index of facenames}. So you can get the right face when you only know the color.
 	faceColorIndex = {"r": 0, "w": 1, "o": 2, "y": 3, "b": 4, "g": 5}
+
+	# The names of the faces in the order presented used in the program.
 	facenames = ["left_face", "front_face", "right_face", "back_face", "bottom_face", "top_face"]
+
+	# Translation list to indicate which face must rotate for which move command. Use command.lower() when making queries in this dict.
 	moveFaceIndex = {"l": 0, "f": 1, "r": 2, "b": 3, "d": 4, "u": 5}
+	
+	# Indicating the order for the args in connections{}. Only used during init.
+	sides = ["up", "left", "down", "right"]
+
+	# Translation list used when initiating a cube. From this, the relative links between faces are interpreted.
+	# For example, face[5](top) is up from face[0](left)
+	connections = {
+		facenames[0]: (5, 3, 4, 1),
+		facenames[1]: (5, 0, 4, 2),
+		facenames[2]: (5, 1, 4, 3),
+		facenames[3]: (5, 2, 4, 0),
+		facenames[4]: (1, 0, 3, 2),
+		facenames[5]: (3, 0, 1, 2)
+		}
 
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
-	connections = {
-		const.facenames[0]: (5, 3, 4, 1),
-		const.facenames[1]: (5, 0, 4, 2),
-		const.facenames[2]: (5, 1, 4, 3),
-		const.facenames[3]: (5, 2, 4, 0),
-		const.facenames[4]: (1, 0, 3, 2),
-		const.facenames[5]: (3, 0, 1, 2)
-		}
 	faces = {}
-	facenames = const.facenames
+#	facenames = const.facenames
 	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):
@@ -31,48 +52,36 @@ class cube(object):
 
 
 	def setStart(self):
-		""" Assigns the items from outputlist to their own face """
+		"""Assigns the items from outputlist to their own face."""
 
-		sides = ["up", "left", "down", "right"]
 		for i, f in enumerate(const.facenames):
-			squares = self.start[i*9 : i*9 + 9]
-			face_color = squares[int(len(squares)/2)]
+			squares = self.start[i*9 : i*9 + 9]	# Picking 9 elements from the list
+			face_color = squares[int(len(squares)/2)]	# Checking color of the 4th element.
 			name = const.facenames[const.faceColorIndex[face_color]]
-			conns = {}
-			for i, conn in enumerate(self.connections[name]):
-				conns[const.facenames[conn]] = sides[i]
+			conns = {}	# Dict {name : relative orientation} used for interactions between different faces.
+			for i, conn in enumerate(const.connections[name]):
+				conns[const.facenames[conn]] = const.sides[i]
 			self.faces[f] = face(squares, name, conns)
 
-	def rotate(self, name, dir):
-		"""Rotates the face along with the corresponding sides."""
+	def sendMoves(self, moves):
+		"""Main method for manipulating the cube."""
+		for move in moves:
+			dir = str(move).islower()
+			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
+			
+	def solved(self):
+		"""Returns True if all faces are unicolored, else False."""
 
-		face = self.faces[name]
-		face.rotateFace(dir)
-		temp = deque()
-		if (not dir):
-			reverse = []
-			for i in face.connections:
-				reverse.append(i)
-		if (dir):
-			for f in face.connections:
-				temp.append(self.faces[f].getSide(name))
-		else:
-			for f in reversed(reverse):
-				temp.append(self.faces[f].getSide(name))
-#		print(temp)
-		temp.append(temp.popleft())
-#		print(temp)
-		if (dir):
-#			print("True")
-			for f in face.connections:
-				self.faces[f].setSide(name, temp.popleft(), True)
-		else:
-#			print("False")
-			for f in reversed(reverse):
-				self.faces[f].setSide(name, temp.popleft(), False)
-
+		s = True
+		for f in const.facenames:
+			if (not self.faces[f].allTheSame()):
+				s = False
+				break
+		return(s)
+	
 	def printFaces(self, name):
-		"""Prints the current face with the 4 connecting sides, all properly oriented."""
+		"""Prints the current face with the 4 connecting sides, all properly oriented.
+		Kinda useless now that the GUI shows the current cube status."""
 
 		print(name)
 		squares = {}
@@ -81,7 +90,7 @@ class cube(object):
 		for i, f in enumerate(list(self.faces[name].connections.keys())):
 			main = self.faces[name].connections[f]
 			sec = self.faces[f].connections[name]
-			squares["sq" + str(i)] = self.turnForPrint(main, sec, self.faces[f].squares, f)
+			squares["sq" + str(i)] = self.__turnForPrint(main, sec, self.faces[f].squares, f)
 		for a, b, c in zip(squares["sq1"], self.faces[name].squares, squares["sq3"]):
 			line = []
 			for s in a:
@@ -105,28 +114,53 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-	def sendMoves(self, moves):
+	def __rotate(self, name, dir):
+		"""Rotates the face along with the corresponding sides."""
 
-		for move in moves:
-			dir = str(move).islower()
-			self.rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
+		face = self.faces[name]
+		# Rotate the squares of the face you want to rotate.
+		face.rotateFace(dir)
+		temp = deque()
 
-	def turnForPrint(self, relMain, relSec, squares, name):
+		# Gathering the colors of other faces directly connected to the face in 1 direction or the other:
+		if (dir):
+			for f in face.connections:
+				temp.append(self.faces[f].getSide(name))
+		else:
+			reverse = []	# Need a new var because you can't reverse a Dict.
+			for f in face.connections:
+				reverse.append(f)
+			for f in reversed(reverse):
+				temp.append(self.faces[f].getSide(name))
+
+		# Move the colors of the left block in the array to the right side.
+		# Equals rotating a circle.
+		temp.append(temp.popleft())
+
+		# Getting the colors back to the right faces.
+		if (dir):
+			for f in face.connections:
+				self.faces[f].setSide(name, temp.popleft(), True)
+		else:
+			for f in reversed(reverse):
+				self.faces[f].setSide(name, temp.popleft(), False)
+
+	def __turnForPrint(self, relMain, relSec, squares, name):
 		if (relMain == relSec):
-			return(self.rotPrint(2, squares, name))
+			return(self.__rotPrint(2, squares, name))
 		elif ((relMain == "up" and relSec == "left") or
 				(relMain == "left" and relSec == "down") or
 				(relMain == "down" and relSec == "right") or
 				(relMain == "right" and relSec == "up")):
-			return(self.rotPrint(1, squares, name))
+			return(self.__rotPrint(1, squares, name))
 		elif ((relMain == "left" and relSec == "up") or
 				(relMain == "up" and relSec == "right") or
 				(relMain == "right" and relSec == "down") or
 				(relMain == "down" and relSec == "left")):
-			return(self.rotPrint(3, squares, name))
+			return(self.__rotPrint(3, squares, name))
 		return(squares)
 	
-	def rotPrint(self, turns, squares, name):
+	def __rotPrint(self, turns, squares, name):
 		print(str(turns), "moi")
 		temp = deque()
 		blah = [["","",""],["","",""],["","",""]]
@@ -140,13 +174,6 @@ class cube(object):
 		blah[1][1] = self.faces[name].face_color
 		return(blah)
 
-	def solved(self):
-		s = True
-		for f in const.facenames:
-			if (not self.faces[f].allTheSame()):
-				s = False
-				break
-		return(s)
 
 class face(object):
 	"""Object representing 1 side of a rubik's cube."""

@@ -337,7 +337,7 @@ class solver(object):
 		if (self.cube is not None):
 			colorIndex = {"r": "red", "w": "white", "o": "orange", "y": "yellow", "b": "blue", "g": "green"}
 			colors = ""
-			for face in self.cube.facenames:
+			for face in kubus.const.facenames:
 				colors += self.cube.faces[face].getColors()
 			for i in range(len(self.rects_col)):
 				# Exception for the Rubik's cube logo.
