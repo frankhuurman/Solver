@@ -474,9 +474,9 @@ def ifBulk(colorCombo, pos):
 				results = "ldLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "LddLRDrd"
-		if colorCombo == whiteOrangeBlue:
-			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = ""
+		if colorCombo == whiteOrangeBlue: # Blue considered front
+			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # V
+				results = "ddRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
