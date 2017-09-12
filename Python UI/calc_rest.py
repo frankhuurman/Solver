@@ -37,7 +37,7 @@ def sendToArduino():
 	print("Port used: " + ser.name)         # Check which port was really used
 
 	# Init moveListBuffer
-	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"] # Temporary, can be removed altready I believe.
 	"""
 	if len(moveListBuffer) > 62:
 		blah = []
@@ -544,9 +544,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # V
 				results = "ddRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
+				results = "LddlRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
+				results = "dRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
