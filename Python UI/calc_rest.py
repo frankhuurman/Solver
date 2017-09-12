@@ -603,8 +603,9 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
+	vars.moveListBuffer += results
 
-	for name in cube.facenames:
+	for name in cube.facenames: # What does this do (if anything)?
 		cube.faces[name]
 
 def algorithm():
