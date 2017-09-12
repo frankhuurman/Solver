@@ -97,7 +97,8 @@ def ifBulk(colorCombo, pos):
 		#TODO: Write code to manipulate the cube after each move <IMPORTANT> 
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code
-		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius 
+		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
+	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
 	cube = vars.cube
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
@@ -548,17 +549,17 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
 				results = "dRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				results = ""
+				results = "ldLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				results = ""
+				results = "LddlRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				results = ""
+				results = "rDDRdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				results = ""
+				results = "ldLRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]: # V
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				results = ""
+				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
