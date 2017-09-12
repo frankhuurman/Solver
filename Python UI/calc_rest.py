@@ -13,6 +13,7 @@
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 import cube as kubus # <-- IMPORTANT
+import serial
 
 class vars:
 	moveListBuffer = ""
@@ -25,6 +26,71 @@ class vars:
 	algo6 = False
 	aglo7 = False
 	cube = None
+
+def sendToArduino():
+	"""This function sends the movelist to Arduino
+	Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
+	and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
+	"""
+
+	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
+	print("Port used: " + ser.name)         # Check which port was really used
+
+	# Init moveListBuffer
+	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+	"""
+	if len(moveListBuffer) > 62:
+		blah = []
+		blah.append(moveListBuffer[i*64:(i+1)*64])
+	"""
+	moveListBuffer.append("\r")
+	while True:
+		data = ser.readline() # Read data from Arduino
+		if data: # If data comes in from Arduino
+			if data == b"Ready\r\n": # Initialize handshake with Arduino
+				print ("Handshake from Arduino received")
+				#The arduino_string part + while loop is for manual testing commands
+				#Make this a comment and uncomment for item in moveListBuffer for regular use
+				arduino_string = ""
+				
+				while arduino_string != "q":
+					arduino_string = input("Type string to send to arduino: ")
+					ser.write(str.encode(arduino_string))
+				
+				"""
+				for item in moveListBuffer:
+					if len(item) > 64:
+						print ("item longer than 64")
+				"""
+				"""
+				if len(moveListBuffer[0]) > 40:
+					print("test")
+					#for item in moveListBuffer:
+					#	ser.write(str.encode(moveListBuffer.pop(0)))
+				"""
+				"""
+				for item in moveListBuffer:
+					ser.write(str.encode(item))
+				"""
+			elif data == b"somethingelse":
+				arduino_string = input("Type another string to send to arduino: ")
+				arduino_send_bytes = str.encode(arduino_string)
+				ser.write(arduino_send_bytes)
+			elif data == b'hello':
+				print ("it says hello!")
+			else:
+				# This actually prints the data received from Serial.print from Arduino
+				# First it decodes the received raw byte data to a utf-8 string
+				ascii_data = data.decode()
+				print (ascii_data)
+
+		if not data: # If there is no data coming back from Arduino
+			print("No data being received from Arduino anymore")
+			break
+
+	test = input("Press enter to close serial connection")
+	ser.close()             # close port
+	print ("Serial port closed")
 
 def ifBulk(colorCombo, pos):
 	#TODO: Add code to keep the cube object up to date
