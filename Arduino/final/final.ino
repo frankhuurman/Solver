@@ -263,54 +263,5 @@ void loop() {
           Serial.print(" Error ");    
         }
         }
-      
       }
-  /*
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(uDir, LOW);
-  digitalWrite(uStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(uStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(rDir, LOW);
-  digitalWrite(rStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(rStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  */
-  /*
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(dDir, LOW);
-  digitalWrite(dStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(dStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(bDir, LOW);
-  digitalWrite(bStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(bStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(lDir, LOW);
-  digitalWrite(lStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(lStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  for(int timer = 0; timer < timerspeed; timer++) {
-  digitalWrite(fDir, LOW);
-  digitalWrite(fStep, HIGH);
-  delayMicroseconds(delayspeed);
-  digitalWrite(fStep, LOW);
-  delayMicroseconds(delayspeed);
-  }
-  */
 }
