@@ -211,7 +211,7 @@ def sendToArduino():
 		blah = []
 		blah.append(send_list[i*64:(i+1)*64])
 	"""
-	send_list.append("\r")
+	#send_list.append("\r")
 	while True:
 		data = ser.readline() # Read data from Arduino
 		if data: # If data comes in from Arduino
@@ -219,17 +219,22 @@ def sendToArduino():
 				print ("Handshake from Arduino received")
 				#The arduino_string part + while loop is for manual testing commands
 				#Make this a comment and uncomment for item in send_list for regular use
+				"""
 				arduino_string = ""
 				
 				while arduino_string != "q":
 					arduino_string = input("Type string to send to arduino: ")
 					ser.write(str.encode(arduino_string))
-				
 				"""
-				for item in send_list:
-					if len(item) > 64:
-						print ("item longer than 64")
-				"""
+				for i in range(int(len(send_list) / 64)): # dus voor i in range 0?
+					for i, item in enumerate(send_list): # er is maar 1 item in send_list
+						if len(item) > 64: # dat ene item is inderdaad langer dan 64 karakters
+							cut_list = [] # init nieuwe lijst
+							cut_list.append(send_list[i*64:(i+1)*64]) #cut_list.append(send_list[0:64]) zou dit moeten zijn in principe
+
+							#print (send_list[i*64:(i+1)*64]) # Print toch de hele string "uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB" van 72 karakters ipv 64 karakters
+				print(cut_list)
+
 				"""
 				if len(send_list[0]) > 40:
 					print("test")
