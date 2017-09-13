@@ -681,7 +681,6 @@ def algorithm():
 				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
 					for pos in whiteEdges:
 						colorCombo = otherSide # Check the other side of the edge to see what color it is
-						# ^^^^ What data is needed here? # The colors on both surfaces of the edge in question
 						ifBulk(vars.cube, colorCombo, pos)
 						count += 1 # increase the counter that keeps track of correct edges
 						if count == 4:
@@ -758,7 +757,6 @@ def algorithm():
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
-		loopin = True
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
 # Send moveListBuffer to where exactly
