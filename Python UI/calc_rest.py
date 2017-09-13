@@ -567,54 +567,54 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
 				results = "RDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				results = ""
+				results = "DRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]: # V
-				results = "" 
+				results = "ddRDrdRDrdRDrd" 
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				results = ""
+				results = "RDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				results = ""
+				results = "dRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				results = ""
+				results = "ldLRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				results = "" 
+				results = "RDrdRDrdRDrdRDrd" 
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				results = ""
+				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = ""
+				results = "ddRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				results = ""
+				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				results = ""
+				results = "LddlRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				results = ""
-		if colorCombo == whiteOrangeGreen:
+				results = "rDDRdRDrdRDrdRDrd"
+		if colorCombo == whiteOrangeGreen: # Orange considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = ""
+				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
+				results = "rDDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
+				results = "ddRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				results = ""
+				results = "LDDlRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				results = ""
+				results = "rDDRdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				results = ""
+				results = "LddLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				results = ""
+				results = "ldLRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				results = ""
+				results = "ldLRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				results = ""
+				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
 				results = ""
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
@@ -671,9 +671,6 @@ def ifBulk(colorCombo, pos):
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results
-
-	for name in cube.facenames: # What does this do (if anything)?
-		cube.faces[name]
 
 def algorithm():
 	count = 0
@@ -763,6 +760,6 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 		loopin = True
 	if vars.cube.solved() == True:
-		return moveListBuffer
+		return vars.moveListBuffer
 # Send moveListBuffer to where exactly
 # Send moveListBuffer to the arduino from here?
