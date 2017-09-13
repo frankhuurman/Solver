@@ -13,6 +13,7 @@
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 import cube as kubus # <-- IMPORTANT
+import serial
 
 class vars:
 	moveListBuffer = ""
@@ -26,12 +27,78 @@ class vars:
 	aglo7 = False
 	cube = None
 
+def sendToArduino():
+	"""This function sends the movelist to Arduino
+	Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
+	and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
+	"""
+
+	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
+	print("Port used: " + ser.name)         # Check which port was really used
+
+	# Init moveListBuffer
+	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"] # Temporary, can be removed altready I believe.
+	"""
+	if len(moveListBuffer) > 62:
+		blah = []
+		blah.append(moveListBuffer[i*64:(i+1)*64])
+	"""
+	moveListBuffer.append("\r")
+	while True:
+		data = ser.readline() # Read data from Arduino
+		if data: # If data comes in from Arduino
+			if data == b"Ready\r\n": # Initialize handshake with Arduino
+				print ("Handshake from Arduino received")
+				#The arduino_string part + while loop is for manual testing commands
+				#Make this a comment and uncomment for item in moveListBuffer for regular use
+				arduino_string = ""
+				
+				while arduino_string != "q":
+					arduino_string = input("Type string to send to arduino: ")
+					ser.write(str.encode(arduino_string))
+				
+				"""
+				for item in moveListBuffer:
+					if len(item) > 64:
+						print ("item longer than 64")
+				"""
+				"""
+				if len(moveListBuffer[0]) > 40:
+					print("test")
+					#for item in moveListBuffer:
+					#	ser.write(str.encode(moveListBuffer.pop(0)))
+				"""
+				"""
+				for item in moveListBuffer:
+					ser.write(str.encode(item))
+				"""
+			elif data == b"somethingelse":
+				arduino_string = input("Type another string to send to arduino: ")
+				arduino_send_bytes = str.encode(arduino_string)
+				ser.write(arduino_send_bytes)
+			elif data == b'hello':
+				print ("it says hello!")
+			else:
+				# This actually prints the data received from Serial.print from Arduino
+				# First it decodes the received raw byte data to a utf-8 string
+				ascii_data = data.decode()
+				print (ascii_data)
+
+		if not data: # If there is no data coming back from Arduino
+			print("No data being received from Arduino anymore")
+			break
+
+	test = input("Press enter to close serial connection")
+	ser.close()             # close port
+	print ("Serial port closed")
+
 def ifBulk(colorCombo, pos):
 	#TODO: Add code to keep the cube object up to date
 		#TODO: Write code to manipulate the cube after each move <IMPORTANT> 
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code
-		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius 
+		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
+	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
 	cube = vars.cube
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
@@ -478,100 +545,100 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # V
 				results = "ddRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
+				results = "LddlRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
+				results = "dRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				results = ""
+				results = "ldLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				results = ""
+				results = "LddlRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
-				results = ""
+				results = "rDDRdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				results = ""
+				results = "ldLRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]: # V
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				results = ""
+				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				results = ""
+				results = "DRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				results = ""
+				results = "RDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				results = ""
+				results = "RDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				results = ""
+				results = "DRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]: # V
-				results = "" 
+				results = "ddRDrdRDrdRDrd" 
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				results = ""
+				results = "RDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				results = ""
+				results = "dRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				results = ""
+				results = "ldLRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				results = "" 
+				results = "RDrdRDrdRDrdRDrd" 
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				results = ""
+				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = ""
+				results = "ddRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				results = ""
+				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				results = ""
+				results = "LddlRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				results = ""
-		if colorCombo == whiteOrangeGreen:
+				results = "rDDRdRDrdRDrdRDrd"
+		if colorCombo == whiteOrangeGreen: # Orange considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
-				results = ""
+				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
-				results = ""
+				results = "rDDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][0]:
-				results = ""
+				results = "ddRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[2][2]:
-				results = ""
+				results = "LDDlRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][0]:
-				results = ""
+				results = "rDDRdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[0][2]:
 				return # This is the correct position.
 			elif pos == cube.faces[cube.facenames[1]].squares[2][0]:
-				results = ""
+				results = "LddLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[1]].squares[2][2]:
-				results = ""
+				results = "ldLRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][0]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[0][2]:
-				results = ""
+				results = "RDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][0]:
-				results = ""
+				results = "ldLRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[2]].squares[2][2]:
-				results = ""
+				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][0]:
-				results = ""
+				results = "RDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[0][2]:
-				results = ""
+				results = "DRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][0]:
-				results = ""
+				results = "dRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][2]:
-				results = ""
+				results = "ddRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][0]:
-				results = ""
+				results = "LddlRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[0][2]:
-				results = ""
+				results = "ldLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][0]:
-				results = ""
+				results = "ddRDrd"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][2]:
-				results = ""
+				results = "dRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][0]:
-				results = ""
+				results = "DRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][2]:
-				results = ""
+				results = "RDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][0]:
-				results = ""
+				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
-				results = ""
+				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
 			# Code goes here.
@@ -603,9 +670,7 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
-
-	for name in cube.facenames:
-		cube.faces[name]
+	vars.moveListBuffer += results
 
 def algorithm():
 	count = 0
@@ -616,7 +681,6 @@ def algorithm():
 				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
 					for pos in whiteEdges:
 						colorCombo = otherSide # Check the other side of the edge to see what color it is
-						# ^^^^ What data is needed here? # The colors on both surfaces of the edge in question
 						ifBulk(vars.cube, colorCombo, pos)
 						count += 1 # increase the counter that keeps track of correct edges
 						if count == 4:
@@ -693,8 +757,7 @@ def algorithm():
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
-		loopin = True
 	if vars.cube.solved() == True:
-		return moveListBuffer
+		return vars.moveListBuffer
 # Send moveListBuffer to where exactly
 # Send moveListBuffer to the arduino from here?
