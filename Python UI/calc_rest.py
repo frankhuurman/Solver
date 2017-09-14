@@ -94,6 +94,7 @@ def sendToArduino():
 
 def ifBulk(colorCombo, pos):
 	#TODO: Reduce the amount of comments by being more descriptive. <IMPORTANT> 
+	#TODO: Check if the same algorithm can be used for opposing faces <THINK>
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
@@ -653,13 +654,13 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = ""
+				results = "ULulufUFULulufUFuu" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = "uuULulufUFULulufUFuuULulufUF" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = ""
+				results = "ULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""
+				results = "UULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = ""
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
