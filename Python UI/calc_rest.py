@@ -650,7 +650,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = ""
+				results = "uuULulufUF"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
@@ -670,9 +670,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "LulufUF"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
-				results = "#urURUFufuuULulufUF" 
+				results = "urURUFufuuULulufUF" 
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = ""																			
+				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 																	
 			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
 		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
