@@ -655,7 +655,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = ""
+				results = "uuULulufUFULulufUFuuULulufUF" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
@@ -667,9 +667,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = ""	
+				results = "LulufUF"	
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
+				results = "#urURUFufuuULulufUF" 
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = ""																			
 			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
@@ -820,16 +820,17 @@ def algorithm():
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
 		while not vars.algo3:  # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP)
-			# Check each edge on the middle and back layer of the cube for a orange color
-				# If a orange edge is found then check the other side of the edge 
-					# Check if the block is in the correct position
-						# If the block is in the correct position then mark it as completed
-							count += 1 # Increase a counter that keeps track of the amount of correct edges
-							if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-								count = 0 
-								algo3 = True
-						# Else check the color combination in combination with it's position in the list.
-							# Store the corresponding moves in moveListBuffer
+			for name in vars.cube.facenames:
+				for ro in ["r", "o"]:
+					currentEdge = vars.cube.faces[name].checkEdges(ro) # Checks for both red AND orange edges.
+					if (len(currentEdge) >0):
+						for pos in currentEdge:
+							colorCombo = otherSide
+							ifBulk(vars.cube, colorCombo, pos)
+							count += 1
+							if count == 4:
+								count = 0
+								algo1 = True
 		while not vars.algo4:  # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
@@ -880,6 +881,11 @@ def algorithm():
 					# Skip this block leaving it be as is.
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
+				# Break out of this loop (This is under the assumption everything up until now has worked)
+	if vars.cube.solved() == True:
+		return vars.moveListBuffer
+# Send moveListBuffer to where exactly
+# Send moveListBuffer to the arduino from here?ck into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
