@@ -642,7 +642,7 @@ def ifBulk(colorCombo, pos):
 	if not vars.algo3: # List algo 3 # 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
-				results = ""
+				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
@@ -652,7 +652,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uuULulufUF"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = ""
+				results = "UBubulULuLulufUF"
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "ULulufUFULulufUFuu" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
@@ -662,9 +662,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = "UULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = ""
+				results = "ULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = ""
+				results = "UBubuLULuULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
