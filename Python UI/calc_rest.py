@@ -12,7 +12,7 @@
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-import cube as kubus # <-- IMPORTANT
+import cube as kubus
 import serial
 
 class vars:
@@ -89,17 +89,16 @@ def sendToArduino():
 			break
 
 	test = input("Press enter to close serial connection")
-	ser.close()             # close port
+	ser.close() # closes the serial port
 	print ("Serial port closed")
 
 def ifBulk(colorCombo, pos):
-	#TODO: Add code to keep the cube object up to date
-		#TODO: Write code to manipulate the cube after each move <IMPORTANT> 
+	#TODO: Reduce the amount of comments by being more descriptive. <IMPORTANT> 
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
-	cube = vars.cube
+	cube = vars.cube # Pulls the latest version of the cube object. 
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
@@ -641,13 +640,34 @@ def ifBulk(colorCombo, pos):
 				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
-			# Code goes here.
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
+			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
 		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
-			# Code goes here.
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
 		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
-			# Code goes here.
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
 		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
-			# Code goes here.
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
