@@ -646,6 +646,20 @@ def ifBulk(colorCombo, pos):
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""	
 			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
 		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
@@ -654,6 +668,20 @@ def ifBulk(colorCombo, pos):
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""					
 		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
@@ -661,6 +689,20 @@ def ifBulk(colorCombo, pos):
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""					
 		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
@@ -668,6 +710,20 @@ def ifBulk(colorCombo, pos):
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""	
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
@@ -690,22 +746,22 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
-	vars.moveListBuffer += results
+	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 
 def algorithm():
 	count = 0
 	while not vars.solved: # Check if the cube is solved
 		while not vars.algo1:# Check to see if the white edges are solved
-			for name in vars.cube.facenames: # Check each face for edges?
+			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
 				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
 				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
 					for pos in whiteEdges:
 						colorCombo = otherSide # Check the other side of the edge to see what color it is
 						ifBulk(vars.cube, colorCombo, pos)
-						count += 1 # increase the counter that keeps track of correct edges
-						if count == 4:
+						count += 1 # Used to indicate a edge has been solved
+						if count == 4: 
 							count = 0 # reset count to 0
-							algo1 = True # Sets algo1 to a TRUE state so it's skipped in the next loop. 
+							algo1 = True
 		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				count += 1
