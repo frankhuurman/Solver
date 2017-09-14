@@ -1,11 +1,19 @@
 When a color becomes the front face (faces you) all the other faces change color too.
 Included below is a list that is to be used when creating whatever code it is that will be used for translating.
 
-												<<<<<-------------------- IMPORTANT ------------------------>>>>>
+<<<<<-------------------- IMPORTANT ------------------------>>>>>
 	
-	Ok so, while sides may be changed and what not the actual array behind it needs to remian the same. For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
-												<<<<<------------------------------------------------------->>>>>
-TODO: Update most of these as I go, currently only Default and Green Front are confirmed to be correct.
+	Ok so, while sides may be changed and what not the actual array behind it needs to remian the same. 
+	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
+	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
+
+	<<<<< VITAL >>>>>
+
+		The list below is all for algo2, lists for algo3 and beyond will be added in the near future.
+
+<<<<<------------------------------------------------------->>>>>
+
+<<<----- For Algo2 ----->>>
 
 Default
 	Front: White
@@ -54,3 +62,37 @@ Yellow Front
 	Top: Green
 	Bottom: Blue
 	Back: White
+
+<<<----- For Algo3 ----->>>
+
+Red Front # dang commies
+	Front: Red
+	Left: Blue
+	Right: Green
+	Top: Yellow
+	Bottom: White # Doesn't need to actualy be included in the translation since there will be no rotations of the bottom face from now on. 
+	Back: Orange
+
+Orange Front
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Bottom: White
+	Back: Red
+
+Green Front
+	Front: Green
+	Left: Red
+	Right: Orange
+	Top: Yellow
+	Bottom: White
+	Back: Blue
+
+Blue Front 
+	Front : Blue
+	Left: Orange
+	Right: Red
+	Top: Yellow
+	Bottom: White
+	Back: Green
