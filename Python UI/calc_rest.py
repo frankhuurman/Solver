@@ -659,7 +659,13 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""	
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""											
 			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
 		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
@@ -681,7 +687,13 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""					
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""						
 		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
@@ -702,7 +714,13 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""					
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""						
 		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
@@ -723,7 +741,13 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""	
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""		
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
