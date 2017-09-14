@@ -441,7 +441,7 @@ def ifBulk(colorCombo, pos):
 				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "UrbuuBRu"
-	if not vars.algo2: # List algo2 # The position is the position of the white surface of the edge. <-- IMPORTANT
+	if not vars.algo2: # List algo2 # The position is the position of the white surface of the corner. <-- IMPORTANT
 		if colorCombo == whiteRedGreen: # Green considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "RDrd" 
@@ -638,7 +638,7 @@ def ifBulk(colorCombo, pos):
 				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
-	if not vars.algo3: # List algo 3 
+	if not vars.algo3: # List algo 3 # 
 		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
