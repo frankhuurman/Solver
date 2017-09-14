@@ -376,6 +376,12 @@ class solver(object):
 		partsize = 50
 #		transList = self.translateList(movelist)
 
+
+		for f in self.cube.faces.keys():
+#			print(f.face_name)
+			print(self.cube.getEdge(f, [0,1]))
+#			print(f.connections)
+
 		import random
 		
 		moves = "DLBURFdlburf"
@@ -437,6 +443,7 @@ class solver(object):
 			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			self.updateColors()
+
 			for color, rect in zip(self.rects_col, self.rects):
 				self.solverDisplay.blit(color, rect)
 
