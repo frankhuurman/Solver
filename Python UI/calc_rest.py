@@ -678,23 +678,23 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "" # this is the correct position so return a empty string.
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				results = ""
+				results = "urURUFuf"
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = ""
+				results = "uuurURUFuf"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = ""
+				results = "uurURUFufurURUFufuuurURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = "uuurURUFufurURUFufuuurURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = ""
+				results = "urURUFufurURUFufuuurURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""
+				results = "UurURUFufurURUFufuuurURUFuf"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = ""
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
@@ -702,7 +702,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""			
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				results = ""	
+				results = "uurURUFuf"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = ""	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
