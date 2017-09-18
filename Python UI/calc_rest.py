@@ -95,6 +95,7 @@ def sendToArduino():
 def ifBulk(colorCombo, pos):
 	#TODO: Reduce the amount of comments by being more descriptive. <IMPORTANT> 
 	#TODO: Check if the same algorithm can be used for opposing faces <THINK>
+		#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Write 'conversion' Code <Joost>
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
@@ -707,7 +708,7 @@ def ifBulk(colorCombo, pos):
 				results = "urURUFuuurURUFuf"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "URurubUBurURUFuf"								
-		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
+		if colorCombo == orangeGreen: # Orange considered front. 
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -740,7 +741,7 @@ def ifBulk(colorCombo, pos):
 				results = ""	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = ""											
-		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
+		if colorCombo == orangeBlue: # orange considered front.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -885,9 +886,4 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
-# Send moveListBuffer to where exactly
-# Send moveListBuffer to the arduino from here?ck into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
-				# Break out of this loop (This is under the assumption everything up until now has worked)
-	if vars.cube.solved() == True:
-		return vars.moveListBuffer
-# Send moveListBuffer to the arduino from here.
+# Send moveListBuffer to the arduino from here
