@@ -644,11 +644,11 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				results = ""
+				results = "ULulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = ""
+				results = "" #This is the correct position so just send back a empty string.
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = ""
+				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uuULulufUF"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
