@@ -890,5 +890,4 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
-# Send moveListBuffer to where exactly
-# Send moveListBuffer to the arduino from here?
+# Send moveListBuffer to the arduino from here.
