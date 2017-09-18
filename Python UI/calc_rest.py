@@ -706,7 +706,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = "urURUFuuurURUFuf"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = "URurubUBurURUFuf"								
+				results = ""								
 		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
