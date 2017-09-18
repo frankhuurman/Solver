@@ -96,7 +96,7 @@ def ifBulk(colorCombo, pos):
 	#TODO: Reduce the amount of comments by being more descriptive. <IMPORTANT> 
 	#TODO: Check if the same algorithm can be used for opposing faces <THINK>
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-	#TODO: Write 'conversion' Code
+	#TODO: Write 'conversion' Code <Joost>
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
 	cube = vars.cube # Pulls the latest version of the cube object. 
@@ -640,7 +640,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 # 
-		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
+		if colorCombo == redBlue: # R = 0 B = 4, red goes first. # Red considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -666,7 +666,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "UBubuLULuULulufUFULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				results = ""
+				results = "UULulufUF"
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "LulufUF"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
