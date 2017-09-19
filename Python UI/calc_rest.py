@@ -27,75 +27,11 @@ class vars:
 	aglo7 = False
 	cube = None
 
-def sendToArduino():
-	"""This function sends the movelist to Arduino
-	Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
-	and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
-	"""
-
-	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
-	print("Port used: " + ser.name)         # Check which port was really used
-
-	# Init moveListBuffer
-	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"] # Temporary, can be removed altready I believe.
-	"""
-	if len(moveListBuffer) > 62:
-		blah = []
-		blah.append(moveListBuffer[i*64:(i+1)*64])
-	"""
-	moveListBuffer.append("\r")
-	while True:
-		data = ser.readline() # Read data from Arduino
-		if data: # If data comes in from Arduino
-			if data == b"Ready\r\n": # Initialize handshake with Arduino
-				print ("Handshake from Arduino received")
-				#The arduino_string part + while loop is for manual testing commands
-				#Make this a comment and uncomment for item in moveListBuffer for regular use
-				arduino_string = ""
-				
-				while arduino_string != "q":
-					arduino_string = input("Type string to send to arduino: ")
-					ser.write(str.encode(arduino_string))
-				
-				"""
-				for item in moveListBuffer:
-					if len(item) > 64:
-						print ("item longer than 64")
-				"""
-				"""
-				if len(moveListBuffer[0]) > 40:
-					print("test")
-					#for item in moveListBuffer:
-					#	ser.write(str.encode(moveListBuffer.pop(0)))
-				"""
-				"""
-				for item in moveListBuffer:
-					ser.write(str.encode(item))
-				"""
-			elif data == b"somethingelse":
-				arduino_string = input("Type another string to send to arduino: ")
-				arduino_send_bytes = str.encode(arduino_string)
-				ser.write(arduino_send_bytes)
-			elif data == b'hello':
-				print ("it says hello!")
-			else:
-				# This actually prints the data received from Serial.print from Arduino
-				# First it decodes the received raw byte data to a utf-8 string
-				ascii_data = data.decode()
-				print (ascii_data)
-
-		if not data: # If there is no data coming back from Arduino
-			print("No data being received from Arduino anymore")
-			break
-
-	test = input("Press enter to close serial connection")
-	ser.close() # closes the serial port
-	print ("Serial port closed")
-
 def ifBulk(colorCombo, pos):
 	#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
+	#TODO: Optimize algo3 (Remove one u from the uu section between sections, also remove the first U directly after said uu section.
 	cube = vars.cube # Pulls the latest version of the cube object. 
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
@@ -714,9 +650,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "" # This is the correct position, so return a empty string.
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = ""
+				results ="" 
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = "urURUFufuuULulufUFULulufUFuuULulufUF" # You'd think the two u s between each section aren't needed but somehow they are. 
+				results = "urURUFufuLulufUFULulufUFuLulufUF" # You'd think the two u s between each section aren't needed but somehow they are. 
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
@@ -882,4 +818,3 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
-# Send moveListBuffer to the arduino from here
