@@ -672,7 +672,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = ""	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = ""											
+				results = "ULulufUFuLulufUF" #ER											
 		if colorCombo == orangeBlue: # orange considered front.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
@@ -705,7 +705,7 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = ""	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = ""						
+				results = "ULulufUFUrURUFuf"						
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
