@@ -12,7 +12,7 @@
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-import cube as kubus # <-- IMPORTANT
+import cube as kubus
 import serial
 
 class vars:
@@ -89,17 +89,18 @@ def sendToArduino():
 			break
 
 	test = input("Press enter to close serial connection")
-	ser.close()             # close port
+	ser.close() # closes the serial port
 	print ("Serial port closed")
 
 def ifBulk(colorCombo, pos):
-	#TODO: Add code to keep the cube object up to date
-		#TODO: Write code to manipulate the cube after each move <IMPORTANT> 
+	#TODO: Reduce the amount of comments by being more descriptive. <IMPORTANT> 
+	#TODO: Check if the same algorithm can be used for opposing faces <THINK>
+		#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-	#TODO: Write 'conversion' Code
+	#TODO: Write 'conversion' Code <Joost>
 		#TODO: Check if universal code can be written using the face number itself to adjust what side does what <-- Genius
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
-	cube = vars.cube
+	cube = vars.cube # Pulls the latest version of the cube object. 
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
@@ -442,7 +443,7 @@ def ifBulk(colorCombo, pos):
 				results = "rbuuBR"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "UrbuuBRu"
-	if not vars.algo2: # List algo2 # The position is the position of the white surface of the edge. <-- IMPORTANT
+	if not vars.algo2: # List algo2 # The position is the position of the white surface of the corner. <-- IMPORTANT
 		if colorCombo == whiteRedGreen: # Green considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "RDrd" 
@@ -639,15 +640,140 @@ def ifBulk(colorCombo, pos):
 				results = "rDDRdRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
-	if not vars.algo3: # List algo 3 
-		if colorCombo == redBlue: # R = 0 B = 4, red goes first.
-			# Code goes here.
-		if colorCombo == redGreen: # R = 0 G = 5, red goes first.
-			# Code goes here.
-		if colorCombo == orangeGreen: # O = 2 G = 5, orange goes first.
-			# Code goes here.
-		if colorCombo == orangeBlue: # O = 2 B = 4, orange goes first.
-			# Code goes here.
+	if not vars.algo3: # List algo 3 # 
+		if colorCombo == redBlue: # Red considered front
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = "ULulufUF"
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = "" #This is the correct position so just send back a empty string.
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = "uuULulufUF"
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = "UBubulULuLulufUF"
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = "ULulufUFULulufUFuu" 
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "uuULulufUFULulufUFuuULulufUF" 
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "ULulufUFULulufUFuuULulufUF"
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "UULulufUFULulufUFuuULulufUF"
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = "ULulufUFuuULulufUF"
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = "UBubuLULuULulufUFULulufUFuuULulufUF"
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = "UULulufUF"
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = "LulufUF"	
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
+				results = "urURUFufuuULulufUF" 
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 																	
+			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
+		if colorCombo == redGreen: # Red considered front
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = "" # this is the correct position so return a empty string.
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = "urURUFuf"
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = "ULulufUFuuurURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "URurubUBurURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = "uuurURUFuf"
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = "ulULUBuburURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = "uurURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "uuurURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "urURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "UurURUFufurURUFufuuurURUFuf"
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = "ULulufUFuuurURUFuf"
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = "ulULUBuburURUFuf"
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = "UurURUFuf"			
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = "uurURUFuf"	
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = "urURUFuuurURUFuf"	
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = "URurubUBurURUFuf"								
+		if colorCombo == orangeGreen: # Orange considered front. 
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = ""	
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = ""	
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = ""											
+		if colorCombo == orangeBlue: # orange considered front.
+			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = ""
+			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = ""	
+			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = ""	
+			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = ""	
+			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = ""						
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
@@ -670,22 +796,22 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
-	vars.moveListBuffer += results
+	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 
 def algorithm():
 	count = 0
 	while not vars.solved: # Check if the cube is solved
 		while not vars.algo1:# Check to see if the white edges are solved
-			for name in vars.cube.facenames: # Check each face for edges?
+			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
 				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
 				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
 					for pos in whiteEdges:
 						colorCombo = otherSide # Check the other side of the edge to see what color it is
 						ifBulk(vars.cube, colorCombo, pos)
-						count += 1 # increase the counter that keeps track of correct edges
-						if count == 4:
+						count += 1 # Used to indicate a edge has been solved
+						if count == 4: 
 							count = 0 # reset count to 0
-							algo1 = True # Sets algo1 to a TRUE state so it's skipped in the next loop. 
+							algo1 = True
 		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				count += 1
@@ -696,16 +822,17 @@ def algorithm():
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
 		while not vars.algo3:  # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP)
-			# Check each edge on the middle and back layer of the cube for a orange color
-				# If a orange edge is found then check the other side of the edge 
-					# Check if the block is in the correct position
-						# If the block is in the correct position then mark it as completed
-							count += 1 # Increase a counter that keeps track of the amount of correct edges
-							if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-								count = 0 
-								algo3 = True
-						# Else check the color combination in combination with it's position in the list.
-							# Store the corresponding moves in moveListBuffer
+			for name in vars.cube.facenames:
+				for ro in ["r", "o"]:
+					currentEdge = vars.cube.faces[name].checkEdges(ro) # Checks for both red AND orange edges.
+					if (len(currentEdge) >0):
+						for pos in currentEdge:
+							colorCombo = otherSide
+							ifBulk(vars.cube, colorCombo, pos)
+							count += 1
+							if count == 4:
+								count = 0
+								algo1 = True
 		while not vars.algo4:  # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
@@ -759,5 +886,4 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
-# Send moveListBuffer to where exactly
-# Send moveListBuffer to the arduino from here?
+# Send moveListBuffer to the arduino from here
