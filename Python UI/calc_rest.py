@@ -576,134 +576,134 @@ def ifBulk(colorCombo, pos):
 		if colorCombo == redBlue: # Red considered front # Mirror of orangeGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "urURUFufuuULulufUFULulufUFuLulufUF"
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "ULulufUF"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = "" #This is the correct position so just send back a empty string.
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "ubUBURuruLulufUF" 
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uLulufUF"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "UBubulULuLulufUF"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "ULulufUFULulufUFuu" 
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = "uLulufUFULulufUFuuULulufUF" 
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = "ULulufUFULulufUFuLulufUF"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = "UULulufUFULulufUFuLulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = "ULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "UBubuLULLulufUFULulufUFuLulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = "UULulufUF"
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "LulufUF"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
 				results = "urURUFufuLulufUF" 
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ubUBURurUULulufUFULulufUFuLulufUF" 																	
 		if colorCombo == redGreen: # Red considered front # Mirror of orangeBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "" # this is the correct position so return a empty string.
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "urURUFuf"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = "ULulufUFUrURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "URurubUBurURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uuurURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "ulULUBuburURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "uurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = "UrURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = "urURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = "UurURUFufurURUFufUrURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = "ULulufUFUrURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "ulULUBuburURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = "UurURUFuf"			
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "uurURUFuf"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = "urURUFUrURUFuf"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "URurubUBurURUFuf"								
 		if colorCombo == orangeGreen: # Orange considered front. # Mirror of redBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: 
 				results = "uLulufUF" 
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "uLulufUF" 
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = "ubUBURuruLulufUF" #Comes out flipped :/
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "" # This is the correct position, so return a empty string.
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "ULulufUF" 
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "urURUFufuLulufUFULulufUFuLulufUF"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = "" # <><><><><>><><><><><><><><><><><><>><><><><><><><>
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = "UULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "UULulufUF"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = "" 	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFuLulufUF" #ER											
 		if colorCombo == orangeBlue: # orange considered front.
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = ""
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "urURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "" # This is the correct position, so return a empty string.
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
 				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
 				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
@@ -735,14 +735,15 @@ def algorithm():
 		while not vars.algo1:# Check to see if the white edges are solved
 			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
 				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
-				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
-					for pos in whiteEdges:
-						colorCombo = otherSide # Check the other side of the edge to see what color it is
-						ifBulk(vars.cube, colorCombo, pos)
-						count += 1 # Used to indicate a edge has been solved
-						if count == 4: 
-							count = 0 # reset count to 0
-							algo1 = True
+				while (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
+					edges, colorCombo = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
+					pos = whiteEdge[0]s:
+					colorCombo = otherSide # Check the other side of the edge to see what color it is
+					ifBulk(colorCombo[0], pos[0])
+					count += 1 # Used to indicate a edge has been solved
+					if count == 4: 
+						count = 0 # reset count to 0
+						algo1 = True
 		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				count += 1
