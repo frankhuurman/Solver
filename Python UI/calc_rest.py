@@ -573,63 +573,62 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 # 
-		if colorCombo == redBlue: # Red considered front
+		if colorCombo == redBlue: # Red considered front # Mirror of orangeGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
-				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
+				results = "urURUFufuuULulufUFULulufUFuLulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "ULulufUF"
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = "" #This is the correct position so just send back a empty string.
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 
+				results = "ubUBURuruLulufUF" 
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = "uuULulufUF"
+				results = "uLulufUF"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "UBubulULuLulufUF"
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "ULulufUFULulufUFuu" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = "uuULulufUFULulufUFuuULulufUF" 
+				results = "uLulufUFULulufUFuuULulufUF" 
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = "ULulufUFULulufUFuuULulufUF"
+				results = "ULulufUFULulufUFuLulufUF"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = "UULulufUFULulufUFuuULulufUF"
+				results = "UULulufUFULulufUFuLulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = "ULulufUFuuULulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = "UBubuLULuULulufUFULulufUFuuULulufUF"
+				results = "UBubuLULLulufUFULulufUFuLulufUF"
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = "UULulufUF"
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "LulufUF"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
-				results = "urURUFufuuULulufUF" 
+				results = "urURUFufuLulufUF" 
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 																	
-			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
-		if colorCombo == redGreen: # Red considered front
+				results = "ubUBURurUULulufUFULulufUFuLulufUF" 																	
+		if colorCombo == redGreen: # Red considered front # Mirror of orangeBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "" # this is the correct position so return a empty string.
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "urURUFuf"
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = "ULulufUFuuurURUFufurURUFufuuurURUFuf"
+				results = "ULulufUFUrURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = "URurubUBurURUFufurURUFufuuurURUFuf"
+				results = "URurubUBurURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uuurURUFuf"
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = "ulULUBuburURUFufurURUFufuuurURUFuf"
+				results = "ulULUBuburURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "uurURUFufurURUFufuuurURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = "uuurURUFufurURUFufuuurURUFuf"
+				results = "UrURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = "urURUFufurURUFufuuurURUFuf"
+				results = "urURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = "UurURUFufurURUFufuuurURUFuf"
+				results = "UurURUFufurURUFufUrURUFuf"
 			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = "ULulufUFuuurURUFuf"
+				results = "ULulufUFUrURUFuf"
 			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "ulULUBuburURUFuf"
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
@@ -637,24 +636,24 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "uurURUFuf"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = "urURUFuuurURUFuf"	
+				results = "urURUFUrURUFuf"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "URurubUBurURUFuf"								
-		if colorCombo == orangeGreen: # Orange considered front. 
+		if colorCombo == orangeGreen: # Orange considered front. # Mirror of redBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: 
-				results = "" 
+				results = "uLulufUF" 
 			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				results = ""
+				results = "uLulufUF" 
 			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = ""
+				results = "ubUBURuruLulufUF" #Comes out flipped :/
 			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "" # This is the correct position, so return a empty string.
 			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "ULulufUF" 
 			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = "urURUFufuLulufUFULulufUFuLulufUF" # You'd think the two u s between each section aren't needed but somehow they are. 
+				results = "urURUFufuLulufUFULulufUFuLulufUF"
 			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = ""
+				results = "" # <><><><><>><><><><><><><><><><><><>><><><><><><><>
 			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
 				results = ""
 			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
@@ -668,9 +667,9 @@ def ifBulk(colorCombo, pos):
 			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = ""
 			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				results = ""	
+				results = "UULulufUF"	
 			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = ""	
+				results = "" 	
 			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFuLulufUF" #ER											
 		if colorCombo == orangeBlue: # orange considered front.
