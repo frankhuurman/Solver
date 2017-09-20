@@ -379,7 +379,7 @@ class solver(object):
 
 		for f in self.cube.faces.keys():
 #			print(f.face_name)
-			print(self.cube.getEdge(f, [0,1]))
+			print(self.cube.getEdge(f, "r"))
 #			print(f.connections)
 
 		import random
@@ -401,6 +401,9 @@ class solver(object):
 			else:
 				self.cube.sendMoves(nextMove)
 				lastMove = nextMove
+				facename = kubus.const.facenames[kubus.const.moveFaceIndex[nextMove.lower()]]
+				facecol = self.cube.faces[facename].face_color
+				print(self.cube.getEdge(facename, facecol))
 
 
 		"""				

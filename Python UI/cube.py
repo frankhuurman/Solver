@@ -114,11 +114,23 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-	def getEdge(self, name, pos):
+	def getEdge(self, name, color):
 		"""Return the colors of pos and the other color of that edge element."""
 
 		edges = [[0,1], [1,0], [1,2], [2,1]]
-
+		
+		coords = []
+		colors = []
+		for i, (x, y) in enumerate(const.edges):
+			if (color == self.faces[name].squares[x][y]):
+				otherSide = const.facenames[const.connections[name][i]]
+				otherColor = self.faces[otherSide].getSide(name)[1]
+				colorCombo = color + otherColor
+				print(name, otherSide, otherColor)
+				print("moi", i, x, y)
+				coords.append((x, y))
+				colors.append(colorCombo)
+		return(coords, colors)
 
 		side = "" #const.sides[const.edges.index(pos)]
 		if (pos[0] == 1):
@@ -315,7 +327,7 @@ class face(object):
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
 		colors = []
-		print(self.face_name, self.connections)
+#		print(self.face_name, self.connections)
 		if (self.connections[name] == "up"):
 			for i in range(3):
 				colors.append(self.squares[0][i])
