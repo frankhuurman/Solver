@@ -698,11 +698,11 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "urURUFufUrURUFuf"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				results = ""	
+				results = "uurURUFuf"	
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = ""	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = ""	
+				results = "ulULUBuburURUFuf"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
 	if not vars.algo4: # List algo 4
