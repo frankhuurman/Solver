@@ -12,9 +12,6 @@
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-import cube as kubus
-import serial
-
 class vars:
 	moveListBuffer = ""
 	solved = False
@@ -27,76 +24,12 @@ class vars:
 	aglo7 = False
 	cube = None
 
-def sendToArduino():
-	"""This function sends the movelist to Arduino
-	Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
-	and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
-	"""
-
-	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
-	print("Port used: " + ser.name)         # Check which port was really used
-
-	# Init moveListBuffer
-	moveListBuffer = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"] # Temporary, can be removed altready I believe.
-	"""
-	if len(moveListBuffer) > 62:
-		blah = []
-		blah.append(moveListBuffer[i*64:(i+1)*64])
-	"""
-	moveListBuffer.append("\r")
-	while True:
-		data = ser.readline() # Read data from Arduino
-		if data: # If data comes in from Arduino
-			if data == b"Ready\r\n": # Initialize handshake with Arduino
-				print ("Handshake from Arduino received")
-				#The arduino_string part + while loop is for manual testing commands
-				#Make this a comment and uncomment for item in moveListBuffer for regular use
-				arduino_string = ""
-				
-				while arduino_string != "q":
-					arduino_string = input("Type string to send to arduino: ")
-					ser.write(str.encode(arduino_string))
-				
-				"""
-				for item in moveListBuffer:
-					if len(item) > 64:
-						print ("item longer than 64")
-				"""
-				"""
-				if len(moveListBuffer[0]) > 40:
-					print("test")
-					#for item in moveListBuffer:
-					#	ser.write(str.encode(moveListBuffer.pop(0)))
-				"""
-				"""
-				for item in moveListBuffer:
-					ser.write(str.encode(item))
-				"""
-			elif data == b"somethingelse":
-				arduino_string = input("Type another string to send to arduino: ")
-				arduino_send_bytes = str.encode(arduino_string)
-				ser.write(arduino_send_bytes)
-			elif data == b'hello':
-				print ("it says hello!")
-			else:
-				# This actually prints the data received from Serial.print from Arduino
-				# First it decodes the received raw byte data to a utf-8 string
-				ascii_data = data.decode()
-				print (ascii_data)
-
-		if not data: # If there is no data coming back from Arduino
-			print("No data being received from Arduino anymore")
-			break
-
-	test = input("Press enter to close serial connection")
-	ser.close() # closes the serial port
-	print ("Serial port closed")
-
 def ifBulk(colorCombo, pos):
 	#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
-	cube = vars.cube # Pulls the latest version of the cube object. 
+	#TODO: Optimize algo3 (Remove one u from the uu section between sections, also remove the first U directly after said uu section.
+	cube = vars.cube  
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
@@ -637,139 +570,138 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 # 
-		if colorCombo == redBlue: # Red considered front
+		if colorCombo == redBlue: # Red considered front # Mirror of orangeGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
-				results = "urURUFufuuULulufUFULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = "urURUFufuuULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "ULulufUF"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
 				results = "" #This is the correct position so just send back a empty string.
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = "uuULulufUF"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "ubUBURuruLulufUF" 
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = "uLulufUF"
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "UBubulULuLulufUF"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "ULulufUFULulufUFuu" 
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = "uuULulufUFULulufUFuuULulufUF" 
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = "ULulufUFULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = "UULulufUFULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "uLulufUFULulufUFuuULulufUF" 
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "ULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "UULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
 				results = "ULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = "UBubuLULuULulufUFULulufUFuuULulufUF"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = "UBubuLULLulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = "UULulufUF"
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "LulufUF"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
-				results = "urURUFufuuULulufUF" 
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = "ubUBURurUULulufUFULulufUFuuULulufUF" 																	
-			# Keep in mind that for all faces (except for yellow) there will always be one edge you don't need to check since this one is already in the correct position.
-		if colorCombo == redGreen: # Red considered front
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]: # Red considered front
+				results = "urURUFufuLulufUF" 
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = "ubUBURurUULulufUFULulufUFuLulufUF" 																	
+		if colorCombo == redGreen: # Red considered front # Mirror of orangeBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "" # this is the correct position so return a empty string.
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
 				results = "urURUFuf"
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = "ULulufUFuuurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = "URurubUBurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = "ULulufUFUrURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "URurubUBurURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
 				results = "uuurURUFuf"
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = "ulULUBuburURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = "ulULUBuburURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
 				results = "uurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = "uuurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = "urURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = "UurURUFufurURUFufuuurURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = "ULulufUFuuurURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "UrURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "urURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "UurURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = "ULulufUFUrURUFuf"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
 				results = "ulULUBuburURUFuf"
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
 				results = "UurURUFuf"			
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "uurURUFuf"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = "urURUFuuurURUFuf"	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = "urURUFUrURUFuf"	
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "URurubUBurURUFuf"								
-		if colorCombo == orangeGreen: # Orange considered front. 
+		if colorCombo == orangeGreen: # Orange considered front. # Mirror of redBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: 
-				results = "" 
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "uLulufUF" 
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = "uLulufUF" 
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = "ubUBURuruLulufUF" #Comes out flipped :/
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
 				results = "" # This is the correct position, so return a empty string.
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
-				results = "urURUFufuuULulufUFULulufUFuuULulufUF" # You'd think the two u s between each section aren't needed but somehow they are. 
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = ""											
-		if colorCombo == orangeBlue: # orange considered front.
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = "ULulufUF" 
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = "urURUFufuLulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = "UULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "ULulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "uLulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "LulufUFULulufUFuLulufUF"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = "ubUBURuruuLulufUF" 
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = "urURUFufuuULulufUF"
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = "LulufUF"
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = "UULulufUF"	
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = "ubUBURurUULulufUFULulufUFuLulufUF"	
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = "ULulufUFuLulufUF" #ER											
+		if colorCombo == orangeBlue: # orange considered front.# Mirror of redGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[0]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[0]].squares[2][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[0][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[2]].squares[2][1]:
+				results = "ulULUBuburURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
+				results = "UrURUFuf"
+			elif pos == cube.faces[cube.facenames[0]].squares[2][1]:
+				results = "ubUBURurrURUFuf"
+			elif pos == cube.faces[cube.facenames[2]].squares[0][1]:
+				results = "ULulufUFUrURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[2]].squares[1][2]:
+				results = "urURUFuf"
+			elif pos == cube.faces[cube.facenames[2]].squares[2][1]:
 				results = "" # This is the correct position, so return a empty string.
-			if pos == cube.faces[cube.facenames[3]].squares[0][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[3]].squares[2][1]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = ""
-			if pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[0][1]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = ""	
-			if pos == cube.faces[cube.facenames[5]].squares[1][2]:
-				results = ""						
+			elif pos == cube.faces[cube.facenames[3]].squares[0][1]:
+				results = "rURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][0]:
+				results = "urURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[1][2]:
+				results = "urURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
+				results = "uurURUFufurURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
+				results = "ubUBURurrURUFufurURUFufUurURUFuf"
+			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
+				results = "urURUFufUrURUFuf"
+			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
+				results = "uurURUFuf"	
+			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
+				results = "rURUFuf"	
+			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
+				results = "ulULUBuburURUFuf"
+			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
+				results = "ULulufUFUrURUFuf"						
 	if not vars.algo4: # List algo 4
 		# Well then. Atleast this one's interesting.
 	if not vars.algo5: # List algo 5 
@@ -800,14 +732,15 @@ def algorithm():
 		while not vars.algo1:# Check to see if the white edges are solved
 			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
 				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
-				if (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
-					for pos in whiteEdges:
-						colorCombo = otherSide # Check the other side of the edge to see what color it is
-						ifBulk(vars.cube, colorCombo, pos)
-						count += 1 # Used to indicate a edge has been solved
-						if count == 4: 
-							count = 0 # reset count to 0
-							algo1 = True
+				while (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
+					edges, colorCombo = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
+					pos = whiteEdge[0]s:
+					colorCombo = otherSide # Check the other side of the edge to see what color it is
+					ifBulk(colorCombo[0], pos[0])
+					count += 1 # Used to indicate a edge has been solved
+					if count == 4: 
+						count = 0 # reset count to 0
+						algo1 = True
 		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				count += 1
@@ -882,4 +815,3 @@ def algorithm():
 				# Break out of this loop (This is under the assumption everything up until now has worked)
 	if vars.cube.solved() == True:
 		return vars.moveListBuffer
-# Send moveListBuffer to the arduino from here
