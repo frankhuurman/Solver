@@ -672,7 +672,7 @@ def ifBulk(colorCombo, pos):
 				results = "ubUBURurUULulufUFULulufUFuLulufUF"	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFuLulufUF" #ER											
-		if colorCombo == orangeBlue: # orange considered front.
+		if colorCombo == orangeBlue: # orange considered front.# Mirror of redGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "ulULUBuburURUFufurURUFufUrURUFuf"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:

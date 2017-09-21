@@ -65,12 +65,12 @@ Yellow Front
 
 <<<----- For Algo3 ----->>>
 
-Red Front # dang commies
+Red Front 
 	Front: Red
 	Left: Blue
 	Right: Green
 	Top: Yellow
-	Bottom: White # Doesn't need to actualy be included in the translation since there will be no rotations of the bottom face from now on. 
+	Bottom: White 
 	Back: Orange
 
 Orange Front
@@ -80,19 +80,3 @@ Orange Front
 	Top: Yellow
 	Bottom: White
 	Back: Red
-
-Green Front
-	Front: Green
-	Left: Red
-	Right: Orange
-	Top: Yellow
-	Bottom: White
-	Back: Blue
-
-Blue Front 
-	Front : Blue
-	Left: Orange
-	Right: Red
-	Top: Yellow
-	Bottom: White
-	Back: Green
