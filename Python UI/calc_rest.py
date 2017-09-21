@@ -661,15 +661,15 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]:
 				results = "LulufUFULulufUFuLulufUF"
 			elif pos == cube.faces[cube.facenames[4]].squares[1][0]:
-				results = ""
+				results = "ubUBURuruuLulufUF" 
 			elif pos == cube.faces[cube.facenames[4]].squares[1][2]:
-				results = ""
+				results = "urURUFufuuULulufUF"
 			elif pos == cube.faces[cube.facenames[4]].squares[2][1]:
-				results = ""
+				results = "LulufUF"
 			elif pos == cube.faces[cube.facenames[5]].squares[0][1]:
 				results = "UULulufUF"	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][0]:
-				results = "" 	
+				results = "ubUBURurUULulufUFULulufUFuLulufUF"	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFuLulufUF" #ER											
 		if colorCombo == orangeBlue: # orange considered front.
