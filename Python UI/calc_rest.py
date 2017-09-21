@@ -713,14 +713,14 @@ def ifBulk(colorCombo, pos):
 			# repeat until done.
 	if not vars.algo6: pass# List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
-	if not vars.algo7: pass# List algo 7
-		if colorCombo == yellowOrangeBlue:
+	if not vars.algo7: # List algo 7
+		if colorCombo == yellowOrangeBlue: pass
 			# Code goes here.
-		if colorCombo == yellowBlueRed:
+		if colorCombo == yellowBlueRed: pass
 			# Code goes here.
-		if colorCombo == yellowRedGreen:
+		if colorCombo == yellowRedGreen: pass
 			# Code goes here.
-		if colorCombo == yellowGreenOrange:
+		if colorCombo == yellowGreenOrange: pass
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
