@@ -704,13 +704,13 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
 	if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
-		if cube.faces[cube.facenames[3]].squares[0][1]: != "y"
+		if cube.faces[cube.facenames[3]].squares[0][1]: is not "y"
 			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[1][0]: != "y"
+		elif cube.faces[cube.facenames[3]].squares[1][0]: is not "y"
 			results = "fruRUF" 
-		elif cube.faces[cube.facenames[3]].squares[1][2]: != "y"
+		elif cube.faces[cube.facenames[3]].squares[1][2]: is not "y"
 			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[2][1]: != "y"
+		elif cube.faces[cube.facenames[3]].squares[2][1]: is not "y"
 			results = "fruRUF"
 	if not vars.algo5: pass# List algo 5 
 		# Check the color combo.
