@@ -372,7 +372,8 @@ class solver(object):
 		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 		calc_rest.vars.cube = self.cube
 #		ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-#		moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
+		moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
+		print(movelist)
 		partsize = 50
 #		transList = self.translateList(movelist)
 
