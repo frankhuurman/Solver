@@ -12,9 +12,6 @@
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-import cube as kubus
-import serial
-
 class vars:
 	moveListBuffer = ""
 	solved = False
@@ -31,8 +28,9 @@ def ifBulk(colorCombo, pos):
 	#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
-	#TODO: Optimize algo3 (Remove one u from the uu section between sections, also remove the first U directly after said uu section.
-	cube = vars.cube # Pulls the latest version of the cube object. 
+	#TODO: Remove the pass statements once a section is finished
+#TODO: Decide which face to use as the front for algo4 (honestly doesn't matter since the end result is symetrical from all for sides)
+	cube = vars.cube  
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
 		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
@@ -705,25 +703,32 @@ def ifBulk(colorCombo, pos):
 				results = "ulULUBuburURUFuf"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
-	if not vars.algo4: # List algo 4
-		# Well then. Atleast this one's interesting.
-	if not vars.algo5: # List algo 5 
+	if not vars.algo4: pass# List algo 4 # Well then. Atleast this one's interesting. # Sure is
+		if cube.faces[cube.facenames[3]].squares[0][1]: != "y"
+			results = "fruRUF" # < make this a function somehow?
+		elif cube.faces[cube.facenames[3]].squares[1][0]: != "y"
+			results = "fruRUF" 
+		elif cube.faces[cube.facenames[3]].squares[1][2]: != "y"
+			results = "fruRUF"
+		elif cube.faces[cube.facenames[3]].squares[2][1]: != "y"
+			results = "fruRUF"
+	if not vars.algo5: pass# List algo 5 
 		# Check the color combo.
 			# Check if it's in the correct position.
 				# return
 			# else Check the colorCombos of the three other edges.
 			# move accordingly.
 			# repeat until done.
-	if not vars.algo6: # List algo 6
+	if not vars.algo6: pass# List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
 	if not vars.algo7: # List algo 7
-		if colorCombo == yellowOrangeBlue:
+		if colorCombo == yellowOrangeBlue: pass
 			# Code goes here.
-		if colorCombo == yellowBlueRed:
+		if colorCombo == yellowBlueRed: pass
 			# Code goes here.
-		if colorCombo == yellowRedGreen:
+		if colorCombo == yellowRedGreen: pass
 			# Code goes here.
-		if colorCombo == yellowGreenOrange:
+		if colorCombo == yellowGreenOrange: pass
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
@@ -737,7 +742,7 @@ def algorithm():
 				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
 				while (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
 					edges, colorCombo = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
-					pos = whiteEdge[0]s:
+					pos = whiteEdges[0]
 					colorCombo = otherSide # Check the other side of the edge to see what color it is
 					ifBulk(colorCombo[0], pos[0])
 					count += 1 # Used to indicate a edge has been solved
@@ -753,7 +758,7 @@ def algorithm():
 				# Check the two other blocks of the corner for their color
 					# Take the number asociated with the white block and run it through a list to see what moves should be performed to get it into it's proper position.
 						# Store these moves in moveListBuffer.
-		while not vars.algo3:  # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP)
+		while not vars.algo3: pass # Check to see if the middle layer is solved, simple Boolean TRUE / FALSE (LOOP)
 			for name in vars.cube.facenames:
 				for ro in ["r", "o"]:
 					currentEdge = vars.cube.faces[name].checkEdges(ro) # Checks for both red AND orange edges.
@@ -765,7 +770,7 @@ def algorithm():
 							if count == 4:
 								count = 0
 								algo1 = True
-		while not vars.algo4:  # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
+		while not vars.algo4: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
 					# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
@@ -775,7 +780,7 @@ def algorithm():
 							algo4 = True
 					# Else go through the list using the position of the yellow edge.
 						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-		while not vars.algo5:  # Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
+		while not vars.algo5:  pass# Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check the color of the color on the non yellow sides of the edges.
 				# If the color matches the color of the center of the face (5)
 					count += 1# Increase a counter that keeps track of the amount of correct edges.
@@ -787,7 +792,7 @@ def algorithm():
 						# Go back to looking for a unsolved block skipping this one for the next round
 					# Else go through the list 
 						# Store the moves in moveListBuffer
-		while not vars.algo6: # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
+		while not vars.algo6: pass # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
 			# Check if the side on the yellow face is NOT yellow
 				# If the other colors on the corner DO NOT match the color at the center of their respective face
 					# Go into the list using the position of this corner
@@ -795,7 +800,7 @@ def algorithm():
 							# Store the attached moves in moveListBuffer as many times as is needed to react a correct cube state
 							# Set the Boolean to TRUE and break out of this loop.
 			# Else move onto the next corner
-		while not vars.solved: # Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
+		while not vars.solved: pass# Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check if all faces only contain one color 
 				# Set the Boolean to TRUE and break out of this loop
 			# Else check which yellow corners are placed incorrectly
@@ -816,5 +821,5 @@ def algorithm():
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
 				# Break out of this loop (This is under the assumption everything up until now has worked)
-	if vars.cube.solved() == True:
+	if vars.cube.solved():
 		return vars.moveListBuffer
