@@ -125,9 +125,12 @@ class cube(object):
 		coords = []
 		colors = []
 		for i, (x, y) in zip(order, const.edges):
-			if (color == self.faces[name].squares[x][y]):
+			if (self.faces[name].squares[x][y] == color):
+				print(const.connections[name][i], i)
+				print(const.facenames[5])
 				otherSide = const.facenames[const.connections[name][i]]
-				otherColor = self.faces[otherSide].getSide(name)[1]
+				print(otherSide)
+				otherColor = self.faces[name].getSide(otherSide)[1]
 				colorCombo = color + otherColor
 				print(name, otherSide, otherColor)
 				print("moi", i, x, y)
@@ -309,7 +312,7 @@ class face(object):
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
 		colors = []
-#		print(self.face_name, self.connections)
+		print(self.face_name, self.connections)
 		if (self.connections[name] == "up"):
 			for i in range(3):
 				colors.append(self.squares[0][i])

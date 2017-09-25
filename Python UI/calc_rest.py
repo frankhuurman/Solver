@@ -29,11 +29,12 @@ def ifBulk(colorCombo, pos):
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
 	#TODO: Remove the pass statements once a section is finished
+	#TODO: change colorcombo's. see line 37
 #TODO: Decide which face to use as the front for algo4 (honestly doesn't matter since the end result is symetrical from all for sides)
 	cube = vars.cube  
 	results = ""
 	if not vars.algo1: #NOTE: White surface of the edge used for position.
-		if colorCombo == whiteRed: # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
+		if colorCombo == "wr": # correct pos == cube.faces[cube.facenames[1]].squares[1][0] White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
@@ -738,10 +739,11 @@ def algorithm():
 	count = 0
 	while not vars.solved: # Check if the cube is solved
 		while not vars.algo1:# Check to see if the white edges are solved
-			for name in vars.cube.facenames: # Check each face for edges # name comes from where?	
+			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
+				print(name)
 				edges, colorCombo = vars.cube.getEdge(name, "w") # Check each block asociated with an edge to see if it is white
 				"""^^ updated this line for the new cube code."""
-				while (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
+				while (len(edges) > 0): # Don't need to go further if there are no white edges.
 					edges, colorCombo = vars.cube.getEdge(name, "w") # Check each block asociated with an edge to see if it is white
 					pos = edges[0]
 					ifBulk(colorCombo[0], pos[0])
