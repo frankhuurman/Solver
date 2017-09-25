@@ -703,9 +703,9 @@ def ifBulk(colorCombo, pos):
 				results = "ulULUBuburURUFuf"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
-	if not vars.algo4: pass# List algo 4 # Well then. Atleast this one's interesting. # Sure is
+	if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
 		if cube.faces[cube.facenames[3]].squares[0][1]: != "y"
-			results = "fruRUF" # < make this a function somehow?
+			results = "fruRUF"
 		elif cube.faces[cube.facenames[3]].squares[1][0]: != "y"
 			results = "fruRUF" 
 		elif cube.faces[cube.facenames[3]].squares[1][2]: != "y"
