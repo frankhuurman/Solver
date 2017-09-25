@@ -738,12 +738,12 @@ def algorithm():
 	count = 0
 	while not vars.solved: # Check if the cube is solved
 		while not vars.algo1:# Check to see if the white edges are solved
-			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
-				whiteEdges = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
+			for name in vars.cube.facenames: # Check each face for edges # name comes from where?	
+				edges, colorCombo = vars.cube.getEdge(name, "w") # Check each block asociated with an edge to see if it is white
+				"""^^ updated this line for the new cube code."""
 				while (len(whiteEdges) > 0): # Don't need to go further if there are no white edges.
-					edges, colorCombo = vars.cube.faces[name].checkEdges("w") # Check each block asociated with an edge to see if it is white
-					pos = whiteEdges[0]
-					colorCombo = otherSide # Check the other side of the edge to see what color it is
+					edges, colorCombo = vars.cube.getEdge(name, "w") # Check each block asociated with an edge to see if it is white
+					pos = edges[0]
 					ifBulk(colorCombo[0], pos[0])
 					count += 1 # Used to indicate a edge has been solved
 					if count == 4: 
