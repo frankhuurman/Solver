@@ -114,29 +114,23 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-	def getEdge(self, name, pos):
+	def getEdge(self, name, color):
 		"""Return the colors of pos and the other color of that edge element."""
 
-		edges = [[0,1], [1,0], [1,2], [2,1]]
-
-
-		side = "" #const.sides[const.edges.index(pos)]
-		if (pos[0] == 1):
-			if (pos[1] == 0):
-				side = "left"	#2
-			else:
-				side = "right"	#4
-		else:
-			if (pos[1] == 0):
-				side = "up"	#1
-			else:
-				side = "down"	#3
-		print(name)
-		print(self.faces[name].getSide(name))
-		print(self.faces[name].face_color)
-		col1 = self.faces[name].squares[pos[0]][pos[1]]
-		col2 = self.getSide(name)[1]
-		return(str(col1 + col2))
+		order = [0, 1, 3, 2]
+		
+		coords = []
+		colors = []
+		for i, (x, y) in zip(order, const.edges):
+			if (color == self.faces[name].squares[x][y]):
+				otherSide = const.facenames[const.connections[name][i]]
+				otherColor = self.faces[otherSide].getSide(name)[1]
+				colorCombo = color + otherColor
+				print(name, otherSide, otherColor)
+				print("moi", i, x, y)
+				coords.append((x, y))
+				colors.append(colorCombo)
+		return(coords, colors)
 
 	def __rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
@@ -245,11 +239,8 @@ class face(object):
 		self.face_name = face_name
 		self.connections = conns
 		for i in range(3):
-			temp = []
-			for j in range(3):
-				temp.append(data[(i*3)+j])
-			self.squares.append(temp)
-			del(temp)
+			self.squares.append(data[i*3 : i*3+3])
+
 
 	def checkEdges(self, color):
 		"""Returns a list with the coords of the edge square that matches the selected color."""
@@ -315,7 +306,7 @@ class face(object):
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
 		colors = []
-		print(self.face_name, self.connections)
+#		print(self.face_name, self.connections)
 		if (self.connections[name] == "up"):
 			for i in range(3):
 				colors.append(self.squares[0][i])

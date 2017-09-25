@@ -703,14 +703,14 @@ def ifBulk(colorCombo, pos):
 				results = "ulULUBuburURUFuf"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
-	if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
-		if cube.faces[cube.facenames[3]].squares[0][1]: is not "y"
+	'''if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
+		if cube.faces[cube.facenames[3]].squares[0][1] is not "y"
 			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[1][0]: is not "y"
+		elif cube.faces[cube.facenames[3]].squares[1][0] is not "y"
 			results = "fruRUF" 
-		elif cube.faces[cube.facenames[3]].squares[1][2]: is not "y"
+		elif cube.faces[cube.facenames[3]].squares[1][2] is not "y"
 			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[2][1]: is not "y"
+		elif cube.faces[cube.facenames[3]].squares[2][1] is not "y"
 			results = "fruRUF"
 	if not vars.algo5: pass# List algo 5 
 		# Check the color combo.
@@ -732,7 +732,7 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
-	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
+	vars.moveListBuffer += results # Adds this cycle's moves into the buffer. '''
 
 def algorithm():
 	count = 0
@@ -749,7 +749,7 @@ def algorithm():
 					if count == 4: 
 						count = 0 # reset count to 0
 						algo1 = True
-		while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
+		'''while not vars.algo2:  # Check to see if the white face is solved, simple Boolean TRUE / FALSE (LOOP)
 			# Check each corner block for the color white
 				count += 1
 				if count == 4:# Increase a counter that keeps track of the amount of correct corners.
@@ -820,6 +820,6 @@ def algorithm():
 					# Skip this block leaving it be as is.
 				# Else go through the list
 					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
-				# Break out of this loop (This is under the assumption everything up until now has worked)
+				# Break out of this loop (This is under the assumption everything up until now has worked)'''
 	if vars.cube.solved():
 		return vars.moveListBuffer
