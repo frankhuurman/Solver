@@ -1,5 +1,6 @@
 import pygame
 import os
+import sys
 #import calc_rest
 import cube as kubus
 import serial
@@ -201,10 +202,10 @@ def sendToArduino():
 	and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
 	Maybe move this function to the algorithm or cube object python file?
 	"""
-
-	ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
+	
+	ser = serial.Serial("COM3", 9600, timeout=2)  # Open serial port
 	print("Port used: " + ser.name)         # Check which port was really used
-
+	
 	send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
 	"""
 	if len(send_list) > 62:
@@ -219,12 +220,13 @@ def sendToArduino():
 				print ("Handshake from Arduino received")
 				#The arduino_string part + while loop is for manual testing commands
 				#Make this a comment and uncomment for item in send_list for regular use
-				"""
+				
 				arduino_string = ""
 				
 				while arduino_string != "q":
 					arduino_string = input("Type string to send to arduino: ")
 					ser.write(str.encode(arduino_string))
+				
 				"""
 				for i in range(int(len(send_list) / 64)): # dus voor i in range 0?
 					for i, item in enumerate(send_list): # er is maar 1 item in send_list
@@ -234,7 +236,7 @@ def sendToArduino():
 
 							#print (send_list[i*64:(i+1)*64]) # Print toch de hele string "uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB" van 72 karakters ipv 64 karakters
 				print(cut_list)
-
+				"""
 				"""
 				if len(send_list[0]) > 40:
 					print("test")
@@ -251,6 +253,8 @@ def sendToArduino():
 				ser.write(arduino_send_bytes)
 			elif data == b'hello':
 				print ("it says hello!")
+			elif data == b'Cube removed?':
+				print ("Cube removed!")
 			else:
 				# This actually prints the data received from Serial.print from Arduino
 				# First it decodes the received raw byte data to a utf-8 string

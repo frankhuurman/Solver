@@ -253,7 +253,17 @@ void loop() {
           turn2(); //note 2
         }
         else if(incomingByte == ending){
-          Serial.print(" Done ")
+          Serial.print(" Done ");
+          delay(5000);
+          Serial.print(" Countdown starting, please remove Cube ");
+          delay(1000);
+          Serial.print(" 3 ");
+          delay(1000);
+          Serial.print(" 2 ");
+          delay(1000);
+          Serial.print(" 1 ");
+          delay(1000);
+          Serial.print("Cube removed?");
         }
         
         else if (incomingByte == carriage){
