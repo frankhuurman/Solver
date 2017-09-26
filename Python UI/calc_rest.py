@@ -131,7 +131,7 @@ def ifBulk(colorCombo, pos):
 				results = "ll"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				results = "Bllb"
-		if colorCombo == whiteBlue: # correct pos == cube.faces[cube.facenames[1]].squares[2][1]: White surface used for position # V
+		if colorCombo == "wb": # correct pos == cube.faces[cube.facenames[1]].squares[2][1]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
@@ -228,7 +228,7 @@ def ifBulk(colorCombo, pos):
 				results = "rdR"
 			elif pos == cube.faces[cube.facenames[3]].squares[2][1]: # V
 				results = "D"
-		if colorCombo == whiteOrange: # correct pos == cube.faces[cube.facenames[1]].squares[1][2]: White surface used for position # V
+		if colorCombo == "wo": # correct pos == cube.faces[cube.facenames[1]].squares[1][2]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
@@ -325,7 +325,7 @@ def ifBulk(colorCombo, pos):
 				results = "R"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "URu"
-		if colorCombo == whiteGreen: # correct pos == cube.faces[cube.facenames[1]].squares[0][1]: White surface used for position # V
+		if colorCombo == "wg": # correct pos == cube.faces[cube.facenames[1]].squares[0][1]: White surface used for position # V
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: # V
 				results = "U"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]: # V
@@ -375,7 +375,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][1]: # V
 				results = "UrbuuBRu"
 	if not vars.algo2: # List algo2 # The position is the position of the white surface of the corner. <-- IMPORTANT
-		if colorCombo == whiteRedGreen: # Green considered front
+		if colorCombo == "wrg": # Green considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "RDrd" 
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
@@ -424,7 +424,7 @@ def ifBulk(colorCombo, pos):
 				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrdRDrdRDrdRDrd"
-		if colorCombo == whiteRedBlue: # Red considered front
+		if colorCombo == "wrb": # Red considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "dRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
@@ -473,7 +473,7 @@ def ifBulk(colorCombo, pos):
 				results = "ldLRDrdRDrdRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "LddLRDrd"
-		if colorCombo == whiteOrangeBlue: # Blue considered front
+		if colorCombo == "wob": # Blue considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]: # V
 				results = "ddRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
@@ -522,7 +522,7 @@ def ifBulk(colorCombo, pos):
 				results = "LddlRDrdRDrdRDrd"
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "rDDRdRDrdRDrdRDrd"
-		if colorCombo == whiteOrangeGreen: # Orange considered front
+		if colorCombo == "wog": # Orange considered front
 			if pos == cube.faces[cube.facenames[0]].squares[0][0]:
 				results = "DRDrd"
 			elif pos == cube.faces[cube.facenames[0]].squares[0][2]:
@@ -572,7 +572,7 @@ def ifBulk(colorCombo, pos):
 			elif pos == cube.faces[cube.facenames[5]].squares[2][2]:
 				results = "RDrdRDrd"
 	if not vars.algo3: # List algo 3 # 
-		if colorCombo == redBlue: # Red considered front # Mirror of orangeGreen
+		if colorCombo == "rb": # Red considered front # Mirror of orangeGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "urURUFufuuULulufUFULulufUFuLulufUF"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -605,7 +605,7 @@ def ifBulk(colorCombo, pos):
 				results = "urURUFufuLulufUF" 
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ubUBURurUULulufUFULulufUFuLulufUF" 																	
-		if colorCombo == redGreen: # Red considered front # Mirror of orangeBlue
+		if colorCombo == "rg": # Red considered front # Mirror of orangeBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "" # this is the correct position so return a empty string.
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -638,7 +638,7 @@ def ifBulk(colorCombo, pos):
 				results = "urURUFUrURUFuf"	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "URurubUBurURUFuf"								
-		if colorCombo == orangeGreen: # Orange considered front. # Mirror of redBlue
+		if colorCombo == "og": # Orange considered front. # Mirror of redBlue
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]: 
 				results = "uLulufUF" 
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
@@ -671,7 +671,7 @@ def ifBulk(colorCombo, pos):
 				results = "ubUBURurUULulufUFULulufUFuLulufUF"	
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFuLulufUF" #ER											
-		if colorCombo == orangeBlue: # orange considered front.# Mirror of redGreen
+		if colorCombo == "ob": # orange considered front.# Mirror of redGreen
 			if pos == cube.faces[cube.facenames[0]].squares[0][1]:
 				results = "ulULUBuburURUFufurURUFufUrURUFuf"
 			elif pos == cube.faces[cube.facenames[0]].squares[1][0]:
