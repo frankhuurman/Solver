@@ -7,10 +7,6 @@ Included below is a list that is to be used when creating whatever code it is th
 	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
 	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
 
-	<<<<< VITAL >>>>>
-
-		The list below is all for algo2, lists for algo3 and beyond will be added in the near future.
-
 <<<<<------------------------------------------------------->>>>>
 
 <<<----- For Algo2 ----->>>
