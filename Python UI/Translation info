@@ -1,6 +1,16 @@
 When a color becomes the front face (faces you) all the other faces change color too.
 Included below is a list that is to be used when creating whatever code it is that will be used for translating.
 
+<<<<<-------------------- IMPORTANT ------------------------>>>>>
+	
+	Ok so, while sides may be changed and what not the actual array behind it needs to remian the same. 
+	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
+	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
+
+<<<<<------------------------------------------------------->>>>>
+
+<<<----- For Algo2 ----->>>
+
 Default
 	Front: White
 	Left: Red
@@ -9,12 +19,12 @@ Default
 	Bottom: Blue
 	Back: Yellow
 
-Red Front
+Red Front # Correct!
 	Front: Red
-	Left: Yellow
-	Right: White
-	Top: Green
-	Bottom: Blue
+	Left: Green
+	Right: Blue
+	Top: White
+	Bottom: Yellow
 	Back: Orange
 
 Orange Front
@@ -25,12 +35,12 @@ Orange Front
 	Bottom: Blue 
 	Back: Red
 
-Green Front
+Green Front (I'm not even going to bother explaining this one)
 	Front: Green
-	Left: Red
-	Right: Orange
-	Top: Yellow
-	Bottom: White
+	Left: Orange 
+	Right: Red
+	Top: White
+	Bottom: Yellow
 	Back: Blue
 
 Blue Front
@@ -48,3 +58,31 @@ Yellow Front
 	Top: Green
 	Bottom: Blue
 	Back: White
+
+<<<----- For Algo3 ----->>>
+
+Red Front 
+	Front: Red
+	Left: Blue
+	Right: Green
+	Top: Yellow
+	Bottom: White 
+	Back: Orange
+
+Orange Front
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Bottom: White
+	Back: Red
+
+<<<----- For Algo4 ----->>>
+
+Orange Front 
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Bottom: White
+	Back: Red
