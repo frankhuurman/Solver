@@ -308,6 +308,7 @@ class solver(object):
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
+						self.cube = None
 						self.resetFields()
 
 					# user color choice
@@ -376,7 +377,7 @@ class solver(object):
 		partsize = 50
 #		transList = self.translateList(movelist)
 
-
+		print(calc_rest.vars.LUT)
 		for f in self.cube.faces.keys():
 #			print(f.face_name)
 			print(self.cube.getEdge(f, "r"))

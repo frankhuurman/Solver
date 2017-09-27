@@ -46,8 +46,11 @@ class cube(object):
 	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):
-
-		self.start = outputlist
+		
+#		self.start = outputlist
+		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
+		for l in dinges:
+			self.start.append(l)
 		self.setStart()
 
 
@@ -125,10 +128,11 @@ class cube(object):
 			if (color == self.faces[name].squares[x][y]):
 				otherSide = const.facenames[const.connections[name][i]]
 				otherColor = self.faces[otherSide].getSide(name)[1]
-				colorCombo = color + otherColor
+				colorCombo = color + str(otherColor)
 				print(name, otherSide, otherColor)
 				print("moi", i, x, y)
-				coords.append((x, y))
+				f = const.facenames.index(name)
+				coords.append((f, x, y))
 				colors.append(colorCombo)
 		return(coords, colors)
 
