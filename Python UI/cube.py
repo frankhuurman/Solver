@@ -48,7 +48,7 @@ class cube(object):
 	def __init__(self, outputlist):
 
 #		self.start = outputlist
-		dinges = "ywoyrygybwogbwoobbrrgworrwbyrobyoyoywywwgbgogrggrrgybbw"
+		dinges = "brrwrrrggbogbwbwwbyyooooooogywgyggyyrbyrbybbyogwwgrwwr"
 		for l in dinges:
 			self.start.append(l)
 		self.setStart()
