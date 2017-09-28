@@ -580,14 +580,14 @@ def ifBulk(colorCombo, pos):
 				results = "uu"
 		else:
 			results = "fruRUF"
-	'''if not vars.algo5: pass# List algo 5 
+	if not vars.algo5: pass# List algo 5 
 		# Check the color combo.
 			# Check if it's in the correct position.
 				# return
 			# else Check the colorCombos of the three other edges.
 			# move accordingly.
 			# repeat until done.
-	if not vars.algo6: pass# List algo 6
+	'''if not vars.algo6: pass# List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
 	if not vars.algo7: # List algo 7
 		if colorCombo == yellowOrangeBlue: pass
