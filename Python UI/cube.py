@@ -42,7 +42,7 @@ class cube(object):
 	"""Object representing one rubik's cube."""
 	
 	faces = {}
-#	facenames = const.facenames
+	facenames = const.facenames
 	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):

@@ -378,6 +378,9 @@ class solver(object):
 #		transList = self.translateList(movelist)
 
 		print(calc_rest.vars.LUT)
+
+		print(calc_rest.algorithm())
+
 		for f in self.cube.faces.keys():
 #			print(f.face_name)
 			print(self.cube.getEdge(f, "r"))

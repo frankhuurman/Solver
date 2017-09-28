@@ -36,9 +36,9 @@ class vars:
 					cpos = (line.find(":"))
 					if (cpos is not -1):
 						m = line[cpos + 2:].strip()
-						f = line[cpos - 9]
-						x = line[cpos - 6]
-						y = line[cpos - 3]
+						f = int(line[cpos - 9])
+						x = int(line[cpos - 6])
+						y = int(line[cpos - 3])
 						lut[alg][cc][(f, x, y)] = m
 
 		return(lut)
@@ -47,7 +47,7 @@ class vars:
 	moveListBuffer = ""
 	solved = False
 	algos = []
-	for i in range(7):
+	for i in range(3):
 		algos.append(False)
 	cube = None
 
@@ -62,39 +62,30 @@ def ifBulk(colorCombo, pos):
 	cube = vars.cube  
 	results = ""
 
-	for i, a in enumerate(vars.algos[:3]):
+	for i, a in enumerate(vars.algos):
 		if (not a):
-			results = vars.LUT[i][cc][pos]
-
-		"""
-	if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
-		if cube.faces[cube.facenames[3]].squares[0][1] is not "y"
+			results = vars.LUT[i][colorCombo][pos]
+				
+	if not vars.algo4: # Blue considered front 
+		if cube.faces[cube.facenames[3]].squares[0][1] == "y":
+			if cube.faces[cube.facenames[3]].squares[1][0] == "y":
+				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
+					if cube.faces[cube.facenames[3]].squares[2][1] == "y":
+						results = "" 
+				else:
+					results = "fruRUF"                                               
+			elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
+				results = "U"
+		elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
+			if cube.faces[cube.facenames[3]].squares[1][2] == "y":
+				results = "fruRUF"
+			elif cube.faces[cube.facenames[3]].squares[2][1] == "y":
+				results = "u"
+		elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
+			if cube.faces[cube.facenames[3]].squares[2][1] == "y":
+				results = "uu"
+		else:
 			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[1][0] is not "y"
-			results = "fruRUF" 
-		elif cube.faces[cube.facenames[3]].squares[1][2] is not "y"
-			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[2][1] is not "y"
-			results = "fruRUF"
-	if not vars.algo5: pass# List algo 5 
-		# Check the color combo.
-			# Check if it's in the correct position.
-				# return
-			# else Check the colorCombos of the three other edges.
-			# move accordingly.
-			# repeat until done.
-	if not vars.algo6: pass# List algo 6
-		# Not even going to bother attempting to write pseudo code for this one at present.
-	if not vars.algo7: # List algo 7
-		if colorCombo == yellowOrangeBlue: pass
-			# Code goes here.
-		if colorCombo == yellowBlueRed: pass
-			# Code goes here.
-		if colorCombo == yellowRedGreen: pass
-			# Code goes here.
-		if colorCombo == yellowGreenOrange: pass
-			# Code goes here.
-	"""
 
 	vars.cube.sendMoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer. 
@@ -102,14 +93,14 @@ def ifBulk(colorCombo, pos):
 def algorithm():
 	count = 0
 	while not vars.solved: # Check if the cube is solved
-		while not vars.algo1:# Check to see if the white edges are solved
+		while not vars.algos[0]:# Check to see if the white edges are solved
 			for name in vars.cube.facenames: # Check each face for edges # name comes from where?
 				print(name)
 				coords, colorCombo = vars.cube.getEdge(name, "w") # Check each block associated with an edge to see if it is white
 				"""^^ updated this line for the new cube code."""
 				while (len(coords) > 0): # Don't need to go further if there are no white edges.
 					coords, colorCombo = vars.cube.getEdge(name, "w") # Check each block associated with an edge to see if it is white
-					pos = edges[0]
+					#pos = edges[0]
 					ifBulk(colorCombo[0], coords[0])
 					count += 1 # Used to indicate an edge has been solved
 					if count == 4: 
