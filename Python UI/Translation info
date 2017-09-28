@@ -79,10 +79,10 @@ Orange Front
 
 <<<----- For Algo4 ----->>>
 
-Orange Front 
-	Front: Orange
-	Left: Green
-	Right: Blue
+Orange Blue
+	Front: Blue
+	Left: Orange
+	Right: Red
 	Top: Yellow
 	Bottom: White
-	Back: Red
+	Back: Green

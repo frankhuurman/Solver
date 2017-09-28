@@ -560,14 +560,25 @@ def ifBulk(colorCombo, pos):
 				results = "ulULUBuburURUFuf"
 			elif pos == cube.faces[cube.facenames[5]].squares[1][2]:
 				results = "ULulufUFUrURUFuf"						
-	if not vars.algo4: pass # Orange considered front # can be any other color aswell, but I figured it would be easier to use a color that already has to be translated anyways. 
-		if cube.faces[cube.facenames[3]].squares[0][1] is not "y"
-			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[1][0] is not "y"
-			results = "fruRUF" 
-		elif cube.faces[cube.facenames[3]].squares[1][2] is not "y"
-			results = "fruRUF"
-		elif cube.faces[cube.facenames[3]].squares[2][1] is not "y"
+	if not vars.algo4: pass # Blue considered front 
+		if cube.faces[cube.facenames[3]].squares[0][1] == "y"
+			if cube.faces[cube.facenames[3]].squares[1][0] == "y"
+				if cube.faces[cube.facenames[3]].squares[1][2] == "y"
+					if cube.faces[cube.facenames[3]].squares[2][1] == "y"
+						results = "" 
+				else:
+					results = "fruRUF"                                               
+			elif cube.faces[cube.facenames[3]].squares[1][2] == "y"
+				results = "U"
+		elif cube.faces[cube.facenames[3]].squares[1][0] == "y"
+			if cube.faces[cube.facenames[3]].squares[1][2] == "y"
+				results = "fruRUF"
+			elif cube.faces[cube.facenames[3]].squares[2][1] == "y"
+				results = "u"
+		elif cube.faces[cube.facenames[3]].squares[1][2] == "y"
+			if cube.faces[cube.facenames[3]].squares[2][1] == "y"
+				results = "uu"
+		else:
 			results = "fruRUF"
 	'''if not vars.algo5: pass# List algo 5 
 		# Check the color combo.
@@ -587,9 +598,8 @@ def ifBulk(colorCombo, pos):
 			# Code goes here.
 		if colorCombo == yellowGreenOrange: pass
 			# Code goes here. '''
-	results = results 
 	cube.sendmoves(results) # Sends results to the cube updating it.
-	results = results # Adds this cycle's moves into the buffer. 
+	vars.moveListBuffer += results # Adds this cycle's moves into the buffer. 
 
 def algorithm():
 	count = 0
