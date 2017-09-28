@@ -29,7 +29,7 @@ def ifBulk(colorCombo, pos):
 	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
 	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
 	#TODO: Remove the pass statements once a section is finished
-	#TODO: change colorcombo's. see line 37
+	#TODO: Fix algo1 "wr", has the algorithm for two edges for some reason # seems to be for the white - green edge aswell as the white - red edge.
 #TODO: Decide which face to use as the front for algo4 (honestly doesn't matter since the end result is symetrical from all for sides)
 	cube = vars.cube  
 	results = ""
