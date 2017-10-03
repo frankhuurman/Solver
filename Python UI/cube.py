@@ -41,6 +41,7 @@ class const:
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
+	stopSolving = False
 	faces = {}
 	facenames = const.facenames
 	start = []	# Keep a reconrd of the starting position.
@@ -117,23 +118,24 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-	def getEdge(self, name, color):
+	def getEdge(self, color):
 		"""Return the colors of pos and the other color of that edge element."""
 
 		order = [0, 1, 3, 2]
 		
 		coords = []
 		colors = []
-		for i, (x, y) in zip(order, const.edges):
-			if (color == self.faces[name].squares[x][y]):
-				otherSide = const.facenames[const.connections[name][i]]
-				otherColor = self.faces[otherSide].getSide(name)[1]
-				colorCombo = color + str(otherColor)
-				print(name, otherSide, otherColor)
-				print("moi", i, x, y)
-				f = const.facenames.index(name)
-				coords.append((f, x, y))
-				colors.append(colorCombo)
+		for f in self.faces.keys():
+			for i, (x, y) in zip(order, const.edges):
+				if (color == self.faces[f].squares[x][y]):
+					otherSide = const.facenames[const.connections[name][i]]
+					otherColor = self.faces[otherSide].getSide(name)[1]
+					colorCombo = color + str(otherColor)
+					print(name, otherSide, otherColor)
+					print("moi", i, x, y)
+					f = const.facenames.index(name)
+					coords.append((f, x, y))
+					colors.append(colorCombo)
 		return(coords, colors)
 
 	def __rotate(self, name, dir):
