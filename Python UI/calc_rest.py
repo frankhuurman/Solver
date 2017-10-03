@@ -70,7 +70,6 @@ def ifBulk(colorCombo, pos):
 			results = vars.LUT[i][cc][pos]
 			break
 			
-			
 	if not vars.algo4: # Blue considered front 
 		if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 			if cube.faces[cube.facenames[3]].squares[1][0] == "y":
