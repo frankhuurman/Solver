@@ -20,7 +20,8 @@ if not vars.algo5:
 				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 					results = "u"
 				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
-					{MOVES GO HERE}
+					front = "red"
+					results = "ruRuruuRu"
 			elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 					{MOVES GO HERE}

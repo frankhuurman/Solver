@@ -6,6 +6,7 @@ Included below is a list that is to be used when creating whatever code it is th
 	Ok so, while sides may be changed and what not the actual array behind it needs to remian the same. 
 	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
 	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
+	First letter is the turn assuming the default, the second is the equivelant turn assuming the above mentioned color is considered the front.
 
 <<<<<------------------------------------------------------->>>>>
 
@@ -19,13 +20,27 @@ Default
 	Bottom: Blue
 	Back: Yellow
 
-Red Front # Correct!
+	f = f
+	r = r
+	u = u
+	b = b
+	l = l
+	d = d
+
+Red Front
 	Front: Red
 	Left: Green
 	Right: Blue
 	Top: White
 	Bottom: Yellow
 	Back: Orange
+
+	f = u
+	r = b 
+	u = l
+	b = d
+	l = f
+	d = r
 
 Orange Front
 	Front: Orange
@@ -35,13 +50,27 @@ Orange Front
 	Bottom: Blue 
 	Back: Red
 
-Green Front (I'm not even going to bother explaining this one)
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+
+Green Front
 	Front: Green
 	Left: Orange 
 	Right: Red
 	Top: White
 	Bottom: Yellow
 	Back: Blue
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
 
 Blue Front
 	Front: Blue
@@ -50,6 +79,13 @@ Blue Front
 	Top: White
 	Bottom: Yellow 
 	Back: Green
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
 
 <<<----- For Algo3 ----->>>
 
@@ -61,6 +97,13 @@ Red Front
 	Bottom: White 
 	Back: Orange
 
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+
 Orange Front
 	Front: Orange
 	Left: Green
@@ -68,6 +111,13 @@ Orange Front
 	Top: Yellow
 	Bottom: White
 	Back: Red
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
 
 <<<----- For Algo4 ----->>>
 
@@ -78,3 +128,10 @@ Orange Blue
 	Top: Yellow
 	Bottom: White
 	Back: Green
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
