@@ -70,7 +70,7 @@ algo1
 		(4, 1, 0) : ddrDD
 		(4, 1, 2) : r
 		(4, 2, 1) : Drd
-		(5, 0, 1) : brrB
+		(5, 0, 1) : bbDrdBB
 		(5, 1, 0) : ubrrBU
 		(5, 1, 2) : R
 		(5, 2, 1) : URu
@@ -150,7 +150,7 @@ algo2
 		(5, 0, 2) : ddRDrd
 		(5, 2, 0) : ldLRDrdRDrdRDrdRDrdRDrd
 		(5, 2, 2) : LddLRDrd
-	wob
+	wob 
 		(0, 0, 0) : ddRDrd
 		(0, 0, 2) : LddlRDrd
 		(0, 2, 0) : dRDrdRDrdRDrdRDrdRDrd

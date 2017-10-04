@@ -44,10 +44,10 @@ Red Front
 
 Orange Front
 	Front: Orange
-	Left: White
-	Right: Yellow
-	Top: Green
-	Bottom: Blue 
+	Left: Blue
+	Right: Green
+	Top: White
+	Bottom: Yellow 
 	Back: Red
 
 	f = 
