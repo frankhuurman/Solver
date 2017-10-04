@@ -1,0 +1,63 @@
+#cube.faces[cube.facenames[0]].squares[0][0] left (red)
+#cube.faces[cube.facenames[1]].squares[0][0] front (white)
+#cube.faces[cube.facenames[2]].squares[0][0] right (orange)
+#cube.faces[cube.facenames[3]].squares[0][0] back (yellow)
+#cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
+#cube.faces[cube.facenames[5]].squares[0][0] top (green)
+
+	if cube.faces[cube.facenames[5]].squares[0][1] is not "g" # Opposite of blue
+	if cube.faces[cube.facenames[4]].squares[2][1] is not "b"
+	if cube.faces[cube.facenames[0]].squares[1][0] is not "r"
+	if cube.faces[cube.facenames[2]].squares[1][2] is not "o"
+
+==============================================================
+
+
+if not vars.algo5: 
+	if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
+		if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
+			if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					results = "u"
+				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+			elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+		elif cube.faces[cube.facenames[4]].squares[1][2] == "o":
+			if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+			elif cube.faces[cube.facenames[2]].squares[1][2] == "o":				
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+	elif cube.faces[cube.facenames[0]].squares[1][0] is not "r":
+		if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
+			if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+			elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+		elif cube.faces[cube.facenames[4]].squares[2][1] == "b":
+			if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+			elif cube.faces[cube.facenames[2]].squares[1][2] == "o"
+				if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+					{MOVES GO HERE}
+				if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+					{MOVES GO HERE}
+		
+		
