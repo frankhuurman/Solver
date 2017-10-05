@@ -354,6 +354,11 @@ class solver(object):
 		#print(calc_rest.vars.LUT)
 
 		print(calc_rest.algorithm())
+#		for m in "Brrb":
+#			input("next move: " + m)
+#			self.cube.sendMoves(m)
+
+
 #		self.resetFields()
 #		self.cube = None
 

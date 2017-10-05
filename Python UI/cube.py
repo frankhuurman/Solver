@@ -9,7 +9,8 @@ class const:
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 
 	# Corners is the collection of the corner elements of a face. Used in the solving algorithm.
-	corners = [[0,0], [0,2], [2,0], [2,2]]
+	# [[x,y, xFace,yFace], [x,y, xFace,yFace]], xFace and yFace refer to sides[]
+	corners = [[0,0, 1,0], [0,2, 0,3], [2,0, 2,1], [2,2, 3,2]]
 
 	# rotateOrder is the collection of all the elements of a face that are moved
 	# during a rotation of that face.
@@ -141,6 +142,21 @@ class cube(object):
 					coords.append((fIndex, x, y))
 					colors.append(colorCombo)
 		return(coords, colors)
+
+	def getCorners(self, color):
+		"""Returns a list with the coords of the corner squares that match the selected color."""
+		coords = []
+		colors = []
+		for f in self.faces.keys():
+			for x, y, s1, s2 in const.corners:
+				if (color == self.faces[f].squares[x][y]):
+					side1 = const.facenames[const.connections[f][s1]]
+					side2 = const.facenames[const.connections[f][s2]]
+					main = self.faces[f].connections[side1]
+					sec = self.faces[side1].connections[f]
+					sq1 = self.__turnForPrint(main, sec, self.faces[side1].squares, f)
+					coords.append((f, x, y))
+		return(ret)
 
 	def __rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""

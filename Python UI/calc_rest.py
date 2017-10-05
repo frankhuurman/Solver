@@ -46,6 +46,7 @@ class vars:
 		return(lut)
 
 	LUT = getLUT()
+	translist = []
 	moveListBuffer = ""
 	solved = False
 	algo1 = False
@@ -95,15 +96,29 @@ def ifBulk(colorCombo, pos):
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 	print(vars.moveListBuffer)
 
+def translateMoves(type, moves):
+
+	newMoves = ""
+	for m in moves:
+		case = False
+		if (m.isupper()):
+			case = True
+		n = vars.translist[type][m]
+		if (case):
+			n = n.upper()
+		newMoves += n
+	return(newMoves)
+
+
 def algorithm():
 
 	input("Start solving.")
 	results = ""
-	count = 0
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
+		count = 0
 		while not vars.algo1 and not vars.cube.stopSolving:# Check to see if the white edges are solved
+			count = 0
 			coords, colors = vars.cube.getEdge("w")
-			done = 0
 			for i in range(len(coords)):
 				moves = vars.LUT[0][colors[i]][coords[i]]
 				if (moves is not ""):
@@ -111,13 +126,17 @@ def algorithm():
 					vars.moveListBuffer += moves
 					break	# Redo the while loop to get the current location of all white edges.
 				else:
-					done += 1	# If sqaure is correct, count it.
-				if (done == 4):
+					count += 1	# If sqaure is correct, count it.
+				if (count == 4):
 					print(coords, colors)
 					vars.algo1 = True	# All white edges are resolved, end this step of algorithm.
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 
+#		whiteRedGreen:		Green considered front
+#		whiteBlueRed:		Red considered front
+#		whiteOrangeBlue:	Blue considered front
+#		whiteGreenOrange:	Orange considered front
 
 		"""
 			for i, name in enumerate(vars.cube.facenames): # Check each face for edges # name comes from where?
