@@ -15,6 +15,8 @@
 class vars:
 	
 	def getLUT():
+		"""Method to extract data from the LUT.txt file."""
+
 		lut = []
 		alg = -1
 		cc = ""
@@ -35,7 +37,7 @@ class vars:
 				else:
 					cpos = (line.find(":"))
 					if (cpos is not -1):
-						m = line[cpos + 2:].strip()
+						m = line[(cpos + 2):].strip()
 						f = int(line[cpos - 9])
 						x = int(line[cpos - 6])
 						y = int(line[cpos - 3])
@@ -46,9 +48,10 @@ class vars:
 	LUT = getLUT()
 	moveListBuffer = ""
 	solved = False
-	algos = []
-	for i in range(3):
-		algos.append(False)
+	algo1 = False
+	algo2 = False
+	algo3 = False
+	algo4 = False
 	cube = None
 
 
@@ -93,13 +96,27 @@ def ifBulk(colorCombo, pos):
 	print(vars.moveListBuffer)
 
 def algorithm():
+
+	input("Start solving.")
 	results = ""
 	count = 0
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
-		while not vars.algos[0] and not vars.cube.stopSolving:# Check to see if the white edges are solved
-			for coords, colors in vars.cube.getEdge("w"):
-				results += vars.LUT[0][colorCombo][pos]
-		print(results)
+		while not vars.algo1 and not vars.cube.stopSolving:# Check to see if the white edges are solved
+			coords, colors = vars.cube.getEdge("w")
+			done = 0
+			for i in range(len(coords)):
+				moves = vars.LUT[0][colors[i]][coords[i]]
+				if (moves is not ""):
+					vars.cube.sendMoves(moves)
+					vars.moveListBuffer += moves
+					break	# Redo the while loop to get the current location of all white edges.
+				else:
+					done += 1	# If sqaure is correct, count it.
+				if (done == 4):
+					print(coords, colors)
+					vars.algo1 = True	# All white edges are resolved, end this step of algorithm.
+		print(vars.moveListBuffer)
+		vars.cube.stopSolving = True
 
 
 		"""

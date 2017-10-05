@@ -69,8 +69,12 @@ class cube(object):
 
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
+
+		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
+			if (str(move).lower() == "u"):
+				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
@@ -128,13 +132,13 @@ class cube(object):
 		for f in self.faces.keys():
 			for i, (x, y) in zip(order, const.edges):
 				if (color == self.faces[f].squares[x][y]):
-					otherSide = const.facenames[const.connections[name][i]]
-					otherColor = self.faces[otherSide].getSide(name)[1]
+					otherSide = const.facenames[const.connections[f][i]]
+					otherColor = self.faces[otherSide].getSide(f)[1]
 					colorCombo = color + str(otherColor)
-					print(name, otherSide, otherColor)
-					print("moi", i, x, y)
-					f = const.facenames.index(name)
-					coords.append((f, x, y))
+#					print(f, otherSide, otherColor)
+#					print("moi", i, x, y)
+					fIndex = const.facenames.index(f)
+					coords.append((fIndex, x, y))
 					colors.append(colorCombo)
 		return(coords, colors)
 
