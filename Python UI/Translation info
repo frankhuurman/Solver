@@ -138,20 +138,20 @@ Blue Front
 
 <<<----- For Algo5 ----->>>
 
-Red Front (Dang commies)
-	Front: Red 
-	Left: Blue 
-	Right: Green 
-	Top: Yellow 
+Red Front 
+	Front: Red
+	Left: Blue
+	Right: Green
+	Top: Yellow
 	Bottom: White 
-	Back: Orange 
+	Back: Orange
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = b
+	u = r
+	b = u
+	l = f
+	d = l
 
 Green Front
 	Front: Green 
@@ -161,12 +161,12 @@ Green Front
 	Bottom: White 
 	Back: Blue 
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = r
+	u = f
+	b = u
+	l = l
+	d = b
 
 Blue Front
 	Front: Blue
@@ -176,12 +176,12 @@ Blue Front
 	Bottom: White
 	Back: Green
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = l
+	u = b
+	b = u
+	l = r
+	d = f
 	
 Orange Front
 	Front: Orange
@@ -191,9 +191,9 @@ Orange Front
 	Bottom: White
 	Back: Red
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = f
+	u = l
+	b = u
+	l = b
+	d = r
