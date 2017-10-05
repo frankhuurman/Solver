@@ -65,12 +65,12 @@ Green Front
 	Bottom: Yellow
 	Back: Blue
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = u
+	r = l
+	u = f
+	b = d
+	l = r
+	d = b
 
 Blue Front
 	Front: Blue
@@ -80,12 +80,12 @@ Blue Front
 	Bottom: Yellow 
 	Back: Green
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = u
+	r = r
+	u = b
+	b = d
+	l = l
+	d = f
 
 <<<----- For Algo3 ----->>>
 
