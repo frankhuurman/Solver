@@ -50,12 +50,12 @@ Orange Front
 	Bottom: Yellow 
 	Back: Red
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = u
+	r = f
+	u = r
+	b = d
+	l = b
+	d = l
 
 Green Front
 	Front: Green
@@ -121,13 +121,75 @@ Orange Front
 
 <<<----- For Algo4 ----->>>
 
-Orange Blue
+Blue Front
 	Front: Blue
 	Left: Orange
 	Right: Red
 	Top: Yellow
 	Bottom: White
 	Back: Green
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+
+<<<----- For Algo5 ----->>>
+
+Red Front (Dang commies)
+	Front: Red 
+	Left: Blue 
+	Right: Green 
+	Top: Yellow 
+	Bottom: White 
+	Back: Orange 
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+
+Green Front
+	Front: Green 
+	Left: Red 
+	Right: Orange 
+	Top: Yellow 
+	Bottom: White 
+	Back: Blue 
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+
+Blue Front
+	Front: Blue
+	Left: Orange
+	Right: Red
+	Top: Yellow
+	Bottom: White
+	Back: Green
+
+	f = 
+	r = 
+	u = 
+	b = 
+	l = 
+	d = 
+	
+Orange Front
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Bottom: White
+	Back: Red
 
 	f = 
 	r = 
