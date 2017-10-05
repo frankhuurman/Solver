@@ -97,12 +97,12 @@ Red Front
 	Bottom: White 
 	Back: Orange
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = b
+	u = r
+	b = u
+	l = f
+	d = l
 
 Orange Front
 	Front: Orange
@@ -112,12 +112,12 @@ Orange Front
 	Bottom: White
 	Back: Red
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = f
+	u = l
+	b = u
+	l = b
+	d = r
 
 <<<----- For Algo4 ----->>>
 
@@ -129,12 +129,12 @@ Blue Front
 	Bottom: White
 	Back: Green
 
-	f = 
-	r = 
-	u = 
-	b = 
-	l = 
-	d = 
+	f = d
+	r = l
+	u = b
+	b = u
+	l = r
+	d = f
 
 <<<----- For Algo5 ----->>>
 
