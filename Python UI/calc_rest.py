@@ -90,13 +90,64 @@ def ifBulk(colorCombo, pos):
 				results = "uu"
 		else:
 			results = "fruRUF"
-	if not vars.algo5: pass# List algo 5 
-		# Check the color combo.
-			# Check if it's in the correct position.
-				# return
-			# else Check the colorCombos of the three other edges.
-			# move accordingly.
-			# repeat until done.
+	if not vars.algo5: 
+		if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
+			if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
+				if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "red"
+						results = "u"
+					elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						front = "red"
+						results = "ruRuruuRu"
+				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "green"
+						results = "ruRuruuRu"
+					elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						front = "red"
+						results = "ruRuruuRu"
+			elif cube.faces[cube.facenames[4]].squares[1][2] == "b":
+				if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "orange"
+						results = "ruRuruuRu"
+					if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						front = "orange"
+						results = "ruRuruuRu"
+				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":				
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "green"
+						results = "ruRuruuRu"
+					if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						results = ""
+		elif cube.faces[cube.facenames[0]].squares[1][0] == "r":
+			if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
+				if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "blue"
+						results = "ruRuruuRu"
+					elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						front = "blue"
+						results = "ruRuruuRu"
+				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "blue"
+						results = "ruRuruuRu"
+					elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						results = ""
+						print("Error 1: This shouldn't even trigger; algo5")
+			elif cube.faces[cube.facenames[4]].squares[2][1] == "b":
+				if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
+					if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
+						front = "orange"
+						results = "ruRuruuRu"
+					elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
+						results = ""
+						print("Error 2: This shouldn't event trigger; algo5")
+				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+					results = ""
+					print("Error 3: This shouldn't even trigger; algo5")
 	'''if not vars.algo6: pass# List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
 	if not vars.algo7: # List algo 7
