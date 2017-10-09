@@ -148,9 +148,9 @@ def ifBulk(colorCombo, pos):
 				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 					results = ""
 					print("Error 3: This shouldn't even trigger; algo5")
-	'''if not vars.algo6: pass# List algo 6
+	if not vars.algo6: pass# List algo 6
 		# Not even going to bother attempting to write pseudo code for this one at present.
-	if not vars.algo7: # List algo 7
+	'''if not vars.algo7: # List algo 7
 		if colorCombo == yellowOrangeBlue: pass
 			# Code goes here.
 		if colorCombo == yellowBlueRed: pass
