@@ -172,7 +172,7 @@ def ifBulk(colorCombo, pos):
 		if colorCombo == yellowRedGreen: pass
 			# Code goes here.
 		if colorCombo == yellowGreenOrange: pass
-			# Code goes here. '''
+			# Code goes here.
 	cube.sendmoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer. 
 
