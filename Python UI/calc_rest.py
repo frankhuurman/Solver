@@ -59,74 +59,74 @@ class vars:
 	cube = None
 
 
-def translateMoves(alg, mod, *moves):
+def translateMoves(alg, mod, moves):
 
 
 	tList = {2 :{	# Algo2
-				"red" : {"f" : "u",
+				"r" : {"f" : "u",
 							"r" : "b",
 							"u" : "l",
 							"b" : "d",
 							"l" : "f",
 							"d" : "r"},
-				"orange":{"f": "u",
+				"o":{"f": "u",
 							"r" : "f",
 							"u" : "r",
 							"b" : "d",
 							"l" : "b",
 							"d" : "l"},
-				"green":{"f" : "u",
+				"g":{"f" : "u",
 							"r" : "l",
 							"u" : "f",
 							"b" : "d",
 							"l" : "r",
 							"d" : "b"},
-				"blue": {"f" : "u",
+				"b": {"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"}
 				}, 3: {	# Algo3
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "b",
 							"u" : "r",
 							"b" : "u",
 							"l" : "f",
 							"d" : "l"},
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "f",
 							"u" : "l",
 							"b" : "u",
 							"l" : "b",
 							"d" : "r"}
 				}, 4: {	# Algo4
-				"blue": {"f" : "d",
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"}
 				}, 5: {	# Algo5
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "b",
 							"u" : "r",
 							"b" : "u",
 							"l" : "f",
 							"d" : "l"},
-				"green":{"f" : "d",
+				"g":{"f" : "d",
 							"r" : "r",
 							"u" : "f",
 							"b" : "u",
 							"l" : "l",
 							"d" : "b"},
-				"blue": {"f" : "d",
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"orange":{"f": "d",
+				"o":{"f": "d",
 							"r" : "f",
 							"u" : "l",
 							"b" : "u",
@@ -134,7 +134,8 @@ def translateMoves(alg, mod, *moves):
 							"d" : "r"}
 				}}
 				
-
+	if (moves == ""):
+		return(moves)
 	mvs = ""
 	try:
 		for m in moves:
@@ -146,7 +147,9 @@ def translateMoves(alg, mod, *moves):
 				new = new.upper()
 			mvs += new
 	except:
+		print("Not changed. ", moves)
 		return(moves)
+	print("Changed ", moves, mvs)
 	return(mvs)
 
 
@@ -275,19 +278,21 @@ def ifBulk(colorCombo, pos):
 
 def algorithm():
 
-	input("Start solving.")
 	results = ""
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
+			input("Start algo-" + str(i))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				count = 0
 				if (i == 1):
 					coords, colors = vars.cube.getCorners("w")
+					print(coords, colors)
 				else:
 					coords, colors = vars.cube.getEdge("w")
 				for j in range(len(coords)):
-					moves = vars.LUT[0][colors[j]][coords[j]]
+#					print(i, j, colors, coords)
+					moves = translateMoves(i, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves

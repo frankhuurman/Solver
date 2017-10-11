@@ -125,7 +125,7 @@ algo2
 		(5, 0, 2) : RDrdRDrdRDrdRDrd
 		(5, 2, 0) : dRDrd
 		(5, 2, 2) : RDrdRDrdRDrdRDrdRDrd
-	wrb
+	wbr
 		(0, 0, 0) : dRDrd
 		(0, 0, 2) : ldLRDrdRDrdRDrd
 		(0, 2, 0) : RDrdRDrdRDrdRDrdRDrd
@@ -175,7 +175,7 @@ algo2
 		(5, 0, 2) : DRDrd
 		(5, 2, 0) : LddlRDrdRDrdRDrd
 		(5, 2, 2) : rDDRdRDrdRDrdRDrd
-	wog
+	wgo
 		(0, 0, 0) : DRDrd
 		(0, 0, 2) : rDDrdRDrdRDrdRDrd
 		(0, 2, 0) : ddRDrdRDrdRDrdRDrdRDrd
