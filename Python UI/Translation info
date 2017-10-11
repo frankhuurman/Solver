@@ -7,6 +7,8 @@ Included below is a list that is to be used when creating whatever code it is th
 	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
 	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
 	First letter is the turn assuming the default, the second is the equivelant turn assuming the above mentioned color is considered the front.
+	Algo5 and algo7 use the same translations.
+
 
 <<<<<------------------------------------------------------->>>>>
 
@@ -201,3 +203,65 @@ Orange Front
 <<<----- For Algo6 ----->>>
 
 {Insert joke about announcing something without said thing even having a prototype at the announcement}
+
+<<<----- For Algo7 ----->>> 
+
+Red Front 
+	Front: Red
+	Left: Blue
+	Right: Green
+	Top: Yellow
+	Down: White 
+	Back: Orange
+
+	f = d
+	r = b
+	u = r
+	b = u
+	l = f
+	d = l
+
+Green Front
+	Front: Green 
+	Left: Red 
+	Right: Orange 
+	Top: Yellow 
+	Down: White 
+	Back: Blue 
+
+	f = d
+	r = r
+	u = f
+	b = u
+	l = l
+	d = b
+
+Blue Front
+	Front: Blue
+	Left: Orange
+	Right: Red
+	Top: Yellow
+	Down: White
+	Back: Green
+
+	f = d
+	r = l
+	u = b
+	b = u
+	l = r
+	d = f
+
+Orange Front
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Down: White
+	Back: Red
+
+	f = d
+	r = f
+	u = l
+	b = u
+	l = b
+	d = r
