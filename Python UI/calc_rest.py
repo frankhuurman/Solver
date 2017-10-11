@@ -148,8 +148,22 @@ def ifBulk(colorCombo, pos):
 				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 					results = ""
 					print("Error 3: This shouldn't even trigger; algo5")
-	if not vars.algo6: pass# List algo 6
-		# Not even going to bother attempting to write pseudo code for this one at present.
+	if not vars.algo6:
+		fronts = ["red", "blue", "green", "orange"]
+		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
+		edgeColor = ["rgy", "rby", "ogy", "oby"]
+		iter = 0
+		coords, colors = cube.getCorners("r")
+		for iter in range(4):
+			pas = True
+			for c in colors[iter]:
+				if (not c in edgeColor[iter]):
+					pas = False
+			if pas:
+				if (coords[iter] == location[iter]):
+					iter += 1
+					front = fronts[iter]
+					results = "urULuRUl"
 	'''if not vars.algo7: # List algo 7
 		if colorCombo == yellowOrangeBlue: pass
 			# Code goes here.

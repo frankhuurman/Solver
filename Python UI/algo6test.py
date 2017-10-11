@@ -15,14 +15,6 @@ for iter in range(4):
 			pas = False
 	if pas:
 		if (coords[iter] == location[iter])
-			i += 1
-			
-			
-			
-			
-			
-			
-			
+			iter += 1
 			front = fronts[iter]
 			results = "urULuRUl"
-			
