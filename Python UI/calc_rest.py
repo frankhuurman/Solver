@@ -148,7 +148,7 @@ def ifBulk(colorCombo, pos):
 				elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 					results = ""
 					print("Error 3: This shouldn't even trigger; algo5")
-	if not vars.algo6:
+	if not vars.algo6: # I don't believe this works
 		fronts = ["red", "blue", "green", "orange"]
 		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 		edgeColor = ["rgy", "rby", "ogy", "oby"]
