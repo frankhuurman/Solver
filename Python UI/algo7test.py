@@ -1,0 +1,1 @@
+if not vars.algo7: # This algorithm is basicly a repeat of algorithm two with some minor changes

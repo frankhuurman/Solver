@@ -164,7 +164,7 @@ def ifBulk(colorCombo, pos):
 					iter += 1
 					front = fronts[iter]
 					results = "urULuRUl"
-	'''if not vars.algo7: # List algo 7
+	if not vars.algo7: # List algo 7 # What the fuck even
 		if colorCombo == yellowOrangeBlue: pass
 			# Code goes here.
 		if colorCombo == yellowBlueRed: pass
