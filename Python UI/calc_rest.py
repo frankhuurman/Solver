@@ -306,7 +306,7 @@ def algorithm():
 #		whiteGreenOrange:	Orange considered front
 
 		
-		"""
+		""" # Can't we just include all this in the above section of code?
 		while not vars.algo4: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
