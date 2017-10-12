@@ -59,74 +59,74 @@ class vars:
 	cube = None
 
 
-def translateMoves(alg, mod, *moves):
+def translateMoves(alg, mod, moves):
 
 
 	tList = {2 :{	# Algo2
-				"red" : {"f" : "u",
+				"r" : {"f" : "u",
 							"r" : "b",
 							"u" : "l",
 							"b" : "d",
 							"l" : "f",
 							"d" : "r"},
-				"orange":{"f": "u",
+				"o":{"f": "u",
 							"r" : "f",
 							"u" : "r",
 							"b" : "d",
 							"l" : "b",
 							"d" : "l"},
-				"green":{"f" : "u",
+				"g":{"f" : "u",
 							"r" : "l",
 							"u" : "f",
 							"b" : "d",
 							"l" : "r",
 							"d" : "b"},
-				"blue": {"f" : "u",
+				"b": {"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"}
 				}, 3: {	# Algo3
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "b",
 							"u" : "r",
 							"b" : "u",
 							"l" : "f",
 							"d" : "l"},
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "f",
 							"u" : "l",
 							"b" : "u",
 							"l" : "b",
 							"d" : "r"}
 				}, 4: {	# Algo4
-				"blue": {"f" : "d",
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"}
 				}, 5: {	# Algo5
-				"red" : {"f" : "d",
+				"r" : {"f" : "d",
 							"r" : "b",
 							"u" : "r",
 							"b" : "u",
 							"l" : "f",
 							"d" : "l"},
-				"green":{"f" : "d",
+				"g":{"f" : "d",
 							"r" : "r",
 							"u" : "f",
 							"b" : "u",
 							"l" : "l",
 							"d" : "b"},
-				"blue": {"f" : "d",
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"orange":{"f": "d",
+				"o":{"f": "d",
 							"r" : "f",
 							"u" : "l",
 							"b" : "u",
@@ -134,7 +134,8 @@ def translateMoves(alg, mod, *moves):
 							"d" : "r"}
 				}}
 				
-
+	if (moves == ""):
+		return(moves)
 	mvs = ""
 	try:
 		for m in moves:
@@ -146,13 +147,20 @@ def translateMoves(alg, mod, *moves):
 				new = new.upper()
 			mvs += new
 	except:
+		print("Not changed. ", moves)
 		return(moves)
+	print("Changed ", moves, mvs)
 	return(mvs)
 
 
 
 def ifBulk(colorCombo, pos):
-	#TODO: Finish algo7 (WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!)
+	#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
+	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
+	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
+	#TODO: Remove the pass statements once a section is finished
+	#TODO: change colorcombo's. see line 37
+	#TODO: Decide which face to use as the front for algo4 (honestly doesn't matter since the end result is symetrical from all for sides)
 	cube = vars.cube  
 	results = ""
 	
@@ -270,19 +278,21 @@ def ifBulk(colorCombo, pos):
 
 def algorithm():
 
-	input("Start solving.")
 	results = ""
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
+			input("Start algo-" + str(i))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				count = 0
 				if (i == 1):
 					coords, colors = vars.cube.getCorners("w")
+					print(coords, colors)
 				else:
 					coords, colors = vars.cube.getEdge("w")
 				for j in range(len(coords)):
-					moves = vars.LUT[0][colors[j]][coords[j]]
+#					print(i, j, colors, coords)
+					moves = translateMoves(i, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
@@ -301,7 +311,7 @@ def algorithm():
 #		whiteGreenOrange:	Orange considered front
 
 		
-		""" # Can't we just include all this in the above section of code?
+		"""
 		while not vars.algo4: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
 			#Check each edge that is still not in the correct position (Back) for yellow
 				# Check if the edge is in the correct position already
