@@ -7,14 +7,27 @@
 
 # Green first, then red, then yellow.
 fronts = ["r", "b", "g", "o"]
-location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
+location = (0,0,0)
 edgeColor = ["ryg", "rby", "ogy", "oyb"]
 iter = 0
 coords, colors = cube.getCorners("o")
 coords2, colors2 = cube.getCorners("r")
-if not vars.algo7: # This algorithm is basicly a repeat of algorithm two with some minor changes
-	# Check which color is in what spot (the corner between red - yellow - green)
-	# If the colors match whichever two surround it on the same vertical layer (left - right) then turn the cube counter-clockwise
-		# If no incorrectly positioned corners are found end the algorithm by setting vars.solved to true
-	# Elif the colors do not match the two adjacant colors
-		# Add 'RDrd' as many times as needed to make the colors match the ones adjacant.  (Amount of executions based on position of the colors), add a counter-clockwise turn at the end of this
+coords3 = []
+colors3 = []
+for cl, cr in zip(colors, coords):
+	if cl in edgeColor:
+		coords3.append(cr)
+		colors3.append(cl)
+for cl, cr in zip(colors2, coords2):
+	if cl in edgeColor:
+		coords3.append(cr)
+		colors3.append(cl)
+for iter in range(4):
+	pas = True
+	for c in colors[iter]:
+		if (not c in edgeColor[iter]):
+			pas = False
+	if pas:
+		if (coords[iter] == location)
+			iter += 1
+			if 

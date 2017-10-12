@@ -155,12 +155,7 @@ def translateMoves(alg, mod, moves):
 
 
 def ifBulk(colorCombo, pos):
-	#TODO: Start mirroring the algorithm, be mindfull that there are still a few positions that will require solving.
-	#TODO: Translate the RDrd sequence to work for all four sides using each side's respective stepper motors (RDrd refers to two specific stepper motors, which would mean one corner would constantly be moved when passing RDrd to the move list.) <-- PRIORITY
-	#TODO: Look into making a function that adds 'RDrd' s depending on the position of the white surface relative to the white face when in the correct vertical row (Algo2) <-- important
-	#TODO: Remove the pass statements once a section is finished
-	#TODO: change colorcombo's. see line 37
-	#TODO: Decide which face to use as the front for algo4 (honestly doesn't matter since the end result is symetrical from all for sides)
+	#TODO: Update front and results to the translateMoves version.
 	cube = vars.cube  
 	results = ""
 	

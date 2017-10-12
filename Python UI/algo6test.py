@@ -1,3 +1,4 @@
+
 fronts = ["r", "b", "g", "o"]
 location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 edgeColor = ["ryg", "rby", "ogy", "oyb"]
