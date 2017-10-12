@@ -5,6 +5,8 @@
 #cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
+# Green first, then red, then yellow.
+
 if not vars.algo7: # This algorithm is basicly a repeat of algorithm two with some minor changes
 	# Check which color is in what spot (the corner between red - yellow - green)
 	# If the colors match whichever two surround it on the same vertical layer (left - right) then turn the cube counter-clockwise
