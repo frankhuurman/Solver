@@ -245,7 +245,7 @@ def ifBulk(colorCombo, pos):
 					print("Error 3: This shouldn't even trigger; algo5")
 
 	if not vars.algo6:
-		fronts = ["red", "blue", "green", "orange"]
+		fronts = ["r", "b", "g", "o"]
 		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 		edgeColor = ["rgy", "rby", "ogy", "oby"]
 		iter = 0
