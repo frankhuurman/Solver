@@ -2,7 +2,7 @@
 # Add something to finish algo6 if more than 1 corner is correct since there can only ever be either 0, 1 or 4 correctly placed corners there is no use in checking more than two
 # Does this work?
 
-fronts = ["red", "blue", "green", "orange"]
+fronts = ["r", "b", "g", "o"]
 location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 edgeColor = ["rgy", "rby", "ogy", "oby"]
 iter = 0
