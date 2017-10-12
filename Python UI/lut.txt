@@ -1,6 +1,6 @@
 algo1
 	wr
-		(0, 0, 1) : ubllBu'
+		(0, 0, 1) : ubllBu
 		(0, 1, 0) : bdLDB
 		(0, 1, 2) : fulUF
 		(0, 2, 1) : LfulUFl
@@ -70,7 +70,7 @@ algo1
 		(4, 1, 0) : ddrDD
 		(4, 1, 2) : r
 		(4, 2, 1) : Drd
-		(5, 0, 1) : bbDrdBB
+		(5, 0, 1) : Brrb
 		(5, 1, 0) : ubrrBU
 		(5, 1, 2) : R
 		(5, 2, 1) : URu
@@ -125,7 +125,7 @@ algo2
 		(5, 0, 2) : RDrdRDrdRDrdRDrd
 		(5, 2, 0) : dRDrd
 		(5, 2, 2) : RDrdRDrdRDrdRDrdRDrd
-	wrb
+	wbr
 		(0, 0, 0) : dRDrd
 		(0, 0, 2) : ldLRDrdRDrdRDrd
 		(0, 2, 0) : RDrdRDrdRDrdRDrdRDrd
@@ -150,7 +150,7 @@ algo2
 		(5, 0, 2) : ddRDrd
 		(5, 2, 0) : ldLRDrdRDrdRDrdRDrdRDrd
 		(5, 2, 2) : LddLRDrd
-	wob 
+	wob
 		(0, 0, 0) : ddRDrd
 		(0, 0, 2) : LddlRDrd
 		(0, 2, 0) : dRDrdRDrdRDrdRDrdRDrd
@@ -175,7 +175,7 @@ algo2
 		(5, 0, 2) : DRDrd
 		(5, 2, 0) : LddlRDrdRDrdRDrd
 		(5, 2, 2) : rDDRdRDrdRDrdRDrd
-	wog
+	wgo
 		(0, 0, 0) : DRDrd
 		(0, 0, 2) : rDDrdRDrdRDrdRDrd
 		(0, 2, 0) : ddRDrdRDrdRDrdRDrdRDrd
