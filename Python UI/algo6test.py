@@ -13,7 +13,7 @@ for iter in range(4):
 		if (not c in edgeColor[iter]):
 			pas = False
 	if pas:
-		if (coords[iter] == location[iter])
+		if (coords[iter] == location[iter]):
 			iter += 1
 			front = fronts[iter]
 			results = "urULuRUl"

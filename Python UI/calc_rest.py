@@ -288,13 +288,19 @@ def algorithm():
 				if (i == 1):
 					coords, colors = vars.cube.getCorners("w")
 					print(coords, colors)
+					print(vars.cube.printFaces("front_face"))
 				else:
 					coords, colors = vars.cube.getEdge("w")
 				for j in range(len(coords)):
 #					print(i, j, colors, coords)
-					moves = translateMoves(i, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
+					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
-						vars.cube.sendMoves(moves)
+						if (i == 1):
+							for m in moves:
+								#input("Next move: " + m)
+								vars.cube.sendMoves(m)
+						else:
+							vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:

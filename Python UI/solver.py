@@ -287,7 +287,7 @@ class solver(object):
 						if (self.cube is not None):
 							self.cube.stopSolving = True
 							self.cube = None
-						self.resetFields()
+					#	self.resetFields()
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):

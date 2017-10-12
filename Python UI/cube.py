@@ -159,10 +159,12 @@ class cube(object):
 				if (color == self.faces[f].squares[x][y]):
 					side1 = const.facenames[const.connections[f][s1]]
 					side2 = const.facenames[const.connections[f][s2]]
-					main = self.faces[f].connections[side1]
-					sec = self.faces[side1].connections[f]
-					sq1 = self.__turnForPrint(main, sec, self.faces[side1].squares, f)
-					sq2 = self.__turnForPrint(main, sec, self.faces[side2].squares, f)
+					main1 = self.faces[f].connections[side1]
+					main2 = self.faces[f].connections[side2]
+					sec1 = self.faces[side1].connections[f]
+					sec2 = self.faces[side2].connections[f]
+					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
+					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
 					c1 = blah[(x,y)][0]
 					c2 = blah[(x,y)][1]
 #					print(c1, c2, side1, side2)
