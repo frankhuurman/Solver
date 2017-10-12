@@ -174,7 +174,7 @@ algo2
 		(5, 0, 0) : ddRDrdRDrdRDrdRDrdRDrd
 		(5, 0, 2) : DRDrd
 		(5, 2, 0) : LddlRDrdRDrdRDrd
-		(5, 2, 2) : rDDRdRDrdRDrdRDrd
+		(5, 2, 2) : rDDRdRDrdRDrdRDrd # Neemt de positie van blauw, waarom?
 	wgo
 		(0, 0, 0) : DRDrd
 		(0, 0, 2) : rDDrdRDrdRDrdRDrd
