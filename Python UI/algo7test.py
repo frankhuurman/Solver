@@ -6,7 +6,12 @@
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
 # Green first, then red, then yellow.
-
+fronts = ["r", "b", "g", "o"]
+location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
+edgeColor = ["ryg", "rby", "ogy", "oyb"]
+iter = 0
+coords, colors = cube.getCorners("o")
+coords2, colors2 = cube.getCorners("r")
 if not vars.algo7: # This algorithm is basicly a repeat of algorithm two with some minor changes
 	# Check which color is in what spot (the corner between red - yellow - green)
 	# If the colors match whichever two surround it on the same vertical layer (left - right) then turn the cube counter-clockwise
