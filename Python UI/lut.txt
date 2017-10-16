@@ -126,12 +126,12 @@ algo2
 		(5, 2, 0) : RDrdRDrdRDrdRDrd
 		(5, 2, 2) : ldLRDrdRDrdRDrd
 	wbr
-		(0, 0, 0) :
-		(0, 0, 2) :
-		(0, 2, 0) :
-		(0, 2, 2) :
-		(1, 0, 0) :
-		(1, 0, 2) :
+		(0, 0, 0) : dRDrd
+		(0, 0, 2) : ldLRDrdRDrdRDrd
+		(0, 2, 0) : RDrdRDrdRDrdRDrdRDrd
+		(0, 2, 2) : RDrdRDrdRDrdRDrd
+		(1, 0, 0) : ldLRDrd
+		(1, 0, 2) : LddlRDrdRDrdRDrdRDrdRDrd
 		(1, 2, 0) :
 		(1, 2, 2) :
 		(2, 0, 0) :

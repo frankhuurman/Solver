@@ -7,8 +7,8 @@ Included below is a list that is to be used when creating whatever code it is th
 	For example when red is the front(see Red Front for context) then cube.faces[cube.facenames[0]].squares[0][0]: 
 	will be in the bottom left rather than in the top left (Which is cube.faces[cube.facenames[0]].squares[0][2]: instead)
 	First letter is the turn assuming the default, the second is the equivelant turn assuming the above mentioned color is considered the front.
+	Algo2 uses the position of the white part of the edge 
 	Algo5 and algo7 use the same translations.
-
 
 <<<<<------------------------------------------------------->>>>>
 
@@ -29,7 +29,7 @@ Default
 	l = l
 	d = d
 
-Red Front
+Red Front = WBR
 	Front: Red
 	Left: Green
 	Right: Blue
