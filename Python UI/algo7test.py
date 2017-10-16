@@ -1,3 +1,5 @@
+#TODO: Shit, ben /iets/ vergeten maar weet niet wat (duh)
+
 #cube.faces[cube.facenames[0]].squares[0][0] left (red)
 #cube.faces[cube.facenames[1]].squares[0][0] front (white)
 #cube.faces[cube.facenames[2]].squares[0][0] right (orange)
@@ -35,4 +37,3 @@ for iter in range(4):
 			for x in adjacent
 				if  cl[:2] is not adjacent:
 					results = translateMoves(2, "r", "RDrd")
-					
