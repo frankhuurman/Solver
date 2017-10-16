@@ -59,7 +59,7 @@ Orange Front
 	l = b
 	d = l
 
-Green Front
+Green Front = WRG
 	Front: Green
 	Left: Orange 
 	Right: Red

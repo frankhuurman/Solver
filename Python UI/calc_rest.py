@@ -58,7 +58,6 @@ class vars:
 	aglo7 = False
 	cube = None
 
-
 def translateMoves(alg, mod, moves):
 
 
@@ -150,14 +149,38 @@ def translateMoves(alg, mod, moves):
 		print("Not changed. ", moves)
 		return(moves)
 	print("Changed ", moves, mvs)
-	return(mvs)
+	return(mvs)	
 
+def algorithm():
 
-
-def ifBulk(colorCombo, pos):
-	#TODO: Update front and results to the translateMoves version.
-	cube = vars.cube  
 	results = ""
+	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
+		count = 0
+		for algo in range(3):
+			input("Start algo-" + str(algo))
+			while not vars.algos[algo] and not vars.cube.stopSolving:# Check to see if the white edges are solved
+				count = 0
+				if (algo == 1):
+					coords, colors = vars.cube.getCorners("w")
+					print(coords, colors)
+				else:
+					coords, colors = vars.cube.getEdge("w")
+				for j in range(len(coords)):
+#					print(i, j, colors, coords)
+					moves = translateMoves(algo+1, colors[j][-1], vars.LUT[algo][colors[j]][coords[j]])
+					if (moves is not ""):
+						vars.cube.sendMoves(moves)
+						vars.moveListBuffer += moves
+						break	# Redo the while loop to get the current location of all white edges.
+					else:
+						count += 1	# If sqaure is correct, count it.
+					if (count == 4):
+						print(coords, colors)
+						vars.algos[algo] = True	# All white edges are resolved, end this step of algorithm.
+		print(vars.moveListBuffer)
+		vars.cube.stopSolving = True
+
+	cube = vars.cube  
 	
 	if not vars.algo4: # Blue considered front 
 		if cube.faces[cube.facenames[3]].squares[0][1] == "y":
@@ -300,101 +323,6 @@ def ifBulk(colorCombo, pos):
 	cube.sendMoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 	print(vars.moveListBuffer)
-	
 
-def algorithm():
-
-	results = ""
-	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
-		count = 0
-		for i in range(3):
-			input("Start algo-" + str(i))
-			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
-				count = 0
-				if (i == 1):
-					coords, colors = vars.cube.getCorners("w")
-					print(coords, colors)
-				else:
-					coords, colors = vars.cube.getEdge("w")
-				for j in range(len(coords)):
-#					print(i, j, colors, coords)
-					moves = translateMoves(i, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
-					if (moves is not ""):
-						vars.cube.sendMoves(moves)
-						vars.moveListBuffer += moves
-						break	# Redo the while loop to get the current location of all white edges.
-					else:
-						count += 1	# If sqaure is correct, count it.
-					if (count == 4):
-						print(coords, colors)
-						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
-		print(vars.moveListBuffer)
-		vars.cube.stopSolving = True
-
-#		whiteRedGreen:		Green considered front
-#		whiteBlueRed:		Red considered front
-#		whiteOrangeBlue:	Blue considered front
-#		whiteGreenOrange:	Orange considered front
-
-		
-		""" # Can't we just include this in the block of code above.
-		while not vars.algo4: pass # Check to see if the yellow cross exists, simple Boolean TRUE / FALSE (LOOP)
-			#Check each edge that is still not in the correct position (Back) for yellow
-				# Check if the edge is in the correct position already
-					# If the block is in the correct position then mark it as completed (Can be one of four spots. aslong as it is at a edge on the yellow face it counts as a correct position)
-						count += 1 # Increase a counter that keeps track of the amount of correct edges
-						if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-							count = 0
-							algo4 = True
-					# Else go through the list using the position of the yellow edge.
-						# Store the corresponding moves required to put the edge in the correct position in moveListBuffer
-		"""
-		"""
-		while not vars.algo5:  pass# Check to see if the yellow edges are solved, simple Boolean TRUE / FALSE (LOOP)
-			# Check the color of the color on the non yellow sides of the edges.
-				# If the color matches the color of the center of the face (5)
-					count += 1# Increase a counter that keeps track of the amount of correct edges.
-					if count == 4: # If the counter indicates 3, meaning all four edges are in the correct position then break out of this loop and move onto the next part of the algorithm after setting a Boolean to TRUE
-						count = 0
-						algo5 = True
-				# Else check the color of the adjacent edge, going clockwise (Start with face 0 then 4, 2 and finaly 5)
-					# If the color of the adjacent edge matches the color of the center block of their respective face
-						# Go back to looking for a unsolved block skipping this one for the next round
-					# Else go through the list 
-						# Store the moves in moveListBuffer
-		"""
-		"""
-		while not vars.algo6: pass # Check to see if the yellow corners are prepared correctly, simple Boolean TRUE / FALSE (LOOP)
-			# Check if the side on the yellow face is NOT yellow
-				# If the other colors on the corner DO NOT match the color at the center of their respective face
-					# Go into the list using the position of this corner
-						# Calculate how many times the attached moves need to be executed to make all corners be correct.
-							# Store the attached moves in moveListBuffer as many times as is needed to react a correct cube state
-							# Set the Boolean to TRUE and break out of this loop.
-			# Else move onto the next corner
-		"""
-		"""
-		while not vars.solved: pass# Check to see if the cube is solved, simple Boolean TRUE / FALSE (LOOP)
-			# Check if all faces only contain one color 
-				# Set the Boolean to TRUE and break out of this loop
-			# Else check which yellow corners are placed incorrectly
-				# If the yellow - orange - blue corner is correctly placed
-					# Skip this block leaving it be as is.
-				# Else go through the list
-					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
-				# Check if the next corner is correctly placed
-					# Skip this block leaving it be as is.
-				# Else go through the list
-					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
-				# Check if the next corner is correctly placed
-					# Skip this block leaving it be as is.
-				# Else go through the list
-					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face)
-				# Check if the next corner is correctly placed
-					# Skip this block leaving it be as is.
-				# Else go through the list
-					# Store the 4 move block into the moveListBuffer as many time as is necesary (need to end with a turn of the yellow face) 
-				# Break out of this loop (This is under the assumption everything up until now has worked)'''
-			"""
 	if vars.cube.solved():
 		return vars.moveListBuffer
