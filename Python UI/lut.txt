@@ -107,24 +107,24 @@ algo2
 		(0, 2, 2) : rDDRRdr
 		(1, 0, 0) : 
 		(1, 0, 2) : ldLRDrd
-		(1, 2, 0) : 
-		(1, 2, 2) : 
-		(2, 0, 0) : 
-		(2, 0, 2) : 
-		(2, 2, 0) : 
-		(2, 2, 2) : 
-		(3, 0, 0) : 
-		(3, 0, 2) : 
-		(3, 2, 0) : 
-		(3, 2, 2) : 
-		(4, 0, 0) : 
-		(4, 0, 2) : 
-		(4, 2, 0) : 
-		(4, 2, 2) : 
-		(5, 0, 0) : 
-		(5, 0, 2) : 
-		(5, 2, 0) : 
-		(5, 2, 2) : 
+		(1, 2, 0) : rDDRdRDrd
+		(1, 2, 2) : LddlRDrdRDrdRDrdRDrdRDrd
+		(2, 0, 0) : ldLRDrdRDrdRDrdRDrdRDrd
+		(2, 0, 2) : dRDrdRDrdRDrdRDrdRDrd
+		(2, 2, 0) : LddlRDrd
+		(2, 2, 2) : ddRDrd
+		(3, 0, 0) : dRDrdRDrdRDrd
+		(3, 0, 2) : RDrdRDrdRDrd
+		(3, 2, 0) : ddRDrdRDrdRDrd
+		(3, 2, 2) : DRDrdRDrdRDrd
+		(4, 0, 0) : rddRdRDrdRDrdRDrd
+		(4, 0, 2) : LddlRDrdRDrdRDrd
+		(4, 2, 0) : DRDrd
+		(4, 2, 2) : ddRDrdRDrdRDrdRDrdRDrd
+		(5, 0, 0) : RDrdRDrdRDrdRDrdRDrd
+		(5, 0, 2) : dRDrd
+		(5, 2, 0) : RDrdRDrdRDrdRDrd
+		(5, 2, 2) : ldLRDrdRDrdRDrd
 	wbr
 		(0, 0, 0) :
 		(0, 0, 2) :

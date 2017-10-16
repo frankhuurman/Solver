@@ -6,7 +6,7 @@
 #cube.faces[cube.facenames[1]].squares[0][0] front (white)
 #cube.faces[cube.facenames[2]].squares[0][0] right (orange)
 #cube.faces[cube.facenames[3]].squares[0][0] back (yellow)
-#cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
+#cube.faces[cube.facenames[4]].squares[0][0] down (blue)
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
@@ -93,7 +93,7 @@ def translateMoves(alg, mod, moves):
 							"b" : "u",
 							"l" : "f",
 							"d" : "l"},
-				"r" : {"f" : "d",
+				"o" : {"f" : "d",
 							"r" : "f",
 							"u" : "l",
 							"b" : "u",
