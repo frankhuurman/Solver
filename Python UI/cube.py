@@ -9,7 +9,8 @@ class const:
 	edges = [[0,1], [1,0], [1,2], [2,1]]
 
 	# Corners is the collection of the corner elements of a face. Used in the solving algorithm.
-	corners = [[0,0], [0,2], [2,0], [2,2]]
+	# [[x,y, xFace,yFace], [x,y, xFace,yFace]], xFace and yFace refer to sides[]
+	corners = [[0,0, 1,0], [0,2, 0,3], [2,0, 2,1], [2,2, 3,2]]
 
 	# rotateOrder is the collection of all the elements of a face that are moved
 	# during a rotation of that face.
@@ -41,13 +42,17 @@ class const:
 class cube(object):
 	"""Object representing one rubik's cube."""
 	
+	stopSolving = False
 	faces = {}
-#	facenames = const.facenames
+	facenames = const.facenames
 	start = []	# Keep a reconrd of the starting position.
 
 	def __init__(self, outputlist):
-
-		self.start = outputlist
+		
+#		self.start = outputlist
+		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
+		for l in dinges:
+			self.start.append(l)
 		self.setStart()
 
 
@@ -65,8 +70,12 @@ class cube(object):
 
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
+
+#		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
+			if (str(move).lower() == "u"):
+				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
@@ -114,22 +123,54 @@ class cube(object):
 				text += sq + " "
 		return(text + "\n")
 
-	def getEdge(self, name, color):
+	def getEdge(self, color):
 		"""Return the colors of pos and the other color of that edge element."""
 
 		order = [0, 1, 3, 2]
 		
 		coords = []
 		colors = []
-		for i, (x, y) in zip(order, const.edges):
-			if (color == self.faces[name].squares[x][y]):
-				otherSide = const.facenames[const.connections[name][i]]
-				otherColor = self.faces[otherSide].getSide(name)[1]
-				colorCombo = color + otherColor
-				print(name, otherSide, otherColor)
-				print("moi", i, x, y)
-				coords.append((x, y))
-				colors.append(colorCombo)
+		for f in self.faces.keys():
+			for i, (x, y) in zip(order, const.edges):
+				if (color == self.faces[f].squares[x][y]):
+					otherSide = const.facenames[const.connections[f][i]]
+					otherColor = self.faces[otherSide].getSide(f)[1]
+					colorCombo = color + str(otherColor)
+#					print(f, otherSide, otherColor)
+#					print("moi", i, x, y)
+					fIndex = const.facenames.index(f)
+					coords.append((fIndex, x, y))
+					colors.append(colorCombo)
+		return(coords, colors)
+
+	def getCorners(self, color):
+		"""Returns a list with the coords of the corner squares that match the selected color."""
+		
+		
+		blah = {(0,0):((0,2),(2,0)),
+				  (0,2):((2,2),(0,0)),
+				  (2,0):((0,0),(2,2)),
+				  (2,2):((2,0),(0,2))
+					}
+		coords = []
+		colors = []
+		for f in self.faces.keys():
+			for x, y, s1, s2 in const.corners:
+				if (color == self.faces[f].squares[x][y]):
+					side1 = const.facenames[const.connections[f][s1]]
+					side2 = const.facenames[const.connections[f][s2]]
+					main1 = self.faces[f].connections[side1]
+					main2 = self.faces[f].connections[side2]
+					sec1 = self.faces[side1].connections[f]
+					sec2 = self.faces[side2].connections[f]
+					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
+					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
+					c1 = blah[(x,y)][0]
+					c2 = blah[(x,y)][1]
+#					print(c1, c2, side1, side2)
+					fIndex = const.facenames.index(f)
+					coords.append((fIndex, x, y))
+					colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
 		return(coords, colors)
 
 	def __rotate(self, name, dir):
@@ -179,7 +220,7 @@ class cube(object):
 		return(squares)
 	
 	def __rotPrint(self, turns, squares, name):
-		print(str(turns), "moi")
+#		print(str(turns), "moi")
 		temp = deque()
 		blah = [["","",""],["","",""],["","",""]]
 		for x, y in const.rotateOrder:

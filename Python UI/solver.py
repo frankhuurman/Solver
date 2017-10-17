@@ -256,30 +256,6 @@ class solver(object):
 		self.solverDisplay.blit(self.imgs["orange"], self.orange_pick)
 		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
-	def translateList(self, movelist):
-		translated_list = []
-		for item in movelist:
-			sliced_list = list(item)
-
-		count = 0
-
-		try:
-			for item in sliced_list[:-1]:
-				if sliced_list[count + 1] == "'":
-					translated_list.append(item.upper())
-					count += 1
-				elif item != "'":
-					translated_list.append(item)
-					count += 1
-				elif item == "'":
-					count += 1
-
-			if sliced_list[-1] != "'":
-				translated_list.append(sliced_list[-1])
-		except IndexError:
-			print ("end of list reached")
-		print(translated_list)
-
 	def resetFields(self):
 		"""Sets all settable fields to white."""
 		
@@ -308,7 +284,10 @@ class solver(object):
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
-						self.resetFields()
+						if (self.cube is not None):
+							self.cube.stopSolving = True
+							self.cube = None
+					#	self.resetFields()
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
@@ -371,59 +350,15 @@ class solver(object):
 		# Create cube object
 		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
 		calc_rest.vars.cube = self.cube
-#		ser = serial.Serial('/dev/tty.usbserial', 9600) #setup for pyserial
-#		moveList = calc_rest.algorithm() # Does algorithm magicy stuffs and returns the movelist.
-		partsize = 50
-#		transList = self.translateList(movelist)
+
+		#print(calc_rest.vars.LUT)
+
+		print(calc_rest.algorithm())
+#		for m in "Brrb":
+#			input("next move: " + m)
+#			self.cube.sendMoves(m)
 
 
-		for f in self.cube.faces.keys():
-#			print(f.face_name)
-			print(self.cube.getEdge(f, "r"))
-#			print(f.connections)
-
-		import random
-		
-		moves = "DLBURFdlburf"
-		command = ""
-		lastMove = ""
-
-		while (not command == "q"):
-			nextMove = moves[int(random.random()*12)]
-			command = input("Next move: " + nextMove)
-			if (command == "q"):
-				self.active = False
-				pygame.quit()
-				quit()
-			elif (command == "p"):
-				self.cube.sendMoves(lastMove)
-				print(self.cube.printFaces(kubus.const.facenames[kubus.const.moveFaceIndex[lastMove]]))
-			else:
-				self.cube.sendMoves(nextMove)
-				lastMove = nextMove
-				facename = kubus.const.facenames[kubus.const.moveFaceIndex[nextMove.lower()]]
-				facecol = self.cube.faces[facename].face_color
-				print(self.cube.getEdge(facename, facecol))
-
-
-		"""				
-		# Write movelist to arduino.
-		if (transList > partsize):
-			partlist = []
-			for i in range(int(len(transList) / partsize) - 1):
-				partlist.append(transList[i : i * partsize])
-			partlist.append(transList[int(len(transList) / partsize) : -1])
-			for part in partlist:
-				ser.write(bytes(part))
-		# wait for input from arduino when it's done.
-				ser.read()
-		else:
-			ser.write(bytes(transList))
-		# Reset rectangles to white and clear lists to solve another cube
-		# SEND MOVE LIST TO ARDUINO
-		self.sendToArduino(partlist)
-		self.showSavedText(saved, inforect)
-		"""
 #		self.resetFields()
 #		self.cube = None
 
