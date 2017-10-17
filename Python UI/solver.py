@@ -3,7 +3,7 @@ pygame.init()
 import os
 import calc_rest
 import cube as kubus
-#import serial
+import serial
 import threading
 
 
@@ -117,14 +117,14 @@ class solver(object):
 		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 		print("Port used: " + ser.name)         # Check which port was really used
 
-		send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+#		send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
 		"""
 		if len(send_list) > 62:
 			blah = []
 			blah.append(send_list[i*64:(i+1)*64])
 		"""
 		send_list.append("\r")
-		while True:
+		for m in send_list:
 			data = ser.readline() # Read data from Arduino
 			if data: # If data comes in from Arduino
 				if data == b"Ready\r\n": # Initialize handshake with Arduino
@@ -133,9 +133,9 @@ class solver(object):
 					#Make this a comment and uncomment for item in send_list for regular use
 					arduino_string = ""
 				
-					while arduino_string != "q":
-						arduino_string = input("Type string to send to arduino: ")
-						ser.write(str.encode(arduino_string))
+					while m != "q":
+#						arduino_string = input("Type string to send to arduino: ")
+						ser.write(str.encode(m))
 				
 					"""
 					for item in send_list:
@@ -168,7 +168,7 @@ class solver(object):
 				print("No data being received from Arduino anymore")
 				break
 
-		test = input("Press enter to close serial connection")
+#		test = input("Press enter to close serial connection")
 		ser.close()             # close port
 		print ("Serial port closed")
 
@@ -348,19 +348,16 @@ class solver(object):
 				calcu_list.append("<no color>")
 					
 		# Create cube object
-		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
+		self.cube = kubus.cube(calcu_list)
 		calc_rest.vars.cube = self.cube
 
-		#print(calc_rest.vars.LUT)
-
-		print(calc_rest.algorithm())
-#		for m in "Brrb":
-#			input("next move: " + m)
-#			self.cube.sendMoves(m)
+		move_list = calc_rest.algorithm()
+		print(move_list)
+		self.cube.setStart()
+		self.sendToArduino(move_list)
 
 
-#		self.resetFields()
-#		self.cube = None
+		self.cube = None
 
 	def showScreen(self):
 

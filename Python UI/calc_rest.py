@@ -51,11 +51,12 @@ class vars:
 	solved = False
 	algos = []
 	for i in range(3):
-		algos.append(False)
+		algos.append(True)
 	algo4 = True
 	algo5 = True
 	algo6 = True
 	algo7 = True
+	algos[0] = False
 	cube = None
 
 
