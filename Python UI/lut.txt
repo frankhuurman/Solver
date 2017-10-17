@@ -101,8 +101,8 @@ algo1
 		(5, 2, 1) : UrbuuBRu
 algo2
 	wrg
-		(0, 0, 0) : RDrd 
-		(0, 0, 2) : RDrdRDrd 
+		(0, 0, 0) : RDrd
+		(0, 0, 2) : RDrdRDrd
 		(0, 2, 0) : DDRdr
 		(0, 2, 2) : rDDRRdr
 		(1, 0, 0) : 
@@ -131,25 +131,25 @@ algo2
 		(0, 2, 0) : RDrdRDrdRDrdRDrdRDrd
 		(0, 2, 2) : RDrdRDrdRDrdRDrd
 		(1, 0, 0) : ldLRDrd
-		(1, 0, 2) : LddlRDrdRDrdRDrdRDrdRDrd
-		(1, 2, 0) :
-		(1, 2, 2) :
-		(2, 0, 0) :
-		(2, 0, 2) :
-		(2, 2, 0) :
-		(2, 2, 2) :
-		(3, 0, 0) :
-		(3, 0, 2) :
-		(3, 2, 0) :
-		(3, 2, 2) :
-		(4, 0, 0) :
-		(4, 0, 2) :
-		(4, 2, 0) :
-		(4, 2, 2) :
-		(5, 0, 0) :
-		(5, 0, 2) :
-		(5, 2, 0) :
-		(5, 2, 2) :
+		(1, 0, 2) : LRddlr
+		(1, 2, 0) : 
+		(1, 2, 2) : rDDRdRDrd
+		(2, 0, 0) : LRddlrRDrdRDrdRDrdRDrd
+		(2, 0, 2) : Rddr
+		(2, 2, 0) : rddRdRDrdRDrdRDrd
+		(2, 2, 2) : DRDrd
+		(3, 0, 0) : ddRDrdRDrdRDrd
+		(3, 0, 2) : dRDrdRDrdRDrd
+		(3, 2, 0) : DRDrdRDrdRDrd
+		(3, 2, 2) : RDrdRDrdRDrd
+		(4, 0, 0) : RDrdRDrd
+		(4, 0, 2) : rddRdRDrdRDrdRDrdRDrdRDrd
+		(4, 2, 0) : RDrd
+		(4, 2, 2) : dRddr
+		(5, 0, 0) : Rdr
+		(5, 0, 2) : LRdlr
+		(5, 2, 0) : lRdLr
+		(5, 2, 2) : LRddlrRDrdRDrd
 	wob
 		(0, 0, 0) :
 		(0, 0, 2) :
