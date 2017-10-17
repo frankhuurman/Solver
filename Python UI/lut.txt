@@ -147,7 +147,7 @@ algo2
 		(4, 2, 0) : RDrd
 		(4, 2, 2) : dRddr
 		(5, 0, 0) : Rdr
-		(5, 0, 2) : LRdlr
+		(5, 0, 2) : LRdrl
 		(5, 2, 0) : lRdLr
 		(5, 2, 2) : LRddlrRDrdRDrd
 	wob
