@@ -12,6 +12,17 @@ const byte lStep = 11;
 const byte fDir = 12;  // (Voorkant) //voor
 const byte fStep = 13;
 
+//Define movelist array
+String moveList[] = {};
+int moveListBuffer = 0; // buffer for the moveList array used when receiving raw bytes through PySerial
+int p = 0; // used for iterating through the posMoves array
+int n = 0; // used for iterating through the negMoves array
+String nextMove; // contains the next move
+int moveMin = 0; // for iterating through arrays
+int moveMax = 5; // for iterating through arrays
+String posMoves[] = {"f", "d", "r", "b", "l", "u"}; //array containing all the positive moves
+String negMoves[] = {"F", "D", "R", "B", "L", "U"}; // array containing all the negative moves
+
 //Define bytes that are received by Arduino
 //small letters are for positive turns, capital for negative turns
 byte r = 114;
