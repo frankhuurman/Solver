@@ -1,0 +1,271 @@
+algo1
+	wr
+		(0, 0, 1) : ubllBu
+		(0, 1, 0) : bdLDB
+		(0, 1, 2) : fulUF
+		(0, 2, 1) : LfulUFl
+		(1, 0, 1) : uubllBUU
+		(1, 1, 0) : 
+		(1, 1, 2) : RddLDDr
+		(1, 2, 1) : ddBllbDD
+		(2, 0, 1) : UbllBu
+		(2, 1, 0) : rUbllBuR
+		(2, 1, 2) : bdLDB
+		(2, 2, 1) : RBdLDbr
+		(3, 0, 1) : bllB
+		(3, 1, 0) : bbllBB
+		(3, 1, 2) : ll
+		(3, 2, 1) : Bllb
+		(4, 0, 1) : DLd
+		(4, 1, 0) : L
+		(4, 1, 2) : ddLDD
+		(4, 2, 1) : DLd
+		(5, 0, 1) : Ulu
+		(5, 1, 0) : l
+		(5, 1, 2) : uulUU
+		(5, 2, 1) : ulU
+	wb
+		(0, 0, 1) : lldLL
+		(0, 1, 0) : Ldl
+		(0, 1, 2) : ldL
+		(0, 2, 1) : d
+		(1, 0, 1) : uubbddBBUU
+		(1, 1, 0) : llbddLLB
+		(1, 1, 2) : rrBddbRR
+		(1, 2, 1) : 
+		(2, 0, 1) : rrDRR
+		(2, 1, 0) : RDr
+		(2, 1, 2) : rDr
+		(2, 2, 1) : D
+		(3, 0, 1) : rrDRR
+		(3, 1, 0) : RDr
+		(3, 1, 2) : rdR
+		(3, 2, 1) : D
+		(4, 0, 1) : dRBddbr
+		(4, 1, 0) : lbddDL
+		(4, 1, 2) : RBddbr
+		(4, 2, 1) : brD
+		(5, 0, 1) : bLdlb'
+		(5, 1, 0) : LbddBl
+		(5, 1, 2) : rBddbR
+		(5, 2, 1) : uLbddBlU
+	wo
+		(0, 0, 1) : LbDrdBl
+		(0, 1, 0) : bDrrdb'
+		(0, 1, 2) : lDbrrBdL
+		(0, 2, 1) : DbrrBd
+		(1, 0, 1) : uuBrrbUU
+		(1, 1, 0) : lddrDDL
+		(1, 1, 2) : 
+		(1, 2, 1) : ddbrrBDD
+		(2, 0, 1) : rBDrdb
+		(2, 1, 0) : RdbrrBD
+		(2, 1, 2) : BDrdb
+		(2, 2, 1) : RBDrdb
+		(3, 0, 1) : brrb'
+		(3, 1, 0) : rr
+		(3, 1, 2) : bbrrBB
+		(3, 2, 1) : Dr
+		(4, 0, 1) : drD
+		(4, 1, 0) : ddrDD
+		(4, 1, 2) : r
+		(4, 2, 1) : Drd
+		(5, 0, 1) : Brrb
+		(5, 1, 0) : ubrrBU
+		(5, 1, 2) : R
+		(5, 2, 1) : URu
+	wg
+		(0, 0, 1) : U
+		(0, 1, 0) : lUL
+		(0, 1, 2) : LUl
+		(0, 2, 1) : llULL
+		(1, 0, 1) : 
+		(1, 1, 0) : llBuubLL
+		(1, 1, 2) : rrbuuBRR
+		(1, 2, 1) : ddbbuuBBDD'
+		(2, 0, 1) : u
+		(2, 1, 0) : ruR
+		(2, 1, 2) : Rur
+		(2, 2, 1) : rruRR
+		(3, 0, 1) : uu
+		(3, 1, 0) : buuB
+		(3, 1, 2) : Buub
+		(3, 2, 1) : bbuuBB
+		(4, 0, 1) : dRbuuBrd'
+		(4, 1, 0) : lBuubL
+		(4, 1, 2) : RbuuBr
+		(4, 2, 1) : bRurB
+		(5, 0, 1) : blU
+		(5, 1, 0) : LBuubl
+		(5, 1, 2) : rbuuBR
+		(5, 2, 1) : UrbuuBRu
+algo2
+	wrg
+		(0, 0, 0) : RDrd
+		(0, 0, 2) : RDrdRDrd
+		(0, 2, 0) : DDRdr
+		(0, 2, 2) : rDDRRdr
+		(1, 0, 0) : 
+		(1, 0, 2) : ldLRDrd
+		(1, 2, 0) : rDDRdRDrd
+		(1, 2, 2) : LddlRDrdRDrdRDrdRDrdRDrd
+		(2, 0, 0) : ldLRDrdRDrdRDrdRDrdRDrd
+		(2, 0, 2) : dRDrdRDrdRDrdRDrdRDrd
+		(2, 2, 0) : LddlRDrd
+		(2, 2, 2) : ddRDrd
+		(3, 0, 0) : dRDrdRDrdRDrd
+		(3, 0, 2) : RDrdRDrdRDrd
+		(3, 2, 0) : ddRDrdRDrdRDrd
+		(3, 2, 2) : DRDrdRDrdRDrd
+		(4, 0, 0) : rddRdRDrdRDrdRDrd
+		(4, 0, 2) : LddlRDrdRDrdRDrd
+		(4, 2, 0) : DRDrd
+		(4, 2, 2) : ddRDrdRDrdRDrdRDrdRDrd
+		(5, 0, 0) : RDrdRDrdRDrdRDrdRDrd
+		(5, 0, 2) : dRDrd
+		(5, 2, 0) : RDrdRDrdRDrdRDrd
+		(5, 2, 2) : ldLRDrdRDrdRDrd
+	wbr
+		(0, 0, 0) : dRDrd
+		(0, 0, 2) : ldLRDrdRDrdRDrd
+		(0, 2, 0) : RDrdRDrdRDrdRDrdRDrd
+		(0, 2, 2) : RDrdRDrdRDrdRDrd
+		(1, 0, 0) : ldLRDrd
+		(1, 0, 2) : LRddlr
+		(1, 2, 0) : 
+		(1, 2, 2) : rDDRdRDrd
+		(2, 0, 0) : LRddlrRDrdRDrdRDrdRDrd
+		(2, 0, 2) : Rddr
+		(2, 2, 0) : rddRdRDrdRDrdRDrd
+		(2, 2, 2) : DRDrd
+		(3, 0, 0) : ddRDrdRDrdRDrd
+		(3, 0, 2) : dRDrdRDrdRDrd
+		(3, 2, 0) : DRDrdRDrdRDrd
+		(3, 2, 2) : RDrdRDrdRDrd
+		(4, 0, 0) : RDrdRDrd
+		(4, 0, 2) : rddRdRDrdRDrdRDrdRDrdRDrd
+		(4, 2, 0) : RDrd
+		(4, 2, 2) : dRddr
+		(5, 0, 0) : Rdr
+		(5, 0, 2) : LRdlr
+		(5, 2, 0) : lRdLr
+		(5, 2, 2) : LRddlrRDrdRDrd
+	wob
+		(0, 0, 0) : 
+		(0, 0, 2) : 
+		(0, 2, 0) : 
+		(0, 2, 2) : 
+		(1, 0, 0) : 
+		(1, 0, 2) : 
+		(1, 2, 0) : 
+		(1, 2, 2) : 
+		(2, 0, 0) : 
+		(2, 0, 2) : 
+		(2, 2, 0) : 
+		(2, 2, 2) : 
+		(3, 0, 0) : 
+		(3, 0, 2) : 
+		(3, 2, 0) : 
+		(3, 2, 2) : 
+		(4, 0, 0) : 
+		(4, 0, 2) : 
+		(4, 2, 0) : 
+		(4, 2, 2) : 
+		(5, 0, 0) : 
+		(5, 0, 2) : 
+		(5, 2, 0) : 
+		(5, 2, 2) : 
+	wgo
+		(0, 0, 0) : 
+		(0, 0, 2) : 
+		(0, 2, 0) : 
+		(0, 2, 2) : 
+		(1, 0, 0) : 
+		(1, 0, 2) : 
+		(1, 2, 0) : 
+		(1, 2, 2) : 
+		(2, 0, 0) : 
+		(2, 0, 2) : 
+		(2, 2, 0) : 
+		(2, 2, 2) : 
+		(3, 0, 0) : 
+		(3, 0, 2) : 
+		(3, 2, 0) : 
+		(3, 2, 2) : 
+		(4, 0, 0) : 
+		(4, 0, 2) : 
+		(4, 2, 0) : 
+		(4, 2, 2) : 
+		(5, 0, 0) : 
+		(5, 0, 2) : 
+		(5, 2, 0) : 
+		(5, 2, 2) : 
+algo3
+	rb
+		(0, 0, 1) : urURUFufuuULulufUFULulufUFuLulufUF
+		(0, 1, 0) : ULulufUF
+		(0, 2, 1) : 
+		(2, 0, 1) : ubUBURuruLulufUF
+		(2, 1, 2) : uLulufUF
+		(2, 2, 1) : UBubulULuLulufUF
+		(3, 0, 1) : ULulufUFULulufUFuu
+		(3, 1, 0) : uLulufUFULulufUFuuULulufUF
+		(3, 1, 2) : ULulufUFULulufUFuLulufUF
+		(3, 2, 1) : UULulufUFULulufUFuLulufUF
+		(4, 1, 0) : ULulufUFuuULulufUF
+		(4, 1, 2) : UBubuLULLulufUFULulufUFuLulufUF
+		(4, 2, 1) : UULulufUF
+		(5, 0, 1) : LulufUF
+		(5, 1, 0) : urURUFufuLulufUF
+		(5, 1, 2) : ubUBURurUULulufUFULulufUFuLulufUF
+	rg
+		(0, 0, 1) : 
+		(0, 1, 0) : urURUFuf
+		(0, 2, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
+		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
+		(2, 1, 2) : uuurURUFuf
+		(2, 2, 1) : ulULUBuburURUFufurURUFufUrURUFuf
+		(3, 0, 1) : uurURUFufurURUFufuuurURUFuf
+		(3, 1, 0) : UrURUFufurURUFufUrURUFuf
+		(3, 1, 2) : urURUFufurURUFufUrURUFuf
+		(3, 2, 1) : UurURUFufurURUFufUrURUFuf
+		(4, 1, 0) : ULulufUFUrURUFuf
+		(4, 1, 2) : ulULUBuburURUFuf
+		(4, 2, 1) : UurURUFuf
+		(5, 0, 1) : uurURUFuf
+		(5, 1, 0) : urURUFUrURUFuf
+		(5, 1, 2) : URurubUBurURUFuf
+	og
+		(0, 0, 1) : uLulufUF
+		(0, 1, 0) : uLulufUF
+		(0, 2, 1) : ubUBURuruLulufUF
+		(2, 0, 1) : 
+		(2, 1, 2) : ULulufUF
+		(2, 2, 1) : urURUFufuLulufUFULulufUFuLulufUF
+		(3, 0, 1) : UULulufUFULulufUFuLulufUF
+		(3, 1, 0) : ULulufUFULulufUFuLulufUF
+		(3, 1, 2) : uLulufUFULulufUFuLulufUF
+		(3, 2, 1) : LulufUFULulufUFuLulufUF
+		(4, 1, 0) : ubUBURuruuLulufUF
+		(4, 1, 2) : urURUFufuuULulufUF
+		(4, 2, 1) : LulufUF
+		(5, 0, 1) : UULulufUF
+		(5, 1, 0) : ubUBURurUULulufUFULulufUFuLulufUF
+		(5, 1, 2) : ULulufUFuLulufUF
+	ob
+		(0, 0, 1) : ulULUBuburURUFufurURUFufUrURUFuf
+		(0, 1, 0) : UrURUFuf
+		(0, 2, 1) : ubUBURurrURUFuf
+		(2, 0, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
+		(2, 1, 2) : urURUFuf
+		(2, 2, 1) : 
+		(3, 0, 1) : rURUFufurURUFufUrURUFuf
+		(3, 1, 0) : urURUFufurURUFufUrURUFuf
+		(3, 1, 2) : urURUFufurURUFufUrURUFuf
+		(3, 2, 1) : uurURUFufurURUFufUrURUFuf
+		(4, 1, 0) : ubUBURurrURUFufurURUFufUurURUFuf
+		(4, 1, 2) : urURUFufUrURUFuf
+		(4, 2, 1) : uurURUFuf
+		(5, 0, 1) : rURUFuf
+		(5, 1, 0) : ulULUBuburURUFuf
+		(5, 1, 2) : ULulufUFUrURUFuf
