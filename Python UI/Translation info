@@ -44,7 +44,7 @@ Red Front = WBR
 	l = f
 	d = r
 
-Orange Front
+Orange Front = WGO
 	Front: Orange
 	Left: Blue
 	Right: Green
@@ -74,7 +74,7 @@ Green Front = WRG
 	l = r
 	d = b
 
-Blue Front
+Blue Front = WOB
 	Front: Blue
 	Left: Red
 	Right: Orange
