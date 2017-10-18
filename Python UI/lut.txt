@@ -176,30 +176,30 @@ algo2
 		(5, 2, 0) : LddlRDrdRDrdRDrd
 		(5, 2, 2) : rdRddRDrdRDrdRDrd
 	wgo
-		(0, 0, 0) :
-		(0, 0, 2) :
-		(0, 2, 0) :
-		(0, 2, 2) :
-		(1, 0, 0) :
-		(1, 0, 2) :
-		(1, 2, 0) :
-		(1, 2, 2) :
-		(2, 0, 0) :
-		(2, 0, 2) :
-		(2, 2, 0) :
-		(2, 2, 2) :
-		(3, 0, 0) :
-		(3, 0, 2) :
-		(3, 2, 0) :
-		(3, 2, 2) :
-		(4, 0, 0) :
-		(4, 0, 2) :
-		(4, 2, 0) :
-		(4, 2, 2) :
-		(5, 0, 0) :
-		(5, 0, 2) :
-		(5, 2, 0) :
-		(5, 2, 2) :
+		(0, 0, 0) : DRDrd
+		(0, 0, 2) : rdRddRDrdRDrdRDrd
+		(0, 2, 0) : Rddr
+		(0, 2, 2) : LddlRDrdRDrdRDrd
+		(1, 0, 0) : rdRddRDrd
+		(1, 0, 2) : 
+		(1, 2, 0) : LRddlr
+		(1, 2, 2) : ldLRDrd
+		(2, 0, 0) : RDrdRDrdRDrdRDrd
+		(2, 0, 2) : RDrdRDrdRDrdRDrdRDrd
+		(2, 2, 0) : ldLRDrdRDrdRDrd
+		(2, 2, 2) : dRDrd
+		(3, 0, 0) : ddRDrdRDrdRDrd
+		(3, 0, 2) : DRDrdRDrdRDrd
+		(3, 2, 0) : dRDrdRDrdRDrd
+		(3, 2, 2) : ddRDrdRDrdRDrd
+		(4, 0, 0) : LddlRDrd
+		(4, 0, 2) : lRdLr
+		(4, 2, 0) : ddRDrd
+		(4, 2, 2) : Rdrd
+		(5, 0, 0) : dRddr
+		(5, 0, 2) : RDrd
+		(5, 2, 0) : rdRRddr
+		(5, 2, 2) : RDrdRDrd
 algo3
 	rb
 		(0, 0, 1) : urURUFufuuULulufUFULulufUFuLulufUF
