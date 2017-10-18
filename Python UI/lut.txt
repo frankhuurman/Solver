@@ -151,30 +151,30 @@ algo2
 		(5, 2, 0) : lRdLr
 		(5, 2, 2) : LRddlrRDrdRDrd
 	wob
-		(0, 0, 0) :
-		(0, 0, 2) :
-		(0, 2, 0) :
-		(0, 2, 2) :
-		(1, 0, 0) :
-		(1, 0, 2) :
-		(1, 2, 0) :
-		(1, 2, 2) :
-		(2, 0, 0) :
-		(2, 0, 2) :
-		(2, 2, 0) :
-		(2, 2, 2) :
-		(3, 0, 0) :
-		(3, 0, 2) :
-		(3, 2, 0) :
-		(3, 2, 2) :
-		(4, 0, 0) :
-		(4, 0, 2) :
-		(4, 2, 0) :
-		(4, 2, 2) :
-		(5, 0, 0) :
-		(5, 0, 2) :
-		(5, 2, 0) :
-		(5, 2, 2) :
+		(0, 0, 0) : ddRDrd
+		(0, 0, 2) : LddlRDrd
+		(0, 2, 0) : dRDrdRDrdRDrdRDrdRDrd
+		(0, 2, 2) : lRdLr
+		(1, 0, 0) : LRddlr
+		(1, 0, 2) : rddRdRDrd
+		(1, 2, 0) : ldLRDrd
+		(1, 2, 2) : 
+		(2, 0, 0) : rddRRdr
+		(2, 0, 2) : dRddr
+		(2, 2, 0) : RDrdRDrd
+		(2, 2, 2) : RDrd
+		(3, 0, 0) : DRDrdRDrdRDrd
+		(3, 0, 2) : ddRDrdRDrdRDrd
+		(3, 2, 0) : RDrdRDrdRDrd
+		(3, 2, 2) : dRDrdRDrdRDrd
+		(4, 0, 0) : LdlRDrdRDrdRDrd
+		(4, 0, 2) : RDrdRDrdRDrdRDrd
+		(4, 2, 0) : dRDrd
+		(4, 2, 2) : RDrdRDrdRDrdRDrdRDrd
+		(5, 0, 0) : ddRDrdRDrdRDrdRDrdRDrd
+		(5, 0, 2) : DRDrd
+		(5, 2, 0) : LddlRDrdRDrdRDrd
+		(5, 2, 2) : rdRddRDrdRDrdRDrd
 	wgo
 		(0, 0, 0) :
 		(0, 0, 2) :
