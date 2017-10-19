@@ -51,12 +51,12 @@ class vars:
 	solved = False
 	algos = []
 	for i in range(3):
-		algos.append(True)
+		algos.append(False)
 	algo4 = True
 	algo5 = True
 	algo6 = True
 	algo7 = True
-	algos[0] = False
+	algos[2] = True
 	cube = None
 
 
@@ -64,30 +64,30 @@ def translateMoves(alg, mod, moves):
 
 
 	tList = {2 :{	# Algo2
-				"r" : {"f" : "u",
-							"r" : "b",
-							"u" : "l",
-							"b" : "d",
-							"l" : "f",
-							"d" : "r"},
-				"o":{"f": "u",
-							"r" : "f",
-							"u" : "r",
-							"b" : "d",
-							"l" : "b",
-							"d" : "l"},
-				"g":{"f" : "u",
-							"r" : "l",
-							"u" : "f",
-							"b" : "d",
+				"r" : {"u" : "f",
+							"b" : "r",
+							"l" : "u",
+							"d" : "b",
+							"f" : "l",
+							"r" : "d"},
+				"o":	{"u": "f",
+							"f" : "r",
+							"r" : "u",
+							"d" : "b",
+							"b" : "l",
+							"l" : "d"},
+				"g":	{"u" : "f",
 							"l" : "r",
-							"d" : "b"},
-				"b": {"f" : "u",
+							"f" : "u",
+							"d" : "b",
+							"r" : "l",
+							"b" : "d"},
+				"b":	{"u" : "f",
 							"r" : "r",
-							"u" : "b",
-							"b" : "d",
+							"b" : "u",
+							"d" : "b",
 							"l" : "l",
-							"d" : "f"}
+							"f" : "d"}
 				}, 3: {	# Algo3
 				"r" : {"f" : "d",
 							"r" : "b",
@@ -161,7 +161,7 @@ def algorithm():
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
-			input("Start algo-" + str(i))
+			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				count = 0
 				if (i == 1):
@@ -177,12 +177,12 @@ def algorithm():
 #					print(i, j, colors, coords)
 					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
-						if (i == 1):
-							for m in moves:
-								input("Next move: " + m)
-								vars.cube.sendMoves(m)
-						else:
-							vars.cube.sendMoves(moves)
+#						if (i == 1):
+						for m in moves:
+							input("Next move: " + m)
+							vars.cube.sendMoves(m)
+#						else:
+#							vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:

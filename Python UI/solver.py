@@ -3,7 +3,7 @@ pygame.init()
 import os
 import calc_rest
 import cube as kubus
-import serial
+#import serial
 import threading
 
 
@@ -136,6 +136,7 @@ class solver(object):
 					while m != "q":
 #						arduino_string = input("Type string to send to arduino: ")
 						ser.write(str.encode(m))
+						self.cube.sendMoves(m)
 				
 					"""
 					for item in send_list:
@@ -353,8 +354,8 @@ class solver(object):
 
 		move_list = calc_rest.algorithm()
 		print(move_list)
-		self.cube.setStart()
-		self.sendToArduino(move_list)
+#		self.cube.setStart()
+#		self.sendToArduino(move_list)
 
 
 		self.cube = None
