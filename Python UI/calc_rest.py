@@ -51,12 +51,12 @@ class vars:
 	solved = False
 	algos = []
 	for i in range(3):
-		algos.append(True)
+		algos.append(False)
 	algo4 = True
 	algo5 = True
 	algo6 = True
 	algo7 = True
-	algos[0] = False
+	algos[2] = True
 	cube = None
 
 def translateMoves(alg, mod, moves):

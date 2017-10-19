@@ -111,7 +111,6 @@ class solver(object):
 		"""This function sends the movelist to Arduino
 		Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
 		and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
-		Maybe move this function to the algorithm or cube object python file?
 		"""
 
 		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
@@ -256,14 +255,14 @@ class solver(object):
 		self.solverDisplay.blit(self.imgs["orange"], self.orange_pick)
 		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
-	def resetFields(self):
+	def resetFields(self): # Fix this
 		"""Sets all settable fields to white."""
 		
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
-		for i in range(len(self.rects_col)):
+		'''for i in range(len(self.rects_col)):
 			if ((i + 5) % 9 == 0):
 				continue
-			self.rects_col[i] = self.imgs[order[int(i/9)]]
+			self.rects_col[i] = self.imgs[order[int(i/9)]]'''
 			
 	def checkQuitandClicks(self):
 		"""Check for exit and event handling."""
