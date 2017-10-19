@@ -37,7 +37,10 @@ class vars:
 				else:
 					cpos = (line.find(":"))
 					if (cpos is not -1):
-						m = line[(cpos + 2):].strip()
+						mpos = (line.find("\t", cpos))
+						if mpos == -1:
+							mpos = -2
+						m = line[(cpos + 2): mpos+1].strip()
 						f = int(line[cpos - 9])
 						x = int(line[cpos - 6])
 						y = int(line[cpos - 3])
@@ -178,11 +181,11 @@ def algorithm():
 					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 #						if (i == 1):
-						for m in moves:
-							input("Next move: " + m)
-							vars.cube.sendMoves(m)
+#							for m in moves:
+						input("Next move: " + colors[j] + str(coords[j]) + moves)
+		#						vars.cube.sendMoves(m)
 #						else:
-#							vars.cube.sendMoves(moves)
+						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:

@@ -1,4 +1,5 @@
 from collections import deque
+import random
 
 
 class const:
@@ -45,15 +46,16 @@ class cube(object):
 	stopSolving = False
 	faces = {}
 	facenames = const.facenames
-	start = []	# Keep a reconrd of the starting position.
+	start = []	# Keep a record of the starting position.
 
 	def __init__(self, outputlist):
 		
-#		self.start = outputlist
-		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
-		for l in dinges:
-			self.start.append(l)
+		self.start = outputlist
+#		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
+#		for l in dinges:
+#			self.start.append(l)
 		self.setStart()
+		self.randomSetStart()
 
 
 	def setStart(self):
@@ -67,6 +69,20 @@ class cube(object):
 			for i, conn in enumerate(const.connections[name]):
 				conns[const.facenames[conn]] = const.sides[i]
 			self.faces[f] = face(squares, name, conns)
+
+	def randomSetStart(self):
+
+		moves = ["l", "f", "r", "b", "d", "u"]
+		mvs = ""
+		for i in range(30):
+			j = moves[int(random.random() * 6)]
+			if (random.random() > .5):
+				j.upper()
+			self.sendMoves(j)
+			mvs += j
+		print(mvs)
+
+
 
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
