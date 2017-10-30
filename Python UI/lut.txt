@@ -2,22 +2,22 @@ algo1
 	wr
 		(0, 0, 1) : ubllBu
 		(0, 1, 0) : bdLDB
-		(0, 1, 2) : fulUF
-		(0, 2, 1) : LfulUFl					endless loop
+		(0, 1, 2) : fulUF					doesn't even move!
+		(0, 2, 1) : LfulUFl					inf loop
 		(1, 0, 1) : uubllBUU
 		(1, 1, 0) : 
 		(1, 1, 2) : RddLDDr
 		(1, 2, 1) : ddBllbDD
 		(2, 0, 1) : UbllBu
 		(2, 1, 0) : rUbllBuR
-		(2, 1, 2) : bdLDB
+		(2, 1, 2) : bdLDB					inf loop
 		(2, 2, 1) : RBdLDbr
 		(3, 0, 1) : bllB					right
 		(3, 1, 0) : bbllBB					right
 		(3, 1, 2) : ll
 		(3, 2, 1) : Bllb
 		(4, 0, 1) : DLd
-		(4, 1, 0) : L
+		(4, 1, 0) : L						right
 		(4, 1, 2) : ddLDD
 		(4, 2, 1) : DLd
 		(5, 0, 1) : Ulu						wrong
@@ -52,10 +52,10 @@ algo1
 	wo
 		(0, 0, 1) : LbDrdBl					right
 		(0, 1, 0) : bDrrdb
-		(0, 1, 2) : lDbrrBdL
+		(0, 1, 2) : lDbrrBdL				right
 		(0, 2, 1) : DbrrBd
 		(1, 0, 1) : uuBrrbUU
-		(1, 1, 0) : lddrDDL
+		(1, 1, 0) : lddrDDL					right
 		(1, 1, 2) : 
 		(1, 2, 1) : ddbrrBDD
 		(2, 0, 1) : rBDrdb
@@ -76,14 +76,14 @@ algo1
 		(5, 2, 1) : URu
 	wg
 		(0, 0, 1) : u						right
-		(0, 1, 0) : lUL
+		(0, 1, 0) : lUL						
 		(0, 1, 2) : LUl						wrong
 		(0, 2, 1) : llULL					right
 		(1, 0, 1) : 
 		(1, 1, 0) : llBuubLL
 		(1, 1, 2) : rrbuuBRR				right
 		(1, 2, 1) : ddbbuuBBDD
-		(2, 0, 1) : u
+		(2, 0, 1) : U
 		(2, 1, 0) : ruR
 		(2, 1, 2) : Rur						wrong
 		(2, 2, 1) : rruRR
