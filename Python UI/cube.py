@@ -77,7 +77,7 @@ class cube(object):
 		for i in range(30):
 			j = moves[int(random.random() * 6)]
 			if (random.random() > .5):
-				j.upper()
+				j = j.upper()
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)

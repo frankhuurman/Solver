@@ -176,13 +176,14 @@ def algorithm():
 					break
 				else:
 					coords, colors = vars.cube.getEdge("w")
+					print(coords, colors)
 				for j in range(len(coords)):
 #					print(i, j, colors, coords)
 					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 #						if (i == 1):
 #							for m in moves:
-						input("Next move: " + colors[j] + str(coords[j]) + moves)
+						input("\nNext move: " + colors[j] + str(coords[j]) + moves)
 		#						vars.cube.sendMoves(m)
 #						else:
 						vars.cube.sendMoves(moves)
