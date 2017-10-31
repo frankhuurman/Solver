@@ -160,7 +160,7 @@ def algorithm():
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
-			input("Start algo-" + str(i))
+			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				count = 0
 				if (i == 1):
@@ -176,12 +176,14 @@ def algorithm():
 #					print(i, j, colors, coords)
 					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
-						if (i == 1):
-							for m in moves:
-								input("Next move: " + m)
-								vars.cube.sendMoves(m)
-						else:
-							vars.cube.sendMoves(moves)
+#						if (i == 1):
+#							for m in moves:
+						inp = input("Next move: " + colors[j] + str(coords[j]) + moves)
+						if inp == "q":
+							return(vars.moveListBuffer)
+		#						vars.cube.sendMoves(m)
+#						else:
+						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:

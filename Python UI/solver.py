@@ -3,7 +3,7 @@ pygame.init()
 import os
 import calc_rest
 import cube as kubus
-#import serial
+import serial
 import threading
 
 
@@ -117,14 +117,14 @@ class solver(object):
 		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 		print("Port used: " + ser.name)         # Check which port was really used
 
-		send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
+	#	send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
 		"""
 		if len(send_list) > 62:
 			blah = []
 			blah.append(send_list[i*64:(i+1)*64])
 		"""
-		send_list.append("\r")
-		while True:
+		#send_list.append("\r")
+		for m in send_list:
 			data = ser.readline() # Read data from Arduino
 			if data: # If data comes in from Arduino
 				if data == b"Ready\r\n": # Initialize handshake with Arduino
@@ -132,10 +132,11 @@ class solver(object):
 					#The arduino_string part + while loop is for manual testing commands
 					#Make this a comment and uncomment for item in send_list for regular use
 					arduino_string = ""
-				
-					while arduino_string != "q":
-						arduino_string = input("Type string to send to arduino: ")
-						ser.write(str.encode(arduino_string))
+					
+					if m != "q":
+#						arduino_string = input("Type string to send to arduino: ")
+						ser.write(str.encode(m))
+						self.cube.sendMoves(m)
 				
 					"""
 					for item in send_list:
@@ -353,7 +354,8 @@ class solver(object):
 
 		#print(calc_rest.vars.LUT)
 
-		print(calc_rest.algorithm())
+		moves = (calc_rest.algorithm())
+		self.sendToArduino(moves + "q")
 #		for m in "Brrb":
 #			input("next move: " + m)
 #			self.cube.sendMoves(m)
