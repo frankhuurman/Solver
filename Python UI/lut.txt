@@ -2,7 +2,7 @@ algo1
 	wr
 		(0, 0, 1) : ubllBu
 		(0, 1, 0) : bdLDB					right
-		(0, 1, 2) : fulUF					doesn't even move!
+		(0, 1, 2) : fulUF					doesn't even move! rewrite, can't move over the front.
 		(0, 2, 1) : LfulUFl					inf loop/ doesn't move
 		(1, 0, 1) : uubllBUU
 		(1, 1, 0) : 

@@ -51,7 +51,7 @@ class vars:
 	solved = False
 	algos = []
 	for i in range(3):
-		algos.append(True)
+		algos.append(False)
 	algo4 = False
 	algo5 = False
 	algo6 = False
@@ -275,7 +275,7 @@ def algorithm():
 					results = ""
 					print("Error 3: This shouldn't even trigger; algo5")
 
-	if not vars.algo6:
+	'''if not vars.algo6:
 		fronts = ["r", "b", "g", "o"]
 		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 		edgeColor = ["ryg", "rby", "ogy", "oyb"]
@@ -331,7 +331,7 @@ def algorithm():
 					iter += 1
 					for x in adjacent:
 						if  cl[:2] is not adjacent:
-							results = translateMoves(2, "r", "RDrd")
+							results = translateMoves(2, "r", "RDrd") '''
 
 	cube.sendMoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.

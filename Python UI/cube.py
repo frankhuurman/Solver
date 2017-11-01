@@ -50,12 +50,12 @@ class cube(object):
 
 	def __init__(self, outputlist):
 		
-		self.start = outputlist
-#		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
-#		for l in dinges:
-#			self.start.append(l)
+#		self.start = outputlist
+		dinges = "oyowrywrygrrowyoywwrrgobobyyoyoyogwrgbbgbwbgrbgbrgbwwg"
+		for l in dinges:
+			self.start.append(l)
 		self.setStart()
-		self.randomSetStart()
+#		self.randomSetStart()
 
 
 	def setStart(self):
