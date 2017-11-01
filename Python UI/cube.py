@@ -1,4 +1,5 @@
 from collections import deque
+import random
 
 
 class const:
@@ -45,15 +46,16 @@ class cube(object):
 	stopSolving = False
 	faces = {}
 	facenames = const.facenames
-	start = []	# Keep a reconrd of the starting position.
+	start = []	# Keep a record of the starting position.
 
 	def __init__(self, outputlist):
 		
-#		self.start = outputlist
-		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
-		for l in dinges:
-			self.start.append(l)
+		self.start = outputlist
+#		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
+#		for l in dinges:
+#			self.start.append(l)
 		self.setStart()
+		self.randomSetStart()
 
 
 	def setStart(self):
@@ -68,10 +70,24 @@ class cube(object):
 				conns[const.facenames[conn]] = const.sides[i]
 			self.faces[f] = face(squares, name, conns)
 
+	def randomSetStart(self):
+
+		moves = ["l", "f", "r", "b", "d", "u"]
+		mvs = ""
+		for i in range(30):
+			j = moves[int(random.random() * 6)]
+			if (random.random() > .5):
+				j = j.upper()
+			self.sendMoves(j)
+			mvs += j
+		print(mvs)
+
+
+
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
 
-		print("sendMoves: ", moves)
+#		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
 			if (str(move).lower() == "u"):
@@ -145,6 +161,13 @@ class cube(object):
 
 	def getCorners(self, color):
 		"""Returns a list with the coords of the corner squares that match the selected color."""
+		
+		
+		blah = {(0,0):((0,2),(2,0)),
+				  (0,2):((2,2),(0,0)),
+				  (2,0):((0,0),(2,2)),
+				  (2,2):((2,0),(0,2))
+					}
 		coords = []
 		colors = []
 		for f in self.faces.keys():
@@ -152,11 +175,19 @@ class cube(object):
 				if (color == self.faces[f].squares[x][y]):
 					side1 = const.facenames[const.connections[f][s1]]
 					side2 = const.facenames[const.connections[f][s2]]
-					main = self.faces[f].connections[side1]
-					sec = self.faces[side1].connections[f]
-					sq1 = self.__turnForPrint(main, sec, self.faces[side1].squares, f)
-					coords.append((f, x, y))
-		return(ret)
+					main1 = self.faces[f].connections[side1]
+					main2 = self.faces[f].connections[side2]
+					sec1 = self.faces[side1].connections[f]
+					sec2 = self.faces[side2].connections[f]
+					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
+					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
+					c1 = blah[(x,y)][0]
+					c2 = blah[(x,y)][1]
+#					print(c1, c2, side1, side2)
+					fIndex = const.facenames.index(f)
+					coords.append((fIndex, x, y))
+					colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
+		return(coords, colors)
 
 	def __rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
@@ -205,7 +236,7 @@ class cube(object):
 		return(squares)
 	
 	def __rotPrint(self, turns, squares, name):
-		print(str(turns), "moi")
+#		print(str(turns), "moi")
 		temp = deque()
 		blah = [["","",""],["","",""],["","",""]]
 		for x, y in const.rotateOrder:
