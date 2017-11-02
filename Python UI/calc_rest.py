@@ -182,11 +182,11 @@ def algorithm():
 					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 #						if (i == 1):
-#							for m in moves:
+					#	for m in moves:
 						input("\nNext move: " + colors[j] + str(coords[j]) + moves)
-		#						vars.cube.sendMoves(m)
-#						else:
 						vars.cube.sendMoves(moves)
+#						else:
+#						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:

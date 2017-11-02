@@ -10,7 +10,7 @@ algo1
 		(1, 2, 1) : ddBllbDD
 		(2, 0, 1) : UbllBu					wrong!
 		(2, 1, 0) : rUbllBuR				doesn't move
-		(2, 1, 2) : bdLDB					inf loop
+		(2, 1, 2) : bUluB					inf loop
 		(2, 2, 1) : RBdLDbr					right
 		(3, 0, 1) : bllB					right
 		(3, 1, 0) : bbllBB					right
@@ -71,7 +71,7 @@ algo1
 		(4, 1, 2) : r						right
 		(4, 2, 1) : Drd						right
 		(5, 0, 1) : Brrb					wrong
-		(5, 1, 0) : ubrrBU
+		(5, 1, 0) : UbrrBu		<---- Fix this.
 		(5, 1, 2) : R
 		(5, 2, 1) : URu
 	wg

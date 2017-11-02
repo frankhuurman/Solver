@@ -50,12 +50,12 @@ class cube(object):
 
 	def __init__(self, outputlist):
 		
-		self.start = outputlist
-#		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
-#		for l in dinges:
-#			self.start.append(l)
+#		self.start = outputlist
+		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
+		for l in dinges:
+			self.start.append(l)
 		self.setStart()
-		self.randomSetStart()
+#		self.randomSetStart()
 
 
 	def setStart(self):
@@ -81,17 +81,15 @@ class cube(object):
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)
-
-
-
+		
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
 
 #		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
-			if (str(move).lower() == "u"):
-				dir = not dir
+#			if (str(move).lower() == "u"):
+#				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
