@@ -2,15 +2,15 @@ algo1
 	wr
 		(0, 0, 1) : ubllBu
 		(0, 1, 0) : bdLDB					right
-		(0, 1, 2) : fulUF					doesn't even move! rewrite, can't move over the front.
-		(0, 2, 1) : LfulUFl					inf loop/ doesn't move
+		(0, 1, 2) : LubllBU					doesn't even move! rewrite, can't move over the front.
+		(0, 2, 1) : DBllbd					inf loop/ doesn't move
 		(1, 0, 1) : uubllBUU
 		(1, 1, 0) : 
 		(1, 1, 2) : RddLDDr
 		(1, 2, 1) : ddBllbDD
 		(2, 0, 1) : UbllBu
 		(2, 1, 0) : rUbllBuR				doesn't move
-		(2, 1, 2) : bdLDB					inf loop
+		(2, 1, 2) : bUluB					
 		(2, 2, 1) : RBdLDbr					right
 		(3, 0, 1) : bllB					right
 		(3, 1, 0) : bbllBB					right
