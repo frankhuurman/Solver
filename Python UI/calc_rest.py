@@ -37,7 +37,10 @@ class vars:
 				else:
 					cpos = (line.find(":"))
 					if (cpos is not -1):
-						m = line[(cpos + 2):].strip()
+						mpos = (line.find("\t", cpos))
+						if mpos == -1:
+							mpos = -2
+						m = line[(cpos + 2): mpos+1].strip()
 						f = int(line[cpos - 9])
 						x = int(line[cpos - 6])
 						y = int(line[cpos - 3])

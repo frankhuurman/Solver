@@ -51,7 +51,7 @@ class cube(object):
 	def __init__(self, outputlist):
 		
 #		self.start = outputlist
-		dinges = "oyowrywrygrrowyoywwrrgobobyyoyoyogwrgbbgbwbgrbgbrgbwwg"
+		dinges = "byogrygbrgrwowwywbrgooobwrybwyoyooyrgborbgwbgrgyrgywwb"
 		for l in dinges:
 			self.start.append(l)
 		self.setStart()
@@ -90,8 +90,8 @@ class cube(object):
 #		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
-			if (str(move).lower() == "u"):
-				dir = not dir
+#			if (str(move).lower() == "u"):
+#				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
