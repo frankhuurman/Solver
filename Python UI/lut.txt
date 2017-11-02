@@ -19,7 +19,7 @@ algo1
 		(4, 0, 1) : DLd
 		(4, 1, 0) : L						right
 		(4, 1, 2) : ddLDD
-		(4, 2, 1) : DLd
+		(4, 2, 1) : dLD
 		(5, 0, 1) : Ulu						wrong
 		(5, 1, 0) : l						right
 		(5, 1, 2) : uulUU					right
@@ -38,7 +38,7 @@ algo1
 		(2, 1, 2) : rDr						right
 		(2, 2, 1) : D
 		(3, 0, 1) : rrDRR
-		(3, 1, 0) : RDr
+		(3, 1, 0) : bddB
 		(3, 1, 2) : rdR						doesn't move. inf loop
 		(3, 2, 1) : DD						right
 		(4, 0, 1) : dRBddbr					right
@@ -71,7 +71,7 @@ algo1
 		(4, 1, 2) : r						right
 		(4, 2, 1) : Drd						right
 		(5, 0, 1) : Brrb					wrong
-		(5, 1, 0) : UbrrBu		<---- Fix this.
+		(5, 1, 0) : uuRUU
 		(5, 1, 2) : R
 		(5, 2, 1) : URu
 	wg

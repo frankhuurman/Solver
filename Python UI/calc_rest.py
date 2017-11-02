@@ -59,7 +59,7 @@ class vars:
 	algo5 = True
 	algo6 = True
 	algo7 = True
-	algos[2] = True
+#	algos[2] = True
 	cube = None
 
 
@@ -166,20 +166,38 @@ def algorithm():
 		for i in range(3):
 			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
+				coords = []
+				colors = []
 				count = 0
 				if (i == 1):
 					coords, colors = vars.cube.getCorners("w")
 					print(coords, colors)
 					print(vars.cube.printFaces("front_face"))
 				elif (i == 2):
-					vars.algos[i] = True
-					break
+					miew = ["rb", "rg", "ob", "og"]
+					coords1, colors1 = vars.cube.getEdge("r")
+					coords2, colors2 = vars.cube.getEdge("o")
+					coords1.extend(coords2)
+					colors1.extend(colors2)
+#					print("coords1: ", coords1)
+#					print("colors1: ", colors1)
+					for cor, col in zip(coords1, colors1):
+						if (col in miew):
+							coords.append(cor)
+							colors.append(col)
+					print("coords: ", coords)
+					print("colors: ", colors)
+					#vars.algos[i] = True
 				else:
 					coords, colors = vars.cube.getEdge("w")
 					print(coords, colors)
 				for j in range(len(coords)):
+					if (i == 2):
+						color = colors[j][0]
+					else:
+						color = colors[j][-1]
 #					print(i, j, colors, coords)
-					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
+					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 #						if (i == 1):
 					#	for m in moves:

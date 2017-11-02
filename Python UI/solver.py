@@ -151,14 +151,10 @@ class solver(object):
 				print("No data being received from Arduino anymore")
 				break
 
-		test = input("Press enter to close serial connection")
-		ser.close()             # close port
-		print ("Serial port closed")
-
 #		test = input("Press enter to close serial connection")
 		ser.close()             # close port
 		print ("Serial port closed")
-
+		
 	def showSavedText(self, image, rect):
 		image_time = 840
 		while image_time > 0:

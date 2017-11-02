@@ -50,12 +50,12 @@ class cube(object):
 
 	def __init__(self, outputlist):
 		
-#		self.start = outputlist
-		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
-		for l in dinges:
-			self.start.append(l)
+		self.start = outputlist
+#		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
+#		for l in dinges:
+#			self.start.append(l)
 		self.setStart()
-#		self.randomSetStart()
+		self.randomSetStart()
 
 
 	def setStart(self):
@@ -74,7 +74,7 @@ class cube(object):
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""
-		for i in range(30):
+		for i in range(500):
 			j = moves[int(random.random() * 6)]
 			if (random.random() > .5):
 				j = j.upper()
