@@ -64,7 +64,7 @@ with open("calc_rest.py", "r") as file:
 			face = line[a]
 			x = line[a + 12]
 			y = line[a + 15]
-			temp = (face, x, y)
+			temp = (int(face), int(x), int(y))
 
 		elif (temp is not None):
 			moves = ""
@@ -81,8 +81,11 @@ with open("calc_rest.py", "r") as file:
 		if (i == 705):
 			break
 
-for piep in algos:
-	for blaat in piep.values():
-		print(blaat)
 
-
+with open("output.txt", "w", newline = "\r\n") as file:
+	for i, piep in enumerate(algos):
+		file.write("algo" + str(i + 1) + "\n")
+		for meh, blaat in piep.items():
+			file.write("\t" + meh + "\n")
+			for a, b in blaat.items():
+				file.write("\t\t{} : {}\n".format(a, b))
