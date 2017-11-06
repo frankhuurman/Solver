@@ -92,18 +92,18 @@ def translateMoves(alg, mod, moves):
 							"l" : "l",
 							"f" : "d"}
 				}, 3: {	# Algo3
-				"r" : {"f" : "d",
-							"r" : "b",
-							"u" : "r",
-							"b" : "u",
-							"l" : "f",
-							"d" : "l"},
-				"o" : {"f" : "d",
-							"r" : "f",
-							"u" : "l",
-							"b" : "u",
-							"l" : "b",
-							"d" : "r"}
+				"r" : {"d" : "f",
+							"b" : "r",
+							"r" : "u",
+							"u" : "b",
+							"f" : "l",
+							"l" : "d"},
+				"o":	{"d": "f",
+							"f" : "r",
+							"l" : "u",
+							"u" : "b",
+							"b" : "l",
+							"r" : "d"},
 				}, 4: {	# Algo4
 				"b": {"f" : "d",
 							"r" : "l",
@@ -166,6 +166,7 @@ def algorithm():
 		for i in range(3):
 			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
+				currentColor = ""
 				coords = []
 				colors = []
 				count = 0
@@ -191,7 +192,7 @@ def algorithm():
 				else:
 					coords, colors = vars.cube.getEdge("w")
 					print(coords, colors)
-				for j in range(len(coords)):
+				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
 					if (i == 2):
 						color = colors[j][0]
 					else:
@@ -201,7 +202,8 @@ def algorithm():
 					if (moves is not ""):
 #						if (i == 1):
 					#	for m in moves:
-						input("\nNext move: " + colors[j] + str(coords[j]) + moves)
+						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
+						currentcolors = colors[j] # !
 						vars.cube.sendMoves(moves)
 #						else:
 #						vars.cube.sendMoves(moves)
@@ -212,6 +214,9 @@ def algorithm():
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
+
+					if (vars.LUT[i][colors[j]][coords[j]] is not ""): # ! 
+						pass
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
