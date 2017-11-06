@@ -55,11 +55,11 @@ class vars:
 	algos = []
 	for i in range(3):
 		algos.append(False)
-	algo4 = False
-	algo5 = False
-	algo6 = False
-	algo7 = False
-	algos[2] = True
+	algo4 = True
+	algo5 = True
+	algo6 = True
+	algo7 = True
+#	algos[2] = True
 	cube = None
 
 
@@ -92,18 +92,18 @@ def translateMoves(alg, mod, moves):
 							"l" : "l",
 							"f" : "d"}
 				}, 3: {	# Algo3
-				"r" : {"f" : "d",
-							"r" : "b",
-							"u" : "r",
-							"b" : "u",
-							"l" : "f",
-							"d" : "l"},
-				"o" : {"f" : "d",
-							"r" : "f",
-							"u" : "l",
-							"b" : "u",
-							"l" : "b",
-							"d" : "r"}
+				"r" : {"d" : "f",
+							"b" : "r",
+							"r" : "u",
+							"u" : "b",
+							"f" : "l",
+							"l" : "d"},
+				"o":	{"d": "f",
+							"f" : "r",
+							"l" : "u",
+							"u" : "b",
+							"b" : "l",
+							"r" : "d"},
 				}, 4: {	# Algo4
 				"b": {"f" : "d",
 							"r" : "l",
@@ -140,7 +140,7 @@ def translateMoves(alg, mod, moves):
 				
 	if (moves == ""):
 		return(moves)
-	mvs = "" # This is the moves after they are translated
+	mvs = ""
 	try:
 		for m in moves:
 			up = False
@@ -166,26 +166,47 @@ def algorithm():
 		for i in range(3):
 			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
+				currentColor = ""
+				coords = []
+				colors = []
 				count = 0
 				if (i == 1):
 					coords, colors = vars.cube.getCorners("w")
 					print(coords, colors)
 					print(vars.cube.printFaces("front_face"))
-	##			elif (i == 2):
-		#			vars.algos[i] = True
-		#			break
+				elif (i == 2):
+					miew = ["rb", "rg", "ob", "og"]
+					coords1, colors1 = vars.cube.getEdge("r")
+					coords2, colors2 = vars.cube.getEdge("o")
+					coords1.extend(coords2)
+					colors1.extend(colors2)
+#					print("coords1: ", coords1)
+#					print("colors1: ", colors1)
+					for cor, col in zip(coords1, colors1):
+						if (col in miew):
+							coords.append(cor)
+							colors.append(col)
+					print("coords: ", coords)
+					print("colors: ", colors)
+					#vars.algos[i] = True
 				else:
 					coords, colors = vars.cube.getEdge("w")
-				for j in range(len(coords)):
+					print(coords, colors)
+				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
+					if (i == 2):
+						color = colors[j][0]
+					else:
+						color = colors[j][-1]
 #					print(i, j, colors, coords)
-					moves = translateMoves(i + 1, colors[j][-1], vars.LUT[i][colors[j]][coords[j]])
+					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
 					if (moves is not ""):
 #						if (i == 1):
-						for m in moves:
-							input("Next move: " + m)
-							vars.cube.sendMoves(m)
+					#	for m in moves:
+						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
+						currentcolors = colors[j] # !
+						vars.cube.sendMoves(moves)
 #						else:
-#							vars.cube.sendMoves(moves)
+#						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
 						break	# Redo the while loop to get the current location of all white edges.
 					else:
@@ -193,6 +214,9 @@ def algorithm():
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
+
+					if (vars.LUT[i][colors[j]][coords[j]] is not ""): # ! 
+						pass
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
@@ -278,7 +302,7 @@ def algorithm():
 					results = ""
 					print("Error 3: This shouldn't even trigger; algo5")
 
-	'''if not vars.algo6:
+	if not vars.algo6:
 		fronts = ["r", "b", "g", "o"]
 		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 		edgeColor = ["ryg", "rby", "ogy", "oyb"]
@@ -334,7 +358,7 @@ def algorithm():
 					iter += 1
 					for x in adjacent:
 						if  cl[:2] is not adjacent:
-							results = translateMoves(2, "r", "RDrd") '''
+							results = translateMoves(2, "r", "RDrd")
 
 	cube.sendMoves(results) # Sends results to the cube updating it.
 	vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
