@@ -13,7 +13,6 @@
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 import datetime
-import time 
 
 class vars:
 	
@@ -64,7 +63,6 @@ class vars:
 	algo7 = True
 #	algos[2] = True
 	cube = None
-
 
 def translateMoves(alg, mod, moves):
 
@@ -159,8 +157,6 @@ def translateMoves(alg, mod, moves):
 	print("Changed ", moves, mvs)
 	return(mvs)
 
-
-
 def algorithm():
 
 	results = ""
@@ -219,10 +215,10 @@ def algorithm():
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
 
 					if (vars.LUT[i][colors[j]][coords[j]] is not ""): # ! 
-						debug = open("debug.txt", "w", newline = "\r\n") # opens debug.txt
-						debug.write(vars.LUT[i][colors[j]][coords[j]]) # writes all the info on te defective moves to debug.txt
-						debug.write(time.localtime(datetime.datetime)) # adds a timestamp
-						debug.close() # closes debug.txt
+							debug = open("debug.txt", "a", newline = "\r\n") # opens debug.txt
+							debug.write(str(colors[j]) + str(coords[j]) + "\t") # writes all the info on te defective moves to debug.txt
+							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp
+							debug.close() # closes debug.txt
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
