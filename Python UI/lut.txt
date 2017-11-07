@@ -39,7 +39,7 @@ algo1
 		(2, 2, 1) : D
 		(3, 0, 1) : rrDRR
 		(3, 1, 0) : bbddBB
-		(3, 1, 2) : rdR						doesn't move
+		(3, 1, 2) : bddB
 		(3, 2, 1) : DD						right
 		(4, 0, 1) : dRBddbr					right
 		(4, 1, 0) : lbddDL
