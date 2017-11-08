@@ -157,6 +157,30 @@ def translateMoves(alg, mod, moves):
 	return(mvs)
 
 
+def getInfo(i):
+	if (i == 1):
+		coords, colors = vars.cube.getCorners("w")
+		print(coords, colors)
+		print(vars.cube.printFaces("front_face"))
+	elif (i == 2):
+		miew = ["rb", "rg", "ob", "og"]
+		coords1, colors1 = vars.cube.getEdge("r")
+		coords2, colors2 = vars.cube.getEdge("o")
+		coords1.extend(coords2)
+		colors1.extend(colors2)
+	#					print("coords1: ", coords1)
+	#					print("colors1: ", colors1)
+		for cor, col in zip(coords1, colors1):
+			if (col in miew):
+				coords.append(cor)
+				colors.append(col)
+		print("coords: ", coords)
+		print("colors: ", colors)
+		#vars.algos[i] = True
+	else:
+		coords, colors = vars.cube.getEdge("w")
+	return(coords, colors)
+
 
 def algorithm():
 
@@ -170,28 +194,7 @@ def algorithm():
 				coords = []
 				colors = []
 				count = 0
-				if (i == 1):
-					coords, colors = vars.cube.getCorners("w")
-					print(coords, colors)
-					print(vars.cube.printFaces("front_face"))
-				elif (i == 2):
-					miew = ["rb", "rg", "ob", "og"]
-					coords1, colors1 = vars.cube.getEdge("r")
-					coords2, colors2 = vars.cube.getEdge("o")
-					coords1.extend(coords2)
-					colors1.extend(colors2)
-#					print("coords1: ", coords1)
-#					print("colors1: ", colors1)
-					for cor, col in zip(coords1, colors1):
-						if (col in miew):
-							coords.append(cor)
-							colors.append(col)
-					print("coords: ", coords)
-					print("colors: ", colors)
-					#vars.algos[i] = True
-				else:
-					coords, colors = vars.cube.getEdge("w")
-					print(coords, colors)
+				coords, colors = getInfo(i)----------------
 				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
 					if (i == 2):
 						color = colors[j][0]
@@ -214,8 +217,11 @@ def algorithm():
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
-
-					if (vars.LUT[i][colors[j]][coords[j]] is not ""): # ! 
+						-----------------
+					coords, colors = getInfo(i)
+					k = colors.find(currentColor)
+					if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
+						---------------------
 						pass
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
