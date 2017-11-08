@@ -157,6 +157,32 @@ def translateMoves(alg, mod, moves):
 	print("Changed ", moves, mvs)
 	return(mvs)
 
+def getInfo(i):
+	coords = []
+	colors = []
+	if (i == 1):
+		coords, colors = vars.cube.getCorners("w")
+		print(coords, colors)
+		print(vars.cube.printFaces("front_face"))
+	elif (i == 2):
+		miew = ["rb", "rg", "ob", "og"]
+		coords1, colors1 = vars.cube.getEdge("r")
+		coords2, colors2 = vars.cube.getEdge("o")
+		coords1.extend(coords2)
+		colors1.extend(colors2)
+	#					print("coords1: ", coords1)
+	#					print("colors1: ", colors1)
+		for cor, col in zip(coords1, colors1):
+			if (col in miew):
+				coords.append(cor)
+				colors.append(col)
+		print("coords: ", coords)
+		print("colors: ", colors)
+		#vars.algos[i] = True
+	else:
+		coords, colors = vars.cube.getEdge("w")
+	return(coords, colors)
+
 def algorithm():
 
 	results = ""
@@ -166,31 +192,8 @@ def algorithm():
 			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				currentColor = ""
-				coords = []
-				colors = []
 				count = 0
-				if (i == 1):
-					coords, colors = vars.cube.getCorners("w")
-					print(coords, colors)
-					print(vars.cube.printFaces("front_face"))
-				elif (i == 2):
-					miew = ["rb", "rg", "ob", "og"]
-					coords1, colors1 = vars.cube.getEdge("r")
-					coords2, colors2 = vars.cube.getEdge("o")
-					coords1.extend(coords2)
-					colors1.extend(colors2)
-#					print("coords1: ", coords1)
-#					print("colors1: ", colors1)
-					for cor, col in zip(coords1, colors1):
-						if (col in miew):
-							coords.append(cor)
-							colors.append(col)
-					print("coords: ", coords)
-					print("colors: ", colors)
-					#vars.algos[i] = True
-				else:
-					coords, colors = vars.cube.getEdge("w")
-					print(coords, colors)
+				coords, colors = getInfo(i)
 				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
 					if (i == 2):
 						color = colors[j][0]
@@ -207,14 +210,17 @@ def algorithm():
 #						else:
 #						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
-						break	# Redo the while loop to get the current location of all white edges.
+#						break	# Redo the while loop to get the current location of all white edges.
 					else:
 						count += 1	# If sqaure is correct, count it.
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
 
-					if (vars.LUT[i][colors[j]][coords[j]] is not ""): # ! 
+					if currentColor is not "":
+						coords, colors = getInfo(i)
+						k = colors.index(currentColor)
+						if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
 							debug = open("debug.txt", "a", newline = "\r\n") # opens debug.txt
 							debug.write(str(colors[j]) + str(coords[j]) + "\t") # writes all the info on te defective moves to debug.txt
 							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp

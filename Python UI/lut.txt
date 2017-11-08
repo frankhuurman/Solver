@@ -174,13 +174,13 @@ algo2
 		(5, 0, 0) : ddRDrdRDrdRDrdRDrdRDrd			
 		(5, 0, 2) : DRDrd
 		(5, 2, 0) : LddlRDrdRDrdRDrd
-		(5, 2, 2) : rdRddRDrdRDrdRDrd
+		(5, 2, 2) : rddRdRDrdRDrdRDrd			wrong
 	wgo
 		(0, 0, 0) : DRDrd						wrong. ends ups at 0,0,0 (inf loop)
 		(0, 0, 2) : rdRddRDrdRDrdRDrd			wrong. ends up at 3,0,2
 		(0, 2, 0) : Rddr						wrong
 		(0, 2, 2) : LddlRDrdRDrdRDrd			wrong
-		(1, 0, 0) : rdRddRDrd					wrong. ends up at 0,2,0
+		(1, 0, 0) : rddRdRDrd
 		(1, 0, 2) : 
 		(1, 2, 0) : LRddlr
 		(1, 2, 2) : ldLRDrd
@@ -268,4 +268,4 @@ algo3
 		(4, 2, 1) : uurURUFuf
 		(5, 0, 1) : rURUFuf
 		(5, 1, 0) : ulULUBuburURUFuf
-		(5, 1, 2) : ULulufUFUrURUFuf
+		(5, 1, 2) : ULulufUFuuurURUFuf
