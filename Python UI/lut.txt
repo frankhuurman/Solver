@@ -37,7 +37,7 @@ algo1
 		(2, 1, 0) : RDr						right
 		(2, 1, 2) : rDr						right
 		(2, 2, 1) : D
-		(3, 0, 1) : rrDRR
+		(3, 0, 1) : bbddBB
 		(3, 1, 0) : Bddb
 		(3, 1, 2) : bddB
 		(3, 2, 1) : DD						right
