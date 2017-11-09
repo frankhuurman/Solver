@@ -205,19 +205,12 @@ def algorithm():
 #						if (i == 1):
 					#	for m in moves:
 						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
-						currentcolors = colors[j] # !
+						currentColor = colors[j] # !
+						print(currentColor)
 						vars.cube.sendMoves(moves)
 #						else:
 #						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
-#						break	# Redo the while loop to get the current location of all white edges.
-					else:
-						count += 1	# If sqaure is correct, count it.
-					if (count == 4):
-						print(coords, colors)
-						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
-
-					if currentColor is not "":
 						coords, colors = getInfo(i)
 						k = colors.index(currentColor)
 						if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
@@ -225,6 +218,12 @@ def algorithm():
 							debug.write(str(colors[j]) + str(coords[j]) + "\t") # writes all the info on te defective moves to debug.txt
 							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp
 							debug.close() # closes debug.txt
+						break	# Redo the while loop to get the current location of all white edges.
+					else:
+						count += 1	# If sqaure is correct, count it.
+					if (count == 4):
+						print(coords, colors)
+						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
