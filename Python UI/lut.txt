@@ -5,7 +5,7 @@ algo1
 		(0, 1, 2) : LubllBU					doesn't even move! rewrite, can't move over the front.
 		(0, 2, 1) : DBllbd					inf loop/ doesn't move
 		(1, 0, 1) : uubllBUU
-		(1, 1, 0) : 
+		(1, 1, 0) : done
 		(1, 1, 2) : RddLDDr
 		(1, 2, 1) : ddBllbDD
 		(2, 0, 1) : UbllBu
@@ -32,7 +32,7 @@ algo1
 		(1, 0, 1) : uubbddBBUU
 		(1, 1, 0) : llbddLLB
 		(1, 1, 2) : rrBddbRR
-		(1, 2, 1) : 
+		(1, 2, 1) : done
 		(2, 0, 1) : rrDRR					right
 		(2, 1, 0) : RDr						right
 		(2, 1, 2) : rDr						right
@@ -56,7 +56,7 @@ algo1
 		(0, 2, 1) : DbrrBd
 		(1, 0, 1) : uuBrrbUU
 		(1, 1, 0) : lddrDDL					right
-		(1, 1, 2) : 
+		(1, 1, 2) : done
 		(1, 2, 1) : ddbrrBDD
 		(2, 0, 1) : rBDrdb
 		(2, 1, 0) : RdbrrBD					~~right
@@ -79,7 +79,7 @@ algo1
 		(0, 1, 0) : lUL						
 		(0, 1, 2) : LUl						wrong
 		(0, 2, 1) : llULL					wrong. ends up at 3,0,1 from where it can complete.
-		(1, 0, 1) : 
+		(1, 0, 1) : done
 		(1, 1, 0) : LLBuubLL
 		(1, 1, 2) : rrbuuBRR				right
 		(1, 2, 1) : ddbbuuBBDD				right
@@ -105,7 +105,7 @@ algo2
 		(0, 0, 2) : RDrdRDrd					right
 		(0, 2, 0) : DDRdr						right
 		(0, 2, 2) : rDDRRdr						right
-		(1, 0, 0) : 
+		(1, 0, 0) : done
 		(1, 0, 2) : ldLRDrd
 		(1, 2, 0) : rDDRdRDrd
 		(1, 2, 2) : LddlRDrdRDrdRDrdRDrdRDrd
@@ -132,7 +132,7 @@ algo2
 		(0, 2, 2) : RDrdRDrdRDrdRDrd
 		(1, 0, 0) : ldLRDrd
 		(1, 0, 2) : LRddlr
-		(1, 2, 0) : 
+		(1, 2, 0) : done
 		(1, 2, 2) : rDDRdRDrd
 		(2, 0, 0) : LRddlrRDrdRDrdRDrdRDrd
 		(2, 0, 2) : Rddr
@@ -158,7 +158,7 @@ algo2
 		(1, 0, 0) : LRddlr
 		(1, 0, 2) : rddRdRDrd
 		(1, 2, 0) : ldLRDrd
-		(1, 2, 2) : 
+		(1, 2, 2) : done
 		(2, 0, 0) : rddRRdr
 		(2, 0, 2) : dRddr						right
 		(2, 2, 0) : RDrdRDrd
@@ -181,7 +181,7 @@ algo2
 		(0, 2, 0) : Rddr						wrong
 		(0, 2, 2) : LddlRDrdRDrdRDrd			wrong
 		(1, 0, 0) : rddRdRDrd
-		(1, 0, 2) : 
+		(1, 0, 2) : done
 		(1, 2, 0) : LRddlr
 		(1, 2, 2) : ldLRDrd
 		(2, 0, 0) : RDrdRDrdRDrdRDrd
@@ -204,7 +204,7 @@ algo3
 	rb
 		(0, 0, 1) : urURUFufuuULulufUFULulufUFuLulufUF
 		(0, 1, 0) : ULulufUF
-		(0, 2, 1) : 
+		(0, 2, 1) : done
 		(2, 0, 1) : ubUBURuruLulufUF
 		(2, 1, 2) : uLulufUF
 		(2, 2, 1) : UBubulULuLulufUF
@@ -219,7 +219,7 @@ algo3
 		(5, 1, 0) : urURUFufuLulufUF
 		(5, 1, 2) : ubUBURurUULulufUFULulufUFuLulufUF
 	rg
-		(0, 0, 1) : 
+		(0, 0, 1) : done
 		(0, 1, 0) : urURUFuf
 		(0, 2, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
@@ -239,7 +239,7 @@ algo3
 		(0, 0, 1) : uLulufUF
 		(0, 1, 0) : uLulufUF
 		(0, 2, 1) : ubUBURuruLulufUF
-		(2, 0, 1) : 
+		(2, 0, 1) : done
 		(2, 1, 2) : ULulufUF
 		(2, 2, 1) : urURUFufuLulufUFULulufUFuLulufUF
 		(3, 0, 1) : UULulufUFULulufUFuLulufUF
@@ -258,7 +258,7 @@ algo3
 		(0, 2, 1) : ubUBURurrURUFuf
 		(2, 0, 1) : LulufUFUrURUFufurURUFufUrURUFuf 
 		(2, 1, 2) : urURUFuf
-		(2, 2, 1) : 
+		(2, 2, 1) : done
 		(3, 0, 1) : rURUFufurURUFufUrURUFuf
 		(3, 1, 0) : urURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf
