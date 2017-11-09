@@ -140,7 +140,7 @@ def translateMoves(alg, mod, moves):
 							"d" : "r"}
 				}}
 				
-	if (moves == ""):
+	if (moves == "done"):
 		return(moves)
 	mvs = ""
 	try:
@@ -164,8 +164,7 @@ def getInfo(i):
 	colors = []
 	if (i == 1):
 		coords, colors = vars.cube.getCorners("w")
-		print(coords, colors)
-		print(vars.cube.printFaces("front_face"))
+#		print(vars.cube.printFaces("front_face"))
 	elif (i == 2):
 		miew = ["rb", "rg", "ob", "og"]
 		coords1, colors1 = vars.cube.getEdge("r")
@@ -176,10 +175,10 @@ def getInfo(i):
 			if (col in miew):
 				coords.append(cor)
 				colors.append(col)
-		print("coords: ", coords)
-		print("colors: ", colors)
 	else:
 		coords, colors = vars.cube.getEdge("w")
+	print("coords: ", coords)
+	print("colors: ", colors)
 	return(coords, colors)
 
 
@@ -203,21 +202,24 @@ def algorithm():
 					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
 					if (not moves == "done"):
 #						if (i == 1):
-					#	for m in moves:
+#						for m in moves:
 						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
-						currentColor = colors[j] # !
-						print(currentColor)
+						currentColor = colors[j]
 						vars.cube.sendMoves(moves)
 #						else:
 #						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
+						del(coords, colors)
 						coords, colors = getInfo(i)
 						k = colors.index(currentColor)
 						if (not vars.LUT[i][colors[k]][coords[k]] == "done"): # ! 
+							print("\n\nERROR!!!!!\n", coords, colors)
 							debug = open("debug.txt", "a", newline = "\r\n") # opens debug.txt
 							debug.write(str(colors[j]) + " algo-{} ".format(i+1) + str(coords[j]) + "\t") # writes all the info on the defective moves to debug.txt
-							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp
+							debug.write(" moves: {} - @{}\n".format(vars.LUT[i][colors[k]][coords[k]], datetime.datetime.now()))
 							debug.close() # closes debug.txt
+						else:
+							print("\n{}\n{}\n".format(vars.LUT[i][colors[k]][coords[k]], currentColor))
 						break	# Redo the while loop to get the current location of all white edges.
 					else:
 						count += 1	# If sqaure is correct, count it.

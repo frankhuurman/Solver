@@ -71,6 +71,7 @@ class cube(object):
 			self.faces[f] = face(squares, name, conns)
 
 	def randomSetStart(self):
+		"""Use this method to get the cube to a random state."""
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""

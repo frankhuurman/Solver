@@ -7,6 +7,25 @@ import cube as kubus
 import threading
 
 
+
+class solverThread(threading.Thread):
+	"""Use this to create new threads."""
+
+	threadID = None
+	name = None
+	args = None
+
+	def __init__(self, threadID, name, args = None):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.args = args
+
+	def run(self):
+		print("Starting thread{0}: {1}".format(self.threadID, self.name))
+		self.args.solve()
+		print("Exiting thread{0}: {1}".format(self.threadID, self.name))
+
 class solver(object):
 	
 	# Set program window size and create program window
@@ -78,6 +97,7 @@ class solver(object):
 	rects = []
 	rects_col = []
 	cube = None
+	threadList = []
 	
 	def __init__(self):
 
@@ -117,7 +137,7 @@ class solver(object):
 		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 		print("Port used: " + ser.name)         # Check which port was really used
 		data = ser.readline()
-		if data == b"next\r\n": # Initialize handshake with Arduino
+		if data == b"Ready\r\n": # Initialize handshake with Arduino
 			print("Succesfully connected to Arduino...")
 		else:
 			print("Failed to connect to Arduino. Exiting...")
@@ -261,16 +281,29 @@ class solver(object):
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
 						# Start solving the cube using the algorithm in another thread.
-						solve = threading.Thread(name = "Solver", target = self.solve, args=())
-						solve.setDaemon(True)
-						solve.start()
+#						solve = threading.Thread(name = "Solver", target = self.solve, args=())
+#						solve.setDaemon(True)
+#						solve.start()
+						startThread = True
+						for t in self.threadList:
+							if (t.isAlive()):
+								startThread = False
+						if (startThread):
+							solverThr = solverThread(len(self.threadList), "Solver", self)
+							solverThr.start()
+							self.threadList.append(solverThr)
+						else:
+							print("Solver thread already going.")
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
 						if (self.cube is not None):
 							self.cube.stopSolving = True
 							self.cube = None
-					#	self.resetFields()
+						
+						for t in self.threadList:
+							t.join()
+						self.resetFields()
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
@@ -358,7 +391,7 @@ class solver(object):
 			self.solverDisplay.blit(self.bottom_text, (300, 200))
 			self.solverDisplay.blit(self.top_text, (600, 200))
 			self.solverDisplay.blit(self.usercolor_text, (10, 410))
-			self.solverDisplay.blit(self.output_stringtext, (10, 550))
+#			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			self.updateColors()
 
