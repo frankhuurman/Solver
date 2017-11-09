@@ -80,7 +80,7 @@ algo1
 		(0, 1, 2) : LUl						wrong
 		(0, 2, 1) : llULL					wrong. ends up at 3,0,1 from where it can complete.
 		(1, 0, 1) : 
-		(1, 1, 0) : llBuubLL
+		(1, 1, 0) : LLBuubLL
 		(1, 1, 2) : rrbuuBRR				right
 		(1, 2, 1) : ddbbuuBBDD				right
 		(2, 0, 1) : U
@@ -110,7 +110,7 @@ algo2
 		(1, 2, 0) : rDDRdRDrd
 		(1, 2, 2) : LddlRDrdRDrdRDrdRDrdRDrd
 		(2, 0, 0) : ldLRDrdRDrdRDrdRDrdRDrd		
-		(2, 0, 2) : dRDrdRDrdRDrdRDrdRDrd		right
+		(2, 0, 2) : dRDrdRDrdRDrdRDrdRDrd		part of a loop, but doesn't seem to the cause of the loop
 		(2, 2, 0) : LddlRDrd					right
 		(2, 2, 2) : ddRDrd						right
 		(3, 0, 0) : dRDrdRDrdRDrd
@@ -124,7 +124,7 @@ algo2
 		(5, 0, 0) : RDrdRDrdRDrdRDrdRDrd
 		(5, 0, 2) : dRDrd
 		(5, 2, 0) : RDrdRDrdRDrdRDrd			right
-		(5, 2, 2) : ldLRDrdRDrdRDrd
+		(5, 2, 2) : ldLRDrdRDrdRDrd				part of a loop, but doesn't seem to be the cause of the loop
 	wbr
 		(0, 0, 0) : dRDrd
 		(0, 0, 2) : ldLRDrdRDrdRDrd
@@ -198,7 +198,7 @@ algo2
 		(4, 2, 2) : Rdrd						wrong. ends up at 3,2,2. wrg at 1,0,0 ends up at 2,2,2
 		(5, 0, 0) : dRddr
 		(5, 0, 2) : RDrd
-		(5, 2, 0) : rdRRddr
+		(5, 2, 0) : rdRRddr						part of a loop, but doesn't seem to be the cause of the loop
 		(5, 2, 2) : RDrdRDrd					wrong
 algo3
 	rb
@@ -256,7 +256,7 @@ algo3
 		(0, 0, 1) : ulULUBuburURUFufurURUFufUrURUFuf
 		(0, 1, 0) : UrURUFuf
 		(0, 2, 1) : ubUBURurrURUFuf
-		(2, 0, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
+		(2, 0, 1) : LulufUFUrURUFufurURUFufUrURUFuf 
 		(2, 1, 2) : urURUFuf
 		(2, 2, 1) : 
 		(3, 0, 1) : rURUFufurURUFufUrURUFuf
