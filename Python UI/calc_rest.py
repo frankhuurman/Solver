@@ -194,14 +194,14 @@ def algorithm():
 				currentColor = ""
 				count = 0
 				coords, colors = getInfo(i)
-				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
+				for j in range(len(coords)): #iterates through all colors until the first incorrectly placed color is found
 					if (i == 2):
 						color = colors[j][0]
 					else:
 						color = colors[j][-1]
 #					print(i, j, colors, coords)
 					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
-					if (moves is not ""):
+					if (not moves == "done"):
 #						if (i == 1):
 					#	for m in moves:
 						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
@@ -213,9 +213,9 @@ def algorithm():
 						vars.moveListBuffer += moves
 						coords, colors = getInfo(i)
 						k = colors.index(currentColor)
-						if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
+						if (not vars.LUT[i][colors[k]][coords[k]] == "done"): # ! 
 							debug = open("debug.txt", "a", newline = "\r\n") # opens debug.txt
-							debug.write(str(colors[j]) + str(coords[j]) + "\t") # writes all the info on te defective moves to debug.txt
+							debug.write(str(colors[j]) + " algo-{} ".format(i+1) + str(coords[j]) + "\t") # writes all the info on the defective moves to debug.txt
 							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp
 							debug.close() # closes debug.txt
 						break	# Redo the while loop to get the current location of all white edges.
@@ -224,6 +224,8 @@ def algorithm():
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
+
+#					if currentColor is not "":
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
