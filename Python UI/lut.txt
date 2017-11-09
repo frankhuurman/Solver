@@ -1,16 +1,16 @@
 algo1
 	wr
-		(0, 0, 1) : UbllBU
+		(0, 0, 1) : ubllBu
 		(0, 1, 0) : bdLDB					right
-		(0, 1, 2) : fulUF					doesn't even move!
-		(0, 2, 1) : LfulUFl					inf loop/ doesn't move. wb 1,2,1 ends up at 3,1,2
+		(0, 1, 2) : LubllBU					doesn't even move! rewrite, can't move over the front.
+		(0, 2, 1) : DBllbd					inf loop/ doesn't move
 		(1, 0, 1) : uubllBUU
-		(1, 1, 0) : 
-		(1, 1, 2) : RddLDDr					right
+		(1, 1, 0) : done
+		(1, 1, 2) : RddLDDr
 		(1, 2, 1) : ddBllbDD
-		(2, 0, 1) : UbllBu					wrong!
+		(2, 0, 1) : UbllBu
 		(2, 1, 0) : rUbllBuR				doesn't move
-		(2, 1, 2) : bUluB					inf loop
+		(2, 1, 2) : bUluB					
 		(2, 2, 1) : RBdLDbr					right
 		(3, 0, 1) : bllB					right
 		(3, 1, 0) : bbllBB					right
@@ -25,20 +25,20 @@ algo1
 		(5, 1, 2) : uulUU					right
 		(5, 2, 1) : ulU
 	wb
-		(0, 0, 1) : lldLL					right
-		(0, 1, 0) : Ldl						wrong. Ends at 5,1,2
-		(0, 1, 2) : ldL						right
+		(0, 0, 1) : lldLL
+		(0, 1, 0) : Ldl
+		(0, 1, 2) : ldL
 		(0, 2, 1) : d						right
 		(1, 0, 1) : uubbddBBUU
 		(1, 1, 0) : llbddLLB
 		(1, 1, 2) : rrBddbRR
-		(1, 2, 1) : 
+		(1, 2, 1) : done
 		(2, 0, 1) : rrDRR					right
 		(2, 1, 0) : RDr						right
 		(2, 1, 2) : rDr						right
 		(2, 2, 1) : D
-		(3, 0, 1) : rrDRR
-		(3, 1, 0) : Bddb					
+		(3, 0, 1) : bbddBB
+		(3, 1, 0) : Bddb
 		(3, 1, 2) : bddB
 		(3, 2, 1) : DD						right
 		(4, 0, 1) : dRBddbr					right
@@ -56,7 +56,7 @@ algo1
 		(0, 2, 1) : DbrrBd
 		(1, 0, 1) : uuBrrbUU
 		(1, 1, 0) : lddrDDL					right
-		(1, 1, 2) : 
+		(1, 1, 2) : done
 		(1, 2, 1) : ddbrrBDD
 		(2, 0, 1) : rBDrdb
 		(2, 1, 0) : RdbrrBD					~~right
@@ -76,15 +76,15 @@ algo1
 		(5, 2, 1) : URu
 	wg
 		(0, 0, 1) : u						right
-		(0, 1, 0) : lUL						wrong. ends up at 3,0,1
+		(0, 1, 0) : lUL						
 		(0, 1, 2) : LUl						wrong
 		(0, 2, 1) : llULL					wrong. ends up at 3,0,1 from where it can complete.
-		(1, 0, 1) : 
+		(1, 0, 1) : done
 		(1, 1, 0) : llBuubLL
 		(1, 1, 2) : rrbuuBRR				right
 		(1, 2, 1) : ddbbuuBBDD				right
 		(2, 0, 1) : U
-		(2, 1, 0) : ruR						wrong. ends up at 3,0,1 rUR should work?
+		(2, 1, 0) : ruR						wrong.ends up at 3,0,1 rUR should work?
 		(2, 1, 2) : Rur						wrong
 		(2, 2, 1) : rruRR
 		(3, 0, 1) : uu						right
@@ -92,22 +92,22 @@ algo1
 		(3, 1, 2) : Buub					right
 		(3, 2, 1) : bbuuBB
 		(4, 0, 1) : dRbuuBrd				right
-		(4, 1, 0) : lBuubL					right
+		(4, 1, 0) : lBuubL
 		(4, 1, 2) : RbuuBr
 		(4, 2, 1) : bRurB
 		(5, 0, 1) : blU
 		(5, 1, 0) : LBuubl
-		(5, 1, 2) : rbuuBR					right. Except wo 1,2,1 ends up at 5,1,0
+		(5, 1, 2) : rbuuBR
 		(5, 2, 1) : UrbuuBRu
 algo2
 	wrg
-		(0, 0, 0) : RDrd						right
+		(0, 0, 0) : RDrd
 		(0, 0, 2) : RDrdRDrd					right
 		(0, 2, 0) : DDRdr						right
 		(0, 2, 2) : rDDRRdr						right
-		(1, 0, 0) : 
+		(1, 0, 0) : done
 		(1, 0, 2) : ldLRDrd
-		(1, 2, 0) : rDDRdRDrd					right
+		(1, 2, 0) : rDDRdRDrd
 		(1, 2, 2) : LddlRDrdRDrdRDrdRDrdRDrd
 		(2, 0, 0) : ldLRDrdRDrdRDrdRDrdRDrd		
 		(2, 0, 2) : dRDrdRDrdRDrdRDrdRDrd		right
@@ -132,10 +132,10 @@ algo2
 		(0, 2, 2) : RDrdRDrdRDrdRDrd
 		(1, 0, 0) : ldLRDrd
 		(1, 0, 2) : LRddlr
-		(1, 2, 0) : 
+		(1, 2, 0) : done
 		(1, 2, 2) : rDDRdRDrd
-		(2, 0, 0) : LRddlrRDrdRDrdRDrdRDrd		wrong. doesn't move
-		(2, 0, 2) : Rddr						right
+		(2, 0, 0) : LRddlrRDrdRDrdRDrdRDrd
+		(2, 0, 2) : Rddr
 		(2, 2, 0) : rddRdRDrdRDrdRDrd			right
 		(2, 2, 2) : DRDrd						right
 		(3, 0, 0) : ddRDrdRDrdRDrd
@@ -151,14 +151,14 @@ algo2
 		(5, 2, 0) : lRdLr
 		(5, 2, 2) : LRddlrRDrdRDrd
 	wob
-		(0, 0, 0) : ddRDrd						right
+		(0, 0, 0) : ddRDrd
 		(0, 0, 2) : LddlRDrd					right
 		(0, 2, 0) : dRDrdRDrdRDrdRDrdRDrd
 		(0, 2, 2) : lRdLr
 		(1, 0, 0) : LRddlr
 		(1, 0, 2) : rddRdRDrd
-		(1, 2, 0) : ldLRDrd						right
-		(1, 2, 2) : 
+		(1, 2, 0) : ldLRDrd
+		(1, 2, 2) : done
 		(2, 0, 0) : rddRRdr
 		(2, 0, 2) : dRddr						right
 		(2, 2, 0) : RDrdRDrd
@@ -174,15 +174,15 @@ algo2
 		(5, 0, 0) : ddRDrdRDrdRDrdRDrdRDrd			
 		(5, 0, 2) : DRDrd
 		(5, 2, 0) : LddlRDrdRDrdRDrd
-		(5, 2, 2) : rdRddRDrdRDrdRDrd
+		(5, 2, 2) : rddRdRDrdRDrdRDrd			wrong
 	wgo
 		(0, 0, 0) : DRDrd						wrong. ends ups at 0,0,0 (inf loop)
 		(0, 0, 2) : rdRddRDrdRDrdRDrd			wrong. ends up at 3,0,2
-		(0, 2, 0) : Rddr						wrong. ends up at 3,0,2
-		(0, 2, 2) : LddlRDrdRDrdRDrd			wrong. ends up at 5,0,0
-		(1, 0, 0) : rdRddRDrd					wrong. ends up at 0,2,0
-		(1, 0, 2) : 
-		(1, 2, 0) : LRddlr						wrong. ends up at 3,0,2. wrg from 1,0,0 to 3,2,2
+		(0, 2, 0) : Rddr						wrong
+		(0, 2, 2) : LddlRDrdRDrdRDrd			wrong
+		(1, 0, 0) : rddRdRDrd
+		(1, 0, 2) : done
+		(1, 2, 0) : LRddlr
 		(1, 2, 2) : ldLRDrd
 		(2, 0, 0) : RDrdRDrdRDrdRDrd
 		(2, 0, 2) : RDrdRDrdRDrdRDrdRDrd		wrong. ends up at 3,0,2
@@ -190,13 +190,13 @@ algo2
 		(2, 2, 2) : dRDrd						wrong. ends up at 0,0,0. wrg at 1,0,0 ends up at 0,2,0
 		(3, 0, 0) : ddRDrdRDrdRDrd				wrong. ends up at 1,0,0. wrg at 1,0,0 ends up at 3,2,2
 		(3, 0, 2) : DRDrdRDrdRDrd				wrong. ends up at 5,0,0
-		(3, 2, 0) : dRDrdRDrdRDrd				wrong. ends up at 5,0,0. wrg at 1,0,0 ends up at 3,2,2
+		(3, 2, 0) : dRDrdRDrdRDrd				wrong. ends up at 5,0,0
 		(3, 2, 2) : ddRDrdRDrdRDrd
 		(4, 0, 0) : LddlRDrd
 		(4, 0, 2) : lRdLr						wrong. ends up at 3,0,2. wrg at 1,0,0 ends up at 4,2,2
 		(4, 2, 0) : ddRDrd
 		(4, 2, 2) : Rdrd						wrong. ends up at 3,2,2. wrg at 1,0,0 ends up at 2,2,2
-		(5, 0, 0) : dRddr						wrong. ends up at 3,0,2. LOOP!
+		(5, 0, 0) : dRddr
 		(5, 0, 2) : RDrd
 		(5, 2, 0) : rdRRddr
 		(5, 2, 2) : RDrdRDrd					wrong
@@ -204,7 +204,7 @@ algo3
 	rb
 		(0, 0, 1) : urURUFufuuULulufUFULulufUFuLulufUF
 		(0, 1, 0) : ULulufUF
-		(0, 2, 1) : 
+		(0, 2, 1) : done
 		(2, 0, 1) : ubUBURuruLulufUF
 		(2, 1, 2) : uLulufUF
 		(2, 2, 1) : UBubulULuLulufUF
@@ -219,7 +219,7 @@ algo3
 		(5, 1, 0) : urURUFufuLulufUF
 		(5, 1, 2) : ubUBURurUULulufUFULulufUFuLulufUF
 	rg
-		(0, 0, 1) : 
+		(0, 0, 1) : done
 		(0, 1, 0) : urURUFuf
 		(0, 2, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
@@ -239,7 +239,7 @@ algo3
 		(0, 0, 1) : uLulufUF
 		(0, 1, 0) : uLulufUF
 		(0, 2, 1) : ubUBURuruLulufUF
-		(2, 0, 1) : 
+		(2, 0, 1) : done
 		(2, 1, 2) : ULulufUF
 		(2, 2, 1) : urURUFufuLulufUFULulufUFuLulufUF
 		(3, 0, 1) : UULulufUFULulufUFuLulufUF
@@ -258,7 +258,7 @@ algo3
 		(0, 2, 1) : ubUBURurrURUFuf
 		(2, 0, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
 		(2, 1, 2) : urURUFuf
-		(2, 2, 1) : 
+		(2, 2, 1) : done
 		(3, 0, 1) : rURUFufurURUFufUrURUFuf
 		(3, 1, 0) : urURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf
@@ -268,4 +268,4 @@ algo3
 		(4, 2, 1) : uurURUFuf
 		(5, 0, 1) : rURUFuf
 		(5, 1, 0) : ulULUBuburURUFuf
-		(5, 1, 2) : ULulufUFUrURUFuf
+		(5, 1, 2) : ULulufUFuuurURUFuf
