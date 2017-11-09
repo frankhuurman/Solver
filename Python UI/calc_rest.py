@@ -1,6 +1,8 @@
 # /----------------------------------------------\
-# !                   Reminders                  !
+# |                   Reminders                  |
 # \----------------------------------------------/
+
+import datetime
 
 #cube.faces[cube.facenames[0]].squares[0][0] left (red)
 #cube.faces[cube.facenames[1]].squares[0][0] front (white)
@@ -158,6 +160,8 @@ def translateMoves(alg, mod, moves):
 
 
 def getInfo(i):
+	coords = []
+	colors = []
 	if (i == 1):
 		coords, colors = vars.cube.getCorners("w")
 		print(coords, colors)
@@ -168,15 +172,12 @@ def getInfo(i):
 		coords2, colors2 = vars.cube.getEdge("o")
 		coords1.extend(coords2)
 		colors1.extend(colors2)
-	#					print("coords1: ", coords1)
-	#					print("colors1: ", colors1)
 		for cor, col in zip(coords1, colors1):
 			if (col in miew):
 				coords.append(cor)
 				colors.append(col)
 		print("coords: ", coords)
 		print("colors: ", colors)
-		#vars.algos[i] = True
 	else:
 		coords, colors = vars.cube.getEdge("w")
 	return(coords, colors)
@@ -191,10 +192,8 @@ def algorithm():
 			input("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				currentColor = ""
-				coords = []
-				colors = []
 				count = 0
-				coords, colors = getInfo(i)----------------
+				coords, colors = getInfo(i)
 				for j in range(len(coords)): #itterates through all colors until the first incorrectly placed color is found
 					if (i == 2):
 						color = colors[j][0]
@@ -206,23 +205,27 @@ def algorithm():
 #						if (i == 1):
 					#	for m in moves:
 						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
-						currentcolors = colors[j] # !
+						currentColor = colors[j] # !
+						print(currentColor)
 						vars.cube.sendMoves(moves)
 #						else:
 #						vars.cube.sendMoves(moves)
 						vars.moveListBuffer += moves
+						coords, colors = getInfo(i)
+						k = colors.index(currentColor)
+						if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
+							debug = open("debug.txt", "a", newline = "\r\n") # opens debug.txt
+							debug.write(str(colors[j]) + str(coords[j]) + "\t") # writes all the info on te defective moves to debug.txt
+							debug.write(str(datetime.datetime.now()) + "\n") # adds a timestamp
+							debug.close() # closes debug.txt
 						break	# Redo the while loop to get the current location of all white edges.
 					else:
 						count += 1	# If sqaure is correct, count it.
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
-						-----------------
-					coords, colors = getInfo(i)
-					k = colors.find(currentColor)
-					if (vars.LUT[i][colors[k]][coords[k]] is not ""): # ! 
-						---------------------
-						pass
+
+#					if currentColor is not "":
 		print(vars.moveListBuffer)
 		vars.cube.stopSolving = True
 		
@@ -247,7 +250,7 @@ def algorithm():
 			if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 				results = translateMoves(4, "b", "uu")
 		else:
-			results = translateMoves(4, "blue", "fruRUF")
+			results = translateMoves(4, "b", "fruRUF")
 
 	if not vars.algo5: 
 		if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
@@ -312,7 +315,6 @@ def algorithm():
 		fronts = ["r", "b", "g", "o"]
 		location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 		edgeColor = ["ryg", "rby", "ogy", "oyb"]
-		iter = 0
 		coords, colors = cube.getCorners("o")
 		coords2, colors2 = cube.getCorners("r")
 		coords3 = []
@@ -325,22 +327,20 @@ def algorithm():
 			if cl in edgeColor:
 				coords3.append(cr)
 				colors3.append(cl)
-		for iter in range(4):
+		for i in range(4):
 			pas = True
-			for c in colors[iter]:
-				if (not c in edgeColor[iter]):
+			for c in colors[i]:
+				if (not c in edgeColor[i]):
 					pas = False
 			if pas:
-				if (coords[iter] == location[iter]):
-					iter += 1
-					front = fronts[iter]
+				if (coords[i] == location[i]):
+					front = fronts[i]
 					results = "urULuRUl"
 
 	if not vars.algo7: # D035 th15 w0rk?
 		fronts = ["r", "b", "g", "o"]
 		location = (0,0,0)
 		edgeColor = ["ryg", "rby", "ogy", "oyb"]
-		iter = 0
 		coords, colors = cube.getCorners("o")
 		coords2, colors2 = cube.getCorners("r")
 		coords3 = []
@@ -354,16 +354,15 @@ def algorithm():
 			if cl in edgeColor:
 				coords3.append(cr)
 				colors3.append(cl)
-		for iter in range(4):
+		for i in range(4):
 			pas = True
-			for c in colors[iter]:
-				if (not c in edgeColor[iter]):
+			for c in colors[i]:
+				if (not c in edgeColor[i]):
 					pas = False
 			if pas:
-				if (coords[iter] == location): # Why the ()s
-					iter += 1
+				if (coords[i] == location): # Why the ()s
 					for x in adjacent:
-						if  cl[:2] is not adjacent:
+						if  colors3[:2] is not adjacent:
 							results = translateMoves(2, "r", "RDrd")
 
 	cube.sendMoves(results) # Sends results to the cube updating it.
