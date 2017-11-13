@@ -4,12 +4,12 @@ rg algo-3 (3, 2, 1)	2017-11-09 13:22:52.002292 Seems to work just fine.
 wo algo-1 (1, 1, 2)	2017-11-09 13:22:56.295485 Correct state, should not show up
 wo algo-1 (2, 1, 0)	2017-11-09 13:23:07.987016 (Should be) fixed
 og algo-3 (2, 1, 2)	2017-11-09 13:23:12.062200 Seems to work just fine.
-rb algo-3 (4, 1, 0)	2017-11-09 13:23:23.557182 
-ob algo-3 (3, 0, 1)	2017-11-09 13:23:49.234884
-wb algo-1 (1, 0, 1)	2017-11-09 13:23:58.990326
-wr algo-1 (4, 0, 1)	2017-11-09 13:24:07.543716
-rg algo-3 (0, 2, 1)	2017-11-09 13:24:12.247928
-rg algo-3 (0, 1, 0)	2017-11-13 09:56:35.541841
+rb algo-3 (4, 1, 0)	2017-11-09 13:23:23.557182 (Should be) fixed
+ob algo-3 (3, 0, 1)	2017-11-09 13:23:49.234884 Seems to work just fine. 
+wb algo-1 (1, 0, 1)	2017-11-09 13:23:58.990326 Seems to work just fine. 
+wr algo-1 (4, 0, 1)	2017-11-09 13:24:07.543716 Seems to work just fine.
+rg algo-3 (0, 2, 1)	2017-11-09 13:24:12.247928 Minor optimization, Seems to work just fine.
+rg algo-3 (0, 1, 0)	2017-11-13 09:56:35.541841 Seems to work just fine.
 wo algo-1 (5, 0, 1)	2017-11-13 09:57:20.371972
 rg algo-3 (2, 2, 1)	2017-11-13 09:58:00.689800
 wbr algo-2 (0, 2, 0)	2017-11-13 09:58:25.908990

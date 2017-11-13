@@ -16,7 +16,7 @@ algo1
 		(3, 1, 0) : bbllBB					right
 		(3, 1, 2) : ll
 		(3, 2, 1) : Bllb					right
-		(4, 0, 1) : DLd
+		(4, 0, 1) : DLd						(Seems to) work
 		(4, 1, 0) : L						right
 		(4, 1, 2) : ddLDD
 		(4, 2, 1) : dLD
@@ -29,7 +29,7 @@ algo1
 		(0, 1, 0) : Ldl
 		(0, 1, 2) : ldL
 		(0, 2, 1) : d						right
-		(1, 0, 1) : uubbddBBUU
+		(1, 0, 1) : uubbddBBUU 
 		(1, 1, 0) : llbddLLB
 		(1, 1, 2) : rrBddbRR
 		(1, 2, 1) : done
@@ -212,7 +212,7 @@ algo3
 		(3, 1, 0) : uLulufUFULulufUFuuULulufUF
 		(3, 1, 2) : ULulufUFULulufUFuLulufUF
 		(3, 2, 1) : UULulufUFULulufUFuLulufUF
-		(4, 1, 0) : ULulufUFuuULulufUF
+		(4, 1, 0) : ULulufUFuLulufUF			Fixed
 		(4, 1, 2) : UBubuLULLulufUFULulufUFuLulufUF
 		(4, 2, 1) : UULulufUF
 		(5, 0, 1) : LulufUF
@@ -220,8 +220,8 @@ algo3
 		(5, 1, 2) : ubUBURurUULulufUFULulufUFuLulufUF
 	rg
 		(0, 0, 1) : done
-		(0, 1, 0) : urURUFuf
-		(0, 2, 1) : ULulufUFUrURUFufurURUFufUrURUFuf
+		(0, 1, 0) : urURUFuf					Right 
+		(0, 2, 1) : LulufUFUrURUFufurURUFufUrURUFuf		Right 
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
 		(2, 1, 2) : uuurURUFuf
 		(2, 2, 1) : ulULUBuburURUFufurURUFufUrURUFuf
