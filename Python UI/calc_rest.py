@@ -61,6 +61,7 @@ class vars:
 	algo5 = False
 	algo6 = False
 	algo7 = False
+#	algos[2] = True
 	cube = None
 
 
@@ -233,6 +234,7 @@ def algorithm():
 		cube = vars.cube  
 	
 		while not vars.algo4: # Blue considered front 
+			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
 					if cube.faces[cube.facenames[3]].squares[1][2] == "y":
@@ -252,11 +254,12 @@ def algorithm():
 					results = translateMoves(4, "b", "uu")
 			else:
 				results = translateMoves(4, "b", "fruRUF")
-			vars.cube.sendMoves(moves)
-			vars.moveListBuffer += moves
+			vars.cube.sendMoves(results)
+			vars.moveListBuffer += results
 			vars.algo4 = True
 
 		while not vars.algo5: 
+			input("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
@@ -314,11 +317,12 @@ def algorithm():
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						results = ""
 						print("Error 3: This shouldn't even trigger; algo5")
-			vars.cube.sendMoves(moves)
-			vars.moveListBuffer += moves
+			vars.cube.sendMoves(results)
+			vars.moveListBuffer += results
 			vars.algo5 = True
 
 		while not vars.algo6:
+			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
 			edgeColor = ["ryg", "rby", "ogy", "oyb"]
@@ -343,11 +347,12 @@ def algorithm():
 					if (coords[i] == location[i]):
 						front = fronts[i]
 						results = "urULuRUl"
-			vars.cube.sendMoves(moves)
-			vars.moveListBuffer += moves
+			vars.cube.sendMoves(results)
+			vars.moveListBuffer += results
 			vars.algo6 = True
 
 		while not vars.algo7: # D035 th15 w0rk?
+			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			location = (0,0,0)
 			edgeColor = ["ryg", "rby", "ogy", "oyb"]
@@ -374,8 +379,8 @@ def algorithm():
 						for x in adjacent:
 							if  colors3[:2] is not adjacent:
 								results = translateMoves(2, "r", "RDrd")
-			vars.cube.sendMoves(moves)
-			vars.moveListBuffer += moves
+			vars.cube.sendMoves(results)
+			vars.moveListBuffer += results
 			vars.algo7 = True
 
 		cube.sendMoves(results) # Sends results to the cube updating it.
