@@ -59,7 +59,7 @@ algo1
 		(1, 1, 2) : done
 		(1, 2, 1) : ddbrrBDD
 		(2, 0, 1) : rBDrdb
-		(2, 1, 0) : RdbrrBD					~~right
+		(2, 1, 0) : RRbuRU					~~right
 		(2, 1, 2) : BDrdb					right
 		(2, 2, 1) : RBDrdb
 		(3, 0, 1) : brrb
@@ -228,7 +228,7 @@ algo3
 		(3, 0, 1) : uurURUFufurURUFufuuurURUFuf
 		(3, 1, 0) : UrURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf
-		(3, 2, 1) : UurURUFufurURUFufUrURUFuf
+		(3, 2, 1) : UurURUFufurURUFufUrURUFuf	Shows up on the debug list but appears to work just fine.
 		(4, 1, 0) : ULulufUFUrURUFuf
 		(4, 1, 2) : ulULUBuburURUFuf
 		(4, 2, 1) : UurURUFuf
@@ -240,7 +240,7 @@ algo3
 		(0, 1, 0) : uLulufUF
 		(0, 2, 1) : ubUBURuruLulufUF
 		(2, 0, 1) : done
-		(2, 1, 2) : ULulufUF
+		(2, 1, 2) : ULulufUF					Right					
 		(2, 2, 1) : urURUFufuLulufUFULulufUFuLulufUF
 		(3, 0, 1) : UULulufUFULulufUFuLulufUF
 		(3, 1, 0) : ULulufUFULulufUFuLulufUF
