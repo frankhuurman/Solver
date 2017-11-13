@@ -70,7 +70,7 @@ algo1
 		(4, 1, 0) : ddrDD					right
 		(4, 1, 2) : r						right
 		(4, 2, 1) : Drd						right
-		(5, 0, 1) : Brrb					wrong
+		(5, 0, 1) : urU						right
 		(5, 1, 0) : uuRUU
 		(5, 1, 2) : R
 		(5, 2, 1) : URu
@@ -224,7 +224,7 @@ algo3
 		(0, 2, 1) : LulufUFUrURUFufurURUFufUrURUFuf		Right 
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
 		(2, 1, 2) : uuurURUFuf
-		(2, 2, 1) : ulULUBuburURUFufurURUFufUrURUFuf
+		(2, 2, 1) : fUFUruRLulufUF				Right 
 		(3, 0, 1) : uurURUFufurURUFufuuurURUFuf
 		(3, 1, 0) : UrURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf
