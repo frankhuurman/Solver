@@ -51,7 +51,6 @@ class vars:
 		return(lut)
 
 	LUT = getLUT()
-	translist = []
 	moveListBuffer = ""
 	solved = False
 	algos = []
@@ -228,12 +227,12 @@ def algorithm():
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
 
 #					if currentColor is not "":
-		print(vars.moveListBuffer)
+#		print(vars.moveListBuffer)
 #		vars.cube.stopSolving = True
 		
 		cube = vars.cube  
 	
-		while not vars.algo4: # Blue considered front 
+		while not vars.algo4 and not cube.stopSolving: # Blue considered front 
 			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
@@ -258,7 +257,7 @@ def algorithm():
 			vars.moveListBuffer += results
 			vars.algo4 = True
 
-		while not vars.algo5: 
+		while not vars.algo5 and not cube.stopSolving: 
 			input("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
@@ -321,7 +320,7 @@ def algorithm():
 			vars.moveListBuffer += results
 			vars.algo5 = True
 
-		while not vars.algo6:
+		while not vars.algo6 and not cube.stopSolving:
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
@@ -351,7 +350,7 @@ def algorithm():
 			vars.moveListBuffer += results
 			vars.algo6 = True
 
-		while not vars.algo7: # D035 th15 w0rk?
+		while not vars.algo7 and not cube.stopSolving: # D035 th15 w0rk?
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			location = (0,0,0)
@@ -385,7 +384,7 @@ def algorithm():
 
 		cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
-		print(vars.moveListBuffer)
+		print("{} moves: {}".format(len(vars.moveListBuffer), vars.moveListBuffer))
 
 	if vars.cube.solved():
 		return vars.moveListBuffer

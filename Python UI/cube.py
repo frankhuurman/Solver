@@ -75,7 +75,7 @@ class cube(object):
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""
-		for i in range(500):
+		for i in range(30):
 			j = moves[int(random.random() * 6)]
 			if (random.random() > .5):
 				j = j.upper()
@@ -139,7 +139,8 @@ class cube(object):
 		return(text + "\n")
 
 	def getEdge(self, color):
-		"""Return the colors of pos and the other color of that edge element."""
+		"""\t\tReturns the positions of all edge squares with the selected color
+		as well as the color combination of that edge piece."""
 
 		order = [0, 1, 3, 2]
 		

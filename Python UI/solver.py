@@ -304,6 +304,12 @@ class solver(object):
 						for t in self.threadList:
 							t.join()
 						self.resetFields()
+						calc_rest.vars.moveListBuffer = ""
+						calc_rest.vars.algos = [False, False, False]
+						calc_rest.vars.algo4 = False
+						calc_rest.vars.algo5 = False
+						calc_rest.vars.algo6 = False
+						calc_rest.vars.algo7 = False
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
