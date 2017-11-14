@@ -224,7 +224,7 @@ algo3
 		(0, 2, 1) : LulufUFUrURUFufurURUFufUrURUFuf		Right 
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
 		(2, 1, 2) : uuurURUFuf
-		(2, 2, 1) : fUFUruRLulufUF				Right 
+		(2, 2, 1) : lrURUFufLBUbuBUbuBUbuBUbuurURUFufUrURUFuf			Right 
 		(3, 0, 1) : uurURUFufurURUFufuuurURUFuf
 		(3, 1, 0) : UrURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf

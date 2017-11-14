@@ -14,6 +14,9 @@ import datetime
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
+#TODO: #algo5 doesn't complete
+#TODO: make it so that the algoritm actualy stops instead of looping as it does now.
+
 class vars:
 	
 	def getLUT():
@@ -233,13 +236,14 @@ def algorithm():
 		
 		cube = vars.cube  
 	
-		while not vars.algo4: # Blue considered front 
+		while not vars.algo4: # Blue considered front # Only seems to execute once and then move onto algo5. 
 			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
 					if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 						if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 							results = ""
+							vars.algo4 = True
 					else:
 						results = translateMoves(4, "b", "fruRUF")
 				elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
@@ -256,7 +260,6 @@ def algorithm():
 				results = translateMoves(4, "b", "fruRUF")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algo4 = True
 
 		while not vars.algo5: 
 			input("Start algo-5")
