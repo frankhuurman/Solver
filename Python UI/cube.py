@@ -97,10 +97,12 @@ class cube(object):
 		"""Returns True if all faces are unicolored, else False."""
 
 		s = True
-		for f in const.facenames:
-			if (not self.faces[f].allTheSame()):
-				s = False
-				break
+#		for f in const.facenames:
+#			if (not self.faces[f].allTheSame()):
+#				s = False
+#				break
+		if (s):
+			self.stopSolving = True
 		return(s)
 	
 	def printFaces(self, name):

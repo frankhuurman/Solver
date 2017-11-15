@@ -281,9 +281,6 @@ class solver(object):
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
 						# Start solving the cube using the algorithm in another thread.
-#						solve = threading.Thread(name = "Solver", target = self.solve, args=())
-#						solve.setDaemon(True)
-#						solve.start()
 						startThread = True
 						for t in self.threadList:
 							if (t.isAlive()):
