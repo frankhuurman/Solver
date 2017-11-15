@@ -261,7 +261,7 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-		while not vars.algo5: 
+		while not vars.algo5 and not cube.stopSolving: 
 			input("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
@@ -269,28 +269,29 @@ def algorithm():
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "red"
 							results = translateMoves(5, "r", "u")
+							vars.algo5 = True
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "r", "ruRuruuRu")
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "g", "ruRuruuRu")
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "r", "ruRuruuRu")
 				elif cube.faces[cube.facenames[4]].squares[1][2] == "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "o", "ruRuruuRu")
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "orange"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "o", "ruRuruuRu")
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":				
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "g", "ruRuruuRu")
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
 			elif cube.faces[cube.facenames[0]].squares[1][0] == "r":
@@ -298,14 +299,14 @@ def algorithm():
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "b", "ruRuruuRu")
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "blue"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "b", "ruRuruuRu")
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "b", "ruRuruuRu")
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
 							print("Error 1: This shouldn't even trigger; algo5")
@@ -313,7 +314,7 @@ def algorithm():
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = "ruRuruuRu"
+							results = translateMoves(5, "o", "ruRuruuRu")
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
 							print("Error 2: This shouldn't event trigger; algo5")
@@ -322,7 +323,6 @@ def algorithm():
 						print("Error 3: This shouldn't even trigger; algo5")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algo5 = True
 
 		while not vars.algo6:
 			input("Start algo-6")

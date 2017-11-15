@@ -77,3 +77,9 @@ rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-15 09:29:36.914249
 wr algo-1 (4, 0, 1)	 moves: ldL - @2017-11-15 09:48:56.376943
 rb algo-3 (3, 0, 1)	 moves: ULulufUFULulufUFuu - @2017-11-15 11:37:34.573571
 rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-15 11:37:35.090602
+wo algo-1 (3, 1, 0)	 moves: rr - @2017-11-15 12:06:54.818570
+rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-15 12:06:56.252634
+rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-15 12:11:06.166967
+rb algo-3 (0, 1, 0)	 moves: ULulufUF - @2017-11-15 12:17:41.936905
+wo algo-1 (1, 1, 2)	 moves: Buub - @2017-11-15 12:18:19.563657
+wg algo-1 (3, 0, 1)	 moves: uu - @2017-11-15 12:18:19.629614
