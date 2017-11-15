@@ -51,9 +51,9 @@ class cube(object):
 	def __init__(self, outputlist):
 		
 		self.start = outputlist
-#		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy" # comment this out to switch to random
-#		for l in dinges: # comment this out to switch to random
-#			self.start.append(l) # comment this out to switch to random
+#		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
+#		for l in dinges:
+#			self.start.append(l)
 		self.setStart()
 		self.randomSetStart()
 
@@ -71,6 +71,7 @@ class cube(object):
 			self.faces[f] = face(squares, name, conns)
 
 	def randomSetStart(self):
+		"""Use this method to get the cube to a random state."""
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""
@@ -81,9 +82,7 @@ class cube(object):
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)
-
-
-
+		
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
 
@@ -98,10 +97,12 @@ class cube(object):
 		"""Returns True if all faces are unicolored, else False."""
 
 		s = True
-		for f in const.facenames:
-			if (not self.faces[f].allTheSame()):
-				s = False
-				break
+#		for f in const.facenames:
+#			if (not self.faces[f].allTheSame()):
+#				s = False
+#				break
+		if (s):
+			self.stopSolving = True
 		return(s)
 	
 	def printFaces(self, name):
@@ -140,7 +141,8 @@ class cube(object):
 		return(text + "\n")
 
 	def getEdge(self, color):
-		"""Return the colors of pos and the other color of that edge element."""
+		"""\t\tReturns the positions of all edge squares with the selected color
+		as well as the color combination of that edge piece."""
 
 		order = [0, 1, 3, 2]
 		
