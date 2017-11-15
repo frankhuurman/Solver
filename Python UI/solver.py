@@ -7,6 +7,25 @@ import cube as kubus
 import threading
 
 
+
+class solverThread(threading.Thread):
+	"""Use this to create new threads."""
+
+	threadID = None
+	name = None
+	args = None
+
+	def __init__(self, threadID, name, args = None):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.args = args
+
+	def run(self):
+		print("Starting thread{0}: {1}".format(self.threadID, self.name))
+		self.args.solve()
+		print("Exiting thread{0}: {1}".format(self.threadID, self.name))
+
 class solver(object):
 	
 	# Set program window size and create program window
@@ -78,6 +97,7 @@ class solver(object):
 	rects = []
 	rects_col = []
 	cube = None
+	threadList = []
 	
 	def __init__(self):
 
@@ -111,46 +131,30 @@ class solver(object):
 		"""This function sends the movelist to Arduino
 		Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
 		and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
+		Maybe move this function to the algorithm or cube object python file?
 		"""
 
 		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
 		print("Port used: " + ser.name)         # Check which port was really used
-
-		send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
-		"""
-		if len(send_list) > 62:
-			blah = []
-			blah.append(send_list[i*64:(i+1)*64])
-		"""
-		send_list.append("\r")
-		while True:
+		data = ser.readline()
+		if data == b"Ready\r\n": # Initialize handshake with Arduino
+			print("Succesfully connected to Arduino...")
+		else:
+			print("Failed to connect to Arduino. Exiting...")
+			return
+		for m in send_list:
 			data = ser.readline() # Read data from Arduino
 			if data: # If data comes in from Arduino
-				if data == b"Ready\r\n": # Initialize handshake with Arduino
+				if data == b"next\r\n": # Initialize handshake with Arduino
 					print ("Handshake from Arduino received")
 					#The arduino_string part + while loop is for manual testing commands
 					#Make this a comment and uncomment for item in send_list for regular use
 					arduino_string = ""
+					
+					if m != "q":
+						ser.write(str.encode(m))
+						self.cube.sendMoves(m)
 				
-					while arduino_string != "q":
-						arduino_string = input("Type string to send to arduino: ")
-						ser.write(str.encode(arduino_string))
-				
-					"""
-					for item in send_list:
-						if len(item) > 64:
-							print ("item longer than 64")
-					"""
-					"""
-					if len(send_list[0]) > 40:
-						print("test")
-						#for item in send_list:
-						#	ser.write(str.encode(send_list.pop(0)))
-					"""
-					"""
-					for item in send_list:
-						ser.write(str.encode(item))
-					"""
 				elif data == b"somethingelse":
 					arduino_string = input("Type another string to send to arduino: ")
 					arduino_send_bytes = str.encode(arduino_string)
@@ -167,10 +171,10 @@ class solver(object):
 				print("No data being received from Arduino anymore")
 				break
 
-		test = input("Press enter to close serial connection")
+#		test = input("Press enter to close serial connection")
 		ser.close()             # close port
 		print ("Serial port closed")
-
+		
 	def showSavedText(self, image, rect):
 		image_time = 840
 		while image_time > 0:
@@ -255,14 +259,14 @@ class solver(object):
 		self.solverDisplay.blit(self.imgs["orange"], self.orange_pick)
 		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
-	def resetFields(self): # Fix this
+	def resetFields(self):
 		"""Sets all settable fields to white."""
 		
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
-		'''for i in range(len(self.rects_col)):
+		for i in range(len(self.rects_col)):
 			if ((i + 5) % 9 == 0):
 				continue
-			self.rects_col[i] = self.imgs[order[int(i/9)]]'''
+			self.rects_col[i] = self.imgs[order[int(i/9)]]
 			
 	def checkQuitandClicks(self):
 		"""Check for exit and event handling."""
@@ -277,16 +281,32 @@ class solver(object):
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
 						# Start solving the cube using the algorithm in another thread.
-						solve = threading.Thread(name = "Solver", target = self.solve, args=())
-						solve.setDaemon(True)
-						solve.start()
+						startThread = True
+						for t in self.threadList:
+							if (t.isAlive()):
+								startThread = False
+						if (startThread):
+							solverThr = solverThread(len(self.threadList), "Solver", self)
+							solverThr.start()
+							self.threadList.append(solverThr)
+						else:
+							print("Solver thread already going.")
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
 						if (self.cube is not None):
 							self.cube.stopSolving = True
 							self.cube = None
-					#	self.resetFields()
+						
+						for t in self.threadList:
+							t.join()
+						self.resetFields()
+						calc_rest.vars.moveListBuffer = ""
+						calc_rest.vars.algos = [False, False, False]
+						calc_rest.vars.algo4 = False
+						calc_rest.vars.algo5 = False
+						calc_rest.vars.algo6 = False
+						calc_rest.vars.algo7 = False
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
@@ -347,19 +367,16 @@ class solver(object):
 				calcu_list.append("<no color>")
 					
 		# Create cube object
-		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
+		self.cube = kubus.cube(calcu_list)
 		calc_rest.vars.cube = self.cube
 
-		#print(calc_rest.vars.LUT)
-
-		print(calc_rest.algorithm())
-#		for m in "Brrb":
-#			input("next move: " + m)
-#			self.cube.sendMoves(m)
+		move_list = calc_rest.algorithm()
+		print(move_list)
+#		self.cube.setStart()
+#		self.sendToArduino(move_list)
 
 
-#		self.resetFields()
-#		self.cube = None
+		self.cube = None
 
 	def showScreen(self):
 
@@ -377,7 +394,7 @@ class solver(object):
 			self.solverDisplay.blit(self.bottom_text, (300, 200))
 			self.solverDisplay.blit(self.top_text, (600, 200))
 			self.solverDisplay.blit(self.usercolor_text, (10, 410))
-			self.solverDisplay.blit(self.output_stringtext, (10, 550))
+#			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			self.updateColors()
 
