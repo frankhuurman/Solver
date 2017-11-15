@@ -93,3 +93,4 @@ ob algo-3 (3, 0, 1)	 moves: rURUFufurURUFufUrURUFuf - @2017-11-14 14:13:24.86716
 wb algo-1 (2, 1, 2)	 moves: uu - @2017-11-14 14:13:35.260667
 wr algo-1 (0, 2, 1)	 moves: ldL - @2017-11-14 14:28:50.978508
 wo algo-1 (2, 1, 0)	 moves: RRbuRU - @2017-11-14 14:30:52.315943
+wr algo-1 (1, 2, 1)	 moves: R - @2017-11-15 12:05:04.442450

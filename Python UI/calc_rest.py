@@ -263,6 +263,7 @@ def algorithm():
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "red"
 							results = translateMoves(5, "r", "u")
+							vars.algo5 = True
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
 							results = translateMoves(5, "r", "ruRuruuRu")
@@ -316,7 +317,6 @@ def algorithm():
 						print("Error 3: This shouldn't even trigger; algo5")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algo5 = True
 
 		while not vars.algo6 and not cube.stopSolving:
 			input("Start algo-6")
@@ -381,10 +381,9 @@ def algorithm():
 			vars.algo7 = True
 
 		solved = True
-#		cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 		print("{} moves: {}".format(len(vars.moveListBuffer), vars.moveListBuffer))
 
-		if vars.cube.solved():
+		if vars.cube.solved():	# Always returns True. DON'T FORGET TO FIX!!!!
 			vars.solved = True
 	return vars.moveListBuffer
