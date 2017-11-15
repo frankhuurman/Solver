@@ -260,8 +260,25 @@ class solver(object):
 		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
 	def resetFields(self):
-		"""Sets all settable fields to white."""
+		"""Returns the virtual cube to the default state."""
 		
+		# Removing the virtual cube...
+		if (self.cube is not None):
+			self.cube.stopSolving = True
+			self.cube = None
+						
+		# Waiting for the solver thread to terminate...
+		for t in self.threadList:
+			t.join()
+
+		# Clearing out the move list buffer...
+		calc_rest.vars.moveListBuffer = ""
+
+		# Setting the algorithm bools to unsolved...
+		for i in range(len(calc_rest.vars.algos)):
+			calc_rest.vars.algos[i] = False
+
+		# giving all squares the color of the solved state...
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
 		for i in range(len(self.rects_col)):
 			if ((i + 5) % 9 == 0):
@@ -294,19 +311,7 @@ class solver(object):
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
-						if (self.cube is not None):
-							self.cube.stopSolving = True
-							self.cube = None
-						
-						for t in self.threadList:
-							t.join()
 						self.resetFields()
-						calc_rest.vars.moveListBuffer = ""
-						calc_rest.vars.algos = [False, False, False]
-						calc_rest.vars.algo4 = False
-						calc_rest.vars.algo5 = False
-						calc_rest.vars.algo6 = False
-						calc_rest.vars.algo7 = False
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
