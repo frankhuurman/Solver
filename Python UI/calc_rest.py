@@ -15,7 +15,10 @@ import datetime
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 #TODO: #algo5 doesn't complete
-#TODO: make it so that the algoritm actualy stops instead of looping as it does now.
+#TOD-LISTEN LISTEN LISTEN LISTEN. Ok, so the algorithm does exactly what it's supposed to, the problem is that you're moving the wrong face,
+# if you have two faces that are oposite to one another that are wrong with the other two being correct then you don't move one of the incorrect ones, you move one of the correct ones! THIS MAKES SENSE AT SOME POINT.
+#TODO: Check what the flip is wrong with the translation
+#TODO: Change 'error 3' to something indicating this algorithm is done
 
 class vars:
 	
@@ -116,31 +119,31 @@ def translateMoves(alg, mod, moves):
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"}
-				}, 5: {	# Algo5
-				"r" : {"f" : "d",
-							"r" : "b",
-							"u" : "r",
-							"b" : "u",
-							"l" : "f",
-							"d" : "l"},
-				"g":{"f" : "d",
+				}, 5: {	# Algo5 # The first is the untranslated, the second is the translated
+				"r" : {"f" : "l", # Fix this
+							"r" : "u",
+							"u" : "b",
+							"b" : "r",
+							"l" : "d",
+							"d" : "f"},
+				"g":{"f" : "u", # Fix this # V
 							"r" : "r",
-							"u" : "f",
-							"b" : "u",
+							"u" : "b",
+							"b" : "d",
 							"l" : "l",
-							"d" : "b"},
-				"b": {"f" : "d",
+							"d" : "f"},
+				"b": {"f" : "d", # Fix this
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "d",
-							"r" : "f",
-							"u" : "l",
-							"b" : "u",
-							"l" : "b",
-							"d" : "r"}
+				"o":{"f": "r", # Fix this
+							"r" : "d",
+							"u" : "b",
+							"b" : "l",
+							"l" : "u",
+							"d" : "f"}
 				}}
 				
 	if (moves == "done"):
@@ -158,7 +161,7 @@ def translateMoves(alg, mod, moves):
 	except:
 		print("Not changed. ", moves)
 		return(moves)
-	print("Changed ", moves, mvs)
+	print("Changed to face-{}, ".format(mod), moves, mvs)
 	return(mvs)
 
 
@@ -191,7 +194,7 @@ def algorithm():
 	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
-			input("Start algo-" + str(i + 1))
+			print("Start algo-" + str(i + 1))
 			while not vars.algos[i] and not vars.cube.stopSolving:# Check to see if the white edges are solved
 				currentColor = ""
 				count = 0
@@ -206,7 +209,7 @@ def algorithm():
 					if (not moves == "done"):
 #						if (i == 1):
 #						for m in moves:
-						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
+#						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
 						currentColor = colors[j]
 #						vars.cube.sendMoves(moves)
 #						else:
@@ -268,59 +271,59 @@ def algorithm():
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "red"
-							results = translateMoves(5, "r", "u")
-							vars.algo5 = True
+							results = translateMoves(5, "r", "u") # Everything is wrong.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = translateMoves(5, "r", "ruRuruuRu")
+							results = translateMoves(5, "r", "ruRuruuRu") # Green is right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = translateMoves(5, "g", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Orange is right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = translateMoves(5, "r", "ruRuruuRu")
+							results = translateMoves(5, "r", "ruRuruuRu") # Orange and green are right.
 				elif cube.faces[cube.facenames[4]].squares[1][2] == "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Blue is right.
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Blue and green are right. Opposites, move green (or blue) #!!!!!!!!!!!!!!
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":				
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = translateMoves(5, "g", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Blue and orange are right.
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
-							results = ""
+							results = "" # Blue, orange and green are right.
 			elif cube.faces[cube.facenames[0]].squares[1][0] == "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "b", "ruRuruuRu") # Red is right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "b", "ruRuruuRu") # Red and Green are right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Red and orange are right. Opposites, move orange (or red) #!!!!!!!!!!!!!! # Doesn't seem to be doing what it should, maybe check the translation?
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
-							print("Error 1: This shouldn't even trigger; algo5")
+							print("Error 1: This shouldn't even trigger; algo5") # Red, orange and green are right.
 				elif cube.faces[cube.facenames[4]].squares[2][1] == "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Red and blue are right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
-							print("Error 2: This shouldn't event trigger; algo5")
+							print("Error 2: This shouldn't event trigger; algo5") # Red, blue and green are right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						results = ""
-						print("Error 3: This shouldn't even trigger; algo5")
+						print("Error 3: This shouldn't even trigger; algo5") # Everything is right.
+						vars.algo5 = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
