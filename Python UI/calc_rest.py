@@ -385,14 +385,8 @@ def algorithm():
 					break
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-<<<<<<< HEAD
-			if  cube.faces[cube.facenames[0]].squares[2][1] == "r":
-				if cube.faces[cube.facenames[0]].squares[0][0] == "r":
-					vars.algo6 = True
-=======
 			if (pas):
 				vars.algo6 = True
->>>>>>> f2e98f2233dcb9bcbeb9e8226672db22b639647a
 
 		while not vars.algo7:
 			input("Start algo-7")
