@@ -275,7 +275,8 @@ def algorithm():
 				elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "U")
 				else:
-					print("1whut?")
+					print("1whut?") # Actualy does happen, try to put a move here 
+					results = translateMoves(4, "b", "U")
 			elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "fruRUF")
@@ -385,7 +386,9 @@ def algorithm():
 						results = "urULuRUl"
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-#			vars.algo6 = True
+			if  cube.faces[cube.facenames[0]].squares[2][1] == "r":
+				if cube.faces[cube.facenames[0]].squares[0][0] == "r":
+					vars.algo6 = True
 
 		while not vars.algo7:
 			input("Start algo-7")
