@@ -14,11 +14,9 @@ import datetime
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-#TODO: #algo5 doesn't complete
-#TOD-LISTEN LISTEN LISTEN LISTEN. Ok, so the algorithm does exactly what it's supposed to, the problem is that you're moving the wrong face,
-# if you have two faces that are oposite to one another that are wrong with the other two being correct then you don't move one of the incorrect ones, you move one of the correct ones! THIS MAKES SENSE AT SOME POINT.
-#TODO: Check what the flip is wrong with the translation
-#TODO: Change 'error 3' to something indicating this algorithm is done
+#TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
+#TODO: Find out where vars.algo6 = True should go within algo6 (Should go wherever it is the algorithm is done)
+#TODO: Do the same for algo7
 
 class vars:
 	
@@ -69,7 +67,6 @@ class vars:
 	algo7 = False
 #	algos[2] = True
 	cube = None
-
 
 def translateMoves(alg, mod, moves):
 
@@ -144,6 +141,31 @@ def translateMoves(alg, mod, moves):
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
+				}, 6: {	# Algo5 # The first is the untranslated, the second is the translated
+				"r" : {"f" : "l", # Fix this
+							"r" : "u",
+							"u" : "b",
+							"b" : "r",
+							"l" : "d",
+							"d" : "f"},
+				"g":{"f" : "u", # Fix this # V
+							"r" : "r",
+							"u" : "b",
+							"b" : "d",
+							"l" : "l",
+							"d" : "f"},
+				"b": {"f" : "d", # Fix this
+							"r" : "l",
+							"u" : "b",
+							"b" : "u",
+							"l" : "r",
+							"d" : "f"},
+				"o":{"f": "r", # Fix this
+							"r" : "d",
+							"u" : "b",
+							"b" : "l",
+							"l" : "u",
+							"d" : "f"}
 				}}
 				
 	if (moves == "done"):
@@ -163,7 +185,6 @@ def translateMoves(alg, mod, moves):
 		return(moves)
 	print("Changed to face-{}, ".format(mod), moves, mvs)
 	return(mvs)
-
 
 def getInfo(i):
 	coords = []
@@ -187,7 +208,6 @@ def getInfo(i):
 	print("colors: ", colors)
 	return(coords, colors)
 
-
 def algorithm():
 
 	results = ""
@@ -205,7 +225,7 @@ def algorithm():
 					else:
 						color = colors[j][-1]
 #					print(i, j, colors, coords)
-					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
+					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]]) # occasionaly creates errors
 					if (not moves == "done"):
 #						if (i == 1):
 #						for m in moves:
@@ -239,7 +259,7 @@ def algorithm():
 		
 		cube = vars.cube  
 	
-		while not vars.algo4: # Blue considered front # Only seems to execute once and then move onto algo5. 
+		while not vars.algo4: # Blue considered front
 			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
@@ -247,20 +267,31 @@ def algorithm():
 						if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 							results = ""
 							vars.algo4 = True
+						else:
+							print("0whut?")
 					else:
 						results = translateMoves(4, "b", "fruRUF")
+						print("Bleep1")
 				elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "U")
+				else:
+					print("1whut?")
 			elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "fruRUF")
+					print("Bleep2")
 				elif cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "u")
+				else:
+					print("2whut?")
 			elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 				if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "uu")
+				else:
+					print("3whut?")
 			else:
 				results = translateMoves(4, "b", "fruRUF")
+				print("Bleep3")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
@@ -320,9 +351,8 @@ def algorithm():
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
 							print("Error 2: This shouldn't event trigger; algo5") # Red, blue and green are right.
-					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+					elif cube.faces[cube.facenames[2]].squares[1][2] == "o": # everything is right
 						results = ""
-						print("Error 3: This shouldn't even trigger; algo5") # Everything is right.
 						vars.algo5 = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
@@ -355,9 +385,9 @@ def algorithm():
 						results = "urULuRUl"
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algo6 = True
+#			vars.algo6 = True
 
-		while not vars.algo7: # D035 th15 w0rk?
+		while not vars.algo7:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			location = (0,0,0)

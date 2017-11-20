@@ -202,7 +202,65 @@ Orange Front
 
 <<<----- For Algo6 ----->>>
 
-{Insert joke about announcing something without said thing even having a prototype at the announcement}
+Red Front 
+	Front: Red
+	Left: Blue
+	Right: Green
+	Top: Yellow
+	Down: White 
+	Back: Orange
+
+	f = d
+	r = b
+	u = r
+	b = u
+	l = f
+	d = l
+
+Green Front
+	Front: Green 
+	Left: Red 
+	Right: Orange 
+	Top: Yellow 
+	Down: White 
+	Back: Blue 
+
+	f = d
+	r = r
+	u = f
+	b = u
+	l = l
+	d = b
+
+Blue Front
+	Front: Blue
+	Left: Orange
+	Right: Red
+	Top: Yellow
+	Down: White
+	Back: Green
+
+	f = d
+	r = l
+	u = b
+	b = u
+	l = r
+	d = f
+	
+Orange Front
+	Front: Orange
+	Left: Green
+	Right: Blue
+	Top: Yellow
+	Down: White
+	Back: Red
+
+	f = d
+	r = f
+	u = l
+	b = u
+	l = b
+	d = r
 
 <<<----- For Algo7 ----->>> 
 
