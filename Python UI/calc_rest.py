@@ -141,7 +141,7 @@ def translateMoves(alg, mod, moves):
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
-				}, 6: {	# Algo5 # The first is the untranslated, the second is the translated
+				}, 6: {	# Algo6 # The first is the untranslated, the second is the translated
 				"r" : {"f" : "l", # Fix this
 							"r" : "u",
 							"u" : "b",
@@ -374,18 +374,18 @@ def algorithm():
 				if cl in edgeColor:
 					coords3.append(cr)
 					colors3.append(cl)
+			pas = True
+			print(pas, coords3, colors3)
 			for i in range(4):
-				pas = True
-				for c in colors[i]:
-					if (not c in edgeColor[i]):
-						pas = False
-				if pas:
-					if (coords[i] == location[i]):
-						front = fronts[i]
-						results = "urULuRUl"
+				if (not coords3[i] == location[i]):
+					front = fronts[i]
+					results = translateMoves(6, front, "urULuRUl")
+					pas = False
+					break
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-#			vars.algo6 = True
+			if (pas):
+				vars.algo6 = True
 
 		while not vars.algo7:
 			input("Start algo-7")
