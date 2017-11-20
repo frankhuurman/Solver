@@ -15,7 +15,6 @@ import datetime
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
-#TODO: Find out where vars.algo6 = True should go within algo6 (Should go wherever it is the algorithm is done)
 #TODO: Do the same for algo7
 
 class vars:
@@ -275,7 +274,7 @@ def algorithm():
 				elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "U")
 				else:
-					print("1whut?") # Actualy does happen, try to put a move here 
+					print("1whut?")
 					results = translateMoves(4, "b", "U")
 			elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
@@ -358,7 +357,7 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-		while not vars.algo6:
+		while not vars.algo6: # doesn't register when a correctly placed corner is present.
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
