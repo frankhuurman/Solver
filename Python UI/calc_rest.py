@@ -111,31 +111,56 @@ def translateMoves(alg, mod, moves):
 							"l" : "r",
 							"d" : "f"}
 				}, 5: {	# Algo5
-				"r" : {"f" : "d",
-							"r" : "b",
-							"u" : "r",
-							"b" : "u",
-							"l" : "f",
-							"d" : "l"},
-				"g":{"f" : "d",
+				"r" : {"f" : "l", # Fix this
+							"r" : "u",
+							"u" : "b",
+							"b" : "r",
+							"l" : "d",
+							"d" : "f"},
+				"g":{"f" : "u", # Fix this # V
 							"r" : "r",
-							"u" : "f",
-							"b" : "u",
+							"u" : "b",
+							"b" : "d",
 							"l" : "l",
-							"d" : "b"},
-				"b": {"f" : "d",
+							"d" : "f"},
+				"b": {"f" : "d", # Fix this
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "d",
-							"r" : "f",
-							"u" : "l",
+				"o":{"f": "r", # Fix this
+							"r" : "d",
+							"u" : "b",
+							"b" : "l",
+							"l" : "u",
+							"d" : "f"}
+				}, 6: {	# Algo6
+				"r" : {"f" : "l", # Fix this
+							"r" : "u",
+							"u" : "b",
+							"b" : "r",
+							"l" : "d",
+							"d" : "f"},
+				"g":{"f" : "u", # Fix this # V
+							"r" : "r",
+							"u" : "b",
+							"b" : "d",
+							"l" : "l",
+							"d" : "f"},
+				"b": {"f" : "d", # Fix this
+							"r" : "l",
+							"u" : "b",
 							"b" : "u",
-							"l" : "b",
-							"d" : "r"}
-				}}
+							"l" : "r",
+							"d" : "f"},
+				"o":{"f": "r", # Fix this
+							"r" : "d",
+							"u" : "b",
+							"b" : "l",
+							"l" : "u",
+							"d" : "f"}
+}}
 				
 	if (moves == "done"):
 		return(moves)
@@ -339,19 +364,18 @@ def algorithm():
 				if cl in edgeColor:
 					coords3.append(cr)
 					colors3.append(cl)
+			pas = True
+			print(coords3, colors3)
 			for i in range(4):
-				pas = True
-				for c in colors[i]:
-					if (not c in edgeColor[i]):
-						pas = False
-				if pas:
-					if (coords[i] == location[i]):
-						front = fronts[i]
-						results = "urULuRUl"
+				if (not coords3[i] == location[i]):
+					front = fronts[i]
+					results = translateMoves(6, front, "urULuRUl") # Not sure if this works
+					pas = False
+					break
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			print("algo-6: ", results)
-			vars.algos[6-1] = True
+			if (pas):
+				vars.algos[6-1] = True
 
 		while not vars.algos[7-1] and not cube.stopSolving: # D035 th15 w0rk?
 			input("Start algo-7")

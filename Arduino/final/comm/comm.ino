@@ -13,18 +13,19 @@ byte currentStep;
 
 void setup() {
 
-	Serial.begin(9600);
+	Serial.begin(38400);
+	Serial.print("Ready");
 }
 
 void loop() {
 
-  Serial.print("Ready")
+//	Serial.print("Ready");
 	if (Serial.available()>0) { // there are bytes in the serial buffer to read
 		while(Serial.available()>0) { // every time a byte is read it is destroyed
 			incomingByte = Serial.read(); // read in the next byte
 			Serial.print(incomingByte);
         
-			else if(incomingByte == ending){
+			if(incomingByte == ending){
 				Serial.print(" Done ");
 				delay(5000);
 				Serial.print(" Countdown starting, please remove Cube ");
