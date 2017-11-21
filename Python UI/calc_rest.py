@@ -379,7 +379,7 @@ def algorithm():
 			for i in range(4):
 				if (not coords3[i] == location[i]):
 					front = fronts[i]
-					results = translateMoves(6, front, "urULuRUl")
+					results = translateMoves(6, front, "urULuRUl") # Not sure if this works
 					pas = False
 					break
 			vars.cube.sendMoves(results)
