@@ -229,7 +229,7 @@ def algorithm():
 					if (not moves == "done"):
 #						if (i == 1):
 #						for m in moves:
-#						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
+#						input("\nNext move: " + colors[j] + str(coords[j]) + moves)
 						currentColor = colors[j]
 #						vars.cube.sendMoves(moves)
 #						else:
@@ -260,7 +260,7 @@ def algorithm():
 		cube = vars.cube  
 	
 		while not vars.algo4: # Blue considered front
-			input("Start algo-4")
+#			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
 					if cube.faces[cube.facenames[3]].squares[1][2] == "y":
@@ -297,7 +297,7 @@ def algorithm():
 			vars.moveListBuffer += results
 
 		while not vars.algo5 and not cube.stopSolving: 
-			input("Start algo-5")
+#			input("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
