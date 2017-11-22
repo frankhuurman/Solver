@@ -21,3 +21,10 @@ rb algo-3 (0, 0, 1)	 moves: fUFUruRLulufUF - @2017-11-14 11:07:59.263103 # Seems
 wbr algo-2 (1, 2, 0)	 moves: DRDrd - @2017-11-16 09:48:29.378266 # Shouldn't do anything, find a way to make this not do anything
 wb algo-1 (1, 2, 1)	 moves: Dr - @2017-11-16 14:31:52.592341
 wob algo-2 (1, 0, 2)	 moves: DRDrd - @2017-11-16 14:40:45.283960
+wo algo-1 (1, 1, 2)	 moves: ldL - @2017-11-22 10:02:23.632546
+wg algo-1 (1, 0, 1)	 moves: R - @2017-11-22 10:04:02.301935
+rg algo-3 (2, 1, 2)	 moves: ULulufUFULulufUFuu - @2017-11-22 10:04:10.236463
+rb algo-3 (3, 0, 1)	 moves: ULulufUFULulufUFuu - @2017-11-22 10:04:24.414345
+rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-22 10:04:24.430347
+ob algo-3 (3, 0, 1)	 moves: rURUFufurURUFufUrURUFuf - @2017-11-22 10:07:07.306243
+rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-22 10:13:01.127878

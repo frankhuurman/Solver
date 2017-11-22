@@ -16,6 +16,7 @@ import datetime
 
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
 #TODO: Do the same for algo7
+#TODO: Set the solver to start at algo 6 for testing purposes.
 
 class vars:
 	
