@@ -16,7 +16,17 @@ import datetime
 
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
 #TODO: Do the same for algo7
-#TODO: Set the solver to start at algo 6 for testing purposes.
+
+#/--------------------------\
+#|      dunka dunka         |
+#\--------------------------/
+
+#algo6 needs the following:
+# -  the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
+# - the co-ords of said corners
+# - to detect the amount of correctly placed corners 
+#	- correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
+#	- if the amount of correctly placed corners is higher than 1 assume all are correct and move onto algo7 
 
 class vars:
 	
@@ -117,50 +127,51 @@ def translateMoves(alg, mod, moves):
 							"l" : "r",
 							"d" : "f"}
 				}, 5: {	# Algo5 # The first is the untranslated, the second is the translated
-				"r" : {"f" : "l", # Fix this
+				"r" : {"f" : "l",
 							"r" : "u",
 							"u" : "b",
 							"b" : "r",
 							"l" : "d",
 							"d" : "f"},
-				"g":{"f" : "u", # Fix this # V
+				"g":{"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"},
-				"b": {"f" : "d", # Fix this
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "r", # Fix this
+				"o":{"f": "r",
 							"r" : "d",
 							"u" : "b",
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
-				}, 6: {	# Algo6 # The first is the untranslated, the second is the translated
-				"r" : {"f" : "l", # Fix this
+				}, 
+				6: {	# Algo6 # The first is the untranslated, the second is the translated
+				"r" : {"f" : "l",
 							"r" : "u",
 							"u" : "b",
 							"b" : "r",
 							"l" : "d",
 							"d" : "f"},
-				"g":{"f" : "u", # Fix this # V
+				"g":{"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"},
-				"b": {"f" : "d", # Fix this
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "r", # Fix this
+				"o":{"f": "r",
 							"r" : "d",
 							"u" : "b",
 							"b" : "l",
