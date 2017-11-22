@@ -7,6 +7,25 @@ import serial
 import threading
 
 
+class solverThread(threading.Thread):
+	"""Use this to create new threads."""
+
+	threadID = None
+	name = None
+	args = None
+
+	def __init__(self, threadID, name, args = None):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.args = args
+
+	def run(self):
+		print("Starting thread{0}: {1}".format(self.threadID, self.name))
+		self.args.solve()
+		print("Exiting thread{0}: {1}".format(self.threadID, self.name))
+
+
 class solver(object):
 	
 	# Set program window size and create program window
@@ -78,6 +97,7 @@ class solver(object):
 	rects = []
 	rects_col = []
 	cube = None
+	threadList = []
 	
 	def __init__(self):
 
@@ -258,8 +278,25 @@ class solver(object):
 		self.solverDisplay.blit(self.imgs["yellow"], self.yellow_pick)
 	
 	def resetFields(self):
-		"""Sets all settable fields to white."""
+		"""Returns the virtual cube to the default state."""
 		
+		# Removing the virtual cube...
+		if (self.cube is not None):
+			self.cube.stopSolving = True
+			self.cube = None
+						
+		# Waiting for the solver thread to terminate...
+		for t in self.threadList:
+			t.join()
+
+		# Clearing out the move list buffer...
+		calc_rest.vars.moveListBuffer = ""
+
+		# Setting the algorithm bools to unsolved...
+		for i in range(len(calc_rest.vars.algos)):
+			calc_rest.vars.algos[i] = False
+
+		# giving all squares the color of the solved state...
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
 		for i in range(len(self.rects_col)):
 			if ((i + 5) % 9 == 0):
@@ -274,21 +311,26 @@ class solver(object):
 				self.active = False
 				pygame.quit()
 				quit()
+
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:  # left mouse button
 					#check confirm
 					if self.confirmrect.collidepoint(event.pos):
 						# Start solving the cube using the algorithm in another thread.
-						solve = threading.Thread(name = "Solver", target = self.solve, args=())
-						solve.setDaemon(True)
-						solve.start()
+						startThread = True
+						for t in self.threadList:
+							if (t.isAlive()):
+								startThread = False
+						if (startThread):
+							solverThr = solverThread(len(self.threadList), "Solver", self)
+							solverThr.start()
+							self.threadList.append(solverThr)
+						else:
+							print("Solver thread already going.")
 
 					#reset rects
 					if self.resetrect.collidepoint(event.pos):
-						if (self.cube is not None):
-							self.cube.stopSolving = True
-							self.cube = None
-					#	self.resetFields()
+						self.resetFields()
 
 					# user color choice
 					if self.white_pick.collidepoint(event.pos):
@@ -349,20 +391,14 @@ class solver(object):
 				calcu_list.append("<no color>")
 					
 		# Create cube object
-		self.cube = kubus.cube(calcu_list) # Values are returned on the line below this one
+		self.cube = kubus.cube(calcu_list)
 		calc_rest.vars.cube = self.cube
 
-		#print(calc_rest.vars.LUT)
-
-		moves = (calc_rest.algorithm())
-		self.sendToArduino(moves + "q")
-#		for m in "Brrb":
-#			input("next move: " + m)
-#			self.cube.sendMoves(m)
-
-
-#		self.resetFields()
-#		self.cube = None
+		move_list = calc_rest.algorithm()
+		print(move_list)
+#		self.cube.setStart()
+#		self.sendToArduino(move_list)
+		self.cube = None
 
 	def showScreen(self):
 
@@ -380,7 +416,7 @@ class solver(object):
 			self.solverDisplay.blit(self.bottom_text, (300, 200))
 			self.solverDisplay.blit(self.top_text, (600, 200))
 			self.solverDisplay.blit(self.usercolor_text, (10, 410))
-			self.solverDisplay.blit(self.output_stringtext, (10, 550))
+#			self.solverDisplay.blit(self.output_stringtext, (10, 550))
 			# Blit front view rectangles with colors
 			self.updateColors()
 

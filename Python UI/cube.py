@@ -51,7 +51,7 @@ class cube(object):
 	def __init__(self, outputlist):
 		
 		self.start = outputlist
-#		dinges = "rryorbwyybgywwgbborwbrorgogoywbyyoygooygbwrrwbbwwggrog"
+#		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
 #		for l in dinges:
 #			self.start.append(l)
 		self.setStart()
@@ -71,36 +71,38 @@ class cube(object):
 			self.faces[f] = face(squares, name, conns)
 
 	def randomSetStart(self):
+		"""Use this method to get the cube to a random state."""
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""
 		for i in range(30):
 			j = moves[int(random.random() * 6)]
 			if (random.random() > .5):
-				j.upper()
+				j = j.upper()
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)
-
-
+		
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
 
 #		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
-			if (str(move).lower() == "u"):
-				dir = not dir
+#			if (str(move).lower() == "u"):
+#				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
 		"""Returns True if all faces are unicolored, else False."""
 
 		s = True
-		for f in const.facenames:
-			if (not self.faces[f].allTheSame()):
-				s = False
-				break
+#		for f in const.facenames:
+#			if (not self.faces[f].allTheSame()):
+#				s = False
+#				break
+		if (s):
+			self.stopSolving = True
 		return(s)
 	
 	def printFaces(self, name):
@@ -139,7 +141,8 @@ class cube(object):
 		return(text + "\n")
 
 	def getEdge(self, color):
-		"""Return the colors of pos and the other color of that edge element."""
+		"""\t\tReturns the positions of all edge squares with the selected color
+		as well as the color combination of that edge piece."""
 
 		order = [0, 1, 3, 2]
 		
