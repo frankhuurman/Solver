@@ -11,6 +11,28 @@ import datetime
 #cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
+"""
+Algorithm 1: Get white edges into position.
+Algorithm 2: Get white corners into position.
+Algorithm 3: Get the middle aligned of the red/blue/orange/green circle.
+Algorithm 4: Get the yellow edges into posistion.
+Algorithm 5: 
+Algorithm 6: 
+Algorithm 7: 
+"""
+
+#/--------------------------\
+#|      dunka dunka         |
+#\--------------------------/
+
+#algo6 needs the following:
+# - the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
+# - the co-ords of said corners of both non-yellow squares.
+# - to detect the amount of correctly placed corners 
+# - correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
+# - if the amount of correctly placed corners is higher than 1 assume all are correct and move onto algo7 
+
+
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
@@ -249,8 +271,8 @@ def algorithm():
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
 								
-		cube = vars.cube  
-	
+		cube = vars.cube
+			
 		while not vars.algos[4-1] and not cube.stopSolving: # Blue considered front 
 			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
@@ -397,11 +419,11 @@ def algorithm():
 					colors3.append(cl)
 			for i in range(4):
 				pas = True
-				for c in colors[i]:
+				for c in colors3[i]:
 					if (not c in edgeColor[i]):
 						pas = False
 				if pas:
-					if (coords[i] == location): # Why the ()s
+					if (coords3[i] == location): # Why the ()s
 						for x in adjacent:
 							if colors3[:2] is not adjacent:
 								results = translateMoves(2, "r", "RDrd")

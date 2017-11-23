@@ -27,7 +27,7 @@ algo1
 	wb
 		(0, 0, 1) : lldLL
 		(0, 1, 0) : Ldl
-		(0, 1, 2) : ldL
+		(0, 1, 2) : ldL						right
 		(0, 2, 1) : d						right
 		(1, 0, 1) : uubbddBBUU 
 		(1, 1, 0) : llbddLLB
@@ -38,7 +38,7 @@ algo1
 		(2, 1, 2) : rDr						right
 		(2, 2, 1) : D
 		(3, 0, 1) : bbddBB
-		(3, 1, 0) : Bddb
+		(3, 1, 0) : Bddb					right
 		(3, 1, 2) : bddB
 		(3, 2, 1) : DD						right
 		(4, 0, 1) : dRBddbr					right
@@ -224,7 +224,7 @@ algo3
 		(0, 2, 1) : LulufUFUrURUFufurURUFufUrURUFuf		Right 
 		(2, 0, 1) : URurubUBurURUFufurURUFufUrURUFuf
 		(2, 1, 2) : uuurURUFuf
-		(2, 2, 1) : lrURUFufLBUbuBUbuBUbuBUbuurURUFufUrURUFuf
+		(2, 2, 1) : lrURUFufLBUbuBUbuBUbuBUbuurURUFufUrURUFuf			Right 
 		(3, 0, 1) : uurURUFufurURUFufuuurURUFuf
 		(3, 1, 0) : UrURUFufurURUFufUrURUFuf
 		(3, 1, 2) : urURUFufurURUFufUrURUFuf
