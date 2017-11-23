@@ -82,6 +82,12 @@ class cube(object):
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)
+		colors = ""
+		for face in const.facenames:
+			colors += self.faces[face].getColors()
+		self.start = []
+		for m in colors:
+			self.start.append(m)
 		
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
@@ -89,8 +95,6 @@ class cube(object):
 #		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
-#			if (str(move).lower() == "u"):
-#				dir = not dir
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
 			
 	def solved(self):
@@ -161,7 +165,7 @@ class cube(object):
 					colors.append(colorCombo)
 		return(coords, colors)
 
-	def getCorners(self, color):
+	def getCorners(self, color, extraReturn = False):
 		"""Returns a list with the coords of the corner squares that match the selected color."""
 		
 		
@@ -183,13 +187,38 @@ class cube(object):
 					sec2 = self.faces[side2].connections[f]
 					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
 					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
-					c1 = blah[(x,y)][0]
-					c2 = blah[(x,y)][1]
-#					print(c1, c2, side1, side2)
+					# fIndex = face 1st, x,y = coords 1st
+					c1 = blah[(x,y)][0]	# <-- coords of 2nd
+					c2 = blah[(x,y)][1]	# <-- coords of 3rd
 					fIndex = const.facenames.index(f)
-					coords.append((fIndex, x, y))
-					colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
-		return(coords, colors)
+					print(c1, c2, fIndex, side1, side2)
+					if (extraReturn):
+						coords.append({color : (fIndex, x, y),
+							sq1[c1[0]][c1[1]] : (const.facenames.index(side1), c1[0], c1[1]),
+							sq2[c2[0]][c2[1]] : (const.facenames.index(side2), c2[0], c2[1])})
+					else:
+						coords.append((fIndex, x, y))
+						colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
+		if (extraReturn):
+			return(coords)
+		else:
+			return(coords, colors)
+		"""
+		[{ "y" : (2,0,2),
+			"o" : (5,0,2),
+			"g" : (3,0,0)}
+			]
+		"""
+	def alg6CornerDataStuffWhatever(self):
+
+		coo = []
+		coords = self.getCorners("y", True)
+		for c in coords:
+			if (not c["y"][0] == 3):
+				coo.append(c)
+
+
+		return(coo)
 
 	def __rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""

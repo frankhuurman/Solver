@@ -282,6 +282,9 @@ def algorithm():
 				results = translateMoves(4, "b", "fruRUF")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
+			
+		print("{} moves: {}".format(len(vars.moveListBuffer), vars.moveListBuffer))
+		return(vars.moveListBuffer)
 
 		while not vars.algos[5-1] and not cube.stopSolving: 
 			input("Start algo-5")
@@ -345,7 +348,7 @@ def algorithm():
 						print("Error 3: This shouldn't even trigger; algo5")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-
+		
 		while not vars.algos[6-1] and not cube.stopSolving:
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
