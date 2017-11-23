@@ -197,6 +197,18 @@ def translateMoves(alg, mod, moves):
 	print("Changed to face-{}, ".format(mod), moves, mvs)
 	return(mvs)
 
+
+[{	"y" : (4,2,0),
+	"b" : (0,2,0),
+	"r" : (3,2,2)
+	},
+ {	"y" : (4,2,0),
+	"b" : (0,2,0),
+	"r" : (3,2,2)
+	}
+	]
+
+
 def getInfo(i):
 	coords = []
 	colors = []
