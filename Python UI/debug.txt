@@ -50,3 +50,5 @@ rb algo-3 (3, 0, 1)	 moves: ULulufUFULulufUFuu - @2017-11-22 12:01:19.536510
 rb algo-3 (4, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-22 12:01:19.544511
 wrg algo-2 (0, 2, 0)	 moves: DRDrd - @2017-11-22 12:13:46.766046
 wob algo-2 (1, 2, 2)	 moves: DRDrd - @2017-11-22 13:45:04.814182
+rb algo-3 (3, 0, 1)	 moves: ULulufUFULulufUFuu - @2017-11-23 13:33:48.056492
+rg algo-3 (0, 1, 0)	 moves: ULulufUFuLulufUF - @2017-11-23 13:33:48.070493
