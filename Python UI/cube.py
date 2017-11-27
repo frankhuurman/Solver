@@ -203,7 +203,7 @@ class cube(object):
 			"g" : (3,0,0)}
 			]
 		"""
-	def alg6CornerDataStuffWhatever(self):
+	def alg6coords(self):
 
 		coo = []
 		coords = self.getCorners("y", True)

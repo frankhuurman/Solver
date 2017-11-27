@@ -22,7 +22,7 @@ import datetime
 #\--------------------------/
 
 #algo6 needs the following:
-# -  the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
+# - the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
 # - the co-ords of said corners
 # - to detect the amount of correctly placed corners 
 #	- correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
@@ -196,18 +196,6 @@ def translateMoves(alg, mod, moves):
 		return(moves)
 	print("Changed to face-{}, ".format(mod), moves, mvs)
 	return(mvs)
-
-
-[{	"y" : (4,2,0),
-	"b" : (0,2,0),
-	"r" : (3,2,2)
-	},
- {	"y" : (4,2,0),
-	"b" : (0,2,0),
-	"r" : (3,2,2)
-	}
-	]
-
 
 def getInfo(i):
 	coords = []
