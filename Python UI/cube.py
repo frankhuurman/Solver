@@ -181,11 +181,10 @@ class cube(object):
 					sec2 = self.faces[side2].connections[f]
 					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
 					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
-					# fIndex = face 1st, x,y = coords 1st
-					c1 = blah[(x,y)][0]	# <-- coords of 2nd
-					c2 = blah[(x,y)][1]	# <-- coords of 3rd
+					c1 = blah[(x,y)][0]
+					c2 = blah[(x,y)][1]
 					fIndex = const.facenames.index(f)
-					print(c1, c2, fIndex, side1, side2)
+#					print(c1, c2, fIndex, side1, side2)
 					if (extraReturn):
 						coords.append({color : (fIndex, x, y),
 							sq1[c1[0]][c1[1]] : (const.facenames.index(side1), c1[0], c1[1]),
