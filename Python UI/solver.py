@@ -3,8 +3,9 @@ pygame.init()
 import os
 import calc_rest
 import cube as kubus
-#import serial
+import serial
 import threading
+import time
 
 
 
@@ -98,11 +99,13 @@ class solver(object):
 	rects_col = []
 	cube = None
 	threadList = []
+	ser = None # Serial connection
 	
 	def __init__(self):
 
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
-		
+		self.connectToSerial()
+
 		# Set up the rectangles and their proper colors.
 		for i , color in enumerate(order):
 			if ((i - 3) >= 0):
@@ -126,55 +129,41 @@ class solver(object):
 						# Get the color for the rect. Colors are according to the color of the face.
 						self.rects_col.append(self.imgs[color])
 
-	
+
+	def connectToSerial(self):
+		"""Set up connection to arduino machine."""
+
+		try:
+			serial.Serial("COM4", 38400, timeout=0.1)		# Open serial port
+			print("Port used: " + self.ser.name)			# Check which port was really usedused
+			time.sleep(2)
+			data = self.ser.readline()
+			if data == b"Ready\r\n":							# Initialize handshake with Arduino
+				print("Succesfully connected to Arduino...")
+			else:
+				print("Failed to connect to Arduino...")
+				self.ser = None
+		except:
+			print("Failed to connect to Arduino...")
+			self.ser = None
+			
 	def sendToArduino(self, send_list):
 		"""This function sends the movelist to Arduino
 		Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
 		and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
-		Maybe move this function to the algorithm or cube object python file?
 		"""
-
-		ser = serial.Serial("COM4", 9600, timeout=2)  # Open serial port
-		print("Port used: " + ser.name)         # Check which port was really used
-		data = ser.readline()
-		if data == b"Ready\r\n": # Initialize handshake with Arduino
-			print("Succesfully connected to Arduino...")
-		else:
-			print("Failed to connect to Arduino. Exiting...")
-			return
+		
 		for m in send_list:
 			data = ser.readline() # Read data from Arduino
-			if data: # If data comes in from Arduino
-				if data == b"next\r\n": # Initialize handshake with Arduino
-					print ("Handshake from Arduino received")
-					#The arduino_string part + while loop is for manual testing commands
-					#Make this a comment and uncomment for item in send_list for regular use
-					arduino_string = ""
-					
-					if m != "q":
-						ser.write(str.encode(m))
-						self.cube.sendMoves(m)
-				
-				elif data == b"somethingelse":
-					arduino_string = input("Type another string to send to arduino: ")
-					arduino_send_bytes = str.encode(arduino_string)
-					ser.write(arduino_send_bytes)
-				elif data == b'hello':
-					print ("it says hello!")
-				else:
-					# This actually prints the data received from Serial.print from Arduino
-					# First it decodes the received raw byte data to a utf-8 string
-					ascii_data = data.decode()
-					print (ascii_data)
+			if m is not "q":
+				print("Sending move: " + m)
+				ser.write(str.encode(m))
+				self.cube.sendMoves(m)
 
 			if not data: # If there is no data coming back from Arduino
 				print("No data being received from Arduino anymore")
-				break
-
-#		test = input("Press enter to close serial connection")
-		ser.close()             # close port
-		print ("Serial port closed")
-		
+				return
+					
 	def showSavedText(self, image, rect):
 		image_time = 840
 		while image_time > 0:
@@ -377,10 +366,9 @@ class solver(object):
 
 		move_list = calc_rest.algorithm()
 		print(move_list)
-#		self.cube.setStart()
-#		self.sendToArduino(move_list)
-
-
+		if (self.ser != None):
+			self.cube.setStart()
+			self.sendToArduino(move_list + "q")
 		self.cube = None
 
 	def showScreen(self):
@@ -429,5 +417,13 @@ class solver(object):
 			self.clock.tick(60)
 			
 game = solver()
-while game.active:
-	game.showScreen()
+try:
+	while game.active:
+		game.showScreen()
+except KeyboardInterrupt:
+	pass
+finally:
+	if (game.ser != None):
+		game.ser.close()             # close port
+		print ("Serial port closed")
+	print("doei.")
