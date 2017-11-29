@@ -378,14 +378,14 @@ def algorithm():
 			coords2, colors2 = cube.getCorners("r")
 			coords3 = []
 			colors3 = []
-			s = cube.faces[facenames[0]].squares[0][0]
-			s1 = cube.faces[facenames[5]].squares[0][0]
-			s2 = cube.faces[facenames[0]].squares[2][0]
-			s3 = cube.faces[facenames[4]].squares[2][0]
-			s4 = cube.faces[facenames[2]].squares[0][2] # <IMPORTUTNT> When checking the if (X) is not (x), does it check them all or stop at the first.
-			s5 = cube.faces[facenames[5]].squares[0][2]
-			s6 = cube.faces[facenames[2]].squares[2][2]
-			s7 = cube.faces[facenames[4]].squares[2][2]
+			s = cube.faces[cube.facenames[0]].squares[0][0]
+			s1 = cube.faces[cube.facenames[5]].squares[0][0]
+			s2 = cube.faces[cube.facenames[0]].squares[2][0]
+			s3 = cube.faces[cube.facenames[4]].squares[2][0]
+			s4 = cube.faces[cube.facenames[2]].squares[0][2] # <IMPORTUTNT> When checking the if (X) is not (x), does it check them all or stop at the first.
+			s5 = cube.faces[cube.facenames[5]].squares[0][2]
+			s6 = cube.faces[cube.facenames[2]].squares[2][2]
+			s7 = cube.faces[cube.facenames[4]].squares[2][2]
 			
 			if s == "r" or s == "g" or s == "y":									#Right	:		:		:		:
 				if s1 == "r" or s1 == "g" or s1 == "y":									#Right		:		:		:
@@ -516,18 +516,8 @@ def algorithm():
 									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
 										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
 											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py				
-			pas = True
-			print(pas, coords3, colors3)
-			for i in range(4):
-				if (not coords3[i] == location[i]):
-					front = fronts[i]
-					results = translateMoves(6, front, "urULuRUl") # Not sure if this works
-					pas = False
-					break
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			if (pas):
-				vars.algo6 = True
 
 		while not vars.algo7:
 			input("Start algo-7")
