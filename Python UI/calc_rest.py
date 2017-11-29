@@ -378,14 +378,144 @@ def algorithm():
 			coords2, colors2 = cube.getCorners("r")
 			coords3 = []
 			colors3 = []
-			for cl, cr in zip(colors, coords):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for cl, cr in zip(colors2, coords2):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
+			s = cube.faces[facenames[0]].squares[0][0]
+			s1 = cube.faces[facenames[5]].squares[0][0]
+			s2 = cube.faces[facenames[0]].squares[2][0]
+			s3 = cube.faces[facenames[4]].squares[2][0]
+			s4 = cube.faces[facenames[2]].squares[0][2] # <IMPORTUTNT> When checking the if (X) is not (x), does it check them all or stop at the first.
+			s5 = cube.faces[facenames[5]].squares[0][2]
+			s6 = cube.faces[facenames[2]].squares[2][2]
+			s7 = cube.faces[facenames[4]].squares[2][2]
+			
+			if s == "r" or s == "g" or s == "y":									#Right	:		:		:		:
+				if s1 == "r" or s1 == "g" or s1 == "y":									#Right		:		:		:
+					if s2 == "r" or s2 == "b" or s2 == "y":									#Right	:		:		:
+						if s3 == "r" or s3 == "b" or s3 == "y":									#Right		:		:
+							vars.algo6 = True # finishes algo6										#Solved	:		:
+					if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:		:
+						if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:		:
+							vars.aglo6 = True # finishes algo6										#Solved	:		:
+					if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:		:		:
+						if s7 == "o" or s7 == "b" or s7 == "y":									#Right		:		:
+							vars.algo6 = True # finishes algo6										#Solved	:		:
+			if s is not "r" or s is not "g" or s is not "y":						#False	:		:		:		:
+				if s1 == "r" or s1 == "g" or s1 == "y":									#Right		:		:		:
+					if s2 == "r" or s2 == "b" or s2 == "y":									#Right	:		:		:
+						if s3 == "r" or s3 == "b" or s3 == "y":									#Right		:		:
+							results = translateMoves(6, "b", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+					if s2 is not "r" or s2 is not "b" or s2 is not "y":						#False	:		:		:
+						if s3 == "r" or s3 == "b" or s3 == "y":									#Right		:		:
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									results = translateMoves(6, "g", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 is not "o" or s5 is not "g" or s5 is not "y":						#False		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 is not "o" or s4 is not "g" or s4 is not "y":						#False	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+					if s2 == "r" or s2 == "b" or s2 == "y":									#Right	:		:		:
+						if s3 is not "r" or s3 is not "b" or s3 is not "y":						#False		:		:
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									results = translateMoves(6, "g", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 is not "o" or s5 is not "g" or s5 is not "y": 					#False		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 is not "o" or s4 is not "g" or s4 is not "y":						#False	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+			if s is not "r" or s is not "g" or s is not "y":						#False	:		:		:		:
+				if s1 is not "r" or s1 is not "g" or s1 is not "y":						#False		:		:		:
+					if s2 == "r" or s2 == "b" or s2 == "y":									#Right	:		:		:
+						if s3 == "r" or s3 == "b" or s3 == "y":									#Right		:		:
+							results = translateMoves(6, "b", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+					if s2 is not "r" or s2 is not "b" or s2 is not "y":						#False	:		:		:
+						if s3 == "r" or s3 == "b" or s3 == "y":									#Right		:		:
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									results = translateMoves(6, "g", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 is not "o" or s5 is not "g" or s5 is not "y":						#False		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 is not "o" or s4 is not "g" or s4 is not "y":						#False	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+					if s2 == "r" or s2 == "b" or s2 == "y":									#Right	:		:		:
+						if s3 is not "r" or s3 is not "b" or s3 is not "y":						#False		:		:
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									results = translateMoves(6, "g", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 == "o" or s4 == "g" or s4 == "y":									#Right	:		:
+								if s5 is not "o" or s5 is not "g" or s5 is not "y": 					#False		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+							if s4 is not "o" or s4 is not "g" or s4 is not "y":						#False	:		:
+								if s5 == "o" or s5 == "g" or s5 == "y":									#Right		:
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 is not "o" or s6 is not "b" or s6 is not "y":						#False	:
+										if s7 == "o" or s7 == "b" or s7 == "y":									#Right
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py
+									if s6 == "o" or s6 == "b" or s6 == "y":									#Right	:
+										if s7 is not "o" or s7 is not "b" or s7 is not "y":						#False
+											results = translateMoves(6, "o", "urULuRUl")							#Take this side and send "urULuRUl" to cube.py				
 			pas = True
 			print(pas, coords3, colors3)
 			for i in range(4):
