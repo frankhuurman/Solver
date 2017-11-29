@@ -65,17 +65,11 @@ class vars:
 		return(lut)
 
 	LUT = getLUT()
-	translist = []
 	moveListBuffer = ""
 	solved = False
 	algos = []
-	for i in range(3):
+	for i in range(7):
 		algos.append(False)
-	algo4 = False
-	algo5 = False
-	algo6 = False
-	algo7 = False
-#	algos[2] = True
 	cube = None
 
 def translateMoves(alg, mod, moves):
@@ -270,14 +264,14 @@ def algorithm():
 		
 		cube = vars.cube  
 	
-		while not vars.algo4: # Blue considered front
+		while not vars.algos[4-1]: # Blue considered front
 #			input("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
 					if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 						if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 							results = ""
-							vars.algo4 = True
+							vars.algos[4-1] = True
 						else:
 							print("0whut?")
 					else:
@@ -307,7 +301,7 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-		while not vars.algo5 and not cube.stopSolving: 
+		while not vars.algos[5-1] and not cube.stopSolving: 
 #			input("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
@@ -365,11 +359,11 @@ def algorithm():
 							print("Error 2: This shouldn't event trigger; algo5") # Red, blue and green are right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o": # everything is right
 						results = ""
-						vars.algo5 = True
+						vars.algos[5-1] = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 		i6 = 0
-		while not vars.algo6: # doesn't register when a correctly placed corner is present.
+		while not vars.algos[6-1]: # doesn't register when a correctly placed corner is present.
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			flip = ["b", "o"]
@@ -390,7 +384,7 @@ def algorithm():
 								if s5 == "o" or s5 == "g" or s5 == "y":
 									if s6 == "o" or s6 == "b" or s6 == "y":
 										if s7 == "o" or s7 == "b" or s7 == "y":
-											vars.algo6 = True
+											vars.algos[6-1] = True
 					else:
 						results = translateMoves(6, "r", "urULuRUl")
 			else:
@@ -401,7 +395,7 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-		while not vars.algo7:
+		while not vars.algos[7-1]:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			location = (0,0,0)
@@ -431,7 +425,7 @@ def algorithm():
 								results = translateMoves(2, "r", "RDrd")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algo7 = True
+			vars.algos[7-1] = True
 
 		cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
