@@ -14,10 +14,15 @@ import datetime
 # When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
-#TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
+#TODO: Check algo4, something is causing RB to go into (0, 1, 2) # Which section? 
 #TODO: Algo6 doesn't always print what it's doing. 
 #TODO: Line 302
+#TODO: Line 310
 #TODO: Look into why algo6 only occasionaly works, takes the wrong corner despite being told exactly which to pick. 
+#TODO: Check why algo6 doesn't finish when it should
+#TODO: Fix the issue with algo6 getting stuck in a loop.
+#TODO: Please find a to stop the command line from becoming unresponsive.
+#TODO: Write a function that can be called to check if the cube is solved, occasionaly algo6 will solve the cube, meaning executing algo7 would be a waste of time.
 
 class vars:
 	
@@ -305,7 +310,7 @@ def algorithm():
 				elif cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "u")
 				else:
-					print("2whut?")
+					print("2whut?") # Triggers occasionaly
 			elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 				if cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "uu")
@@ -393,35 +398,50 @@ def algorithm():
 			s7 = cube.faces[cube.facenames[4]].squares[2][2]
 			
 			if s0 == "r" or s0 == "g" or s0 == "y":
+				print("if")
 				if s1 == "r" or s1 == "g" or s1 == "y":
-					if s2 == "r" or s2 == "b" or s2 == "y":
-						if s3 == "r" or s3 == "b" or s3 == "y":
-							if s4 == "o" or s4 == "g" or s4 == "y":
-								if s5 == "o" or s5 == "g" or s5 == "y":
-									if s6 == "o" or s6 == "b" or s6 == "y":
-										if s7 == "o" or s7 == "b" or s7 == "y":
-											vars.algos[6-1] = True
+					print("s1")
+					if s2 == "r" or s2 == "b":
+						print("s2")
+						if s3 == "r" or s3 == "b":
+							print("s3")
+							vars.algos[6-1] = True
+#							if s4 == "o" or s4 == "g":
+	#							if s5 == "o" or s5 == "g":
+#									if s6 == "o" or s6 == "b":
+#										if s7 == "o" or s7 == "b":
+#											vars.algos[6-1] = True
 					else:
 						results = translateMoves(6, "r", "urULuRUl")
 			else:
+				print("else")
 				i6 += 1
 				if i6 == 2:
 					i6 = 0
 				results = translateMoves(6, flip[i6], "urULuRUl")
+#				results = translateMoves(6, "b", "urULuRUl")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
+
 		i7 = 0
 		while not vars.algos[7-1]:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
-			if cube.faces[cube.facenames[0]].squares[0][0] == cube.faces[cube.facenames[5]].squares[0][0]: # Finish this.
+			if cube.faces[cube.facenames[0]].squares[0][0] == cube.faces[cube.facenames[0]].squares[1][0]: # Finish this.
+				if cube.faces[cube.facenames[5]].squares[0][0] == cube.faces[cube.facenames[5]].squares[0][1]:
+					results = translateMoves(6, "r", "U")
+					if cube.faces[cube.facenames[0]].squares[0][0] == "r": # This isn't going to work. implement a check to see if it's correct, and a section that moves U and D to match the rest aswell.
+						if cube.faces[cube.facenames[2]].squares[2][2] == "o":
+							if cube.faces[cube.facenames[4]].squares[2][0] == "b":
+								if cube.faces[cube.facenames[5]].squares[0][2] == "g":
+									vars.algos[7-1] = True
 				i7 += 1
 				if i7 == 3:
 					vars.algos[7-1] = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-		cube.sendMoves(results) # Sends results to the cube updating it.
+		vars.cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 		print(vars.moveListBuffer)
 
