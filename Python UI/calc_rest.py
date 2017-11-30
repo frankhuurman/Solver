@@ -11,15 +11,11 @@ import datetime
 #cube.faces[cube.facenames[4]].squares[0][0] bottom (blue)
 #cube.faces[cube.facenames[5]].squares[0][0] top (green)
 
-"""
-Algorithm 1: Get white edges into position.
-Algorithm 2: Get white corners into position.
-Algorithm 3: Get the middle aligned of the red/blue/orange/green circle.
-Algorithm 4: Get the yellow edges into posistion.
-Algorithm 5: 
-Algorithm 6: 
-Algorithm 7: 
-"""
+# When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
+# this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
+
+#TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
+#TODO: Do the same for algo7
 
 #/--------------------------\
 #|      dunka dunka         |
@@ -27,17 +23,10 @@ Algorithm 7:
 
 #algo6 needs the following:
 # - the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
-# - the co-ords of said corners of both non-yellow squares.
+# - the co-ords of said corners
 # - to detect the amount of correctly placed corners 
-# - correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
-# - if the amount of correctly placed corners is higher than 1 assume all are correct and move onto algo7 
-
-
-# When holding the cube turning the cube 90 degrees left, right up or down to show another face the corner that is the in the top left is that face's [0][0], 
-# this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
-
-#TODO: #algo5 doesn't complete
-#TODO: make it so that the algoritm actualy stops instead of looping as it does now.
+#	- correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
+#	- if the amount of correctly placed corners is higher than 1 assume all are correct and move onto algo7 
 
 class vars:
 	
@@ -82,7 +71,6 @@ class vars:
 	for i in range(7):
 		algos.append(False)
 	cube = None
-
 
 def translateMoves(alg, mod, moves):
 
@@ -133,56 +121,57 @@ def translateMoves(alg, mod, moves):
 							"l" : "r",
 							"d" : "f"}
 				}, 5: {	# Algo5
-				"r" : {"f" : "l", # Fix this
+				"r" : {"f" : "l",
 							"r" : "u",
 							"u" : "b",
 							"b" : "r",
 							"l" : "d",
 							"d" : "f"},
-				"g":{"f" : "u", # Fix this # V
+				"g":{"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"},
-				"b": {"f" : "d", # Fix this
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "r", # Fix this
+				"o":{"f": "r",
 							"r" : "d",
 							"u" : "b",
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
-				}, 6: {	# Algo6
-				"r" : {"f" : "l", # Fix this
+				}, 
+				6: {	# Algo6
+				"r" : {"f" : "l",
 							"r" : "u",
 							"u" : "b",
 							"b" : "r",
 							"l" : "d",
 							"d" : "f"},
-				"g":{"f" : "u", # Fix this # V
+				"g":{"f" : "u",
 							"r" : "r",
 							"u" : "b",
 							"b" : "d",
 							"l" : "l",
 							"d" : "f"},
-				"b": {"f" : "d", # Fix this
+				"b": {"f" : "d",
 							"r" : "l",
 							"u" : "b",
 							"b" : "u",
 							"l" : "r",
 							"d" : "f"},
-				"o":{"f": "r", # Fix this
+				"o":{"f": "r",
 							"r" : "d",
 							"u" : "b",
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
-}}
+				}}
 				
 	if (moves == "done"):
 		return(moves)
@@ -199,9 +188,8 @@ def translateMoves(alg, mod, moves):
 	except:
 		print("Not changed. ", moves)
 		return(moves)
-	print("Changed ", moves, mvs)
+	print("Changed to face-{}, ".format(mod), moves, mvs)
 	return(mvs)
-
 
 def getInfo(i):
 	coords = []
@@ -225,11 +213,10 @@ def getInfo(i):
 	print("colors: ", colors)
 	return(coords, colors)
 
-
 def algorithm():
 
 	results = ""
-	while (not vars.solved) or (not vars.cube.stopSolving): # Check if the cube is solved
+	while not vars.solved and not vars.cube.stopSolving: # Check if the cube is solved
 		count = 0
 		for i in range(3):
 			print("Start algo-" + str(i + 1))
@@ -243,11 +230,11 @@ def algorithm():
 					else:
 						color = colors[j][-1]
 #					print(i, j, colors, coords)
-					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]])
+					moves = translateMoves(i + 1, color, vars.LUT[i][colors[j]][coords[j]]) # creates errors if presented with impossible or unexpected situations
 					if (not moves == "done"):
 #						if (i == 1):
 #						for m in moves:
-#						input("\nNext move: " + colors[j] + str(coords[j]) + moves) 
+#						input("\nNext move: " + colors[j] + str(coords[j]) + moves)
 						currentColor = colors[j]
 #						vars.cube.sendMoves(moves)
 #						else:
@@ -270,11 +257,15 @@ def algorithm():
 					if (count == 4):
 						print(coords, colors)
 						vars.algos[i] = True	# All white edges are resolved, end this step of algorithm.
-								
-		cube = vars.cube
-			
-		while not vars.algos[4-1] and not cube.stopSolving: # Blue considered front 
-			input("Start algo-4")
+
+#					if currentColor is not "":
+		print(vars.moveListBuffer)
+#		vars.cube.stopSolving = True
+		
+		cube = vars.cube  
+	
+		while not vars.algos[4-1] and not cube.stopSolving:
+			print("Start algo-4")
 			if cube.faces[cube.facenames[3]].squares[0][1] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][0] == "y":
 					if cube.faces[cube.facenames[3]].squares[1][2] == "y":
@@ -285,13 +276,16 @@ def algorithm():
 							print("0whut?")
 					else:
 						results = translateMoves(4, "b", "fruRUF")
+						print("Bleep1")
 				elif cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "U")
 				else:
 					print("1whut?")
+					results = translateMoves(4, "b", "U")
 			elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "fruRUF")
+					print("Bleep2")
 				elif cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "u")
 				else:
@@ -303,103 +297,106 @@ def algorithm():
 					print("3whut?")
 			else:
 				results = translateMoves(4, "b", "fruRUF")
+				print("Bleep3")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
 		while not vars.algos[5-1] and not cube.stopSolving: 
-			input("Start algo-5")
+			print("Start algo-5")
 			if cube.faces[cube.facenames[0]].squares[1][0] is not "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "red"
-							results = translateMoves(5, "r", "u")
-							vars.algos[5-1] = True
+							results = translateMoves(5, "r", "u") # Everything is wrong.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = translateMoves(5, "r", "ruRuruuRu")
+							results = translateMoves(5, "r", "ruRuruuRu") # Green is right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = translateMoves(5, "g", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Orange is right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "red"
-							results = translateMoves(5, "r", "ruRuruuRu")
+							results = translateMoves(5, "r", "ruRuruuRu") # Orange and green are right.
 				elif cube.faces[cube.facenames[4]].squares[1][2] == "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Blue is right.
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Blue and green are right. Opposites, move green (or blue) #!!!!!!!!!!!!!!
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":				
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "green"
-							results = translateMoves(5, "g", "ruRuruuRu")
+							results = translateMoves(5, "g", "ruRuruuRu") # Blue and orange are right.
 						if cube.faces[cube.facenames[5]].squares[0][1] == "g":
-							results = ""
+							results = "" # Blue, orange and green are right.
 			elif cube.faces[cube.facenames[0]].squares[1][0] == "r":
 				if cube.faces[cube.facenames[4]].squares[2][1] is not "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "b", "ruRuruuRu") # Red is right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "b", "ruRuruuRu") # Red and Green are right.
 					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "blue"
-							results = translateMoves(5, "b", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Red and orange are right. Opposites, move orange (or red) #!!!!!!!!!!!!!! # Doesn't seem to be doing what it should, maybe check the translation?
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
-							print("Error 1: This shouldn't even trigger; algo5")
+							print("Error 1: This shouldn't even trigger; algo5") # Red, orange and green are right.
 				elif cube.faces[cube.facenames[4]].squares[2][1] == "b":
 					if cube.faces[cube.facenames[2]].squares[1][2] is not "o":
 						if cube.faces[cube.facenames[5]].squares[0][1] is not "g":
 							front = "orange"
-							results = translateMoves(5, "o", "ruRuruuRu")
+							results = translateMoves(5, "o", "ruRuruuRu") # Red and blue are right.
 						elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 							results = ""
-							print("Error 2: This shouldn't event trigger; algo5")
-					elif cube.faces[cube.facenames[2]].squares[1][2] == "o":
+							print("Error 2: This shouldn't event trigger; algo5") # Red, blue and green are right.
+					elif cube.faces[cube.facenames[2]].squares[1][2] == "o": # everything is right
 						results = ""
-						print("Error 3: This shouldn't even trigger; algo5")
+						vars.algos[5-1] = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
+		i6 = 0
 		while not vars.algos[6-1] and not cube.stopSolving:
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
-			location = [(0,0,0), (0,2,0), (2,0,2), (2,2,2)]
-			edgeColor = ["ryg", "rby", "ogy", "oyb"]
-			coords, colors = cube.getCorners("o")
-			coords2, colors2 = cube.getCorners("r")
-			coords3 = []
-			colors3 = []
-			for cl, cr in zip(colors, coords):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for cl, cr in zip(colors2, coords2):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			pas = True
-			print(coords3, colors3)
-			for i in range(4):
-				if (not coords3[i] == location[i]):
-					front = fronts[i]
-					results = translateMoves(6, front, "urULuRUl") # Not sure if this works
-					pas = False
-					break
+			flip = ["b", "o"]
+			s0 = cube.faces[cube.facenames[0]].squares[0][0]
+			s1 = cube.faces[cube.facenames[5]].squares[0][0]
+			s2 = cube.faces[cube.facenames[0]].squares[2][0]
+			s3 = cube.faces[cube.facenames[4]].squares[2][0]
+			s4 = cube.faces[cube.facenames[2]].squares[0][2] # <IMPORTUTNT> When checking the if (X) is not (x), does it check them all or stop at the first.
+			s5 = cube.faces[cube.facenames[5]].squares[0][2]
+			s6 = cube.faces[cube.facenames[2]].squares[2][2]
+			s7 = cube.faces[cube.facenames[4]].squares[2][2]
+			
+			if s0 == "r" or s0 == "g" or s0 == "y":
+				if s1 == "r" or s1 == "g" or s1 == "y":
+					if s2 == "r" or s2 == "b" or s2 == "y":
+						if s3 == "r" or s3 == "b" or s3 == "y":
+							if s4 == "o" or s4 == "g" or s4 == "y":
+								if s5 == "o" or s5 == "g" or s5 == "y":
+									if s6 == "o" or s6 == "b" or s6 == "y":
+										if s7 == "o" or s7 == "b" or s7 == "y":
+											vars.algos[6-1] = True
+					else:
+						results = translateMoves(6, "r", "urULuRUl")
+			else:
+				i6 += 1
+				if i6 == 2:
+					i6 = 0
+				results = translateMoves(6, flip[i6], "urULuRUl")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			if (pas):
-				vars.algos[6-1] = True
 
-		while not vars.algos[7-1] and not cube.stopSolving: # D035 th15 w0rk?
+		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			location = (0,0,0)
@@ -419,23 +416,21 @@ def algorithm():
 					colors3.append(cl)
 			for i in range(4):
 				pas = True
-				for c in colors3[i]:
+				for c in colors[i]:
 					if (not c in edgeColor[i]):
 						pas = False
 				if pas:
-					if (coords3[i] == location): # Why the ()s
+					if (coords[i] == location): # Why the ()s
 						for x in adjacent:
-							if colors3[:2] is not adjacent:
+							if  colors3[:2] is not adjacent:
 								results = translateMoves(2, "r", "RDrd")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			print("algo-7: ", results)
 			vars.algos[7-1] = True
 
-		solved = True
+		cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
-		print("{} moves: {}".format(len(vars.moveListBuffer), vars.moveListBuffer))
+		print(vars.moveListBuffer)
 
-		if vars.cube.solved():	# Always returns True. DON'T FORGET TO FIX!!!!
-			vars.solved = True
-	return vars.moveListBuffer
+	if vars.cube.solved():
+		return vars.moveListBuffer

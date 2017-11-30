@@ -274,6 +274,54 @@ class solver(object):
 				continue
 			self.rects_col[i] = self.imgs[order[int(i/9)]]
 			
+	def getColorList(self):
+		"""Returns an array with the first letter of the color of each of the 54 squares of the cube."""
+
+		calcu_list = []
+
+		for color in self.rects_col:
+			if color == self.imgs["white"]:
+				calcu_list.append("w")
+			elif color == self.rubiks_image:
+				calcu_list.append("w")
+			elif color == self.imgs["red"]:
+				calcu_list.append("r")
+			elif color == self.imgs["green"]:
+				calcu_list.append("g")
+			elif color == self.imgs["blue"]:
+				calcu_list.append("b")
+			elif color == self.imgs["orange"]:
+				calcu_list.append("o")
+			elif color == self.imgs["yellow"]:
+				calcu_list.append("y")
+			else:
+				calcu_list.append("<no color>")
+		return(calcu_list)
+
+	def confirmCheck(self):
+		"""Run this check when starting to solve to ensure there are 9 squares of each color."""
+
+		allColors = self.getColorList()
+		colorSpread = {"r" : 0,
+						"w" : 0,
+						"o" : 0,
+						"y" : 0,
+						"b" : 0,
+						"g" : 0,
+						}
+		offColors = {}
+		for color in allColors:
+			colorSpread[color] += 1
+		for col, nr in colorSpread.items():
+			print(nr)
+			if (nr != 9):
+				print("MOI")
+				offColors[col] = nr
+		print("offColors: ", offColors)
+		if (len(offColors) > 0):
+			return(False)
+		return(True)
+
 	def checkQuitandClicks(self):
 		"""Check for exit and event handling."""
 
@@ -282,6 +330,7 @@ class solver(object):
 				self.active = False
 				pygame.quit()
 				quit()
+
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				if event.button == 1:  # left mouse button
 					#check confirm
@@ -291,6 +340,9 @@ class solver(object):
 						for t in self.threadList:
 							if (t.isAlive()):
 								startThread = False
+						if (not self.confirmCheck()):
+							print("Colors be wrong!!!!!")
+							return
 						if (startThread):
 							solverThr = solverThread(len(self.threadList), "Solver", self)
 							solverThr.start()
@@ -340,28 +392,8 @@ class solver(object):
 	def solve(self):
 		"""Run this in a seperate thread to start solving the cube."""
 
-		calcu_list = []
-
-		for color in self.rects_col:
-			if color == self.imgs["white"]:
-				calcu_list.append("w")
-			elif color == self.rubiks_image:
-				calcu_list.append("w")
-			elif color == self.imgs["red"]:
-				calcu_list.append("r")
-			elif color == self.imgs["green"]:
-				calcu_list.append("g")
-			elif color == self.imgs["blue"]:
-				calcu_list.append("b")
-			elif color == self.imgs["orange"]:
-				calcu_list.append("o")
-			elif color == self.imgs["yellow"]:
-				calcu_list.append("y")
-			else:
-				calcu_list.append("<no color>")
-					
 		# Create cube object
-		self.cube = kubus.cube(calcu_list)
+		self.cube = kubus.cube(self.getColorList())
 		calc_rest.vars.cube = self.cube
 
 		move_list = calc_rest.algorithm()

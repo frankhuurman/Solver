@@ -185,33 +185,9 @@ class cube(object):
 					c2 = blah[(x,y)][1]
 					fIndex = const.facenames.index(f)
 #					print(c1, c2, fIndex, side1, side2)
-					if (extraReturn):
-						coords.append({color : (fIndex, x, y),
-							sq1[c1[0]][c1[1]] : (const.facenames.index(side1), c1[0], c1[1]),
-							sq2[c2[0]][c2[1]] : (const.facenames.index(side2), c2[0], c2[1])})
-					else:
-						coords.append((fIndex, x, y))
-						colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
-		if (extraReturn):
-			return(coords)
-		else:
-			return(coords, colors)
-		"""
-		[{ "y" : (2,0,2),
-			"o" : (5,0,2),
-			"g" : (3,0,0)}
-			]
-		"""
-	def alg6CornerDataStuffWhatever(self):
-
-		coo = []
-		coords = self.getCorners("y", True)
-		for c in coords:
-			if (not c["y"][0] == 3):
-				coo.append(c)
-
-
-		return(coo)
+					coords.append((fIndex, x, y))
+					colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
+		return(coords, colors)
 
 	def __rotate(self, name, dir):
 		"""Rotates the face along with the corresponding sides."""
