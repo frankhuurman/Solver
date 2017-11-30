@@ -406,6 +406,16 @@ def algorithm():
 						if s3 == "r" or s3 == "b":
 							print("s3")
 							vars.algos[6-1] = True
+					if s4 == "o" or s4 == "g":
+						print("s4")
+						if s5 == "o" or s5 == "g":
+							print("s5")
+							vars.algos[6-1] = True
+					if s6 == "o" or s6 == "b":
+						print("s6")
+						if s7 == "o" or s7 == "b":
+							print("s7")
+							vars.algos[6-1] = True
 #							if s4 == "o" or s4 == "g":
 	#							if s5 == "o" or s5 == "g":
 #									if s6 == "o" or s6 == "b":
