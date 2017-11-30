@@ -15,18 +15,9 @@ import datetime
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) 
-#TODO: Do the same for algo7
-
-#/--------------------------\
-#|      dunka dunka         |
-#\--------------------------/
-
-#algo6 needs the following:
-# - the colors of the corners connecting the yellow green, orange, blue and red faces (ask for explanation if unclear) 
-# - the co-ords of said corners
-# - to detect the amount of correctly placed corners 
-#	- correct in terms of algo6 means that (for example) the red blue yellow corner is on the yellow, red and blue faces, though the colors do not have to be on their matching face yet. 
-#	- if the amount of correctly placed corners is higher than 1 assume all are correct and move onto algo7 
+#TODO: Algo6 doesn't always print what it's doing. 
+#TODO: Line 302
+#TODO: Look into why algo6 only occasionaly works, takes the wrong corner despite being told exactly which to pick. 
 
 class vars:
 	
@@ -171,7 +162,32 @@ def translateMoves(alg, mod, moves):
 							"b" : "l",
 							"l" : "u",
 							"d" : "f"}
-				}}
+				},7: {
+				"r" : {"f" : "l",
+							"r" : "u",
+							"u" : "b",
+							"b" : "r",
+							"l" : "d",
+							"d" : "f"},
+				"g":{"f" : "u",
+							"r" : "r",
+							"u" : "b",
+							"b" : "d",
+							"l" : "l",
+							"d" : "f"},
+				"b": {"f" : "d",
+							"r" : "l",
+							"u" : "b",
+							"b" : "u",
+							"l" : "r",
+							"d" : "f"},
+				"o":{"f": "r",
+							"r" : "d",
+							"u" : "b",
+							"b" : "l",
+							"l" : "u",
+							"d" : "f"}				   
+					}}
 				
 	if (moves == "done"):
 		return(moves)
@@ -273,7 +289,7 @@ def algorithm():
 							results = ""
 							vars.algos[4-1] = True
 						else:
-							print("0whut?")
+							print("0whut?") # Triggers occasionaly
 					else:
 						results = translateMoves(4, "b", "fruRUF")
 						print("Bleep1")
@@ -394,38 +410,16 @@ def algorithm():
 				results = translateMoves(6, flip[i6], "urULuRUl")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-
+		i7 = 0
 		while not vars.algos[7-1]:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
-			location = (0,0,0)
-			edgeColor = ["ryg", "rby", "ogy", "oyb"]
-			coords, colors = cube.getCorners("o")
-			coords2, colors2 = cube.getCorners("r")
-			coords3 = []
-			colors3 = []
-			adjacent = [cube.faces[cube.facenames[0]].squares[0][0], cube.faces[cube.facenames[5]].squares[0][0]]
-			for cl, cr in zip(colors, coords):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for cl, cr in zip(colors2, coords2):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for i in range(4):
-				pas = True
-				for c in colors[i]:
-					if (not c in edgeColor[i]):
-						pas = False
-				if pas:
-					if (coords[i] == location): # Why the ()s
-						for x in adjacent:
-							if  colors3[:2] is not adjacent:
-								results = translateMoves(2, "r", "RDrd")
+			if cube.faces[cube.facenames[0]].squares[0][0] == cube.faces[cube.facenames[5]].squares[0][0]: # Finish this.
+				i7 += 1
+				if i7 == 3:
+					vars.algos[7-1] = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algos[7-1] = True
 
 		cube.sendMoves(results) # Sends results to the cube updating it.
 		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
