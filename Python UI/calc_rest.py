@@ -398,7 +398,7 @@ def algorithm():
 			s7 = cube.faces[cube.facenames[4]].squares[2][2]
 			
 			if s0 == "r" or s0 == "g" or s0 == "y":
-				print("if")
+				print("if") 
 				if s1 == "r" or s1 == "g" or s1 == "y":
 					print("s1")
 					if s2 == "r" or s2 == "b":
@@ -406,30 +406,35 @@ def algorithm():
 						if s3 == "r" or s3 == "b":
 							print("s3")
 							vars.algos[6-1] = True
-					if s4 == "o" or s4 == "g":
+					elif s4 == "o" or s4 == "g":
 						print("s4")
 						if s5 == "o" or s5 == "g":
 							print("s5")
 							vars.algos[6-1] = True
-					if s6 == "o" or s6 == "b":
+					elif s6 == "o" or s6 == "b":
 						print("s6")
 						if s7 == "o" or s7 == "b":
 							print("s7")
 							vars.algos[6-1] = True
-#							if s4 == "o" or s4 == "g":
-	#							if s5 == "o" or s5 == "g":
-#									if s6 == "o" or s6 == "b":
-#										if s7 == "o" or s7 == "b":
-#											vars.algos[6-1] = True
 					else:
 						results = translateMoves(6, "r", "urULuRUl")
+				else:
+					results = translateMoves(6, "r", "urULuRUl")
+			elif s2 == "r" or s2 == "b" or s2 == "y":
+				if s3 == "r" or s3 == "b" or s3 == "y":
+					results = translateMoves(6, "b", "urULuRUl")
+			elif s4 == "o" or s4 == "g" or s4 == "y":
+				if s5 == "o" or s5 == "g" or s5 == "y":
+					results = translateMoves(6, "g", "urULuRUl")
+			elif s6 == "o" or s6 == "b" or s6 == "y":
+				if s7 == "o" or s7 == "b" or s7 == "y":
+					results = translateMoves(6, "o", "urULuRUl")
 			else:
 				print("else")
 				i6 += 1
 				if i6 == 2:
 					i6 = 0
 				results = translateMoves(6, flip[i6], "urULuRUl")
-#				results = translateMoves(6, "b", "urULuRUl")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
