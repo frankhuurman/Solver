@@ -20,7 +20,7 @@ def getInput():
 					"b", "B", "d", "D", "u", "U", "q"]
 	try:
 		m, amount = input("Select move and rotation: ").split()
-		m = int(amount)
+		amount = int(amount)
 		if (amount < 1):
 			m = False
 		if (not m in allowed):
@@ -34,6 +34,7 @@ ser = serial.Serial("COM4", 38400, timeout=0.1)  # Open serial port (Met 0.1 tim
 print("Port used: " + ser.name)         # Check which port was really used
 time.sleep(2)
 
+m = ""
 while (m is not "q"):
 	m, amount = getInput()
 	if (m is not False):
