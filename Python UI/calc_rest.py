@@ -397,7 +397,7 @@ def algorithm():
 			elif coords[colors.index("yrb")] in correctPos["yrb"]:
 				results = translateMoves(6, "b", "urULuRUl")
 
-			vars.cube.sendMoves(results)
+			cube.sendMoves(results)
 			vars.moveListBuffer += results
 
 			coords, colors = vars.cube.getCorners("y")
@@ -438,11 +438,12 @@ def algorithm():
 								results = translateMoves(2, "r", "RDrd")
 
 			# Check rotation thingy !!!!
+			cube.sendMoves(results)
 			while (not cube.faces["top_face"].squares[0][1] == "g"):
 				results += "b"
+				cube.sendMoves("b")
 			# Check rotation thingy !!!!
 
-			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 			vars.algos[7-1] = True
 
