@@ -456,6 +456,6 @@ except KeyboardInterrupt:
 	pass
 finally:
 	if (game.ser != None):
-		game.ser.close()             # close port
+		game.ser.close()
 		print ("Serial port closed")
 	print("doei.")
