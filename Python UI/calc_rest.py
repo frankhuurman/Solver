@@ -22,7 +22,8 @@ import datetime
 #TODO: Check why algo6 doesn't finish when it should
 #TODO: Fix the issue with algo6 getting stuck in a loop.
 #TODO: Please find a to stop the command line from becoming unresponsive.
-#TODO: Write a function that can be called to check if the cube is solved, occasionaly algo6 will solve the cube, meaning executing algo7 would be a waste of time.
+#TODO: Add more conditions to algo6, can currently get stuck in several selectors without moves.
+#TODO: Remove any commented code that isn't needed anymore.
 
 class vars:
 	
@@ -384,15 +385,15 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 		i6 = 0
-		while not vars.algos[6-1]: # doesn't register when a correctly placed corner is present.
+		while not vars.algos[6-1]: # doesn't register when a correctly placed corner is present. (This still holds true as of 5-12-2017) # add "and not cube.stopSolving:" here? # Moves onto algo7 now, but doesn't do it at the right point.
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
-			flip = ["b", "o"]
+			flip = ["b", "o", "g"]
 			s0 = cube.faces[cube.facenames[0]].squares[0][0]
 			s1 = cube.faces[cube.facenames[5]].squares[0][0]
 			s2 = cube.faces[cube.facenames[0]].squares[2][0]
 			s3 = cube.faces[cube.facenames[4]].squares[2][0]
-			s4 = cube.faces[cube.facenames[2]].squares[0][2] # <IMPORTUTNT> When checking the if (X) is not (x), does it check them all or stop at the first.
+			s4 = cube.faces[cube.facenames[2]].squares[0][2]
 			s5 = cube.faces[cube.facenames[5]].squares[0][2]
 			s6 = cube.faces[cube.facenames[2]].squares[2][2]
 			s7 = cube.faces[cube.facenames[4]].squares[2][2]
@@ -401,38 +402,79 @@ def algorithm():
 				print("if") 
 				if s1 == "r" or s1 == "g" or s1 == "y":
 					print("s1")
-					if s2 == "r" or s2 == "b":
+					if s2 == "r" or s2 == "b" or s2 == "y":
 						print("s2")
-						if s3 == "r" or s3 == "b":
+						if s3 == "r" or s3 == "b" or s3 == "y":
 							print("s3")
 							vars.algos[6-1] = True
-					elif s4 == "o" or s4 == "g":
+						else:
+							results = translateMoves(6, flip[i6], "urULuRUl")
+							i6 += 1
+							if i6 == 3:
+								i6 = 0
+					elif s4 == "o" or s4 == "g" or s4 == "y":
 						print("s4")
-						if s5 == "o" or s5 == "g":
+						if s5 == "o" or s5 == "g" or s5 == "y":
 							print("s5")
 							vars.algos[6-1] = True
-					elif s6 == "o" or s6 == "b":
+						else:
+							results = translateMoves(6, flip[i6], "urULuRUl")
+							i6 += 1
+							if i6 == 3:
+								i6 = 0
+					elif s6 == "o" or s6 == "b" or s7 == "y":
 						print("s6")
-						if s7 == "o" or s7 == "b":
+						if s7 == "o" or s7 == "b" or s7 == "y":
 							print("s7")
 							vars.algos[6-1] = True
+						else:
+							results = translateMoves(6, flip[i6], "urULuRUl")
+							i6 += 1
+							if i6 == 3:
+								i6 = 0
 					else:
 						results = translateMoves(6, "r", "urULuRUl")
+						print("else s2 - s4 - s6")
 				else:
-					results = translateMoves(6, "r", "urULuRUl")
+					results = translateMoves(6, flip[i6], "urULuRUl")
+					print("else s1")
+					i6 += 1
+					if i6 == 3:
+						i6 = 0
 			elif s2 == "r" or s2 == "b" or s2 == "y":
+				print("elif s2")
 				if s3 == "r" or s3 == "b" or s3 == "y":
+					print("elif s2, s3")
 					results = translateMoves(6, "b", "urULuRUl")
+				else:
+					results = translateMoves(6, flip[i6], "urULuRUl")
+					i6 += 1
+					if i6 == 3:
+						i6 = 0
 			elif s4 == "o" or s4 == "g" or s4 == "y":
+				print("elif s4")
 				if s5 == "o" or s5 == "g" or s5 == "y":
+					print("elif s4, s5")
 					results = translateMoves(6, "g", "urULuRUl")
+				else:
+					results = translateMoves(6, flip[i6], "urULuRUl")
+					i6 += 1
+					if i6 == 3:
+						i6 = 0
 			elif s6 == "o" or s6 == "b" or s6 == "y":
+				print("elif s6")
 				if s7 == "o" or s7 == "b" or s7 == "y":
+					print("elif s6, s7")
 					results = translateMoves(6, "o", "urULuRUl")
+				else:
+					results = translateMoves(6, flip[i6], "urULuRUl")
+					i6 += 1
+					if i6 == 3:
+						i6 = 0
 			else:
 				print("else")
 				i6 += 1
-				if i6 == 2:
+				if i6 == 3:
 					i6 = 0
 				results = translateMoves(6, flip[i6], "urULuRUl")
 			vars.cube.sendMoves(results)
