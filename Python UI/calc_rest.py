@@ -15,7 +15,6 @@ import datetime
 # this only applies to the back side if the rotation is done in a right or left motion but not for up / down tilting
 
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) # Which section? 
-#TODO: Algo6 doesn't always print what it's doing. 
 #TODO: Line 302
 #TODO: Line 310
 #TODO: Look into why algo6 only occasionaly works, takes the wrong corner despite being told exactly which to pick. 
@@ -397,88 +396,27 @@ def algorithm():
 			s5 = cube.faces[cube.facenames[5]].squares[0][2]
 			s6 = cube.faces[cube.facenames[2]].squares[2][2]
 			s7 = cube.faces[cube.facenames[4]].squares[2][2]
+
+			correctPos = {"ygr" : ((0,0,0),(3,0,2),(5,0,0)),
+								"ybo" : ((2,2,2),(3,2,0),(4,2,2)),
+								"yog" : ((2,2,0),(3,0,0),(5,2,0)),
+								"yrb" : ((0,0,2),(3,2,2),(4,2,0))}
 			
-			if s0 == "r" or s0 == "g" or s0 == "y":
-				print("if") 
-				if s1 == "r" or s1 == "g" or s1 == "y":
-					print("s1")
-					if s2 == "r" or s2 == "b" or s2 == "y":
-						print("s2")
-						if s3 == "r" or s3 == "b" or s3 == "y":
-							print("s3")
-							vars.algos[6-1] = True
-						else:
-							results = translateMoves(6, flip[i6], "urULuRUl")
-							i6 += 1
-							if i6 == 3:
-								i6 = 0
-					elif s4 == "o" or s4 == "g" or s4 == "y":
-						print("s4")
-						if s5 == "o" or s5 == "g" or s5 == "y":
-							print("s5")
-							vars.algos[6-1] = True
-						else:
-							results = translateMoves(6, flip[i6], "urULuRUl")
-							i6 += 1
-							if i6 == 3:
-								i6 = 0
-					elif s6 == "o" or s6 == "b" or s7 == "y":
-						print("s6")
-						if s7 == "o" or s7 == "b" or s7 == "y":
-							print("s7")
-							vars.algos[6-1] = True
-						else:
-							results = translateMoves(6, flip[i6], "urULuRUl")
-							i6 += 1
-							if i6 == 3:
-								i6 = 0
-					else:
-						results = translateMoves(6, "r", "urULuRUl")
-						print("else s2 - s4 - s6")
-				else:
-					results = translateMoves(6, flip[i6], "urULuRUl")
-					print("else s1")
-					i6 += 1
-					if i6 == 3:
-						i6 = 0
-			elif s2 == "r" or s2 == "b" or s2 == "y":
-				print("elif s2")
-				if s3 == "r" or s3 == "b" or s3 == "y":
-					print("elif s2, s3")
-					results = translateMoves(6, "b", "urULuRUl")
-				else:
-					results = translateMoves(6, flip[i6], "urULuRUl")
-					i6 += 1
-					if i6 == 3:
-						i6 = 0
-			elif s4 == "o" or s4 == "g" or s4 == "y":
-				print("elif s4")
-				if s5 == "o" or s5 == "g" or s5 == "y":
-					print("elif s4, s5")
-					results = translateMoves(6, "g", "urULuRUl")
-				else:
-					results = translateMoves(6, flip[i6], "urULuRUl")
-					i6 += 1
-					if i6 == 3:
-						i6 = 0
-			elif s6 == "o" or s6 == "b" or s6 == "y":
-				print("elif s6")
-				if s7 == "o" or s7 == "b" or s7 == "y":
-					print("elif s6, s7")
-					results = translateMoves(6, "o", "urULuRUl")
-				else:
-					results = translateMoves(6, flip[i6], "urULuRUl")
-					i6 += 1
-					if i6 == 3:
-						i6 = 0
-			else:
-				print("else")
-				i6 += 1
-				if i6 == 3:
-					i6 = 0
-				results = translateMoves(6, flip[i6], "urULuRUl")
-			vars.cube.sendMoves(results)
-			vars.moveListBuffer += results
+			coords, colors = vars.cube.getCorners("y")
+			if coords[colors.index("ygr")] in correctPos["ygr"]:
+				if coords[colors.index("ybo")] in correctPos["ybo"]:
+					vars.algos[6-1] = True
+			if coords[colors.index("ybo")] in correctPos["ybo"]:
+				results = moves
+
+
+			coords, colors = vars.cube.getCorners("y") # !!! ! ! ! ! ! 
+			check = True
+			for i in range(len(colors)):
+				if (coords[i] in correctPos[colors[i]]):
+					check = False
+			if (check):
+				vars.algos[6-1] = True # ! ! ! ! !
 
 		i7 = 0
 		while not vars.algos[7-1]:
