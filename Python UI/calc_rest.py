@@ -388,27 +388,29 @@ def algorithm():
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			flip = ["b", "o", "g"]
-			s0 = cube.faces[cube.facenames[0]].squares[0][0]
-			s1 = cube.faces[cube.facenames[5]].squares[0][0]
-			s2 = cube.faces[cube.facenames[0]].squares[2][0]
-			s3 = cube.faces[cube.facenames[4]].squares[2][0]
-			s4 = cube.faces[cube.facenames[2]].squares[0][2]
-			s5 = cube.faces[cube.facenames[5]].squares[0][2]
-			s6 = cube.faces[cube.facenames[2]].squares[2][2]
-			s7 = cube.faces[cube.facenames[4]].squares[2][2]
 
 			correctPos = {"ygr" : ((0,0,0),(3,0,2),(5,0,0)),
 								"ybo" : ((2,2,2),(3,2,0),(4,2,2)),
 								"yog" : ((2,2,0),(3,0,0),(5,2,0)),
-								"yrb" : ((0,0,2),(3,2,2),(4,2,0))}
+								"yrb" : ((0,0,2),(3,2,2),(4,2,0))} # Check all these co-ords for accuracy
 			
 			coords, colors = vars.cube.getCorners("y")
 			if coords[colors.index("ygr")] in correctPos["ygr"]:
 				if coords[colors.index("ybo")] in correctPos["ybo"]:
 					vars.algos[6-1] = True
-			if coords[colors.index("ybo")] in correctPos["ybo"]:
-				results = moves
+					break
+			elif coords[colors.index("ybo")] in correctPos["ybo"]: # double check if these should be elifs 
+				results = translateMoves(6, "o", "urULuRUl")
+				print("o, urULuRUl")
+			elif coords[colors.index("yog")] in correctPos["yog"]:
+				results = translateMoves(6, "g", "urULuRUl")
+				print("g, urULuRUl")
+			elif coords[colors.index("yrb")] in correctPos["yrb"]:
+				results = translateMoves(6, "b", "urULuRUl")
+				print("b, urULuRUl")
 
+			vars.cube.sendMoves(results)
+			vars.moveListBuffer += results
 
 			coords, colors = vars.cube.getCorners("y") # !!! ! ! ! ! ! 
 			check = True
@@ -419,7 +421,7 @@ def algorithm():
 				vars.algos[6-1] = True # ! ! ! ! !
 
 		i7 = 0
-		while not vars.algos[7-1]:
+		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
 			if cube.faces[cube.facenames[0]].squares[0][0] == cube.faces[cube.facenames[0]].squares[1][0]: # Finish this.
