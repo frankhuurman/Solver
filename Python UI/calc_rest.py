@@ -385,7 +385,7 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 		i6 = 0
-		while not vars.algos[6-1]: # doesn't register when a correctly placed corner is present. (This still holds true as of 5-12-2017) # add "and not cube.stopSolving:" here? # Moves onto algo7 now, but doesn't do it at the right point.
+		while not vars.algos[6-1] and not cube.stopSolving:
 			input("Start algo-6")
 			fronts = ["r", "b", "g", "o"]
 			flip = ["b", "o", "g"]
