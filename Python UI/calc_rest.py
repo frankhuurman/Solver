@@ -396,6 +396,20 @@ def algorithm():
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
+			correctPos = {"ygr" : ((0,0,0),(3,0,2),(5,0,0)),
+								"ybo" : ((2,2,2),(3,2,0),(4,2,2)),
+								"yog" : ((2,2,0),(3,0,0),(5,2,0)),
+								"yrb" : ((0,0,2),(3,2,2),(4,2,0))}
+		
+			coords, colors = vars.cube.getCorners("y")
+			check = True
+			for i in range(len(colors)):
+				if (coords[i] in correctPos[colors[i]]):
+					check = False
+			if (check):
+				vars.algos[6-1] = True
+
+
 		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
