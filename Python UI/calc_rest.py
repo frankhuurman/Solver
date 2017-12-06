@@ -444,6 +444,14 @@ def algorithm():
 					vars.algos[7-1] = True
 			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
 				results = translateMoves(6, "g", "RDrd")
+
+			# Check rotation thingy !!!!
+			cube.sendMoves(results)
+			while (not cube.faces["top_face"].squares[0][1] == "g"):
+				results += translateMoves(6, "g", "u")
+				cube.sendMoves("b")
+			# Check rotation thingy !!!!
+
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
 
