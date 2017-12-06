@@ -448,12 +448,12 @@ def algorithm():
 								cube.sendMoves(results)
 								while (not cube.faces["top_face"].squares[0][1] == "g"): # do the same for the bottom row
 									results += "b"
-									cube.sendMoves("b") # Shouldn't this be vars.cube?
-									print("pope")
+									print("pope (Shouldn't trigger until the yellow face is complete.")
 									while (not cube.faces["top_face"].squares[2][1] == "g"):
 										results += "f"
-										cube.sendMoves("f") # Same as with the above
 										print("magnify")
+									if cube.faces[cube.facenames[5]].squares[2][1] == "g":
+										vars.algos[7-1] = True
 			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
 				results = translateMoves(6, "g", "RDrd")
 
