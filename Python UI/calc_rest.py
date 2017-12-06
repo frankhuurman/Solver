@@ -17,6 +17,7 @@ import datetime
 #TODO: Check algo4, something is causing RB to go into (0, 1, 2) # Which section? 
 #TODO: Line 302
 #TODO: Line 310
+#TODO: Line 321
 #TODO: Look into why algo6 only occasionaly works, takes the wrong corner despite being told exactly which to pick. 
 #TODO: Check why algo6 doesn't finish when it should
 #TODO: Fix the issue with algo6 getting stuck in a loop.
@@ -306,7 +307,7 @@ def algorithm():
 			elif cube.faces[cube.facenames[3]].squares[1][0] == "y":
 				if cube.faces[cube.facenames[3]].squares[1][2] == "y":
 					results = translateMoves(4, "b", "fruRUF")
-					print("Bleep2")
+					print("Bleep2") # Error here
 				elif cube.faces[cube.facenames[3]].squares[2][1] == "y":
 					results = translateMoves(4, "b", "u")
 				else:
@@ -317,7 +318,7 @@ def algorithm():
 				else:
 					print("3whut?")
 			else:
-				results = translateMoves(4, "b", "fruRUF")
+				results = translateMoves(4, "b", "fruRUF") # Error here
 				print("Bleep3")
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
