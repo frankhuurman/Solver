@@ -452,6 +452,7 @@ def algorithm():
 									print("pope (Shouldn't trigger until the yellow face is complete.")
 								while (not cube.faces["top_face"].squares[2][1] == "g"):
 									results += "f"
+									cube.sendMoves("f")
 									print("magnify")
 								if cube.faces[cube.facenames[5]].squares[2][1] == "g":
 									if cube.faces[cube.facenames[5]].squares[0][1] == "g":
