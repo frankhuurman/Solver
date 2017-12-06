@@ -24,6 +24,7 @@ import datetime
 #TODO: Please find a to stop the command line from becoming unresponsive.
 #TODO: Add more conditions to algo6, can currently get stuck in several selectors without moves.
 #TODO: Remove any commented code that isn't needed anymore.
+#TODO: Remove any unneeded translations in translateMoves. some of them are just duplicates for several algorithms.
 
 class vars:
 	
@@ -437,20 +438,24 @@ def algorithm():
 		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
-			if cube.faces[cube.facenames[3]].squares[0][0] == "y":
-				results = translateMoves(6, "g", "U")
-				i7 += 1
-				if i7 == 3:
-					vars.algos[7-1] = True
+			if cube.faces[cube.facenames[3]].squares[0][0] == "y": 
+				results = translateMoves(6, "g", "u")
+				print("nun")
+				if cube.faces[cube.facenames[3]].squares[0][0] == "y":
+					if cube.faces[cube.facenames[3]].squares[0][2] == "y":
+						if cube.faces[cube.facenames[3]].squares[2][0] == "y":
+							if cube.faces[cube.facenames[3]].squares[2][2] == "y":
+								cube.sendMoves(results)
+								while (not cube.faces["top_face"].squares[0][1] == "g"): # do the same for the bottom row
+									results += "b"
+									cube.sendMoves("b") # Shouldn't this be vars.cube?
+									print("pope")
+									while (not cube.faces["top_face"].squares[2][1] == "g"):
+										results += "f"
+										cube.sendMoves("f") # Same as with the above
+										print("magnify")
 			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
 				results = translateMoves(6, "g", "RDrd")
-
-			# Check rotation thingy !!!!
-			cube.sendMoves(results)
-			while (not cube.faces["top_face"].squares[0][1] == "g"):
-				results += translateMoves(6, "g", "u")
-				cube.sendMoves("b")
-			# Check rotation thingy !!!!
 
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
