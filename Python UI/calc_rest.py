@@ -456,6 +456,7 @@ def algorithm():
 								if cube.faces[cube.facenames[5]].squares[2][1] == "g":
 									if cube.faces[cube.facenames[5]].squares[0][1] == "g":
 										vars.algos[7-1] = True
+										vars.solved = True
 			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
 				results = translateMoves(6, "g", "RDrd")
 
