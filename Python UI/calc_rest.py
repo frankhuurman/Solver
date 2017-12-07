@@ -373,7 +373,7 @@ def algorithm():
 						vars.algos[5-1] = True
 			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-					
+		
 		i6 = 0
 		while not vars.algos[6-1] and not cube.stopSolving:
 			input("Start algo-6")
@@ -385,7 +385,7 @@ def algorithm():
 								"yog" : ((2,2,0),(3,0,0),(5,2,0)),
 								"yrb" : ((0,0,2),(3,2,2),(4,2,0))} # Check all these co-ords for accuracy
 			
-			coords, colors = vars.cube.getCorners("y")
+			coords, colors = cube.getCorners("y")
 			if coords[colors.index("ygr")] in correctPos["ygr"]:
 				if coords[colors.index("ybo")] in correctPos["ybo"]:
 					vars.algos[6-1] = True
@@ -396,61 +396,64 @@ def algorithm():
 				results = translateMoves(6, "g", "urULuRUl")
 			elif coords[colors.index("yrb")] in correctPos["yrb"]:
 				results = translateMoves(6, "b", "urULuRUl")
+			else:
+				if (i6 > 12):
+					vars.algos[6-1] = True
+					vars.algos[7-1] = True
+					results = "uFbDbbdlrrRLLLLLLLLLLLLLLLLLLLudbrfL"
+					i6 = 0
+				else:
+					print("Nothing happened.6")
+					i6 += 5
 
 			cube.sendMoves(results)
 			vars.moveListBuffer += results
 
-			coords, colors = vars.cube.getCorners("y")
+			coords, colors = cube.getCorners("y")
 			check = True
 			for i in range(len(colors)):
 				if (not coords[i] in correctPos[colors[i]]):
 					check = False
 			if (check):
 				vars.algos[6-1] = True
+			print("EndOfSix.")
 
 		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
-			location = (0,0,0)
-			edgeColor = ["ryg", "rby", "ogy", "oyb"]
-			coords, colors = cube.getCorners("o")
-			coords2, colors2 = cube.getCorners("r")
-			coords3 = []
-			colors3 = []
-			adjacent = [cube.faces[cube.facenames[0]].squares[0][0], cube.faces[cube.facenames[5]].squares[0][0]]
-			for cl, cr in zip(colors, coords):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for cl, cr in zip(colors2, coords2):
-				if cl in edgeColor:
-					coords3.append(cr)
-					colors3.append(cl)
-			for i in range(4):
-				pas = True
-				for c in colors[i]:
-					if (not c in edgeColor[i]):
-						pas = False
-				if pas:
-					if (coords[i] == location): # Why the ()s
-						for x in adjacent:
-							if  colors3[:2] is not adjacent:
-								results = translateMoves(2, "r", "RDrd")
-
-			# Check rotation thingy !!!!
-			cube.sendMoves(results)
-			while (not cube.faces["top_face"].squares[0][1] == "g"):
-				results += "b"
-				cube.sendMoves("b")
-			# Check rotation thingy !!!!
-
+			if cube.faces[cube.facenames[3]].squares[0][0] == "y": 
+				results = translateMoves(6, "g", "u")
+				if cube.faces[cube.facenames[3]].squares[0][0] == "y":
+					if cube.faces[cube.facenames[3]].squares[0][2] == "y":
+						if cube.faces[cube.facenames[3]].squares[2][0] == "y":
+							if cube.faces[cube.facenames[3]].squares[2][2] == "y":
+								cube.sendMoves(results)
+								print("results:", results)
+								while (not cube.faces[cube.facenames[5]].squares[0][1] == "g"): # do the same for the bottom row
+									results += "b"
+									cube.sendMoves("b")
+									print("back (Shouldn't trigger until the yellow face is complete.")
+								while (not cube.faces[cube.facenames[5]].squares[2][1] == "g"):
+									results += "f"
+									cube.sendMoves("f")
+									print("front")
+								if cube.faces[cube.facenames[5]].squares[2][1] == "g":
+									if cube.faces[cube.facenames[5]].squares[0][1] == "g":
+										vars.algos[7-1] = True
+			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
+				results = translateMoves(6, "g", "RDrd")
+			else:
+				print("continue.")
+				continue
+			vars.cube.sendMoves(results)
 			vars.moveListBuffer += results
-			vars.algos[7-1] = True
 
-
-		cube.sendMoves(results) # Sends results to the cube updating it.
-		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
+#		cube.sendMoves(results) # Sends results to the cube updating it.
+#		vars.moveListBuffer += results # Adds this cycle's moves into the buffer.
 		print(vars.moveListBuffer)
 
 		if vars.cube.solved():
 			return vars.moveListBuffer
+		else:
+			for i in range(len(vars.algos)):
+				vars.algos[i] = False

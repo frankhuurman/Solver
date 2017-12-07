@@ -315,7 +315,6 @@ class solver(object):
 		for col, nr in colorSpread.items():
 			print(nr)
 			if (nr != 9):
-				print("MOI")
 				offColors[col] = nr
 		print("offColors: ", offColors)
 		if (len(offColors) > 0):
