@@ -28,6 +28,7 @@ def getInput():
 	except:
 		print("wrong input!")
 		m = False
+		amount = 0
 	return(m, amount)
 
 ser = serial.Serial("COM4", 38400, timeout=0.1)  # Open serial port (Met 0.1 timeout is python programma even snel klaar als moves van arduino)
@@ -35,7 +36,7 @@ print("Port used: " + ser.name)         # Check which port was really used
 time.sleep(2)
 
 m = ""
-while (m is not "q"):
+while (m is not False):
 	m, amount = getInput()
 	if (m is not False):
 		sendToArduino(m, amount)
