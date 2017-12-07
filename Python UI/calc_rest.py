@@ -438,26 +438,33 @@ def algorithm():
 		while not vars.algos[7-1] and not cube.stopSolving:
 			input("Start algo-7")
 			fronts = ["r", "b", "g", "o"]
-			if cube.faces[cube.facenames[3]].squares[0][0] == "y": 
-				results = translateMoves(6, "g", "u")
-				print("nun")
-				if cube.faces[cube.facenames[3]].squares[0][0] == "y":
-					if cube.faces[cube.facenames[3]].squares[0][2] == "y":
-						if cube.faces[cube.facenames[3]].squares[2][0] == "y":
-							if cube.faces[cube.facenames[3]].squares[2][2] == "y":
-								cube.sendMoves(results)
-								while (not cube.faces["top_face"].squares[0][1] == "g"): # do the same for the bottom row
-									results += "b"
-									cube.sendMoves("b")
-									print("pope (Shouldn't trigger until the yellow face is complete.")
-								while (not cube.faces["top_face"].squares[2][1] == "g"):
-									results += "f"
-									cube.sendMoves("f")
-									print("magnify")
+			s1 = cube.faces[cube.facenames[3]].squares[0][2]
+			s2 = cube.faces[cube.facenames[3]].squares[2][0]
+			s3 = cube.faces[cube.facenames[3]].squares[2][2]
+#			if cube.faces[cube.facenames[3]].squares[0][0] == "y": 
+#				results = translateMoves(6, "g", "u") 
+#				print("nun")
+			if cube.faces[cube.facenames[3]].squares[0][0] == "y":
+				print("1")
+				if s1 is not "y" or s2 is not "y" or s3 is not "y":
+					results = translateMoves(6, "g", "u")
+				if cube.faces[cube.facenames[3]].squares[0][2] == "y":
+					print("2")
+					if cube.faces[cube.facenames[3]].squares[2][0] == "y":
+						print("3")
+						if cube.faces[cube.facenames[3]].squares[2][2] == "y":
+							print("4")
+							cube.sendMoves(results)
+							if cube.faces[cube.facenames[5]].squares[0][1] is not "g": # do the same for the bottom row
+								results += "b"
+								print("testree")
+							elif cube.faces[cube.facenames[3]].squares[2][1] is not "g":
+								results += "f"
+								print("testwee")
+							elif cube.faces[cube.facenames[5]].squares[0][1] == "g":
 								if cube.faces[cube.facenames[5]].squares[2][1] == "g":
-									if cube.faces[cube.facenames[5]].squares[0][1] == "g":
-										vars.algos[7-1] = True
-										vars.solved = True
+#										vars.algos[7-1] = True
+									vars.solved = True
 			elif cube.faces[cube.facenames[3]].squares[0][0] is not "y":
 				results = translateMoves(6, "g", "RDrd")
 
