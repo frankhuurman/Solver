@@ -365,7 +365,7 @@ class solver(object):
 		calc_rest.vars.cube = self.cube
 
 		move_list = calc_rest.algorithm()
-		print(move_list)
+		print(len(move_list), move_list)
 		if (self.ser != None):
 			self.cube.setStart()
 			self.sendToArduino(move_list + "q")
