@@ -56,6 +56,8 @@ class cube(object):
 #			self.start.append(l)
 		self.setStart()
 		self.randomSetStart()
+		if (not self.checkCorrectness()):
+			self.stopSolving = True
 
 
 	def setStart(self):
@@ -63,7 +65,7 @@ class cube(object):
 
 		for i, f in enumerate(const.facenames):
 			squares = self.start[i*9 : i*9 + 9]	# Picking 9 elements from the list
-			face_color = squares[int(len(squares)/2)]	# Checking color of the 4th element.
+			face_color = squares[int(len(squares)/2)]	# Checking color of the 5th element.
 			name = const.facenames[const.faceColorIndex[face_color]]
 			conns = {}	# Dict {name : relative orientation} used for interactions between different faces.
 			for i, conn in enumerate(const.connections[name]):
@@ -83,10 +85,34 @@ class cube(object):
 			mvs += j
 		print(mvs)
 		
+	def checkCorrectness(self):
+		correct = True
+		coords, wecolors = self.getEdge("w")
+		coords, yecolors = self.getEdge("y")
+		coords, wccolors = self.getCorners("w")
+		coords, yccolors = self.getCorners("y")
+		wEdges = ["wr", "wo", "wg", "wb"]
+		yEdges = ["yr", "yo", "yg", "yb"]
+		wCorners = ["wrg", "wgo", "wbr", "wob"]
+		yCorners = ["yog", "ygr", "ybo", "yrb"]
+		for i in wecolors:
+			if (i not in wEdges):
+				correct = False
+		for i in yecolors:
+			if (i not in yEdges):
+				correct = False
+		for i in wccolors:
+			if (i not in wCorners):
+				correct = False
+		for i in yccolors:
+			if (i not in yCorners):
+				correct = False
+		print("correct cube? ", correct)
+		return(correct)
+
 	def sendMoves(self, moves):
 		"""Main method for manipulating the cube."""
 
-#		print("sendMoves: ", moves)
 		for move in moves:
 			dir = str(move).islower()
 			self.__rotate(const.facenames[const.moveFaceIndex[str(move).lower()]], dir)
@@ -221,6 +247,7 @@ class cube(object):
 				self.faces[f].setSide(name, temp.popleft(), False)
 
 	def __turnForPrint(self, relMain, relSec, squares, name):
+		"""Checks how many quarter turns to perform, then returns the rotated face."""
 		if (relMain == relSec):
 			return(self.__rotPrint(2, squares, name))
 		elif ((relMain == "up" and relSec == "left") or
@@ -236,7 +263,8 @@ class cube(object):
 		return(squares)
 	
 	def __rotPrint(self, turns, squares, name):
-#		print(str(turns), "moi")
+		"""Returns a rotated version of the face."""
+
 		temp = deque()
 		blah = [["","",""],["","",""],["","",""]]
 		for x, y in const.rotateOrder:
@@ -319,43 +347,35 @@ class face(object):
 		"""Sets the 3 squares on the side of the face with %name."""
 		
 		if (self.connections[name] == "up"):
-#			print("up " + name + " " + self.face_name)
 			if (name == "back_face" and self.face_name == "top_face" and not dir
 			or name == "front_face" and self.face_name == "bottom_face" and dir):
-#				print("reversing-u!" + str(values))
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[0][i] = value
 
 		if (self.connections[name] == "left"):
-#			print("left " + name + " " + self.face_name)
-			if (name == "right_face" and self.face_name == "back_face"# and dir
+			if (name == "right_face" and self.face_name == "back_face"
 			or name == "back_face" and self.face_name == "left_face" and dir
 			or name == "left_face" and self.face_name == "top_face" and dir
 			or name == "front_face" and self.face_name == "right_face" and not dir
 			or name == "left_face" and self.face_name == "bottom_face" and not dir):
-#				print("reversing-l!" + str(values))
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[i][0] = value
 
 		if (self.connections[name] == "right"):
-#			print("right " + name + " " + self.face_name)
 			if (name == "back_face" and self.face_name == "right_face" and dir
 			or name == "right_face" and self.face_name == "bottom_face" and dir
 			or name == "right_face" and self.face_name == "top_face" and not dir
 			or name == "front_face" and self.face_name == "left_face" and not dir
-			or name == "left_face" and self.face_name == "back_face"):# and dir):
-#				print("reversing-r!" + str(values))
+			or name == "left_face" and self.face_name == "back_face"):
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[i][2] = value
 
 		if (self.connections[name] == "down"):
-#			print("down " + name + " " + self.face_name)
 			if (name == "back_face" and self.face_name == "bottom_face" and not dir
 			or name == "front_face" and self.face_name == "top_face" and dir):
-#				print("reversing-d!" + str(values))
 				values = reversed(values)
 			for i, value in enumerate(values):
 				self.squares[2][i] = value
@@ -363,7 +383,6 @@ class face(object):
 	def getSide(self, name):
 		"""Returns the 3 squares on the side of the named face."""
 		colors = []
-#		print(self.face_name, self.connections)
 		if (self.connections[name] == "up"):
 			for i in range(3):
 				colors.append(self.squares[0][i])
