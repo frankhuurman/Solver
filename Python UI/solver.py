@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 import os
-import calc_rest
+import algorithm
 import cube as kubus
 import serial
 import threading
@@ -261,11 +261,11 @@ class solver(object):
 			t.join()
 
 		# Clearing out the move list buffer...
-		calc_rest.vars.moveListBuffer = ""
+		algorithm.vars.moveListBuffer = ""
 
 		# Setting the algorithm bools to unsolved...
-		for i in range(len(calc_rest.vars.algos)):
-			calc_rest.vars.algos[i] = False
+		for i in range(len(algorithm.vars.algos)):
+			algorithm.vars.algos[i] = False
 
 		# giving all squares the color of the solved state...
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
@@ -393,10 +393,10 @@ class solver(object):
 
 		# Create cube object
 		self.cube = kubus.cube(self.getColorList())
-		calc_rest.vars.cube = self.cube
+		algorithm.vars.cube = self.cube
 
-		move_list = calc_rest.algorithm()
-		print(move_list)
+		move_list = algorithm.algorithm()
+		print(len(move_list), move_list)
 		if (self.ser != None):
 			self.cube.setStart()
 			self.sendToArduino(move_list + "q")

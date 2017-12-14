@@ -159,7 +159,7 @@ class cube(object):
 					colors.append(colorCombo)
 		return(coords, colors)
 
-	def getCorners(self, color, extraReturn = False):
+	def getCorners(self, color):
 		"""Returns a list with the coords of the corner squares that match the selected color."""
 		
 		
