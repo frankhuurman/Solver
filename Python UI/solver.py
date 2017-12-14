@@ -1,11 +1,12 @@
 import pygame
 pygame.init()
 import os
-import calc_rest
+import algorithm
 import cube as kubus
 import serial
 import threading
 import time
+
 
 
 class solverThread(threading.Thread):
@@ -25,7 +26,6 @@ class solverThread(threading.Thread):
 		print("Starting thread{0}: {1}".format(self.threadID, self.name))
 		self.args.solve()
 		print("Exiting thread{0}: {1}".format(self.threadID, self.name))
-
 
 class solver(object):
 	
@@ -99,11 +99,13 @@ class solver(object):
 	rects_col = []
 	cube = None
 	threadList = []
+	ser = None # Serial connection
 	
 	def __init__(self):
 
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
-		
+		self.connectToSerial()
+
 		# Set up the rectangles and their proper colors.
 		for i , color in enumerate(order):
 			if ((i - 3) >= 0):
@@ -127,65 +129,41 @@ class solver(object):
 						# Get the color for the rect. Colors are according to the color of the face.
 						self.rects_col.append(self.imgs[color])
 
-	
+
+	def connectToSerial(self):
+		"""Set up connection to arduino machine."""
+
+		try:
+			serial.Serial("COM4", 38400, timeout=0.1)		# Open serial port
+			print("Port used: " + self.ser.name)			# Check which port was really usedused
+			time.sleep(2)
+			data = self.ser.readline()
+			if data == b"Ready\r\n":							# Initialize handshake with Arduino
+				print("Succesfully connected to Arduino...")
+			else:
+				print("Failed to connect to Arduino...")
+				self.ser = None
+		except:
+			print("Failed to connect to Arduino...")
+			self.ser = None
+			
 	def sendToArduino(self, send_list):
 		"""This function sends the movelist to Arduino
 		Arduino recognizes f as a positive/clockwise 90 degree turn for the front stepper motor
 		and F as a negative/counter clockwise 90 degree turn for the front stepper motor.
-		Maybe move this function to the algorithm or cube object python file?
 		"""
-		self.cube.setStart()
-		ser = serial.Serial("COM4", 38400, timeout=0.1)  # Open serial port (Met 0.1 timeout is python programma even snel klaar als moves van arduino)
-		print("Port used: " + ser.name)         # Check which port was really used
-	#	send_list = ["uUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbBuUlLdDrRfFbB"]
-		"""
-		if len(send_list) > 62:
-			blah = []
-			blah.append(send_list[i*64:(i+1)*64])
-		"""
-		#send_list.append("\r")
-		time.sleep(2)
-		print(send_list)
-		#send_list = "f"
 		
 		for m in send_list:
 			data = ser.readline() # Read data from Arduino
 			if m is not "q":
-					print("Sending move: " + m)
-					ser.write(str.encode(m))
-						#time.sleep(0.1)
-					self.cube.sendMoves(m)
-			"""
-			if data: # If data comes in from Arduino
-				if data == b"Ready\r\n": # Initialize handshake with Arduino
-					print ("Handshake from Arduino received")
-					#The arduino_string part + while loop is for manual testing commands
-					#Make this a comment and uncomment for item in send_list for regular use
-					#arduino_string = ""
-					if m != "q":
-						ser.write(str.encode(m))
-						self.cube.sendMoves(m)
-				elif data == b"somethingelse":
-					arduino_string = input("Type another string to send to arduino: ")
-					arduino_send_bytes = str.encode(arduino_string)
-					ser.write(arduino_send_bytes)
-				elif data == b'hello':
-					print ("it says hello!")
-				else:
-					# This actually prints the data received from Serial.print from Arduino
-					# First it decodes the received raw byte data to a utf-8 string
-					ascii_data = data.decode()
-					print (ascii_data)
-"""
-		if not data: # If there is no data coming back from Arduino
-			print("No data being received from Arduino anymore")
+				print("Sending move: " + m)
+				ser.write(str.encode(m))
+				self.cube.sendMoves(m)
 
-#		mario = input("Press enter to start the ending tune")
-#		ser.write(str.encode("z"))
-		test = input("Press enter to close serial connection")
-		ser.close()             # close port
-		print ("Serial port closed")
-
+			if not data: # If there is no data coming back from Arduino
+				print("No data being received from Arduino anymore")
+				return
+					
 	def showSavedText(self, image, rect):
 		image_time = 840
 		while image_time > 0:
@@ -283,11 +261,11 @@ class solver(object):
 			t.join()
 
 		# Clearing out the move list buffer...
-		calc_rest.vars.moveListBuffer = ""
+		algorithm.vars.moveListBuffer = ""
 
 		# Setting the algorithm bools to unsolved...
-		for i in range(len(calc_rest.vars.algos)):
-			calc_rest.vars.algos[i] = False
+		for i in range(len(algorithm.vars.algos)):
+			algorithm.vars.algos[i] = False
 
 		# giving all squares the color of the solved state...
 		order = ["red", "white", "orange", "yellow", "blue", "green"]
@@ -296,6 +274,53 @@ class solver(object):
 				continue
 			self.rects_col[i] = self.imgs[order[int(i/9)]]
 			
+	def getColorList(self):
+		"""Returns an array with the first letter of the color of each of the 54 squares of the cube."""
+
+		calcu_list = []
+
+		for color in self.rects_col:
+			if color == self.imgs["white"]:
+				calcu_list.append("w")
+			elif color == self.rubiks_image:
+				calcu_list.append("w")
+			elif color == self.imgs["red"]:
+				calcu_list.append("r")
+			elif color == self.imgs["green"]:
+				calcu_list.append("g")
+			elif color == self.imgs["blue"]:
+				calcu_list.append("b")
+			elif color == self.imgs["orange"]:
+				calcu_list.append("o")
+			elif color == self.imgs["yellow"]:
+				calcu_list.append("y")
+			else:
+				calcu_list.append("<no color>")
+		return(calcu_list)
+
+	def confirmCheck(self):
+		"""Run this check when starting to solve to ensure there are 9 squares of each color."""
+
+		allColors = self.getColorList()
+		colorSpread = {"r" : 0,
+						"w" : 0,
+						"o" : 0,
+						"y" : 0,
+						"b" : 0,
+						"g" : 0,
+						}
+		offColors = {}
+		for color in allColors:
+			colorSpread[color] += 1
+		for col, nr in colorSpread.items():
+			print(nr)
+			if (nr != 9):
+				offColors[col] = nr
+		print("offColors: ", offColors)
+		if (len(offColors) > 0):
+			return(False)
+		return(True)
+
 	def checkQuitandClicks(self):
 		"""Check for exit and event handling."""
 
@@ -314,6 +339,9 @@ class solver(object):
 						for t in self.threadList:
 							if (t.isAlive()):
 								startThread = False
+						if (not self.confirmCheck()):
+							print("Colors be wrong!!!!!")
+							return
 						if (startThread):
 							solverThr = solverThread(len(self.threadList), "Solver", self)
 							solverThr.start()
@@ -363,34 +391,15 @@ class solver(object):
 	def solve(self):
 		"""Run this in a seperate thread to start solving the cube."""
 
-		calcu_list = []
-
-		for color in self.rects_col:
-			if color == self.imgs["white"]:
-				calcu_list.append("w")
-			elif color == self.rubiks_image:
-				calcu_list.append("w")
-			elif color == self.imgs["red"]:
-				calcu_list.append("r")
-			elif color == self.imgs["green"]:
-				calcu_list.append("g")
-			elif color == self.imgs["blue"]:
-				calcu_list.append("b")
-			elif color == self.imgs["orange"]:
-				calcu_list.append("o")
-			elif color == self.imgs["yellow"]:
-				calcu_list.append("y")
-			else:
-				calcu_list.append("<no color>")
-					
 		# Create cube object
-		self.cube = kubus.cube(calcu_list)
-		calc_rest.vars.cube = self.cube
+		self.cube = kubus.cube(self.getColorList())
+		algorithm.vars.cube = self.cube
 
-		move_list = calc_rest.algorithm()
-		print(move_list)
-		self.cube.setStart()
-		self.sendToArduino(move_list + "q")
+		move_list = algorithm.algorithm()
+		print(len(move_list), move_list)
+		if (self.ser != None):
+			self.cube.setStart()
+			self.sendToArduino(move_list + "q")
 		self.cube = None
 
 	def showScreen(self):
@@ -439,5 +448,13 @@ class solver(object):
 			self.clock.tick(60)
 			
 game = solver()
-while game.active:
-	game.showScreen()
+try:
+	while game.active:
+		game.showScreen()
+except KeyboardInterrupt:
+	pass
+finally:
+	if (game.ser != None):
+		game.ser.close()
+		print ("Serial port closed")
+	print("doei.")
