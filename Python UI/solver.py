@@ -130,15 +130,16 @@ class solver(object):
 						self.rects_col.append(self.imgs[color])
 
 
-	def connectToSerial(self):
+	def connectToSerial(self, i = 0):
 		"""Set up connection to arduino machine."""
 
 		try:
-			serial.Serial("COM4", 38400, timeout=0.1)		# Open serial port
-			print("Port used: " + self.ser.name)			# Check which port was really usedused
+			self.ser = serial.Serial("COM4", 38400, timeout=0.1)	# Open serial port
+			print("Port used: " + self.ser.name)						# Check which port was really used
 			time.sleep(2)
-			data = self.ser.readline()
-			if data == b"Ready\r\n":							# Initialize handshake with Arduino
+			data = self.ser.readline().decode()
+			print("data: '{}'".format(data))
+			if data == "Ready\r\n":												# Initialize handshake with Arduino
 				print("Succesfully connected to Arduino...")
 			else:
 				print("Failed to connect to Arduino...")
@@ -146,6 +147,10 @@ class solver(object):
 		except:
 			print("Failed to connect to Arduino...")
 			self.ser = None
+			if (i < 4):
+				self.connectToSerial(i+1)
+			else:
+				print("i:", i)
 			
 	def sendToArduino(self, send_list):
 		"""This function sends the movelist to Arduino
@@ -154,10 +159,10 @@ class solver(object):
 		"""
 		
 		for m in send_list:
-			data = ser.readline() # Read data from Arduino
+			data = self.ser.readline() # Read data from Arduino
 			if m is not "q":
 				print("Sending move: " + m)
-				ser.write(str.encode(m))
+				self.ser.write(str.encode(m))
 				self.cube.sendMoves(m)
 
 			if not data: # If there is no data coming back from Arduino

@@ -1,6 +1,13 @@
 from collections import deque
 import random
 
+"""
+VERY IMPORTANT:
+X AND Y ARE CONSISTENTLY REVERSED! SORRY :P
+- init cube
+	- setStart(): init 6 face objects
+"""
+
 
 class const:
 	"""The class has a few arrays and dicts to help map colors and faces, and general relations."""
@@ -86,6 +93,8 @@ class cube(object):
 		print(mvs)
 		
 	def checkCorrectness(self):
+		"""Check wether there are no impossible edges or corners between the faces. Needs a few more checks."""
+
 		correct = True
 		coords, wecolors = self.getEdge("w")
 		coords, yecolors = self.getEdge("y")
