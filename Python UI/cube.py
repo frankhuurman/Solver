@@ -80,7 +80,7 @@ class cube(object):
 			self.faces[f] = face(squares, name, conns)
 
 	def randomSetStart(self):
-		"""Use this method to get the cube to a random state."""
+		"""Use this method to get the cube to a random state. Does a bunch of random moves to shuffle the cube."""
 
 		moves = ["l", "f", "r", "b", "d", "u"]
 		mvs = ""
@@ -208,18 +208,24 @@ class cube(object):
 		for f in self.faces.keys():
 			for x, y, s1, s2 in const.corners:
 				if (color == self.faces[f].squares[x][y]):
+					# Get facenames:
 					side1 = const.facenames[const.connections[f][s1]]
 					side2 = const.facenames[const.connections[f][s2]]
+					# Get relative connection from 1st to 2nd face
 					main1 = self.faces[f].connections[side1]
 					main2 = self.faces[f].connections[side2]
+					# Get relative connection from 2nd to 1st face
 					sec1 = self.faces[side1].connections[f]
 					sec2 = self.faces[side2].connections[f]
+					# Get the colors of both sides and rotate them
 					sq1 = self.__turnForPrint(main1, sec1, self.faces[side1].squares, f)
 					sq2 = self.__turnForPrint(main2, sec2, self.faces[side2].squares, f)
+					# Extract the relevant colors
 					c1 = blah[(x,y)][0]
 					c2 = blah[(x,y)][1]
+					# Get the facenumber
 					fIndex = const.facenames.index(f)
-#					print(c1, c2, fIndex, side1, side2)
+					# Add data to return lists
 					coords.append((fIndex, x, y))
 					colors.append(color + sq1[c1[0]][c1[1]] + sq2[c2[0]][c2[1]])
 		return(coords, colors)
