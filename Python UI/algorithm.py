@@ -289,7 +289,6 @@ def algorithm():
 						coords, colors = getInfo(i)
 						k = colors.index(currentColor)
 						if (not vars.LUT[i][colors[k]][coords[k]] == "done"):
-							print("\n\nERROR!!!!!\n", coords, colors)
 							debug = open("debug.txt", "a", newline = "\r\n")
 							debug.write(str(colors[j]) + " algo-{} ".format(i+1) + str(coords[j]) + "\t")
 							debug.write(" moves: {} - @{}\n".format(vars.LUT[i][colors[k]][coords[k]], datetime.datetime.now()))

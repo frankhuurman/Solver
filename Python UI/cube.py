@@ -58,9 +58,6 @@ class cube(object):
 	def __init__(self, outputlist):
 		
 		self.start = outputlist
-#		dinges = "gyrrrbyrbyorywoowbgoggowwrwrborybbwgybogbyogrwowggwbyy"
-#		for l in dinges:
-#			self.start.append(l)
 		self.setStart()
 		self.randomSetStart()
 		if (not self.checkCorrectness()):
