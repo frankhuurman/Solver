@@ -88,6 +88,10 @@ class cube(object):
 			self.sendMoves(j)
 			mvs += j
 		print(mvs)
+		self.start = []
+		for face in self.faces.values():
+			for c in face.getColors():
+				self.start.append(c)
 		
 	def checkCorrectness(self):
 		"""Check wether there are no impossible edges or corners between the faces. Needs a few more checks."""
